@@ -3,6 +3,7 @@ import ReactDom from "react-dom/client";
 import App from "./components/App"
 import "./style.css"
 import "./footer.css"
+import "./header.css"
 
 
 const container = document.getElementById("root");

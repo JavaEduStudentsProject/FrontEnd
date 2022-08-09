@@ -1,0 +1,47 @@
+.footer-items {
+    color:grey;
+    display: flex;
+    background-color: yellow;
+    /*position: relative;*/
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    align-items: stretch;
+    justify-content: space-between;
+    border-radius: 0;
+}
+
+.copyright {
+    /*position: absolute;*/
+    font-size: 17px;
+    color: darkslategray;
+}
+
+.icon-container > a {
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    /*background: #f1f1f1;*/
+    background: lightgrey;
+    margin: 10px;
+    border-radius: 30%;
+    text-align: center;
+}
+
+.icon-container > a > i {
+    color: darkslategray;
+    font-size: 30px;
+    margin-top: 10px;
+}
+
+.icon-container > a:hover {
+    background: darkslategray;
+    transition: 0.5s;
+}
+
+.icon-container > a:hover > i {
+    color: yellow;
+    transition: 0.5s;
+    transform: scale(1.3);
+}

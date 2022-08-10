@@ -1,5 +1,5 @@
 import React from 'react';
-import img from "../../images/img_3.jpg";
+// import img from "../../images/img_3.jpg";
 
 const ProductCard = (props) => {
     console.log(props);
@@ -14,7 +14,7 @@ const ProductCard = (props) => {
     return (
         <div className="product-card">
             {/*<img src={props.product.preview}/>*/}
-            <img className="preview" src={img}/>
+            <img className="preview" src={props.product.preview}/>
             <ul>
                 {descriptionList}
             </ul>

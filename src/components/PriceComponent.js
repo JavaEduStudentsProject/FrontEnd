@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import MyButton from "./UI/button/MyButton";
 
 function ProductPlusMinusButton() {
     let price = 100000000;
@@ -16,10 +17,10 @@ function ProductPlusMinusButton() {
 
     return (
         <div className="price">
-            <h6>Цена: {price}</h6>
-            <button id="cartPlusButton" onClick={incrementProductCount}>В корзину</button>
-            <button id="cartMinusButton" onClick={decrementProductCount}>Удалить</button>
-            <h6>В корзине: {count}</h6>
+            <h2>Цена: {price}</h2>
+            <MyButton id="cartPlusButton" onClick={incrementProductCount}>В корзину</MyButton>
+            <MyButton id="cartMinusButton" onClick={decrementProductCount}>Удалить</MyButton>
+            <h3>В корзине: {count}</h3>
         </div>
     );
 };

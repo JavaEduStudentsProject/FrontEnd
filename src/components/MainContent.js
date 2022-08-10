@@ -11,6 +11,7 @@ export default function MainContent() {
     return (
         <div className="main-content">
             <h1 className="productName">{productName}</h1>
+            <a href="http://localhost:3000/">Все продукты</a>
             <div className="main-block">
                 <div className="product-card">
                     <div className="img-and-shortdescr">

@@ -1,24 +1,16 @@
 import React, {useState} from "react";
 import ReactDom from "react-dom";
-
 import StarRating from "./StarRating";
 import PriceComponent from "./PriceComponent"
 import MoneyInCreditComponent from "./MoneyInCreditComponent"
-
 import img from "../images/img_3.jpg";
+
 
 export default function MainContent() {
     let productName = "Название товара";
 
     return (
         <div className="main-content">
-            <nav className="nav-list">
-                <p>Крупные</p>
-                <p>категории</p>
-                <p>первого</p>
-                <p>слоя</p>
-                <p>вложенности</p>
-            </nav>
             <h1>{productName}</h1>
             <div className="main-block">
                 <div className="product-card">
@@ -42,7 +34,6 @@ export default function MainContent() {
                         </ul>
                     </div>
                 </div>
-
                 <div className="money-block">
                     <PriceComponent/>
                     <MoneyInCreditComponent/>

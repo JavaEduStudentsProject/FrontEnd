@@ -1,28 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap');
+
 * {
-    /*border: 1px solid black;*/
-    /*margin:10px;*/
-    font-family: Inter, sanc-serif;
-    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 body {
-    /*border: 10px solid black;*/
-    /*!*background-color: lightgrey;*!*/
-    background-image: linear-gradient(105deg, yellow 39%, grey 96%);
-    margin: 60px;
+    background-color: #ffffff;
 }
 
 .container {
-
 }
 
 .main-content {
-    color: yellow;
+    color: #ffcf0c;
     height: auto;
-    padding: 57px 27px;
+    /*padding: 57px 27px;*/
+    margin-top: 30px;
 }
 
 .main-block {
+    margin-left: 30px;
+    margin-top: 30px;
     /*align-items: stretch;*/
     display: flex;
     justify-content: space-between;
@@ -34,8 +32,8 @@ body {
 }
 
 .product-img {
-    margin-right: 70px;
-    width: 200px;
+    margin-right: 30px;
+    height: 400px;
 }
 
 .short-descr {
@@ -50,19 +48,11 @@ body {
     display: flex;
 }
 
-.nav-list {
-    align-items: stretch;
-    display: flex;
-    background-color: grey;
-}
-
-.nav-list > p {
-    padding: 10px;
-}
-
 .main-content > h1 {
+    color: black;
     margin: 0;
-    letter-spacing: -0.05em;
+    font-size: 40px;
+    /*letter-spacing: -0.05em;*/
 }
 
 /*todo Квадратные маркеры списка и другой цвет. Почему-то перестали отображаться*/
@@ -140,8 +130,15 @@ body {
 }
 
 .star-form-btn {
-    color: yellow;
-    background-color: dimgrey;
+    color: black;
+    background-color: #ffcf0c;
+    font-weight: 600;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 3px;
+    margin: 10px;
+    cursor: pointer;
+    border: none;
 }
 
 .price {

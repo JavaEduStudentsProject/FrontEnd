@@ -12,6 +12,7 @@ const Products = () => {
     return (
         <div>
             <h1>Все продукты</h1>
+            <a href="http://localhost:3000/product">Конкретный продукт</a>
             <ul className="products">
                 {products.map(product =>
                     <ProductCard product = {product} key={product.id}/>

@@ -4,6 +4,7 @@ import App from "./components/App"
 import "./style.css"
 import "./footer.css"
 import "./header.css"
+import "./products.css"
 
 
 const container = document.getElementById("root");

@@ -1,13 +1,15 @@
 import React from 'react';
-import Header from "./Header";
+import Header from "./header components/Header";
 import MainContent from "./MainContent";
-import Footer from "./Footer";
+import Footer from "./footer components/Footer";
+import Products from "./AllProducts/Products";
 
 function App() {
     return (
-        <div className="container">
+        <div className="App">
             <Header/>
-            <MainContent/>
+            <Products/>
+            {/*<MainContent/>*/}
             <Footer/>
         </div>
     )

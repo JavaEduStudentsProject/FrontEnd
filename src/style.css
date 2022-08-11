@@ -16,6 +16,12 @@ body {
     height: auto;
     /*padding: 57px 27px;*/
     margin-top: 30px;
+    /*padding-top: 10px;*/
+}
+
+.productName {
+    color: darkslategrey;
+    padding: 10px;
 }
 
 .main-block {
@@ -39,13 +45,29 @@ body {
 .short-descr {
     background-color: dimgrey;
     /*height: border-box;*/
-    margin-top: 0px;
+    /*margin-top: 0px;*/
     /*margin-top: -100px;*/
+    padding: 5px;
+}
+
+.main-characts {
+    margin-top: 10px;
 }
 
 .img-and-shortdescr {
     /*align-items: stretch;*/
     display: flex;
+    /*justify-content: space-between;*/
+}
+
+.nav-list {
+    align-items: stretch;
+    display: flex;
+    background-color: grey;
+}
+
+.nav-list > p {
+    /*padding: 10px;*/
 }
 
 .main-content > h1 {
@@ -56,6 +78,10 @@ body {
 }
 
 /*todo Квадратные маркеры списка и другой цвет. Почему-то перестали отображаться*/
+li {
+    /*display: list-item;*/
+}
+
 /*.main-content > ul {*/
 /*    list-style-type: square;*/
 /*}*/
@@ -139,6 +165,10 @@ body {
     margin: 10px;
     cursor: pointer;
     border: none;
+}
+
+.money-block {
+    display: block;
 }
 
 .price {

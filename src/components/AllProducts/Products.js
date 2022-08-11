@@ -10,9 +10,8 @@ const Products = () => {
         {id: 5, category: "table", name: "ikeaTable", size: "L", preview: "../../images/img_3.jpg"},
     ])
     return (
-        <div>
+        <div className="all-products">
             <h1>Все продукты</h1>
-            <a href="http://localhost:3000/product">Конкретный продукт</a>
             <ul className="products">
                 {products.map(product =>
                     <ProductCard product = {product} key={product.id}/>

@@ -23,6 +23,8 @@ export default function Header() {
                 <p>первого</p>
                 <p>слоя</p>
                 <p>вложенности</p>
+                <a href="http://localhost:3000/">Все продукты</a>
+                <a href="http://localhost:3000/product">Конкретный продукт</a>
             </nav>
         </header>
     )

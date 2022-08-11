@@ -4,18 +4,24 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+html {
+    height: 100%;
+}
+
 body {
     background-color: #ffffff;
+    height: 100%;
 }
 
 .container {
 }
 
 .main-content {
+    box-sizing: border-box;
     color: #ffcf0c;
     height: auto;
     /*padding: 57px 27px;*/
-    margin-top: 30px;
+    /*margin-top: 30px;*/
     /*padding-top: 10px;*/
 }
 
@@ -39,7 +45,7 @@ body {
 
 .product-img {
     margin-right: 30px;
-    height: 400px;
+    height: 300px;
 }
 
 .short-descr {

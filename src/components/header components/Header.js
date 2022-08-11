@@ -17,6 +17,13 @@ export default function Header() {
                 <button className="nav-button-one">Кнопка 1</button>
                 <button className="nav-button-two">Кнопка 2</button>
             </nav>
+            <nav className="nav-list">
+                <p>Крупные</p>
+                <p>категории</p>
+                <p>первого</p>
+                <p>слоя</p>
+                <p>вложенности</p>
+            </nav>
         </header>
     )
 }

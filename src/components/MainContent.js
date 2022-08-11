@@ -1,15 +1,19 @@
-import React from "react";
+import React, {useState} from "react";
+import ReactDom from "react-dom";
+
+import StarRating from "./StarRating";
 import PriceComponent from "./PriceComponent"
 import MoneyInCreditComponent from "./MoneyInCreditComponent"
-
 import img from "../images/img_3.jpg";
 import ShortProductDescription from "./ShortProductDescription";
+
 
 export default function MainContent() {
     let productName = "Боевой дроид";
 
     return (
         <div className="main-content">
+            <h1>{productName}</h1>
             <h1 className="productName">{productName}</h1>
             <a href="http://localhost:3000/">Все продукты</a>
             <div className="main-block">
@@ -27,7 +31,6 @@ export default function MainContent() {
                         </ul>
                     </div>
                 </div>
-
                 <div className="money-block">
                     <PriceComponent/>
                     <MoneyInCreditComponent/>

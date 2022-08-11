@@ -9,7 +9,7 @@ import Products from "./AllProducts/Products";
 
 function App() {
     return (
-        <div className="App">
+        <div className="container">
             <Header/>
 
             <BrowserRouter>
@@ -19,18 +19,6 @@ function App() {
                 </Routes>
             </BrowserRouter>
 
-            {/*<Router>*/}
-            {/*    <Link to="/">Все продукты</Link>*/}
-            {/*    <Link to="/about">Продукт</Link>*/}
-            {/*    /!*<Routes>*!/*/}
-            {/*    <Route path="/" component={Products} />*/}
-            {/*    <Route path="/product" component={MainContent} />*/}
-            {/*    /!*</Routes>*!/*/}
-
-            {/*</Router>*/}
-
-            {/*<Products/>*/}
-            {/*<MainContent/>*/}
             <Footer/>
         </div>
     )

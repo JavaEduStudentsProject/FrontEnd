@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap');
+
 .footer-items {
     color:grey;
     display: flex;
-    background-color: yellow;
+    background-color: #313131;
     /*position: relative;*/
     position: absolute;
     bottom: 0;
@@ -14,8 +16,9 @@
 
 .copyright {
     /*position: absolute;*/
-    font-size: 17px;
-    color: darkslategray;
+    margin-left: 20px;
+    font-size: 16px;
+    color: #ffcf0c;
 }
 
 .icon-container > a {
@@ -41,7 +44,7 @@
 }
 
 .icon-container > a:hover > i {
-    color: yellow;
+    color: #ffcf0c;
     transition: 0.5s;
     transform: scale(1.3);
 }

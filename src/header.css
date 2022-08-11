@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap');
+
 .nav-panel {
     display: flex;
     /*justify-content: space-between;*/
     align-items: center;
-    background-color: dimgrey;
-    height: 90px;
+    background-color: #383838;
+    height: 70px;
     padding: 30px 25px;
 }
 
@@ -12,17 +14,19 @@ nav > h3, nav > h4 {
 }
 
 .nav-img {
-    width: 100px;
-    margin-right: 7px;
+    width: 90px;
+    margin-right: 20px;
     transform: rotate(-0.05turn);
 }
 
 /*=====Dropdown menu block=====*/
 .dropbtn {
-    background-color: yellow;
-    color: dimgrey;
-    padding: 20px;
-    font-size: 25px;
+    border-radius: 3px;
+    background-color: #ffcf0c;
+    font-weight: 600;
+    color: #000000;
+    padding: 15px;
+    font-size: 20px;
     border: none;
     margin-right: 10px;
     margin-left: 10px;
@@ -37,7 +41,7 @@ nav > h3, nav > h4 {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: yellow;
+    background-color: #ffcf0c;
     /*min-width: 160px;*/
     /*width: 100%;*/
     overflow:auto;
@@ -59,7 +63,7 @@ nav > h3, nav > h4 {
 }
 
 .dropdown-content a:hover {
-    background-color: #ddd;
+    background-color: #ffcf0c;
 }
 
 .dropdown:hover .dropdown-content {
@@ -68,7 +72,7 @@ nav > h3, nav > h4 {
 
 .dropdown:hover .dropbtn {
     background-color: dimgrey;
-    color: yellow;
+    color: #ffcf0c;
 }
 
 .search-block {
@@ -76,6 +80,7 @@ nav > h3, nav > h4 {
 }
 
 .search-text {
+    color: white;
 
 }
 
@@ -84,25 +89,38 @@ nav > h3, nav > h4 {
 }
 
 .nav-button-one, .nav-button-two {
-    background-color: yellow;
-    color: dimgrey;
-    font-size: 25px;
-    border-radius: 10px;
+    background-color: #ffcf0c;
+    font-weight: 600;
+    color: #000000;
+    padding: 15px;
+    font-size: 20px;
+    border-radius: 3px;
     margin: 10px;
-    font-weight:bold;
     cursor: pointer;
-    border: 2px solid lightgrey;
-    padding: 20px;
+    border: none;
+
 }
 
 .nav-button-one:hover {
-    color: #dddddd;
+    color: #000000;
     transition: 0.4s;
     transform: scale(1.1);
 }
 
 .nav-button-two:hover {
-    color: #dddddd;
+    color: #000000;
     transition: 0.4s;
     transform: scale(1.1);
+}
+
+.nav-list {
+    align-items: stretch;
+    display: flex;
+    background-color: #5b5b5b;
+    color: #ffffff;
+}
+
+.nav-list > p {
+    margin-left: 30px;
+
 }

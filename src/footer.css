@@ -4,8 +4,8 @@
     color:grey;
     display: flex;
     background-color: #313131;
-    position: relative;
-    /*position: absolute;*/
+    /*position: relative;*/
+    position: absolute;
     /*position: fixed;*/
     bottom: 0;
     left: 0;

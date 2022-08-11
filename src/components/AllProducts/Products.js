@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import ProductCard from "../AllProducts/ProductCard";
 import MySelect from "../UI/select/MySelect";
 
+
 const Products = () => {
     const [products, setProducts] = useState([
         {id: 1, category: "robot", name: "R2D2", mainFunction: "Calculation", price: "100", preview: "../../images/img_3.jpg"},
@@ -12,12 +13,33 @@ const Products = () => {
         {id: 6, category: "table", name: "ikeaTable", size: "L", price: "333", preview: "../../images/img_3.jpg"},
     ])
 
-    const [sortingKey, setSortingKey] = useState("");
+//   const [sortingKey, setSortingKey] = useState("");
+    const [directSort, setDirectSort] = useState(true);
+    let sortDate;
 
-    const sortProducts = (sort) => {
-        setSortingKey(sort);
-        // /todo найти универсальную функцию для сравнения не только строк, а всех типов значений
-        setProducts([...products].sort((a, b) => a[sort].localeCompare(b[sort])));
+
+
+    // const sortProducts = (sort) => {
+    //     setSortingKey(sort);
+    //     // /todo найти универсальную функцию для сравнения не только строк, а всех типов значений
+    //     setProducts([...products].sort((a, b) => a[sort].localeCompare(b[sort])));
+    // }
+    const sortProducts = (field) => {
+        directSort
+            ?
+            sortDate = products.concat().sort(
+                (a, b) => {
+                    return a[field]>b[field] ? 1 : -1
+                }
+            )
+            :
+            sortDate = products.concat().reverse(
+                (a, b) => {
+                    return a[field]>b[field] ? 1 : -1
+                }
+            )
+        setProducts(sortDate);
+        setDirectSort(!directSort);
     }
 
     return (
@@ -29,7 +51,7 @@ const Products = () => {
                 onChange={sortProducts}
                 defaultValue="Сортировка по"
                 options = {[
-                    // {value: 'id', name: "По id"},
+                    {value: 'id', name: "По id"},
                     {value: 'category', name: "По категории"},
                     {value: 'price', name: "По цене"},
             ]}

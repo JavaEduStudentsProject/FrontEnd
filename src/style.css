@@ -31,7 +31,7 @@ body {
 }
 
 .main-block {
-    margin-left: 30px;
+    /*margin-left: 30px;*/
     margin-top: 30px;
     /*align-items: stretch;*/
     display: flex;
@@ -45,7 +45,7 @@ body {
 
 .product-img {
     margin-right: 30px;
-    height: 300px;
+    height: 320px;
 }
 
 .short-descr {

@@ -4,7 +4,7 @@ import img from "../../images/img_4.png";
 const ProductCard = (props) => {
     console.log(props);
     console.log(props.product);
-    const keys = Object.keys(props.product).filter(key => key != "preview" && key != "id");
+    const keys = Object.keys(props.product).filter(key => key != "preview");
     console.log("Keys: " + keys);
 
     const descriptionList = keys.map((key, index) =>

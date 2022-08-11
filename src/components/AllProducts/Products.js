@@ -13,33 +13,25 @@ const Products = () => {
         {id: 6, category: "table", name: "ikeaTable", size: "L", price: "333", preview: "../../images/img_3.jpg"},
     ])
 
-//   const [sortingKey, setSortingKey] = useState("");
+    const [sortingKey, setSortingKey] = useState("");
     const [directSort, setDirectSort] = useState(true);
     let sortDate;
 
-
-
-    // const sortProducts = (sort) => {
-    //     setSortingKey(sort);
-    //     // /todo найти универсальную функцию для сравнения не только строк, а всех типов значений
-    //     setProducts([...products].sort((a, b) => a[sort].localeCompare(b[sort])));
-    // }
     const sortProducts = (field) => {
+        setSortingKey(field);
         directSort
             ?
-            sortDate = products.concat().sort(
-                (a, b) => {
-                    return a[field]>b[field] ? 1 : -1
-                }
-            )
+            sortDate = ([...products].sort(
+                (a, b) => a[field] > b[field] ? 1 : -1
+            ))
             :
-            sortDate = products.concat().reverse(
-                (a, b) => {
-                    return a[field]>b[field] ? 1 : -1
-                }
-            )
+            sortDate = ([...products].sort(
+                (a, b) => a[field] > b[field] ? 1 : -1
+            )).reverse();
+
         setProducts(sortDate);
         setDirectSort(!directSort);
+        setSortingKey('');
     }
 
     return (

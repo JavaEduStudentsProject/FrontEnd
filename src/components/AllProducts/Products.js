@@ -1,35 +1,36 @@
 import React, {useState} from 'react';
 import ProductCard from "../AllProducts/ProductCard";
 import MySelect from "../UI/select/MySelect";
+import productData from "../../productData"
 
 
 const Products = () => {
-    const [products, setProducts] = useState([
-        {id: 1, category: "robot", name: "R2D2", mainFunction: "Calculation", price: "100", preview: require("../../images/img_1.png")},
-        {id: 2, category: "robot", name: "Bender", mainFunction: "Drinking", price: "999", preview: require("../../images/img_4.png")},
-        {id: 3, category: "table", name: "ironTable", size: "M", price: "100", preview: require("../../images/ironTable.png")},
-        {id: 4, category: "robot", name: "21-A", mainFunction: "Massacre", price: "999", preview: require("../../images/img_3.jpg")},
-        {id: 5, category: "table", name: "handMadeTable", size: "M", price: "333", preview: require("../../images/ironTable.png")},
-        {id: 6, category: "table", name: "ikeaTable", size: "L", price: "333", preview: require("../../images/ironTable.png")},
-    ])
-
+    const [productList, setProductList] = useState(productData);
     const [sortingKey, setSortingKey] = useState("");
     const [directSort, setDirectSort] = useState(true);
+
+    let products = productList.map(item => {
+        return <ProductCard
+            key={item.id}
+            item={item}
+        />
+    })
+
     let sortDate;
 
     const sortProducts = (field) => {
         setSortingKey(field);
         directSort
             ?
-            sortDate = ([...products].sort(
+            sortDate = ([...productList].sort(
                 (a, b) => a[field] > b[field] ? 1 : -1
             ))
             :
-            sortDate = ([...products].sort(
+            sortDate = ([...productList].sort(
                 (a, b) => a[field] > b[field] ? 1 : -1
             )).reverse();
 
-        setProducts(sortDate);
+        setProductList(sortDate);
         setDirectSort(!directSort);
         setSortingKey('');
     }
@@ -50,9 +51,7 @@ const Products = () => {
             />
             <hr/>
             <ul className="products">
-                {products.map(product =>
-                    <ProductCard product = {product} key={product.id}/>
-                )}
+                {products}
             </ul>
 
         </div>

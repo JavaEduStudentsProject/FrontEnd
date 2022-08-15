@@ -9,7 +9,7 @@ import Products from "./AllProducts/Products";
 
 function App() {
     return (
-        <div >
+        <div className="container">
             <Router>
             <Header/>
                 <div>

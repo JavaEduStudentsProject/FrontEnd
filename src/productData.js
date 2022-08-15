@@ -1,4 +1,4 @@
-const initialDetails = [
+const productData = [
     {
         id: 1,
         title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
@@ -260,5 +260,53 @@ const initialDetails = [
             }
     },
 
+    {id: 21, title: "R2D2", price: 100, description: "Very clever robot",
+        category: "robot", image: require("../src/images/rd-d2.png"),
+        rating: {
+            rate: 5.0,
+            count: 99,
+                }
+    },
+
+    {id: 22, title: "Bender", price: 999, description: "With blackjack and...",
+        category: "robot", image: require("../src/images/img_4.png"),
+        rating: {
+            rate: 4.5,
+            count: 25,
+        }
+    },
+
+    {id: 23, title: "ironTable", price: 350,
+        category: "table", image: require("../src/images/ironTable.png"), size: "medium",
+        rating: {
+            rate: 4.5,
+            count: 25,
+        }
+    },
+
+    {id: 24, title: "21-A", price: 30000, description: "Will help you to conquer the whole universe",
+        category: "robot", image: require("../src/images/img_3.jpg"),
+        rating: {
+            rate: 5.0,
+            count: 20000,
+        }
+    },
+
+    {id: 25, title: "handMadeTable", price: 300, description: "Handsome",
+        category: "table", image: require("../src/images/ironTable.png"), size: "medium",
+        rating: {
+            rate: 4.0,
+            count: 20,
+        }
+    },
+
+    {id: 26, title: "ikeaTable", price: 500, description: "IKEA",
+        category: "table", image: require("../src/images/ironTable.png"), size: "large",
+        rating: {
+            rate: 4.0,
+            count: 20,
+        }
+    },
+
 ];
-export default initialDetails;
+export default productData;

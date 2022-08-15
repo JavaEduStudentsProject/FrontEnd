@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import ProductCard from "../AllProducts/ProductCard";
 import MySelect from "../UI/select/MySelect";
 import productData from "../../productData"
+import Filter from "./Filter";
 
 
 const Products = () => {
@@ -36,6 +37,8 @@ const Products = () => {
     }
 
     return (
+        <div className="main-content-products">
+            <Filter/>
         <div className="all-products">
             <h1>Все продукты</h1>
             <hr/>
@@ -54,6 +57,7 @@ const Products = () => {
                 {products}
             </ul>
 
+        </div>
         </div>
     );
 };

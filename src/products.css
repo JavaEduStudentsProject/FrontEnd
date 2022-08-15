@@ -1,3 +1,11 @@
+.main-content-products {
+    display: flex;
+}
+
+.filter {
+    margin-right: 20px;
+}
+
 .all-products {
     box-sizing: border-box;
     height: 100%;

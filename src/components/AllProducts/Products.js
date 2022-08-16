@@ -1,19 +1,13 @@
 import React, {useState} from 'react';
 import ProductCard from "../AllProducts/ProductCard";
 import MySelect from "../UI/select/MySelect";
+import Scroll from "./Scroll";
 
 
-const Products = () => {
-    const [products, setProducts] = useState([
-        {id: 1, category: "robot", name: "R2D2", mainFunction: "Calculation", price: "100", preview: "../../images/img_3.jpg"},
-        {id: 2, category: "robot", name: "Bender", mainFunction: "Drinking", price: "999", preview: "../../images/img_3.jpg"},
-        {id: 3, category: "table", name: "ironTable", size: "M", price: "100", preview: "../../images/img_3.jpg"},
-        {id: 4, category: "robot", name: "21-A", mainFunction: "Massacre", price: "999", preview: "../../images/img_3.jpg"},
-        {id: 5, category: "table", name: "handMadeTable", size: "M", price: "333", preview: "../../images/img_3.jpg"},
-        {id: 6, category: "table", name: "ikeaTable", size: "L", price: "333", preview: "../../images/img_3.jpg"},
-    ])
+const Products = (props) => {
 
-    const [sortingKey, setSortingKey] = useState("");
+  const [sortingKey, setSortingKey] = useState("");
+
     const [directSort, setDirectSort] = useState(true);
     let sortDate;
 
@@ -21,6 +15,7 @@ const Products = () => {
         setSortingKey(field);
         directSort
             ?
+
             sortDate = ([...products].sort(
                 (a, b) => a[field] > b[field] ? 1 : -1
             ))
@@ -30,6 +25,7 @@ const Products = () => {
             )).reverse();
 
         setProducts(sortDate);
+
         setDirectSort(!directSort);
         setSortingKey('');
     }
@@ -49,11 +45,13 @@ const Products = () => {
             ]}
             />
             <hr/>
+            <Scroll >
             <ul className="products">
-                {products.map(product =>
+                {props.products.map(product =>
                     <ProductCard product = {product} key={product.id}/>
                 )}
             </ul>
+            </Scroll>
 
         </div>
     );

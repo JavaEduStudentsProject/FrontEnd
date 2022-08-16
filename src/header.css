@@ -76,7 +76,7 @@ nav > h3, nav > h4 {
 }
 
 .search-block {
-    margin: auto;
+    margin: 20%;
 }
 
 .search-text {
@@ -86,9 +86,10 @@ nav > h3, nav > h4 {
 
 .search-field {
 
+
 }
 
-.nav-button-one, .nav-button-two {
+.nav-button-one  {
     background-color: #ffcf0c;
     font-weight: 600;
     color: #000000;
@@ -100,6 +101,19 @@ nav > h3, nav > h4 {
     border: none;
 
 }
+.nav-button-two{
+
+    background-color: #ffcf0c;
+    font-weight: 600;
+    color: #000000;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 50%;
+    margin: 10px;
+    cursor: pointer;
+    border: none;
+}
+
 
 .nav-button-one:hover {
     color: #000000;

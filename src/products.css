@@ -15,6 +15,9 @@
     margin-right: 15px;
 
 }
+.card hide{
+    display: none;
+}
 
 .product-img{
     width: 20% ;

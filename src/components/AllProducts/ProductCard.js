@@ -2,17 +2,18 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Link } from 'react-router-dom'
 
 
 
 const ProductCard = (props) => {
     console.log(props);
     console.log(props.product);
-    const keys = Object.keys(props.product).filter(key => key != "image" && key != "id" && key != "rating"&& key != "title"&& key != "price");
-    console.log("Keys: " + keys);
+    const keys1 = Object.keys(props.product).filter(key => key != "image" && key != "id" && key != "rating"&& key != "title"&& key != "price");
+    console.log("Keys: " + keys1);
 
-    const descriptionList = keys.map((key, index) =>
-        <li key={props.product.id + index}>{keys[index]}: {props.product[key]}</li>
+    const descriptionList = keys1.map((key, index) =>
+        <li key={props.product.id + index}>{keys1[index]}: {props.product[key]}</li>
     );
 
     return (
@@ -27,7 +28,8 @@ const ProductCard = (props) => {
                             {descriptionList}
                         </ul>
                     </Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
+                    <Link className="btn btn-info" to = {`/product/${props.product.id}`} >Просмотр</Link>
+                    {/*<Button variant="primary">Go somewhere</Button>*/}
                 </Card.Body>
             </Card>
         </>

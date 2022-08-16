@@ -1,14 +1,11 @@
 import React, {useState} from 'react';
 import ProductCard from "../AllProducts/ProductCard";
 import MySelect from "../UI/select/MySelect";
-import initialDetails from "./initialDetails";
 import Scroll from "./Scroll";
 
 
-const Products = () => {
-    const [products, setProducts] = useState(initialDetails
+const Products = (props) => {
 
-    )
 
   const [sortingKey, setSortingKey] = useState("");
     const [directSort, setDirectSort] = useState(true);
@@ -24,18 +21,18 @@ const Products = () => {
     const sortProducts = (field) => {
         directSort
             ?
-            sortDate = products.concat().sort(
+            sortDate = props.products.concat().sort(
                 (a, b) => {
                     return a[field]>b[field] ? 1 : -1
                 }
             )
             :
-            sortDate = products.concat().reverse(
+            sortDate = props.products.concat().reverse(
                 (a, b) => {
                     return a[field]>b[field] ? 1 : -1
                 }
             )
-        setProducts(sortDate);
+        // setProducts(sortDate);
         setDirectSort(!directSort);
     }
 
@@ -56,7 +53,7 @@ const Products = () => {
             <hr/>
             <Scroll >
             <ul className="products">
-                {products.map(product =>
+                {props.products.map(product =>
                     <ProductCard product = {product} key={product.id}/>
                 )}
             </ul>

@@ -11,15 +11,12 @@ const Products = (props) => {
     const [sortingKey, setSortingKey] = useState("");
     const [directSort, setDirectSort] = useState(true);
 
-    // let products = productList.map(item => {
     let products = productList.map(item => {
         return <ProductCard
             key={item.id}
             item={item}
         />
     })
-
-
 
     let sortDate;
 
@@ -43,27 +40,26 @@ const Products = (props) => {
     return (
         <div className="main-content-products">
             <Filter item={productList}/>
-        <div className="all-products">
-            <h1>Все продукты</h1>
-            <hr/>
-            <MySelect
-                value={sortingKey}
-                onChange={sortProducts}
-                defaultValue="Сортировка по"
-                options = {[
-                    {value: 'id', name: "По id"},
-                    {value: 'category', name: "По категории"},
-                    {value: 'price', name: "По цене"},
-            ]}
-            />
-            <hr/>
-            <Scroll >
-            <ul className="products">
-                {products}
-            </ul>
-            </Scroll>
-
-        </div>
+            <div className="all-products">
+                <h1>Все продукты</h1>
+                <hr/>
+                <MySelect
+                    value={sortingKey}
+                    onChange={sortProducts}
+                    defaultValue="Сортировка по"
+                    options={[
+                        {value: 'id', name: "По id"},
+                        {value: 'category', name: "По категории"},
+                        {value: 'price', name: "По цене"},
+                    ]}
+                />
+                <hr/>
+                <Scroll>
+                    <ul className="products">
+                        {products}
+                    </ul>
+                </Scroll>
+            </div>
         </div>
     );
 };

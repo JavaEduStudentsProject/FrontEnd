@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from 'react-router-dom'
 
 
@@ -38,7 +38,7 @@ const ProductCard = (props) => {
                         </ul>
                     </Card.Text>
                     <Link className="btn btn-info" to = {`/product/${flatProduct.id}`} >Просмотр</Link>
-                    {/*<Button variant="primary">Go somewhere</Button>*/}
+                    <Button variant="primary">Go somewhere</Button>
                 </Card.Body>
             </Card>
         </>

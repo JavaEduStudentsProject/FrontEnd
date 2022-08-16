@@ -38,7 +38,7 @@ const Products = () => {
 
     return (
         <div className="main-content-products">
-            <Filter/>
+            <Filter item={productList}/>
         <div className="all-products">
             <h1>Все продукты</h1>
             <hr/>

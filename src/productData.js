@@ -300,8 +300,9 @@ const productData = [
         }
     },
 
-    {id: 26, title: "ikeaTable", price: 500, description: "IKEA",
+    {id: 26, title: "ikeaTable", price: 300, description: "IKEA",
         category: "table", image: require("../src/images/ironTable.png"), size: "large",
+        smth: "smth",
         rating: {
             rate: 4.0,
             count: 20,
@@ -309,4 +310,5 @@ const productData = [
     },
 
 ];
+
 export default productData;

@@ -2,7 +2,6 @@ import React from 'react';
 // import img from "../../images/img_4.png";
 
 const ProductCard = (props) => {
-
     let newObj = {};
 
     function recursiveSearch(obj) {

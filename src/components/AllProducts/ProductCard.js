@@ -1,5 +1,9 @@
 import React from 'react';
-// import img from "../../images/img_4.png";
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Link } from 'react-router-dom'
+
 
 const ProductCard = (props) => {
     let newObj = {};
@@ -22,13 +26,29 @@ const ProductCard = (props) => {
     );
 
     return (
-        <div className="product-card">
-            <img className="preview" src={properties.image}/>
-            {/*<img className="preview" src={img}/>*/}
-            <ul>
-                {descriptionList}
-            </ul>
-        </div>
+        <>
+        <Card className='card' border={"success"} >
+                <Card.Img className='product-img' variant="top" alt={props.product.title} src={process.env.PUBLIC_URL + props.product.image}/>
+                <Card.Body>
+                    <Card.Title>{props.product.title}</Card.Title>
+                    <Card.Subtitle>{props.product.price} $</Card.Subtitle>
+                    <Card.Text>
+                        <ul>
+                            {descriptionList}
+                        </ul>
+                    </Card.Text>
+                    <Link className="btn btn-info" to = {`/product/${props.product.id}`} >Просмотр</Link>
+                    {/*<Button variant="primary">Go somewhere</Button>*/}
+                </Card.Body>
+            </Card>
+        </>
+        // <div className="product-card">
+        //     <img className="preview" src={properties.image}/>
+        //     {/*<img className="preview" src={img}/>*/}
+        //     <ul>
+        //         {descriptionList}
+        //     </ul>
+        // </div>
     );
 };
 

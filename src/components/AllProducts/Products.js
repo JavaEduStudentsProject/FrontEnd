@@ -1,21 +1,25 @@
 import React, {useState} from 'react';
 import ProductCard from "../AllProducts/ProductCard";
 import MySelect from "../UI/select/MySelect";
-import productData from "../../productData"
+// import productData from "../../productData"
 import Filter from "./Filter";
+import Scroll from "./Scroll";
 
 
-const Products = () => {
-    const [productList, setProductList] = useState(productData);
+const Products = (props) => {
+    const [productList, setProductList] = useState(props.products);
     const [sortingKey, setSortingKey] = useState("");
     const [directSort, setDirectSort] = useState(true);
 
+    // let products = productList.map(item => {
     let products = productList.map(item => {
         return <ProductCard
             key={item.id}
             item={item}
         />
     })
+
+
 
     let sortDate;
 
@@ -53,9 +57,11 @@ const Products = () => {
             ]}
             />
             <hr/>
+            <Scroll >
             <ul className="products">
                 {products}
             </ul>
+            </Scroll>
 
         </div>
         </div>

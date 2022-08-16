@@ -1,36 +1,38 @@
-import React, {useState} from "react";
-import ReactDom from "react-dom";
-
-import StarRating from "./StarRating";
+import React, {useEffect, useState} from "react";
 import PriceComponent from "./PriceComponent"
 import MoneyInCreditComponent from "./MoneyInCreditComponent"
 import img from "../images/img_3.jpg";
 import ShortProductDescription from "./ShortProductDescription";
+import { useParams } from "react-router-dom"
 
 
-export default function MainContent() {
-    let productName = "Боевой дроид";
+
+
+export default function MainContent(props) {
+
+    const {id} = useParams();
+    let product = props.products.find(p => p.id === Number(id));
 
     return (
         <div className="main-content">
-            <h1 className="productName">{productName}</h1>
+            <h1 className="productName">{product.title}</h1>
             <div className="main-block">
                 <div className="product-card">
                     <div className="img-and-shortdescr">
-                    <img className="product-img" src={img} />
-                    <ShortProductDescription/>
+                    <img className="product-img" src={process.env.PUBLIC_URL + product.image} />
+                    <ShortProductDescription product={product}/>
                     </div>
                     <div className="full-descr">
                         <h4>Описание товара</h4>
                         <ul className="list">
+                            <li>Размер: {product.size}</li>
                             <li>Цвет</li>
-                            <li>Размер</li>
                             <li>Вес</li>
                         </ul>
                     </div>
                 </div>
                 <div className="money-block">
-                    <PriceComponent/>
+                    <PriceComponent product={product}/>
                     <MoneyInCreditComponent/>
                 </div>
             </div>

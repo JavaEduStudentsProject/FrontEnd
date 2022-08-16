@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom'
 const ProductCard = (props) => {
     console.log(props);
     console.log(props.product);
+
     const keys1 = Object.keys(props.product).filter(key => key != "image" && key != "id" && key != "rating"&& key != "title"&& key != "price");
     console.log("Keys: " + keys1);
 

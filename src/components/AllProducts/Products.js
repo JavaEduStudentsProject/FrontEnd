@@ -6,34 +6,28 @@ import Scroll from "./Scroll";
 
 const Products = (props) => {
 
-
   const [sortingKey, setSortingKey] = useState("");
+
     const [directSort, setDirectSort] = useState(true);
     let sortDate;
 
-
-
-    // const sortProducts = (sort) => {
-    //     setSortingKey(sort);
-    //     // /todo найти универсальную функцию для сравнения не только строк, а всех типов значений
-    //     setProducts([...products].sort((a, b) => a[sort].localeCompare(b[sort])));
-    // }
     const sortProducts = (field) => {
+        setSortingKey(field);
         directSort
             ?
-            sortDate = props.products.concat().sort(
-                (a, b) => {
-                    return a[field]>b[field] ? 1 : -1
-                }
-            )
+
+            sortDate = ([...products].sort(
+                (a, b) => a[field] > b[field] ? 1 : -1
+            ))
             :
-            sortDate = props.products.concat().reverse(
-                (a, b) => {
-                    return a[field]>b[field] ? 1 : -1
-                }
-            )
-        // setProducts(sortDate);
+            sortDate = ([...products].sort(
+                (a, b) => a[field] > b[field] ? 1 : -1
+            )).reverse();
+
+        setProducts(sortDate);
+
         setDirectSort(!directSort);
+        setSortingKey('');
     }
 
     return (

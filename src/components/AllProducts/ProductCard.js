@@ -18,32 +18,32 @@ const ProductCard = (props) => {
         })
         return newObj;
     }
-    const properties = recursiveSearch(props.item);
-    const keys = Object.keys(properties).filter(key => key != "image" && key != "description");
+    const flatProduct = recursiveSearch(props.item);
+    const keys = Object.keys(flatProduct).filter(key => key != "image" && key != "description");
 
     const descriptionList = keys.map((key, index) =>
-        <li key={properties.id + index}>{keys[index]}: {properties[key]}</li>
+        <li key={flatProduct.id + index}>{keys[index]}: {flatProduct[key]}</li>
     );
 
     return (
         <>
         <Card className='card' border={"success"} >
-                <Card.Img className='product-img' variant="top" alt={props.product.title} src={process.env.PUBLIC_URL + props.product.image}/>
+                <Card.Img className='product-img' variant="top" alt={flatProduct.title} src={process.env.PUBLIC_URL + flatProduct.image}/>
                 <Card.Body>
-                    <Card.Title>{props.product.title}</Card.Title>
-                    <Card.Subtitle>{props.product.price} $</Card.Subtitle>
+                    <Card.Title>{flatProduct.title}</Card.Title>
+                    <Card.Subtitle>{flatProduct.price} $</Card.Subtitle>
                     <Card.Text>
                         <ul>
                             {descriptionList}
                         </ul>
                     </Card.Text>
-                    <Link className="btn btn-info" to = {`/product/${props.product.id}`} >Просмотр</Link>
+                    <Link className="btn btn-info" to = {`/product/${flatProduct.id}`} >Просмотр</Link>
                     {/*<Button variant="primary">Go somewhere</Button>*/}
                 </Card.Body>
             </Card>
         </>
         // <div className="product-card">
-        //     <img className="preview" src={properties.image}/>
+        //     <img className="preview" src={flatProduct.image}/>
         //     {/*<img className="preview" src={img}/>*/}
         //     <ul>
         //         {descriptionList}

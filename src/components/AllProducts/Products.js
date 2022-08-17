@@ -1,23 +1,21 @@
 import React, {useState, useContext} from 'react';
 import ProductCard from "../AllProducts/ProductCard";
 import MySelect from "../UI/select/MySelect";
-// import productData from "../../productData"
 import Filter from "./Filter";
 import Scroll from "./Scroll";
-import productData from "../../productData";
 import {Context} from "../Context.js";
 
 
-const Products = () => {
-
+const Products = (props) => {
 
     const [products, setProducts] = useContext(Context);
     const [sortingKey, setSortingKey] = useState("");
     const [directSort, setDirectSort] = useState(true);
 
-    console.log(products)
-
-    let product = products.map(item => {
+    let product = products.filter(item=>{
+        const fullFilter= item.title+item.description;
+            return fullFilter.includes(props.searchField);
+    }).map(item => {
         return <ProductCard
             key={item.id}
             item={item}

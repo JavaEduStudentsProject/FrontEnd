@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
+import {Context} from "../Context";
 
 function SearchField(props) {
-    // const [value, setValue] = useState("Поисковый запрос");
     const [searchField, setSearchField] = useState("");
+    const [products, setProducts] = useContext(Context);
 
-    const filteredProducts = props.products.filter(
+    const filteredProducts = products.filter(
         product => {
             return (
                 product
@@ -24,6 +25,8 @@ function SearchField(props) {
     );
     const handleChange = e => {
         setSearchField(e.target.value);
+        console.log(filteredProducts)
+        // setProducts(filteredProducts);
     };
 
 

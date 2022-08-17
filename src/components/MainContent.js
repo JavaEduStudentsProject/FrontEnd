@@ -1,17 +1,19 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext} from "react";
 import PriceComponent from "./PriceComponent"
 import MoneyInCreditComponent from "./MoneyInCreditComponent"
 import img from "../images/img_3.jpg";
 import ShortProductDescription from "./ShortProductDescription";
 import { useParams } from "react-router-dom"
+import {Context} from "./Context";
 
 
 
 
-export default function MainContent(props) {
+export default function MainContent() {
+    const [products, setProducts] = useContext(Context);
 
     const {id} = useParams();
-    let product = props.products.find(p => p.id === Number(id));
+    let product = products.find(p => p.id === Number(id));
 
     return (
         <div className="main-content">

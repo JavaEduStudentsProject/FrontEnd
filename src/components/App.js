@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+// import { Link, BrowserRouter as Router, Route } from 'react-router-dom';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import Header from "./header components/Header";
@@ -29,18 +30,20 @@ function App() {
         setSearchField(e.target.value);
     };
 
+    const [countProductInBasket, setCountProductInBasket] = useState(0);
+
     return (
         <Context.Provider value={[products, setProducts]}>
         <div className="container">
             <Router>
-            <Header searchField={searchField} handleChange={handleChange}/>
-                <div>
+
+            <Header countProductInBasket={countProductInBasket} searchField={searchField} handleChange={handleChange}/>
                 <Routes>
-                    <Route path="/" element={<Products searchField={searchField}/>} />
-                    <Route path="/product/:id" element={<MainContent />} />
-                    <Route path="/:category" element={<CatalogContent searchField={searchField} />} />
+                    <Route path="/" element={<Products searchField={searchField} />} />
+                    <Route path="/product/:id" element={<MainContent countProductInBasket={countProductInBasket} setCountProductInBasket={setCountProductInBasket}/>} />
+                    {/*<Route path="/:category" element={<CatalogContent searchField={searchField} />} />*/}
+
                 </Routes>
-                </div>
             <Footer/>
             </Router>
         </div>

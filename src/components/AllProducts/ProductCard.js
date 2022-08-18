@@ -38,7 +38,7 @@ const ProductCard = (props) => {
                         </ul>
                     </Card.Text>
                     <Link className="btn btn-info" to = {`/product/${flatProduct.id}`} >Просмотр</Link>
-                    <Button variant="primary">Go somewhere</Button>
+                    <Button variant="primary" >Go somewhere</Button>
                 </Card.Body>
             </Card>
         </>

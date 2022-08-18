@@ -13,6 +13,8 @@ export default function MainContent(props) {
     const {id} = useParams();
     let product = props.products.find(p => p.id === Number(id));
 
+    const { setCountProductInBasket, countProductInBasket} = props;
+
     return (
         <div className="main-content">
             <h1 className="productName">{product.title}</h1>
@@ -32,7 +34,7 @@ export default function MainContent(props) {
                     </div>
                 </div>
                 <div className="money-block">
-                    <PriceComponent product={product}/>
+                    <PriceComponent countProductInBasket={countProductInBasket} setCountProductInBasket={setCountProductInBasket} product={product}/>
                     <MoneyInCreditComponent/>
                 </div>
             </div>

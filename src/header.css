@@ -2,7 +2,8 @@
 
 .nav-panel {
     display: flex;
-    /*justify-content: space-between;*/
+    flex-direction: row;
+    justify-content: flex-start;
     align-items: center;
     background-color: #383838;
     height: 70px;
@@ -15,7 +16,7 @@ nav > h3, nav > h4 {
 
 .nav-img {
     width: 90px;
-    margin-right: 20px;
+    margin-left: 150px;
     transform: rotate(-0.05turn);
 }
 
@@ -29,13 +30,19 @@ nav > h3, nav > h4 {
     font-size: 20px;
     border: none;
     margin-right: 10px;
-    margin-left: 10px;
+    margin-left: 40px;
+}
+
+.count-products-in-basket {
+    color: red;
+    font-size: 20px;
 }
 
 .dropdown {
     position: relative;
     display: inline-block;
-    /*margin: auto;*/
+    /*margin: auto;*/;
+    margin-right: auto;
 }
 
 .dropdown-content {
@@ -76,7 +83,7 @@ nav > h3, nav > h4 {
 }
 
 .search-block {
-    margin: 20%;
+    margin: 0;
 }
 
 .search-text {
@@ -85,8 +92,9 @@ nav > h3, nav > h4 {
 }
 
 .search-field {
-
-
+    margin-right: 340px;
+    width: 600px;
+    height:40px;
 }
 
 .nav-button-one  {
@@ -144,4 +152,15 @@ nav > h3, nav > h4 {
 .nav-list > p {
     margin-left: 30px;
 
+}
+
+.avatarIcon{
+    margin-right: 90px;
+    margin-left: 20px;
+}
+
+.userIcons{
+    margin-right: 90px;
+    display: flex;
+    flex-direction: row;
 }

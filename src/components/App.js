@@ -25,16 +25,16 @@ function App() {
     //     })
     // }
 
+    const [countProductInBasket, setCountProductInBasket] = useState(0);
+
     return (
         <div className="container">
             <Router>
-            <Header products={productData}/>
-                <div>
+            <Header countProductInBasket={countProductInBasket} products={productData}/>
                 <Routes>
                     <Route path="/" element={<Products products={productData}/>} />
-                    <Route path="/product/:id" element={<MainContent products={productData}/>} />
+                    <Route path="/product/:id" element={<MainContent countProductInBasket={countProductInBasket} setCountProductInBasket={setCountProductInBasket} products={productData}/>} />
                 </Routes>
-                </div>
             <Footer/>
             </Router>
         </div>

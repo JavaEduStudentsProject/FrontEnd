@@ -40,6 +40,7 @@ const ProductCard = (props) => {
                     {/*</Card.Text>*/}
             </Card.Body>
                     <Link className="btn btn-info" to = {`/product/${flatProduct.id}`} >Просмотр</Link>
+
                     <Button variant="primary">Go somewhere</Button>
 
             </Card>

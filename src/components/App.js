@@ -29,17 +29,19 @@ function App() {
         setSearchField(e.target.value);
     };
 
+    const [countProductInBasket, setCountProductInBasket] = useState(0);
+
     return (
         <Context.Provider value={[products, setProducts]}>
         <div className="container">
             <Router>
-            <Header searchField={searchField} handleChange={handleChange}/>
-                <div>
+
+            <Header countProductInBasket={countProductInBasket} products={productData}/>
                 <Routes>
-                    <Route path="/" element={<Products searchField={searchField}/>} />
-                    <Route path="/product/:id" element={<MainContent />} />
+                    <Route path="/" element={<Products products={productData}/>} />
+                    <Route path="/product/:id" element={<MainContent countProductInBasket={countProductInBasket} setCountProductInBasket={setCountProductInBasket} products={productData}/>} />
+
                 </Routes>
-                </div>
             <Footer/>
             </Router>
         </div>

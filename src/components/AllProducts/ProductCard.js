@@ -29,17 +29,20 @@ const ProductCard = (props) => {
         <>
         <Card className='card' border={"success"} >
                 <Card.Img className='product-img' variant="top" alt={flatProduct.title} src={process.env.PUBLIC_URL + flatProduct.image}/>
-                <Card.Body>
+
                     <Card.Title>{flatProduct.title}</Card.Title>
                     <Card.Subtitle>{flatProduct.price} $</Card.Subtitle>
-                    <Card.Text>
+            <Card.Body>
+                    {/*<Card.Text>*/}
                         <ul>
                             {descriptionList}
                         </ul>
-                    </Card.Text>
+                    {/*</Card.Text>*/}
+            </Card.Body>
                     <Link className="btn btn-info" to = {`/product/${flatProduct.id}`} >Просмотр</Link>
-                    <Button variant="primary" >Go somewhere</Button>
-                </Card.Body>
+
+                    <Button variant="primary">Go somewhere</Button>
+
             </Card>
         </>
         // <div className="product-card">

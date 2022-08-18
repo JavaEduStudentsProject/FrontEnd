@@ -1,17 +1,21 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import ProductCard from "../AllProducts/ProductCard";
 import MySelect from "../UI/select/MySelect";
-// import productData from "../../productData"
 import Filter from "./Filter";
 import Scroll from "./Scroll";
+import {Context} from "../Context.js";
 
 
 const Products = (props) => {
-    const [productList, setProductList] = useState(props.products);
+
+    const [products, setProducts] = useContext(Context);
     const [sortingKey, setSortingKey] = useState("");
     const [directSort, setDirectSort] = useState(true);
 
-    let products = productList.map(item => {
+    let product = products.filter(item=>{
+        const fullFilter= item.title+item.description;
+            return fullFilter.includes(props.searchField);
+    }).map(item => {
         return <ProductCard
             key={item.id}
             item={item}
@@ -24,22 +28,22 @@ const Products = (props) => {
         setSortingKey(field);
         directSort
             ?
-            sortDate = ([...productList].sort(
+            sortDate = ([...products].sort(
                 (a, b) => a[field] > b[field] ? 1 : -1
             ))
             :
-            sortDate = ([...productList].sort(
+            sortDate = ([...products].sort(
                 (a, b) => a[field] > b[field] ? 1 : -1
             )).reverse();
 
-        setProductList(sortDate);
+        setProducts(sortDate);
         setDirectSort(!directSort);
         setSortingKey('');
     }
 
     return (
         <div className="main-content-products">
-            <Filter item={productList}/>
+            <Filter item={products}/>
             <div className="all-products">
                 <h1>Все продукты</h1>
                 <hr/>
@@ -56,7 +60,7 @@ const Products = (props) => {
                 <hr/>
                 <Scroll>
                     <ul className="products">
-                        {products}
+                        {product}
                     </ul>
                 </Scroll>
             </div>

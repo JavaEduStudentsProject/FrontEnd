@@ -16,7 +16,8 @@ export default function Header(props) {
             <nav className="nav-panel">
                 <img className="nav-img" src={img}/>
                 <DropDownMenu/>
-                <SearchField products={props.products}/>
+
+                <SearchField handleChange={props.handleChange} searchField={props.searchField} />
                 <div className="userIcons">
                     <Stack>
                         <Avatar alt="Корзина"
@@ -27,13 +28,14 @@ export default function Header(props) {
                         <Avatar alt="Пользователь" src={avatar1}/>
                     </Stack>
                 </div>
+
             </nav>
             <nav className="nav-list">
-                <p>Крупные</p>
-                <p>категории</p>
-                <p>первого</p>
-                <p>слоя</p>
-                <p>вложенности</p>
+                <ul>Крупные</ul>
+                <ul>категории</ul>
+                <ul>первого</ul>
+                <ul>слоя</ul>
+                <ul>вложенности</ul>
                 <a href="http://localhost:3000/">Все продукты</a>
                 <a href="http://localhost:3000/product">Конкретный продукт</a>
             </nav>

@@ -13,7 +13,7 @@ const Products = (props) => {
     const [directSort, setDirectSort] = useState(true);
 
     let product = products.filter(item=>{
-        const fullFilter= item.title+item.description;
+        const fullFilter= item.title+item.description+item.category;
             return fullFilter.includes(props.searchField);
     }).map(item => {
         return <ProductCard
@@ -43,7 +43,7 @@ const Products = (props) => {
 
     return (
         <div className="main-content-products">
-            <Filter item={products}/>
+            {/*<Filter item={products}/>*/}
             <div className="all-products">
                 <h1>Все продукты</h1>
                 <hr/>

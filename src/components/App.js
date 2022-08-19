@@ -1,14 +1,11 @@
 import React, {useEffect, useState} from 'react';
-// import { Link, BrowserRouter as Router, Route } from 'react-router-dom';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-
 import Header from "./header components/Header";
 import MainContent from "./MainContent";
 import Footer from "./footer components/Footer";
 import Products from "./AllProducts/Products";
 import ProductService from '../services/ProductService'
 import {Context} from "./Context.js";
-import CatalogContent from "./CatalogContent";
 
 
 function App() {
@@ -37,12 +34,11 @@ function App() {
         <div className="container">
             <Router>
 
-            <Header countProductInBasket={countProductInBasket} searchField={searchField} handleChange={handleChange}/>
+            <Header countProductInBasket={countProductInBasket} searchField={searchField} handleChange={handleChange} />
                 <Routes>
                     <Route path="/" element={<Products searchField={searchField} />} />
                     <Route path="/product/:id" element={<MainContent countProductInBasket={countProductInBasket} setCountProductInBasket={setCountProductInBasket}/>} />
-                    {/*<Route path="/:category" element={<CatalogContent searchField={searchField} />} />*/}
-
+                    <Route path="/:category" element={<Products searchField={searchField} />} />
                 </Routes>
             <Footer/>
             </Router>

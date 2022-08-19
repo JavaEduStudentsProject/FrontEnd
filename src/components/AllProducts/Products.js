@@ -1,67 +1,50 @@
-import React, {useState, useContext} from 'react';
+import React, {useContext} from 'react';
 import ProductCard from "../AllProducts/ProductCard";
-import MySelect from "../UI/select/MySelect";
 import Filter from "./Filter";
 import Scroll from "./Scroll";
 import {Context} from "../Context.js";
+import {useParams} from "react-router-dom";
+import Title from "../UI/select/Title";
+import Sort from "../UI/select/Sort";
+import Hr from "../UI/select/Hr";
 
 
 const Products = (props) => {
+    let product=[];
+    const [products] = useContext(Context);
+    const {category} = useParams();
 
-    const [products, setProducts] = useContext(Context);
-    const [sortingKey, setSortingKey] = useState("");
-    const [directSort, setDirectSort] = useState(true);
+  if (category) {
+            product = products.filter(p => p.category === category).filter(item => {
+                const fullFilter = item.title + item.description;
+                return fullFilter.toLowerCase().includes(props.searchField.toLowerCase());
+            })
 
-    let product = products.filter(item=>{
-        const fullFilter= item.title+item.description+item.category;
-            return fullFilter.toLowerCase().includes(props.searchField.toLowerCase());
-    })
-        .map(item => {
+  } else {
+            product = products.filter(item => {
+                const fullFilter = item.title + item.description + item.category;
+                return fullFilter.toLowerCase().includes(props.searchField.toLowerCase());
+  })
+}
+
+    let product1=product.map(item => {
         return <ProductCard
             key={item.id}
             item={item}
         />
     })
-    console.log(product)
-    let sortDate;
-
-    const sortProducts = (field) => {
-        setSortingKey(field);
-        directSort
-            ?
-            sortDate = ([...products].sort(
-                (a, b) => a[field] > b[field] ? 1 : -1
-            ))
-            :
-            sortDate = ([...products].sort(
-                (a, b) => a[field] > b[field] ? 1 : -1
-            )).reverse();
-
-        setProducts(sortDate);
-        setDirectSort(!directSort);
-        setSortingKey('');
-    }
 
     return (
         <div className="main-content-products">
-            {/*<Filter item={products}/>*/}
+            <Filter item={products} category={category}/>
             <div className="all-products">
-                <h1>Все продукты</h1>
-                <hr/>
-                <MySelect
-                    value={sortingKey}
-                    onChange={sortProducts}
-                    defaultValue="Сортировка по"
-                    options={[
-                        {value: 'id', name: "По id"},
-                        {value: 'category', name: "По категории"},
-                        {value: 'price', name: "По цене"},
-                    ]}
-                />
-                <hr/>
+                <Title category={category}/>
+                <Hr item={category}/>
+                <Sort category={category}/>
+                <Hr item={category}/>
                 <Scroll>
                     <ul className="products">
-                        {product}
+                        {product1}
                     </ul>
                 </Scroll>
             </div>

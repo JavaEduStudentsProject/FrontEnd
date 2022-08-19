@@ -1,13 +1,21 @@
 import React from 'react';
+import {Context} from "../Context";
+import ProductService from "../../services/ProductService";
+import Category from "./Category";
 
 function DropDownMenu() {
+    const [products] = React.useContext(Context);
+
     return (
         <div className="dropdown">
             <button className="dropbtn">Каталог</button>
             <div className="dropdown-content">
-                <a href="#">Категория 1</a>
-                <a href="#">Категория 2</a>
-                <a href="#">Категория 3</a>
+                <ul>
+                {ProductService.getCategories(products)
+                    .map(category=>{return(
+                    <Category key={category.id} category={category.category}/>)}
+                    )}
+                    </ul>
             </div>
         </div>
     );

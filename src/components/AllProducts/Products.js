@@ -14,14 +14,15 @@ const Products = (props) => {
 
     let product = products.filter(item=>{
         const fullFilter= item.title+item.description+item.category;
-            return fullFilter.includes(props.searchField);
-    }).map(item => {
+            return fullFilter.toLowerCase().includes(props.searchField.toLowerCase());
+    })
+        .map(item => {
         return <ProductCard
             key={item.id}
             item={item}
         />
     })
-
+    console.log(product)
     let sortDate;
 
     const sortProducts = (field) => {

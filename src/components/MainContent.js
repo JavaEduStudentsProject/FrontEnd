@@ -10,7 +10,8 @@ import {Context} from "./Context";
 
 
 export default function MainContent(props) {
-    const [products, setProducts] = useContext(Context);
+
+    const [products] = useContext(Context);
 
     const {id} = useParams();
     let product = products.find(p => p.id === Number(id));

@@ -14,7 +14,7 @@ export default function Header(props) {
     return (
         <header>
             <nav className="nav-panel">
-                <img className="nav-img" src={img}/>
+                <img className="nav-img" src={img} onClick={()=>{window.location.assign("/")}}/>
                 <DropDownMenu/>
 
                 <SearchField handleChange={props.handleChange} searchField={props.searchField} />

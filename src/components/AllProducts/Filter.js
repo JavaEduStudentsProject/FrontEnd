@@ -3,8 +3,6 @@ import Field from "./Field";
 
 const Filter = (props) => {
     console.log(props.item);
-    // const keys = Object.keys(props.item).filter(key => key === "category" || key === "price" || key === "size");
-    // const keys = Object.keys(props.item).filter(key => key != "image" && key != "description");
     const keys = ["category", "price", "size"];
 
     function getFieldArray(keys, productArray) {
@@ -30,13 +28,14 @@ const Filter = (props) => {
                       fieldArray={item[Object.keys(item)[0]]}
                 />
     })
-
+if (props.category) {
     return (
         <fieldset className="filter">
             <legend>Фильтр по характеристикам</legend>
             {fieldComponent}
         </fieldset>
     );
+};
 };
 
 export default Filter;

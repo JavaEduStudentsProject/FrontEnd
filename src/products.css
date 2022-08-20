@@ -36,6 +36,16 @@
 
 }
 
+
+.justify-content-center li{
+    list-style-type: none;
+    display: inline;
+    margin-right: 5px;
+    border: #1a1e21;
+    padding: 3px;
+
+}
+
 /*.product-card {*/
 /*    break-inside: avoid;*/
 /*    padding: 5px;*/

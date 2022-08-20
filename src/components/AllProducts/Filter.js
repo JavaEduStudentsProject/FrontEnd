@@ -2,7 +2,6 @@ import React from 'react';
 import Field from "./Field";
 
 const Filter = (props) => {
-    console.log(props.item);
     const keys = ["category", "price", "size"];
 
     function getFieldArray(keys, productArray) {

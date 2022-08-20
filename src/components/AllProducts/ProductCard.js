@@ -19,7 +19,7 @@ const ProductCard = (props) => {
         return newObj;
     }
     const flatProduct = recursiveSearch(props.item);
-    const keys = Object.keys(flatProduct).filter(key => key != "image" && key != "description");
+    const keys = Object.keys(flatProduct).filter(key => key != "images" && key != "description");
 
     const descriptionList = keys.map((key, index) =>
         <li key={flatProduct.id + index}>{keys[index]}: {flatProduct[key]}</li>
@@ -28,7 +28,7 @@ const ProductCard = (props) => {
     return (
         <>
         <Card className='card' border={"success"} >
-                <Card.Img className='product-img' variant="top" alt={flatProduct.title} src={process.env.PUBLIC_URL + flatProduct.image}/>
+                <Card.Img className='product-img' variant="top" alt={flatProduct.title} src={process.env.PUBLIC_URL + flatProduct.thumbnail}/>
 
                     <Card.Title>{flatProduct.title}</Card.Title>
                     <Card.Subtitle>{flatProduct.price} $</Card.Subtitle>

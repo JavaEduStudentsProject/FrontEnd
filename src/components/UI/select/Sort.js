@@ -2,13 +2,12 @@ import MySelect from "./MySelect";
 import React, {useContext, useState} from "react";
 import {Context} from "../../Context";
 
-const Sort= ({category})=>{
+const Sort = (props) =>{
 
     const [products, setProducts] = useContext(Context);
 
     const [sortingKey, setSortingKey] = useState("");
     const [directSort, setDirectSort] = useState(true);
-
     let sortDate;
 
     const sortProducts = (field) => {
@@ -28,11 +27,18 @@ const Sort= ({category})=>{
         setSortingKey('');
     }
 
-    if (category) {
+    const paginationProducts = (field) => {
+        setSortingKey(field);
+        props.setPerPage(Number(field))
+    }
+
+    if (props.category) {
         return null
     }
     else {
-        return <MySelect
+        return (
+            <div>
+            <MySelect
         value={sortingKey}
         onChange={sortProducts}
         defaultValue="Сортировка по"
@@ -40,8 +46,20 @@ const Sort= ({category})=>{
             {value: 'id', name: "По id"},
             {value: 'category', name: "По категории"},
             {value: 'price', name: "По цене"},
-        ]}
-    />}
+        ]}/>
+
+        <MySelect value={sortingKey}
+                  onChange={paginationProducts}
+                  defaultValue="5"
+                  options={[
+                      {value: '10', name: "10"},
+                      {value: '50', name: "50"},
+                      {value: `-1`, name: "Показать все"},
+                  ]} />
+            </div>
+    )
+
+    }
 }
 
 export default Sort

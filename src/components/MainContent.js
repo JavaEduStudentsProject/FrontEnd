@@ -23,7 +23,7 @@ export default function MainContent(props) {
             <div className="main-block">
                 <div className="product-card">
                     <div className="img-and-shortdescr">
-                    <img className="product-img" src={process.env.PUBLIC_URL + product.image} />
+                    <img className="product-img" src={process.env.PUBLIC_URL + product.thumbnail} />
                     <ShortProductDescription product={product}/>
                     </div>
                     <div className="full-descr">

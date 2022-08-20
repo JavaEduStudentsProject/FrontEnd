@@ -11,7 +11,7 @@ const ShortProductDescription = (props) => {
     //     {id: 4, title: "Емкость аккумуляторов", value: "24 часа"},
     //     {id: 5, title: "Рейтинг", value: averageRating}
     // ])
-    const keys = Object.keys(props.product).filter(key => key != "image" && key != "id" && key != "rating"&& key != "title"&& key != "price"&& key != "size");
+    const keys = Object.keys(props.product).filter(key => key != "images" && key != "id" && key != "rating"&& key != "title"&& key != "price"&& key != "size");
     console.log("Keys: " + keys);
 
     const descriptionList = keys.map((key, index) =>

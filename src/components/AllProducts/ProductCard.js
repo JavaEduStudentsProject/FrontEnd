@@ -2,7 +2,7 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 // import "bootstrap/dist/css/bootstrap.min.css";
-import { Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 
 const ProductCard = (props) => {
@@ -18,6 +18,7 @@ const ProductCard = (props) => {
         })
         return newObj;
     }
+
     const flatProduct = recursiveSearch(props.item);
     const keys = Object.keys(flatProduct).filter(key => key != "image" && key != "description");
 
@@ -27,21 +28,23 @@ const ProductCard = (props) => {
 
     return (
         <>
-        <Card className='card' border={"success"} >
-                <Card.Img className='product-img' variant="top" alt={flatProduct.title} src={process.env.PUBLIC_URL + flatProduct.image}/>
+            <Card className='card' border={"success"}>
+                <Card.Img className='product-img' variant="top" alt={flatProduct.title}
+                          src={process.env.PUBLIC_URL + flatProduct.image}/>
 
-                    <Card.Title>{flatProduct.title}</Card.Title>
-                    <Card.Subtitle>{flatProduct.price} $</Card.Subtitle>
-            <Card.Body>
+                <Card.Title className="product-name">{flatProduct.title}</Card.Title>
+                <Card.Body className='product-description'>
                     {/*<Card.Text>*/}
-                        <ul>
-                            {descriptionList}
-                        </ul>
+                    <ul>
+                        {descriptionList}
+                    </ul>
                     {/*</Card.Text>*/}
-            </Card.Body>
-                    <Link className="btn btn-info" to = {`/product/${flatProduct.id}`} >Просмотр</Link>
+                </Card.Body>
+                <Card.Subtitle className="product-price">{flatProduct.price} $</Card.Subtitle>
 
-                    <Button variant="primary">Go somewhere</Button>
+                <Button className="product-button" variant="primary">
+                    <Link className="link-button" to={`/product/${flatProduct.id}`}>Просмотр</Link>
+                </Button>
 
             </Card>
         </>

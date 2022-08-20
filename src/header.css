@@ -6,7 +6,7 @@
     justify-content: flex-start;
     align-items: center;
     background-color: #383838;
-    height: 70px;
+    height: 60px;
     padding: 30px 25px;
 }
 
@@ -15,7 +15,7 @@ nav > h3, nav > h4 {
 }
 
 .nav-img {
-    width: 90px;
+    width: 70px;
     margin-left: 150px;
     transform: rotate(-0.05turn);
 }
@@ -102,7 +102,7 @@ nav > h3, nav > h4 {
     font-weight: 600;
     color: #000000;
     padding: 15px;
-    font-size: 20px;
+    font-size: 15px;
     border-radius: 3px;
     margin: 10px;
     cursor: pointer;

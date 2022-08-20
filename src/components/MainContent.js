@@ -10,6 +10,7 @@ import {Context} from "./Context";
 
 
 export default function MainContent(props) {
+
     const [products] = useContext(Context);
 
     const {id} = useParams();

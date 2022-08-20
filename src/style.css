@@ -53,16 +53,18 @@ body {
 }
 
 .product-img {
-    margin-right: 30px;
+    margin-right: 40px;
     height: 320px;
 }
 
 .short-descr {
-    background-color: dimgrey;
+    color: black;
+    background: #fcfcfc;
+    padding: 30px;
+    /*background-color: dimgrey;*/
     /*height: border-box;*/
     /*margin-top: 0px;*/
     /*margin-top: -100px;*/
-    padding: 5px;
 }
 
 .main-characts {
@@ -87,7 +89,6 @@ body {
 
 .main-content > h1 {
     color: black;
-    margin: 0;
     font-size: 40px;
     /*letter-spacing: -0.05em;*/
 }
@@ -106,11 +107,14 @@ li {
 /*}*/
 
 .short-descr > h4 {
-    margin-right: 40px;
+    margin: 5px;
+    font-size: 18px;
 }
 
 .full-descr {
-    background-color: dimgrey;
+    color: black;
+    background: #fcfcfc;
+    padding: 30px;
 }
 
 /*звездный рейтинг*/
@@ -150,7 +154,7 @@ li {
     flex: 0 0 20%;
     height: auto;
     cursor: move;
-    color: white;
+    color: #c9c9c9;
 }
 
 .star-label::before {
@@ -162,12 +166,12 @@ li {
 .star-label:hover,
 .star-label:hover ~ .star-label,
 .star-label:checked ~ .star-label:hover {
-    color: #61DAFB;
+    color: #e8a30d;
 }
 
 .star-radio-item:checked,
 .star-radio-item:checked ~ .star-label {
-    color: deepskyblue;
+    color: #ffcf0c;
 }
 
 .star-form-btn {

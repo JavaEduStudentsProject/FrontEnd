@@ -9,6 +9,7 @@ import Title from "../UI/select/Title";
 import Sort from "../UI/select/Sort";
 import Hr from "../UI/select/Hr";
 import Pagination from "react-bootstrap/Pagination";
+import ProductList from "../../ProductList";
 
 
 const Products = (props) => {
@@ -18,12 +19,21 @@ const Products = (props) => {
     const [directSort, setDirectSort] = useState(true);
     console.log(useParams());
     const {category} = useParams();
+    console.log(category);
+    const {subcategory} = useParams();
+    console.log(subcategory);
 
     const [currentPage, setCurrentPage] = useState(0);
     const [perPage, setPerPage] = useState(5);
-    console.log(props.searchField)
-    if (category) {
-        productArray = products.filter(p => p.category === category).filter(item => {
+
+    if (subcategory) {
+        productArray = products.filter(product => ProductList.flatProduct(product)["subCategory"] === subcategory).filter(item => {
+            const fullFilter = item.title + item.description;
+            return fullFilter.toLowerCase().includes(props.searchField.toLowerCase());
+        })
+
+    } else if (category) {
+        productArray = products.filter(product => product.category === category).filter(item => {
             const fullFilter = item.title + item.description;
             return fullFilter.toLowerCase().includes(props.searchField.toLowerCase());
         })

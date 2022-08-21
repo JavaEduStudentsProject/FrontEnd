@@ -2,9 +2,11 @@ import React from 'react';
 import Row from "./Row";
 
 const Field = (props) => {
+    console.log(props)
 
-    let filterRows = props.fieldArray.map((item) =>
+    let filterRows = props.fieldArray.map((item, index) =>
         <Row
+            key={index}
             categoryValue={item}
         />
     )

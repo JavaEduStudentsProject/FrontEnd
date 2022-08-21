@@ -2,34 +2,56 @@ import React from 'react';
 import Field from "./Field";
 
 const Filter = (props) => {
-    console.log(props.productArray);
 
-
-
-    const keys = ["category", "price", "size"];
-
-    function getFieldArray(keys, productArray) {
-        let fieldArray = [
-            {category: []},
-            {price: []},
-            {size: []},
-        ];
-        for (let i = 0; i < keys.length; i++) {
-            productArray.forEach(item => {
-                if (fieldArray[i][keys[i]] != null && !fieldArray[i][keys[i]].includes(item[keys[i]])) {
-                    fieldArray[i][keys[i]].push(item["filter_features"][keys[i]])
+    function getFilterProps(productArray) {
+        let filterProps = [];
+        for (let i = 0; i < productArray.length; i++) {
+            for (let feature in productArray[i]["filter_features"]) {
+                if (!filterProps.includes(feature)) {
+                    filterProps.push(feature);
                 }
-            })
+            }
         }
+        return filterProps;
+    }
+
+    const filterProps = getFilterProps(props.productArray);
+    console.log(filterProps)
+
+
+    function getEmptyFilterFieldArray(filterProps) {
+        let fieldArray = [];
+        for (let i = 0; i < filterProps.length; i++) {
+            let obj = {};
+            obj[filterProps[i]] = [];
+            fieldArray.push(obj);
+        }
+        console.log(fieldArray)
         return fieldArray;
     }
 
+    let emptyFilterFieldArray = getEmptyFilterFieldArray(filterProps);
+
+    console.log(emptyFilterFieldArray);
+
+
+    function getFilledFilterFieldArray (keys, productArray, emptyArray) {
+        for (let i = 0; i < keys.length; i++) {
+            productArray.forEach(item => {
+                if (emptyArray[i][keys[i]] != null && !emptyArray[i][keys[i]].includes(item["filter_features"][keys[i]])) {
+                    emptyArray[i][keys[i]].push(item["filter_features"][keys[i]])
+                }
+            })
+        }
+        return emptyArray;
+    }
+
     console.log(props.productArray);
-    const fieldArray = getFieldArray(keys, props.productArray);
+    const filledFilterFieldArray = getFilledFilterFieldArray(filterProps, props.productArray, emptyFilterFieldArray);
 
-    console.log(fieldArray);
+    console.log(filledFilterFieldArray);
 
-    const fieldComponent = fieldArray.map((item, index) => {
+    const fieldComponent = filledFilterFieldArray.map((item, index) => {
         return <Field
             key={index}
             fieldName={Object.keys(item)[0]}

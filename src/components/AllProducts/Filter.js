@@ -2,39 +2,48 @@ import React from 'react';
 import Field from "./Field";
 
 const Filter = (props) => {
+    console.log(props.productArray);
+
+
+
     const keys = ["category", "price", "size"];
 
     function getFieldArray(keys, productArray) {
-        let filters = [
+        let fieldArray = [
             {category: []},
             {price: []},
             {size: []},
         ];
         for (let i = 0; i < keys.length; i++) {
             productArray.forEach(item => {
-                if (filters[i][keys[i]] != null && !filters[i][keys[i]].includes(item[keys[i]])) {
-                    filters[i][keys[i]].push(item[keys[i]])
+                if (fieldArray[i][keys[i]] != null && !fieldArray[i][keys[i]].includes(item[keys[i]])) {
+                    fieldArray[i][keys[i]].push(item["filter_features"][keys[i]])
                 }
             })
         }
-        return filters;
+        return fieldArray;
     }
 
-    const fieldArray = getFieldArray(keys, props.item);
+    console.log(props.productArray);
+    const fieldArray = getFieldArray(keys, props.productArray);
 
-    const fieldComponent = fieldArray.map(item => {
-        return <Field fieldName={Object.keys(item)[0]}
-                      fieldArray={item[Object.keys(item)[0]]}
-                />
+    console.log(fieldArray);
+
+    const fieldComponent = fieldArray.map((item, index) => {
+        return <Field
+            key={index}
+            fieldName={Object.keys(item)[0]}
+            fieldArray={item[Object.keys(item)[0]]}
+        />
     })
-if (props.category) {
-    return (
-        <fieldset className="filter">
-            <legend>Фильтр по характеристикам</legend>
-            {fieldComponent}
-        </fieldset>
-    );
-};
+    if (props.category) {
+        return (
+            <fieldset className="filter">
+                <legend>Фильтр по характеристикам</legend>
+                {fieldComponent}
+            </fieldset>
+        );
+    }
 };
 
 export default Filter;

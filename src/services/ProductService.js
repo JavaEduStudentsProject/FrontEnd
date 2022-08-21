@@ -1,6 +1,9 @@
 import axios from "axios";
 
-const PRODUCT_BASE_REST_API_URL = '/props.json';
+import ProductList from "../ProductList";
+
+const PRODUCT_BASE_REST_API_URL = '/temp_props.json';
+// const PRODUCT_BASE_REST_API_URL = '/props.json';
 // const PRODUCT_BASE_REST_API_URL = '/initialDetails.json';
 
 class ProductService{
@@ -19,6 +22,20 @@ class ProductService{
                 return accumulator;
             }, [])
         return categories;
+    }
+
+    getSubCategories(productArray, category) {
+        let subCategoryArray = [];
+        let flatProductArray = productArray.map(product => {
+            return ProductList.flatProduct(product);
+            })
+
+        for (let i = 0; i < flatProductArray.length; i++) {
+            if (flatProductArray[i]["category"] === category && !subCategoryArray.includes(flatProductArray[i].subCategory)) {
+                subCategoryArray.push(flatProductArray[i].subCategory)
+            }
+        }
+        return subCategoryArray;
     }
 }
 export default new ProductService();

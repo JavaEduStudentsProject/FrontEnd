@@ -2,7 +2,6 @@ import React, {useContext} from 'react';
 import {FilterArrayContext} from "../Context";
 
 const Row = (props) => {
-    let tempArray = [];
     const {filterArray, setFilterArray} = useContext(FilterArrayContext);
     console.log(filterArray)
     console.log(setFilterArray)
@@ -18,20 +17,8 @@ const Row = (props) => {
         }
     }
 
-
-    // const soldCheckbox = ({ target: { checked } }) => {
-    //     console.log(x, checked);
-    //     setX(checked);
-    // };
-    // return (
-    //     <div>
-    //         <input type="checkbox" checked={x} onChange={soldCheckbox} />
-    //     </div>
-    // );
-
     return (
         <div className="filter-field-row">
-            {/*<input type="checkbox" id="row" />*/}
             <input type="checkbox" className="row" value={props.categoryValue}
                    onChange={event => setCategoryValueToArray(event)}/>
             <label htmlFor="row">{props.categoryValue}</label>

@@ -10,11 +10,14 @@ import {ProductListContext} from "./Context";
 
 
 export default function MainContent(props) {
-
     const [products] = useContext(ProductListContext);
+
+    console.log(products);
 
     const {id} = useParams();
     let product = products.find(p => p.id === Number(id));
+
+    console.log(product);
 
     const { setCountProductInBasket, countProductInBasket} = props;
 

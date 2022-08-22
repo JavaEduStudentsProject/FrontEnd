@@ -37,7 +37,6 @@ export default function Header(props) {
                 <ul>слоя</ul>
                 <ul>вложенности</ul>
                 <a href="http://localhost:3000/">Все продукты</a>
-                <a href="http://localhost:3000/product">Конкретный продукт</a>
             </nav>
         </header>
     )

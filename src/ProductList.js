@@ -1,3 +1,6 @@
+import {useContext} from 'react'
+import {FilterArrayContext} from "./components/Context";
+
 class ProductList {
     constructor(productArray) {
         this.productArray = productArray;
@@ -17,9 +20,9 @@ class ProductList {
         return newObj;
     }
 
-    // Фильрация продуктов по выбранным чекбоксам в разделе фильтр
-    static filterProducts() {
-        let filterArray
+    // Фильтрация продуктов по выбранным чекбоксам в разделе фильтр
+    static filterProducts(filterArray) {
+
     }
 }
 

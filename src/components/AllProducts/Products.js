@@ -3,7 +3,7 @@ import ProductCard from "../AllProducts/ProductCard";
 import MySelect from "../UI/select/MySelect";
 import Filter from "./Filter";
 import Scroll from "./Scroll";
-import {ProductListContext} from "../Context.js";
+import {FilterArrayContext, ProductListContext} from "../Context.js";
 import {useParams} from "react-router-dom";
 import Title from "../UI/select/Title";
 import Sort from "../UI/select/Sort";
@@ -98,7 +98,7 @@ const Products = (props) => {
         setDirectSort(!directSort);
         setSortingKey('');
     }
-
+    // let {filterArray} = useContext(FilterArrayContext);
     return (
         <div className="main-content-products">
             <Filter productArray={productArray} category={category}/>

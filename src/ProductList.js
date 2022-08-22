@@ -24,6 +24,23 @@ class ProductList {
     static filterProducts(filterArray) {
 
     }
+
+    // Сортировка
+    static sortProducts(products, field, directSort) {
+        let sortDate;
+        directSort
+            ?
+            sortDate = ([...products].sort(
+                (a, b) => this.flatProduct(a)[field] > this.flatProduct(b)[field] ? 1 : -1
+            ))
+            :
+            sortDate = ([...products].sort(
+                (a, b) => this.flatProduct(a)[field] > this.flatProduct(b)[field] ? 1 : -1
+            )).reverse();
+
+        return sortDate;
+        }
+
 }
 
 export default ProductList;

@@ -1,10 +1,10 @@
 import MySelect from "./MySelect";
 import React, {useContext, useState} from "react";
-import {Context} from "../../Context";
+import {ProductListContext} from "../../Context";
 
 const Sort = (props) =>{
 
-    const [products, setProducts] = useContext(Context);
+    const [products, setProducts] = useContext(ProductListContext);
 
     const [sortingKey, setSortingKey] = useState("");
     const [directSort, setDirectSort] = useState(true);

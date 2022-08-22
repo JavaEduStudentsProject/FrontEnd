@@ -1,3 +1,6 @@
+import {useContext} from 'react'
+import {FilterArrayContext} from "./components/Context";
+
 class ProductList {
     constructor(productArray) {
         this.productArray = productArray;
@@ -14,15 +17,12 @@ class ProductList {
                 newObj[prop] = product[prop];
             }
         }
-
-        // Object.keys(product).forEach(key => {
-        //     if (typeof product[key] === 'object') {
-        //         this.flatProduct(product[key]);
-        //     } else {
-        //         newObj[key] = product[key];
-        //     }
-        // })
         return newObj;
+    }
+
+    // Фильтрация продуктов по выбранным чекбоксам в разделе фильтр
+    static filterProducts(filterArray) {
+
     }
 }
 

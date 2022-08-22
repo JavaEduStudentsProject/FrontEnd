@@ -3,10 +3,10 @@ import {Link} from "react-router-dom";
 import ProductService from "../../services/ProductService";
 import ProductsBySubCategory from "../AllProducts/ProductsBySubCategory";
 import Row from "../AllProducts/Row";
-import {Context} from "../Context";
+import {ProductListContext} from "../Context";
 
 const Category = (props) => {
-    const [products] = React.useContext(Context);
+    const [products] = React.useContext(ProductListContext);
     console.log(products)
     console.log(props.category)
     let subcategories = ProductService.getSubCategories(products, props.category).map((subCategory, index) => {

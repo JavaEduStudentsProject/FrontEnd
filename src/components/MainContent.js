@@ -4,17 +4,20 @@ import MoneyInCreditComponent from "./MoneyInCreditComponent"
 import img from "../images/img_3.jpg";
 import ShortProductDescription from "./ShortProductDescription";
 import { useParams } from "react-router-dom"
-import {Context} from "./Context";
+import {ProductListContext} from "./Context";
 
 
 
 
 export default function MainContent(props) {
+    const [products] = useContext(ProductListContext);
 
-    const [products] = useContext(Context);
+    console.log(products);
 
     const {id} = useParams();
     let product = products.find(p => p.id === Number(id));
+
+    console.log(product);
 
     const { setCountProductInBasket, countProductInBasket} = props;
 

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 // import { Link, BrowserRouter as Router, Route } from 'react-router-dom';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
@@ -7,9 +7,7 @@ import MainContent from "./MainContent";
 import Footer from "./footer components/Footer";
 import Products from "./AllProducts/Products";
 import ProductService from '../services/ProductService'
-import {Context} from "./Context.js";
-import ProductsBySubCategory from "./AllProducts/ProductsBySubCategory";
-import ProductList from "../ProductList";
+import {ProductListContext} from "./Context.js";
 // import CatalogContent from "./CatalogContent";
 
 
@@ -18,16 +16,21 @@ function App() {
     const [searchField, setSearchField] = useState("");
 
     useEffect(() => {
+        console.log("Вызов useEffect до геттера")
         getAllProducts();
+        console.log("Вызов useEffect после геттера")
     }, [])
 
     const getAllProducts = () => {
+        console.log("Вызов геттера")
         ProductService.getAllProducts().then((response) =>{
-            setProducts(response.data)
+            setProducts(response.data);
         }).catch(error =>{
             console.log(error);
         })
     }
+    console.log(products)
+
     const handleChange = e => {
         setSearchField(e.target.value);
     };
@@ -35,10 +38,9 @@ function App() {
     const [countProductInBasket, setCountProductInBasket] = useState(0);
 
     return (
-        <Context.Provider value={[products, setProducts]}>
+        <ProductListContext.Provider value={[products, setProducts]}>
         <div className="container">
             <Router>
-
             <Header countProductInBasket={countProductInBasket} searchField={searchField} handleChange={handleChange} />
                 <Routes>
                     <Route path="/" element={<Products searchField={searchField} />} />
@@ -49,7 +51,7 @@ function App() {
             <Footer/>
             </Router>
         </div>
-        </Context.Provider>
+        </ProductListContext.Provider>
     )
 }
 

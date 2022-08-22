@@ -62,7 +62,10 @@ const Filter = (props) => {
         return (
             <fieldset className="filter">
                 <legend>Фильтр по характеристикам</legend>
-                {fieldComponent}
+                <form>
+                    {fieldComponent}
+                    <button type="submit">Найти</button>
+                </form>
             </fieldset>
         );
     }

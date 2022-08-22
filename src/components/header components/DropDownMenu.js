@@ -1,11 +1,11 @@
 import React from 'react';
-import {Context} from "../Context";
+import {ProductListContext} from "../Context";
 import ProductService from "../../services/ProductService";
 import Category from "./Category";
 import ProductsBySubCategory from "../AllProducts/ProductsBySubCategory";
 
 function DropDownMenu() {
-    const [products] = React.useContext(Context);
+    const [products] = React.useContext(ProductListContext);
 
     let categories = ProductService.getCategories(products).map(category =>
                 <Category key={category.id} category={category.category}/>

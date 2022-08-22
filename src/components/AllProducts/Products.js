@@ -17,11 +17,9 @@ const Products = (props) => {
     const [products, setProducts] = useContext(ProductListContext);
     const [sortingKey, setSortingKey] = useState("");
     const [directSort, setDirectSort] = useState(true);
-    console.log(useParams());
+
     const {category} = useParams();
-    console.log(category);
     const {subcategory} = useParams();
-    console.log(subcategory);
 
     const [currentPage, setCurrentPage] = useState(0);
     const [perPage, setPerPage] = useState(5);
@@ -80,24 +78,14 @@ const Products = (props) => {
         :
         <h4>Продукты не найдены</h4>
 
-    let sortDate;
 
     const sortProducts = (field) => {
         setSortingKey(field);
-        directSort
-            ?
-            sortDate = ([...products].sort(
-                (a, b) => a[field] > b[field] ? 1 : -1
-            ))
-            :
-            sortDate = ([...products].sort(
-                (a, b) => a[field] > b[field] ? 1 : -1
-            )).reverse();
-
-        setProducts(sortDate);
+        setProducts(ProductList.sortProducts(products, field, directSort));
         setDirectSort(!directSort);
         setSortingKey('');
     }
+
     // let {filterArray} = useContext(FilterArrayContext);
     return (
         <div className="main-content-products">

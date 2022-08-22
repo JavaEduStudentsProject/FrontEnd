@@ -7,7 +7,7 @@ import MainContent from "./MainContent";
 import Footer from "./footer components/Footer";
 import Products from "./AllProducts/Products";
 import ProductService from '../services/ProductService'
-import {Context} from "./Context.js";
+import {ProductListContext} from "./Context.js";
 import ProductsBySubCategory from "./AllProducts/ProductsBySubCategory";
 import ProductList from "../ProductList";
 // import CatalogContent from "./CatalogContent";
@@ -35,7 +35,7 @@ function App() {
     const [countProductInBasket, setCountProductInBasket] = useState(0);
 
     return (
-        <Context.Provider value={[products, setProducts]}>
+        <ProductListContext.Provider value={[products, setProducts]}>
         <div className="container">
             <Router>
 
@@ -49,7 +49,7 @@ function App() {
             <Footer/>
             </Router>
         </div>
-        </Context.Provider>
+        </ProductListContext.Provider>
     )
 }
 

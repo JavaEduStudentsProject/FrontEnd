@@ -6,8 +6,6 @@ import Scroll from "./Scroll";
 import {FilterArrayContext, ProductListContext} from "../Context.js";
 import {useParams} from "react-router-dom";
 import Title from "../UI/select/Title";
-import Sort from "../UI/select/Sort";
-import Hr from "../UI/select/Hr";
 import Pagination from "react-bootstrap/Pagination";
 import ProductList from "../../ProductList";
 
@@ -18,8 +16,7 @@ const Products = (props) => {
     const [sortingKey, setSortingKey] = useState("");
     const [directSort, setDirectSort] = useState(true);
 
-    const {category} = useParams();
-    const {subcategory} = useParams();
+    const {category, subcategory} = useParams();
 
     const [currentPage, setCurrentPage] = useState(0);
     const [perPage, setPerPage] = useState(5);
@@ -78,7 +75,6 @@ const Products = (props) => {
         :
         <h4>Продукты не найдены</h4>
 
-
     const sortProducts = (field) => {
         setSortingKey(field);
         setProducts(ProductList.sortProducts(products, field, directSort));
@@ -86,13 +82,16 @@ const Products = (props) => {
         setSortingKey('');
     }
 
+    const paginationProducts = (field) => {
+        setPerPage(Number(field))
+    }
+
     // let {filterArray} = useContext(FilterArrayContext);
     return (
         <div className="main-content-products">
             <Filter productArray={productArray} category={category}/>
             <div className="all-products">
-                <h1>Все продукты</h1>
-                <hr/>
+                <Title category={category}/>
                 <MySelect
                     value={sortingKey}
                     onChange={sortProducts}
@@ -103,18 +102,20 @@ const Products = (props) => {
                         {value: 'price', name: "По цене"},
                     ]}
                 />
-                <hr/>
-
-                <Title category={category}/>
-                <Hr item={category}/>
-                <Sort category={category} setPerPage={setPerPage}/>
-                <Hr item={category}/>
+                <MySelect
+                    value={sortingKey}
+                          onChange={paginationProducts}
+                          defaultValue="5"
+                          options={[
+                              {value: '10', name: "10"},
+                              {value: '50', name: "50"},
+                              {value: `-1`, name: "Показать все"},
+                    ]} />
 
                 {/*<Scroll>*/}
                 <ul className="products">
                     {productListPerOnePage()}
                 </ul>
-
                 {/*</Scroll>*/}
 
                 <Pagination className='justify-content-center'>

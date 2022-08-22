@@ -39,7 +39,6 @@ class ProductList {
             )).reverse();
 
         return sortDate;
-
         }
 
 }

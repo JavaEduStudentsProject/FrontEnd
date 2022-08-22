@@ -14,15 +14,12 @@ class ProductList {
                 newObj[prop] = product[prop];
             }
         }
-
-        // Object.keys(product).forEach(key => {
-        //     if (typeof product[key] === 'object') {
-        //         this.flatProduct(product[key]);
-        //     } else {
-        //         newObj[key] = product[key];
-        //     }
-        // })
         return newObj;
+    }
+
+    // Фильрация продуктов по выбранным чекбоксам в разделе фильтр
+    static filterProducts() {
+        let filterArray
     }
 }
 

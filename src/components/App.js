@@ -8,6 +8,7 @@ import Footer from "./footer components/Footer";
 import Products from "./AllProducts/Products";
 import ProductService from '../services/ProductService'
 import {ProductListContext} from "./Context.js";
+import BasketContent from "./BasketComponents/BasketContent.js"
 // import CatalogContent from "./CatalogContent";
 
 
@@ -47,6 +48,7 @@ function App() {
                     <Route path="/product/:id" element={<MainContent countProductInBasket={countProductInBasket} setCountProductInBasket={setCountProductInBasket}/>} />
                     <Route path="/:category" element={<Products searchField={searchField} />} />
                     <Route path="/:category/:subcategory" element={<Products searchField={searchField} />} />
+                    <Route path="/:basket" element={<BasketContent/>} />
                 </Routes>
             <Footer/>
             </Router>

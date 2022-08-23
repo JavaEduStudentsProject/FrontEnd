@@ -40,7 +40,6 @@ class ProductList {
 
         return sortDate;
         }
-
 }
 
 export default ProductList;

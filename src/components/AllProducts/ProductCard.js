@@ -58,6 +58,7 @@ const ProductCard = (props) => {
     return (
         <>
         <Card className='card' border={"success"} >
+
                 <Card.Img className='product-img' variant="top" alt={flatProduct.title} src={process.env.PUBLIC_URL + flatProduct.image}/>
                 {/*<Card.Img className='product-img' variant="top" alt={flatProduct.title} src={image}/>*/}
                 {/*<Card.Img className='product-img' variant="top" alt={flatProduct.title} src={require("../../images/rd-d2.png")}/>*/}

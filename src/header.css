@@ -180,8 +180,8 @@ nav > h3, nav > h4 {
 
 .userIcons{
     margin-right: 90px;
-    display: flex;
-    flex-direction: row;
+    /*display: flex;*/
+    /*flex-direction: row;*/
 }
 
 

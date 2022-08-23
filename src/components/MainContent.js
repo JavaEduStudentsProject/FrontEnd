@@ -7,8 +7,6 @@ import { useParams } from "react-router-dom"
 import {ProductListContext} from "./Context";
 
 
-
-
 export default function MainContent(props) {
     const [products] = useContext(ProductListContext);
 

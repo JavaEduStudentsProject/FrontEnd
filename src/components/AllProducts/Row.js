@@ -4,8 +4,6 @@ import {FilterArrayContext} from "../Context";
 const Row = (props) => {
     const {filterArray, setFilterArray} = useContext(FilterArrayContext);
     console.log(filterArray)
-    console.log(setFilterArray)
-
 
     function setCategoryValueToArray(event) {
         if (event.target.checked) {

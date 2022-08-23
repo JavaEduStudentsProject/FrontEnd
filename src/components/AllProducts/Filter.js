@@ -1,7 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Field from "./Field";
+import PriceFilterField from "./PriceFilterField";
+import {FilterArrayContext, PriceFilterArrayContext} from "../Context";
+import ProductList from "../../ProductList";
 
 const Filter = (props) => {
+    const {filterArray} = useContext(FilterArrayContext);
+    console.log(filterArray)
+    const {priceDelta} = useContext(PriceFilterArrayContext);
+    console.log(priceDelta)
 
     function getFilterProps(productArray) {
         let filterProps = [];
@@ -51,6 +58,13 @@ const Filter = (props) => {
 
     console.log(filledFilterFieldArray);
 
+    function handleSubmitClick(e) {
+        e.preventDefault();
+        console.log("For filter function: " + filterArray);
+        console.log("For filter function: " + priceDelta);
+        ProductList.filterProducts()
+    }
+
     const fieldComponent = filledFilterFieldArray.map((item, index) => {
         return <Field
             key={index}
@@ -63,8 +77,9 @@ const Filter = (props) => {
             <fieldset className="filter">
                 <legend>Фильтр по характеристикам</legend>
                 <form>
+                    <PriceFilterField/>
                     {fieldComponent}
-                    <button type="submit">Найти</button>
+                    <button type="submit" onClick={handleSubmitClick}>Найти</button>
                 </form>
             </fieldset>
         );

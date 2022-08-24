@@ -1,10 +1,13 @@
 import React, {useContext} from 'react';
 import Field from "./Field";
 import PriceFilterField from "./PriceFilterField";
-import {FilterArrayContext, PriceFilterArrayContext} from "../Context";
+import {FilterArrayContext, PriceFilterArrayContext, ProductListContext, CashProductListContext} from "../Context";
 import ProductList from "../../ProductList";
 
 const Filter = (props) => {
+    const [products, setProducts] = useContext(ProductListContext);
+    const {cashProducts} = useContext(CashProductListContext);
+    console.log(cashProducts)
     const {filterArray} = useContext(FilterArrayContext);
     console.log(filterArray)
     const {priceDelta} = useContext(PriceFilterArrayContext);
@@ -62,7 +65,16 @@ const Filter = (props) => {
         e.preventDefault();
         console.log("For filter function: " + filterArray);
         console.log("For filter function: " + priceDelta);
-        ProductList.filterProducts()
+        console.log(props.productArray);
+        let filteredProductList = ProductList.filterProducts(props.productArray, priceDelta, filterArray);
+        console.log(filteredProductList)
+        setProducts(filteredProductList);
+    }
+
+    function handleCancellClick(e) {
+        e.preventDefault();
+        console.log(cashProducts);
+        setProducts(cashProducts);
     }
 
     const fieldComponent = filledFilterFieldArray.map((item, index) => {
@@ -80,6 +92,7 @@ const Filter = (props) => {
                     <PriceFilterField/>
                     {fieldComponent}
                     <button type="submit" onClick={handleSubmitClick}>Найти</button>
+                    <button type="submit" onClick={handleCancellClick}>Сбросить</button>
                 </form>
             </fieldset>
         );

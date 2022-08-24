@@ -3,13 +3,14 @@ import {Link} from "react-router-dom";
 import ProductService from "../../services/ProductService";
 import ProductsBySubCategory from "../AllProducts/ProductsBySubCategory";
 import Row from "../AllProducts/Row";
-import {ProductListContext} from "../Context";
+import {ImmutableProductListContext, ProductListContext} from "../Context";
 
 const Category = (props) => {
     const [products] = React.useContext(ProductListContext);
+    const {immutableProductList} = React.useContext(ImmutableProductListContext);
     console.log(products)
     console.log(props.category)
-    let subcategories = ProductService.getSubCategories(products, props.category).map((subCategory, index) => {
+    let subcategories = ProductService.getSubCategories(immutableProductList, props.category).map((subCategory, index) => {
         return <ProductsBySubCategory key={index} category={props.category} subCategory={subCategory}/>;
     })
 

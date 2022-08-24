@@ -1,4 +1,13 @@
 import React from "react";
+import ProductService from "../services/ProductService";
+
+export const ImmutableProductListContext = React.createContext({
+    immutableProductList: require('../temp_props.json'),
+});
+
+export const CashProductListContext = React.createContext({
+    cashProducts: []
+});
 
 export const ProductListContext = React.createContext(null)
 

@@ -21,8 +21,33 @@ class ProductList {
     }
 
     // Фильтрация продуктов по выбранным чекбоксам в разделе фильтр
-    static filterProducts(filterArray) {
+    static filterProducts(products, priceDelta, filterArray) {
+        console.log(products)
+        console.log(priceDelta)
+        console.log(filterArray)
+        let tempProductList = [];
+        let filteredProductList = [];
+        for (let i = 0; i < products.length; i++) {
+            if (products[i]["price"] >= priceDelta[0] && products[i]["price"] <= priceDelta[1]) {
+                tempProductList.push(products[i]);
+            }
+        }
+        console.log(tempProductList)
+        for (let i = 0; i < tempProductList.length; i++) {
+            for (let feature in tempProductList[i]["filter_features"]) {
+                console.log(feature)
+                for (let j = 0; j < filterArray.length; j++) {
+                    if (filterArray[j] == tempProductList[i]["filter_features"][feature]) {
+                        console.log(feature)
+                        console.log(filterArray[j])
+                        filteredProductList.push(tempProductList[i]);
+                    }
+                }
 
+            }
+        }
+        console.log(filteredProductList)
+        return filteredProductList;
     }
 
     // Сортировка

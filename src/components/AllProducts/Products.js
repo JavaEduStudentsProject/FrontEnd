@@ -3,7 +3,12 @@ import ProductCard from "../AllProducts/ProductCard";
 import MySelect from "../UI/select/MySelect";
 import Filter from "./Filter";
 import Scroll from "./Scroll";
-import {FilterArrayContext, ProductListContext} from "../Context.js";
+import {
+    CashProductListContext,
+    FilterArrayContext,
+    ImmutableProductListContext,
+    ProductListContext
+} from "../Context.js";
 import {useParams} from "react-router-dom";
 import Title from "../UI/select/Title";
 import Pagination from "react-bootstrap/Pagination";
@@ -12,7 +17,11 @@ import ProductList from "../../ProductList";
 
 const Products = (props) => {
     let productArray = [];
-    const [products, setProducts] = useContext(ProductListContext);
+    // const [products, setProducts] = useContext(ProductListContext);
+    const {immutableProductList} = React.useContext(ImmutableProductListContext);
+    console.log(immutableProductList)
+    const [products, setProducts] = useState(immutableProductList);
+    let {cashProducts} = useContext(CashProductListContext);
     const [sortingKey, setSortingKey] = useState("");
     const [directSort, setDirectSort] = useState(true);
 
@@ -26,19 +35,26 @@ const Products = (props) => {
             const fullFilter = item.title + item.description;
             return fullFilter.toLowerCase().includes(props.searchField.toLowerCase());
         })
-
+        cashProducts = productArray;
+        console.log(productArray);
     } else if (category) {
         productArray = products.filter(product => product.category === category).filter(item => {
             const fullFilter = item.title + item.description;
             return fullFilter.toLowerCase().includes(props.searchField.toLowerCase());
         })
-
+        cashProducts = productArray;
+        console.log(productArray);
     } else {
         productArray = products.filter(item => {
             const fullFilter = item.title + item.description + item.category;
             return fullFilter.toLowerCase().includes(props.searchField.toLowerCase());
         })
+        cashProducts = productArray;
+        console.log(productArray);
     }
+
+    cashProducts = productArray;
+    console.log(cashProducts);
 
     const {pagItems, firstPageIndex, lastPageIndex} = useMemo(() => {
             const pageLimit = Math.ceil(productArray.length / perPage)

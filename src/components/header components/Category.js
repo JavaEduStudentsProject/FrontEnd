@@ -1,10 +1,10 @@
 import React, {useContext} from 'react';
 import {Link} from "react-router-dom";
 import ProductService from "../../services/ProductService";
-import ProductsBySubCategory from "../AllProducts/ProductsBySubCategory";
-import Row from "../AllProducts/Row";
-import {FilterArrayContext, ImmutableProductListContext, PriceFilterArrayContext, ProductListContext} from "../Context";
-import ProductList from "../../ProductList";
+import ProductsBySubCategory from "../all products components/ProductsBySubCategory";
+import Row from "../all products components/Row";
+import {FilterArrayContext, ImmutableProductListContext, PriceFilterArrayContext, ProductListContext} from "../../services/Context";
+import ProductList from "../../services/ProductList";
 
 const Category = (props) => {
     const {filterArray} = useContext(FilterArrayContext);

@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {FilterArrayContext} from "../Context";
+import {FilterArrayContext} from "../../services/Context";
 
 const Row = (props) => {
     const {filterArray} = useContext(FilterArrayContext);

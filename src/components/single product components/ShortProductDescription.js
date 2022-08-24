@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import MainCharacteristics from "./MainCharacteristics";
 import StarRating from "./StarRating";
-import Row from "./AllProducts/Row";
+import Row from "../all products components/Row";
 
 const ShortProductDescription = (props) => {
     console.log(props.product)

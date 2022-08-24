@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import ProductList from "../ProductList";
+import ProductList from "../../src/services/ProductList";
 
 const PRODUCT_BASE_REST_API_URL = '/temp_props_1.json';
 // const PRODUCT_BASE_REST_API_URL = '/props.json';

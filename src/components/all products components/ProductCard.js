@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import ProductList from "../../ProductList";
+import ProductList from "../../services/ProductList";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from 'react-router-dom'
 

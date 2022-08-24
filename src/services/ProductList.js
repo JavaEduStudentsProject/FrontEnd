@@ -1,5 +1,5 @@
 import {useContext} from 'react'
-import {FilterArrayContext} from "./components/Context";
+import {FilterArrayContext} from "../../src/services/Context";
 
 class ProductList {
     constructor(productArray) {

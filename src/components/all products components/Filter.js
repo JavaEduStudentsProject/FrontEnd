@@ -1,8 +1,8 @@
 import React, {useContext} from 'react';
 import Field from "./Field";
 import PriceFilterField from "./PriceFilterField";
-import {FilterArrayContext, ImmutableProductListContext, PriceFilterArrayContext, ProductListContext} from "../Context";
-import ProductList from "../../ProductList";
+import {FilterArrayContext, ImmutableProductListContext, PriceFilterArrayContext, ProductListContext} from "../../services/Context";
+import ProductList from "../../services/ProductList";
 import {useParams} from "react-router-dom";
 
 const Filter = (props) => {

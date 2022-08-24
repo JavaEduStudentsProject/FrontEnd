@@ -1,18 +1,17 @@
 import React, {useContext, useState, useMemo} from 'react';
-import ProductCard from "../AllProducts/ProductCard";
+import ProductCard from "./ProductCard";
 import MySelect from "../UI/select/MySelect";
 import Filter from "./Filter";
 import Scroll from "./Scroll";
 import {
-    CashProductListContext,
     FilterArrayContext,
     ImmutableProductListContext,
     ProductListContext
-} from "../Context.js";
+} from "../../services/Context";
 import {useParams} from "react-router-dom";
-import Title from "../UI/select/Title";
+import Title from "../../components/all products components/Title";
 import Pagination from "react-bootstrap/Pagination";
-import ProductList from "../../ProductList";
+import ProductList from "../../services/ProductList";
 
 
 const Products = (props) => {

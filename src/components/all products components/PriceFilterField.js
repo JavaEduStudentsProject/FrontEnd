@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {PriceFilterArrayContext} from "../Context";
+import {PriceFilterArrayContext} from "../../services/Context";
 
 const PriceFilterField = () => {
     const {priceDelta, setPriceDeltaLeft, setPriceDeltaRight} = useContext(PriceFilterArrayContext);

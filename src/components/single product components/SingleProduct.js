@@ -1,17 +1,15 @@
 import React, {useContext} from "react";
 import PriceComponent from "./PriceComponent"
 import MoneyInCreditComponent from "./MoneyInCreditComponent"
-import img from "../images/img_3.jpg";
+import img from "../../images/img_3.jpg";
 import ShortProductDescription from "./ShortProductDescription";
 import { useParams } from "react-router-dom"
-import {ImmutableProductListContext, ProductListContext} from "./Context";
+import {ImmutableProductListContext, ProductListContext} from "../../services/Context";
 
 
-
-
-export default function MainContent(props) {
-    const {immutableProductList} = React.useContext(ImmutableProductListContext);
-
+export default function SingleProduct(props) {
+    const {immutableProductList} = useContext(ImmutableProductListContext);
+    console.log(immutableProductList);
     const {id} = useParams();
     let product = immutableProductList.find(p => p.id === Number(id));
 

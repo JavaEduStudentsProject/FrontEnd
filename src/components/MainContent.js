@@ -10,10 +10,7 @@ import {ImmutableProductListContext, ProductListContext} from "./Context";
 
 
 export default function MainContent(props) {
-    const [products] = useContext(ProductListContext);
     const {immutableProductList} = React.useContext(ImmutableProductListContext);
-
-    console.log(products);
 
     const {id} = useParams();
     let product = immutableProductList.find(p => p.id === Number(id));

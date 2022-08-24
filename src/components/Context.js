@@ -1,24 +1,38 @@
 import React from "react";
 import ProductService from "../services/ProductService";
 
-export const ImmutableProductListContext = React.createContext({
-    immutableProductList: require('../temp_props.json'),
-});
+export const ImmutableProductListContext = React.createContext([]
+//     // {immutableProductList: require('../temp_props.json'),}
+    );
 
-export const CashProductListContext = React.createContext({
-    cashProducts: []
-});
+// export const ImmutableProductListContext = React.createContext(
+//     {
+//         immutableProductList: [],
+//         setImmutableProductList: value =>
+//             this.immutableProductList = value,
+//     });
 
 export const ProductListContext = React.createContext(null)
 
 
-export const FilterArrayContext = React.createContext(
-    {
-        filterArray: [],
-        setFilterArray: (value) => {
-            return this.filterArray.push(value)
-        }
-    });
+// export const FilterKeyValueContext = React.createContext( {
+//     filterArray: [
+//         {category: ""},
+//         {subCategory: ""},
+//     ]
+// }
+//     );
+
+// export const FilterKeyValueContext = React.createContext({
+//         category: "",
+//         subCategory: "",
+//     }
+// );
+
+export const FilterArrayContext = React.createContext({
+    filterArray: ["", ""],
+    }
+);
 
 
 export const PriceFilterArrayContext = React.createContext(

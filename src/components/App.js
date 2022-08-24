@@ -7,11 +7,14 @@ import MainContent from "./MainContent";
 import Footer from "./footer components/Footer";
 import Products from "./AllProducts/Products";
 import ProductService from '../services/ProductService'
-import {ProductListContext} from "./Context.js";
+import {ProductListContext, ImmutableProductListContext} from "./Context.js";
 // import CatalogContent from "./CatalogContent";
 
 
 function App() {
+    console.log(useContext(ImmutableProductListContext));
+    // let {immutableProductList, setImmutableProductList} = useContext(ImmutableProductListContext);
+    let [immutableProductList, setImmutableProductList] = useState([]);
     const [products, setProducts] = useState([]);
     const [searchField, setSearchField] = useState("");
 
@@ -24,12 +27,15 @@ function App() {
     const getAllProducts = () => {
         console.log("Вызов геттера")
         ProductService.getAllProducts().then((response) =>{
+            setImmutableProductList(response.data);
+            // immutableProductList = response.data;
             setProducts(response.data);
+            console.log("Тест респонс даты: " + response.data)
         }).catch(error =>{
             console.log(error);
         })
     }
-    console.log(products)
+    console.log("Test IPL " + immutableProductList);
 
     const handleChange = e => {
         setSearchField(e.target.value);
@@ -38,7 +44,8 @@ function App() {
     const [countProductInBasket, setCountProductInBasket] = useState(0);
 
     return (
-        <ProductListContext.Provider value={[products, setProducts]}>
+        <ProductListContext.Provider value={{products, setProducts}}>
+        <ImmutableProductListContext.Provider value={{immutableProductList, setImmutableProductList}}>
         <div className="container">
             <Router>
             <Header countProductInBasket={countProductInBasket} searchField={searchField} handleChange={handleChange} />
@@ -51,6 +58,7 @@ function App() {
             <Footer/>
             </Router>
         </div>
+        </ImmutableProductListContext.Provider>
         </ProductListContext.Provider>
     )
 }

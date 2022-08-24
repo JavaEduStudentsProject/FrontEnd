@@ -2,13 +2,11 @@ import React, {useContext} from 'react';
 import {FilterArrayContext} from "../Context";
 
 const Row = (props) => {
-    const {filterArray, setFilterArray} = useContext(FilterArrayContext);
-    console.log(filterArray)
-    console.log(setFilterArray)
-
+    const {filterArray} = useContext(FilterArrayContext);
 
     function setCategoryValueToArray(event) {
         if (event.target.checked) {
+            // filterArray[] = props.categoryValue;
             filterArray.push(event.target.value);
             console.log(filterArray);
         } else {

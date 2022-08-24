@@ -3,7 +3,12 @@ import ProductCard from "../AllProducts/ProductCard";
 import MySelect from "../UI/select/MySelect";
 import Filter from "./Filter";
 import Scroll from "./Scroll";
-import {FilterArrayContext, ProductListContext} from "../Context.js";
+import {
+    CashProductListContext,
+    FilterArrayContext,
+    ImmutableProductListContext,
+    ProductListContext
+} from "../Context.js";
 import {useParams} from "react-router-dom";
 import Title from "../UI/select/Title";
 import Pagination from "react-bootstrap/Pagination";
@@ -11,8 +16,12 @@ import ProductList from "../../ProductList";
 
 
 const Products = (props) => {
-    let productArray = [];
-    const [products, setProducts] = useContext(ProductListContext);
+    let productArrayForRendering = [];
+    const {immutableProductList} = React.useContext(ImmutableProductListContext);
+    console.log(immutableProductList)
+    // const [products, setProducts] = useState(immutableProductList);
+    const {products, setProducts} = useContext(ProductListContext);
+    console.log(products)
     const [sortingKey, setSortingKey] = useState("");
     const [directSort, setDirectSort] = useState(true);
 
@@ -21,27 +30,28 @@ const Products = (props) => {
     const [currentPage, setCurrentPage] = useState(0);
     const [perPage, setPerPage] = useState(5);
 
-    if (subcategory) {
-        productArray = products.filter(product => ProductList.flatProduct(product)["subCategory"] === subcategory).filter(item => {
-            const fullFilter = item.title + item.description;
-            return fullFilter.toLowerCase().includes(props.searchField.toLowerCase());
-        })
-
-    } else if (category) {
-        productArray = products.filter(product => product.category === category).filter(item => {
-            const fullFilter = item.title + item.description;
-            return fullFilter.toLowerCase().includes(props.searchField.toLowerCase());
-        })
-
-    } else {
-        productArray = products.filter(item => {
-            const fullFilter = item.title + item.description + item.category;
-            return fullFilter.toLowerCase().includes(props.searchField.toLowerCase());
-        })
-    }
+    // productArrayForRendering
+    // if (subcategory) {
+    //     productArray = products.filter(product => ProductList.flatProduct(product)["subCategory"] === subcategory).filter(item => {
+    //         const fullFilter = item.title + item.description;
+    //         return fullFilter.toLowerCase().includes(props.searchField.toLowerCase());
+    //     })
+    //
+    // } else if (category) {
+    //     productArray = products.filter(product => product.category === category).filter(item => {
+    //         const fullFilter = item.title + item.description;
+    //         return fullFilter.toLowerCase().includes(props.searchField.toLowerCase());
+    //     })
+    // } else {
+    //     productArray = products.filter(item => {
+    //         const fullFilter = item.title + item.description + item.category;
+    //         return fullFilter.toLowerCase().includes(props.searchField.toLowerCase());
+    //     })
+    //
+    // }
 
     const {pagItems, firstPageIndex, lastPageIndex} = useMemo(() => {
-            const pageLimit = Math.ceil(productArray.length / perPage)
+            const pageLimit = Math.ceil(products.length / perPage)
             let pagItems = []
             for (let i = 0; i < pageLimit; i++) {
                 pagItems.push(
@@ -61,12 +71,12 @@ const Products = (props) => {
                 firstPageIndex,
                 lastPageIndex
             }
-        }, [currentPage, productArray.length, perPage]
+        }, [currentPage, products.length, perPage]
     )
 
-    const productListPerOnePage = () => productArray.length
+    const productListPerOnePage = () => products.length
         ?
-        productArray.slice(firstPageIndex, lastPageIndex).map(item => {
+        products.slice(firstPageIndex, lastPageIndex).map(item => {
             return <ProductCard
                 key={item.id}
                 item={item}
@@ -89,7 +99,7 @@ const Products = (props) => {
     // let {filterArray} = useContext(FilterArrayContext);
     return (
         <div className="main-content-products">
-            <Filter productArray={productArray} category={category}/>
+            <Filter productArray={products} category={category}/>
             <div className="all-products">
                 <Title category={category}/>
                 <MySelect

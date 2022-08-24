@@ -1,13 +1,15 @@
 import React from 'react';
-import {ProductListContext} from "../Context";
+import {ImmutableProductListContext, ProductListContext} from "../Context";
 import ProductService from "../../services/ProductService";
 import Category from "./Category";
 import ProductsBySubCategory from "../AllProducts/ProductsBySubCategory";
 
 function DropDownMenu() {
-    const [products] = React.useContext(ProductListContext);
+    const {products} = React.useContext(ProductListContext);
+    const {immutableProductList} = React.useContext(ImmutableProductListContext);
+    console.log(immutableProductList)
 
-    let categories = ProductService.getCategories(products).map(category =>
+    let categories = ProductService.getCategories(immutableProductList).map(category =>
                 <Category key={category.id} category={category.category}/>
                 )
 

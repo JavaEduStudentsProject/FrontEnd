@@ -8,7 +8,7 @@ import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import avatar1 from '../../images/avatar.jpg'
 import Button from 'react-bootstrap/Button';
-import Link from 'react-bootstrap/NavLink';
+import { Link } from 'react-router-dom'
 
 
 export default function Header(props) {
@@ -76,7 +76,7 @@ export default function Header(props) {
 
 
                         <Button className="product-button" variant="primary">
-                            <Link className="link-button" to="/basket">Корзина</Link>
+                            <Link className="link-button" to="/basket" >Корзина</Link>
                         </Button>
 
 

@@ -2,8 +2,11 @@ import React from 'react';
 import {ProductListContext} from "../Context";
 
 
-function BasketContent() {
+export default function BasketContent() {
     const [products] = React.useContext(ProductListContext);
-}
 
-export default BasketContent;
+return (
+    <h1>
+        Это корзина
+    </h1>
+)}

@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useState} from "react";
 import PriceComponent from "./PriceComponent"
 import MoneyInCreditComponent from "./MoneyInCreditComponent"
 import img from "../images/img_3.jpg";
@@ -9,7 +9,6 @@ import {ProductListContext} from "./Context";
 
 export default function MainContent(props) {
     const [products] = useContext(ProductListContext);
-
     console.log(products);
 
     const {id} = useParams();
@@ -17,7 +16,10 @@ export default function MainContent(props) {
 
     console.log(product);
 
-    const { setCountProductInBasket, countProductInBasket} = props;
+    const { countProductInBasket, setCountProductInBasket} = props;
+
+    // const [product, addProduct] = useState(0);
+
 
     return (
         <div className="main-content">

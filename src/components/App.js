@@ -48,7 +48,7 @@ function App() {
                     <Route path="/product/:id" element={<MainContent countProductInBasket={countProductInBasket} setCountProductInBasket={setCountProductInBasket}/>} />
                     <Route path="/:category" element={<Products searchField={searchField} />} />
                     <Route path="/:category/:subcategory" element={<Products searchField={searchField} />} />
-                    <Route path="/:basket" element={<BasketContent/>} />
+                    <Route path="/basket" element={<BasketContent/>} />
                 </Routes>
             <Footer/>
             </Router>

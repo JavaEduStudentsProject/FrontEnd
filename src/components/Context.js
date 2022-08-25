@@ -12,6 +12,7 @@ export const FilterArrayContext = React.createContext(
     });
 
 
-export const BasketMap = React.createContext(
-        // var Basket = new Map();
-        );
+export const BasketArrayContext = React.createContext(
+    {
+        basketArray: []
+    });

@@ -1,10 +1,13 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import MyButton from "./UI/button/MyButton";
+import {BasketArrayContext} from "./Context";
+
 
 function ProductPlusMinusButton(props) {
-    // let price = 100000000;
+
     let [count, setCount] = useState(0);
 
+    const {basketArray} = useContext(BasketArrayContext);
     const { setCountProductInBasket, countProductInBasket} = props;
 
     function incrementProductCount() {
@@ -23,8 +26,13 @@ function ProductPlusMinusButton(props) {
             <MyButton id="cartPlusButton" onClick={() => {
                 setCountProductInBasket(countProductInBasket+1)
                 incrementProductCount()
+                basketArray.push(props.product)
+                console.log("У вас в корзине " + basketArray)
             }}>В корзину</MyButton>
-            <MyButton id="cartMinusButton" onClick={decrementProductCount}>Удалить</MyButton>
+            <MyButton id="cartMinusButton" onClick={() => {
+                setCountProductInBasket(countProductInBasket-1)
+                decrementProductCount()
+            }}>Удалить</MyButton>
             <h3>В корзине: {count}</h3>
         </div>
     );

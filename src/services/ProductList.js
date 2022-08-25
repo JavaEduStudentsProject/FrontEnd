@@ -40,18 +40,20 @@ class ProductList {
                 if (products[i]["category"] === filterArray[0]) {
                     categoryProductList.push(products[i]);
                 }
-                console.log(categoryProductList)
-                filteredProductList = categoryProductList;
+                // console.log(categoryProductList)
+                // filteredProductList = categoryProductList;
 
             }
+            console.log(categoryProductList)
+            filteredProductList = categoryProductList;
         }
         console.log("Промежуток один")
         if (filterArray[1] !== "") {
             console.log("Второй цикл пошел (субкатегории)")
             for (let i = 0; i < categoryProductList.length; i++) {
-                console.log(products[i]["filter_features"]["subCategory"])
+                console.log(categoryProductList[i]["filter_features"]["subCategory"])
                 console.log(filterArray[1])
-                if (products[i]["filter_features"]["subCategory"] === filterArray[1]) {
+                if (categoryProductList[i]["filter_features"]["subCategory"] === filterArray[1]) {
                     subCategoryProductList.push(categoryProductList[i]);
                 }
                 console.log(subCategoryProductList)

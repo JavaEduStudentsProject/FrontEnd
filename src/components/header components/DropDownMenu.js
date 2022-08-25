@@ -2,7 +2,7 @@ import React from 'react';
 import {ImmutableProductListContext, ProductListContext} from "../../services/Context";
 import ProductService from "../../services/ProductService";
 import Category from "./Category";
-import ProductsBySubCategory from "../all products components/ProductsBySubCategory";
+import SubCategory from "../all products components/SubCategory";
 
 function DropDownMenu() {
     const {products} = React.useContext(ProductListContext);

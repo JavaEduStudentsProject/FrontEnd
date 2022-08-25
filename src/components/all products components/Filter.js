@@ -82,6 +82,7 @@ const Filter = (props) => {
         e.preventDefault();
         filterArray.splice(2);
         let filteredProductList = ProductList.filterProducts(immutableProductList, priceDelta, filterArray);
+        console.log(filteredProductList)
         setProducts(filteredProductList);
     }
 

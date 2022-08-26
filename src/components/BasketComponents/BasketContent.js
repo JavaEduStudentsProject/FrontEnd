@@ -1,9 +1,9 @@
-import React from 'react';
-import {ProductListContext} from "../Context";
+import React, {useContext} from 'react';
+import {BasketArrayContext} from "./Context";
 
 
 export default function BasketContent() {
-    const [products] = React.useContext(ProductListContext);
+    const {basketArray} = useContext(BasketArrayContext);
 
 return (
     <h1>

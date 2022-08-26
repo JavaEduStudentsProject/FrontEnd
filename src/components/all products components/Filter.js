@@ -9,15 +9,9 @@ const Filter = (props) => {
     const {products, setProducts} = useContext(ProductListContext);
     const {immutableProductList} = React.useContext(ImmutableProductListContext);
     const {filterArray} = useContext(FilterArrayContext);
-    console.log(filterArray)
     const {priceDelta} = useContext(PriceFilterArrayContext);
-    console.log(priceDelta)
 
     const {category, subcategory} = useParams();
-    console.log("Категория из use params:")
-    console.log(category)
-    console.log("Субкатегория из use params:")
-    console.log(subcategory)
 
     function getFilterProps(productArray) {
         let filterProps = [];
@@ -32,7 +26,6 @@ const Filter = (props) => {
     }
 
     const filterProps = getFilterProps(products);
-    console.log(filterProps)
 
 
     function getEmptyFilterFieldArray(filterProps) {
@@ -42,13 +35,11 @@ const Filter = (props) => {
             obj[filterProps[i]] = [];
             fieldArray.push(obj);
         }
-        console.log(fieldArray)
         return fieldArray;
     }
 
     let emptyFilterFieldArray = getEmptyFilterFieldArray(filterProps);
 
-    console.log(emptyFilterFieldArray);
 
 
     function getFilledFilterFieldArray (keys, productArray, emptyArray) {
@@ -62,19 +53,13 @@ const Filter = (props) => {
         return emptyArray;
     }
 
-    console.log(products);
     const filledFilterFieldArray = getFilledFilterFieldArray(filterProps, products, emptyFilterFieldArray);
 
-    console.log(filledFilterFieldArray);
 
     function handleSubmitClick(e) {
         e.preventDefault();
-        console.log("For filter function: " + filterArray);
-        console.log("For filter function: " + priceDelta);
-        console.log(props.productArray);
-        console.log(products);
+
         let filteredProductList = ProductList.filterProducts(products, priceDelta, filterArray);
-        console.log(filteredProductList)
         setProducts(filteredProductList);
     }
 
@@ -82,7 +67,6 @@ const Filter = (props) => {
         e.preventDefault();
         filterArray.splice(2);
         let filteredProductList = ProductList.filterProducts(immutableProductList, priceDelta, filterArray);
-        console.log(filteredProductList)
         setProducts(filteredProductList);
     }
 

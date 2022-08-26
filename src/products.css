@@ -11,6 +11,7 @@
 .all-products {
     box-sizing: border-box;
     height: 100%;
+    width: 100%;
 }
 
 .products {
@@ -22,7 +23,7 @@
 
 
 .card {
-    width: 100%;
+    width: 80%;
     padding: 30px;
     background: #fcfcfc;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);

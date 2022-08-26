@@ -12,33 +12,31 @@ import {ProductListContext, ImmutableProductListContext} from "../services/Conte
 
 
 function App() {
-    console.log(useContext(ImmutableProductListContext));
     // let {immutableProductList, setImmutableProductList} = useContext(ImmutableProductListContext);
-    let [immutableProductList, setImmutableProductList] = useState([]);
+    // let [immutableProductList, setImmutableProductList] = useState([]);
     const [products, setProducts] = useState([]);
     const [searchField, setSearchField] = useState("");
 
-    console.log(useContext(ImmutableProductListContext));
-
     useEffect(() => {
-        console.log("Вызов useEffect до геттера")
         getAllProducts();
-        console.log("Вызов useEffect после геттера")
     }, [])
 
     const getAllProducts = () => {
-        console.log("Вызов геттера")
         ProductService.getAllProducts().then((response) =>{
-            setImmutableProductList(response.data);
-            // immutableProductList = response.data;
+
             setProducts(response.data);
-            console.log("Тест респонс даты: " + response.data)
+            console.log(products)
+
         }).catch(error =>{
             console.log(error);
         })
     }
-    console.log("Test IPL " + immutableProductList);
 
+    localStorage.setItem('products', JSON.stringify(products))
+
+    let immutableProductList = JSON.parse(localStorage.getItem('products'))
+
+    console.log(products)
     const handleChange = e => {
         setSearchField(e.target.value);
     };
@@ -47,7 +45,7 @@ function App() {
 
     return (
         <ProductListContext.Provider value={{products, setProducts}}>
-        <ImmutableProductListContext.Provider value={{immutableProductList, setImmutableProductList}}>
+        <ImmutableProductListContext.Provider value={{immutableProductList}}>
         <div className="container">
             <Router>
             <Header countProductInBasket={countProductInBasket} searchField={searchField} handleChange={handleChange} />

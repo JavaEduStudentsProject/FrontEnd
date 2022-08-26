@@ -8,13 +8,18 @@ import {ImmutableProductListContext, ProductListContext} from "../../services/Co
 
 
 export default function SingleProduct(props) {
-    const {immutableProductList} = useContext(ImmutableProductListContext);
-    console.log(immutableProductList);
+    const {products, setProducts} = useContext(ProductListContext);
+    let immutable = JSON.parse(localStorage.getItem('immutableProductList'))
+
+    console.log(immutable)
     const {id} = useParams();
-    let product = immutableProductList.find(p => p.id === Number(id));
+    localStorage.setItem(`${id}`, JSON.stringify(immutable.find(p => p.id === Number(id))))
 
-    console.log(product);
+    let product = JSON.parse(localStorage.getItem(`${id}`))
+    console.log(localStorage.getItem(`${id}`))
 
+    console.log(products)
+    console.log(product)
     const { setCountProductInBasket, countProductInBasket} = props;
 
     return (

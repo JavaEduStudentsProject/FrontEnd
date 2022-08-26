@@ -15,16 +15,17 @@ import ProductList from "../../services/ProductList";
 
 
 const Products = (props) => {
-    let productArrayForRendering = [];
-    const {immutableProductList} = React.useContext(ImmutableProductListContext);
-    console.log(immutableProductList)
+    // let productArrayForRendering = [];
+    // const {immutableProductList} = React.useContext(ImmutableProductListContext);
     // const [products, setProducts] = useState(immutableProductList);
     const {products, setProducts} = useContext(ProductListContext);
-    console.log(products)
     const [sortingKey, setSortingKey] = useState("");
     const [directSort, setDirectSort] = useState(true);
 
-    const {category, subcategory} = useParams();
+    const {category} = useParams();
+    const {subcategory} = useParams();
+    console.log(category)
+    console.log(subcategory)
 
     const [currentPage, setCurrentPage] = useState(0);
     const [perPage, setPerPage] = useState(5);
@@ -100,7 +101,7 @@ const Products = (props) => {
         <div className="main-content-products">
             <Filter productArray={products} category={category}/>
             <div className="all-products">
-                <Title category={category}/>
+                <Title category={category} subcategory={subcategory}/>
                 <MySelect
                     value={sortingKey}
                     onChange={sortProducts}

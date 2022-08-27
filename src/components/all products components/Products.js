@@ -5,7 +5,7 @@ import Filter from "./Filter";
 import Scroll from "./Scroll";
 import {
     FilterArrayContext,
-    ImmutableProductListContext,
+    ImmutableProductListContext, PriceFilterArrayContext,
     ProductListContext
 } from "../../services/Context";
 import {useParams} from "react-router-dom";
@@ -16,7 +16,7 @@ import ProductList from "../../services/ProductList";
 
 const Products = (props) => {
     let productArrayForRendering = [];
-    const {immutableProductList} = React.useContext(ImmutableProductListContext);
+    const {immutableProductList} = useContext(ImmutableProductListContext);
     console.log(immutableProductList)
     // const [products, setProducts] = useState(immutableProductList);
     const {products, setProducts} = useContext(ProductListContext);
@@ -28,6 +28,26 @@ const Products = (props) => {
 
     const [currentPage, setCurrentPage] = useState(0);
     const [perPage, setPerPage] = useState(5);
+
+    const {filterArray} = useContext(FilterArrayContext);
+    const {priceDelta} = useContext(PriceFilterArrayContext);
+
+
+    function print5() {
+        console.log(category)
+    }
+
+    function print6() {
+        console.log(subcategory)
+    }
+
+    // window.onbeforeunload = function(e) {
+    // function reload(e) {
+    //     let filteredProductList = ProductList.filterProducts(products, priceDelta, filterArray);
+    //     console.log("Итоговый лист продуктов для рендеринга после обновления страницы:")
+    //     console.log(filteredProductList)
+    //     setProducts(filteredProductList);
+    // }
 
     // productArrayForRendering
     // if (subcategory) {
@@ -95,6 +115,8 @@ const Products = (props) => {
         setPerPage(Number(field))
     }
 
+
+
     // let {filterArray} = useContext(FilterArrayContext);
     return (
         <div className="main-content-products">
@@ -134,7 +156,8 @@ const Products = (props) => {
                 </Pagination>
 
             </div>
-
+            <button onClick={print5}>Категория из юз парамс</button>
+            <button onClick={print6}>Субкатегория из юз парамс</button>
         </div>
     );
 };

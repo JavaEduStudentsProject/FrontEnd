@@ -22,6 +22,7 @@ class ProductList {
 
     // Фильтрация продуктов по выбранным чекбоксам в разделе фильтр
     static filterProducts(products, priceDelta, filterArray) {
+        //todo переписать через filter
         console.log(products)
         console.log(priceDelta)
         console.log(filterArray)
@@ -40,8 +41,6 @@ class ProductList {
                 if (products[i]["category"] === filterArray[0]) {
                     categoryProductList.push(products[i]);
                 }
-                // console.log(categoryProductList)
-                // filteredProductList = categoryProductList;
 
             }
             console.log(categoryProductList)
@@ -56,9 +55,9 @@ class ProductList {
                 if (categoryProductList[i]["filter_features"]["subCategory"] === filterArray[1]) {
                     subCategoryProductList.push(categoryProductList[i]);
                 }
-                console.log(subCategoryProductList)
-                filteredProductList = subCategoryProductList;
             }
+            console.log(subCategoryProductList)
+            filteredProductList = subCategoryProductList;
         }
         console.log("Промежуток два")
         if (priceDelta[0] > 0 || priceDelta[1] < 1000000000) {
@@ -88,6 +87,7 @@ class ProductList {
 
             filteredProductList = finalProductList;
         }
+        console.log("Итоговый лист продуктов для рендеринга")
         console.log(filteredProductList)
         return filteredProductList;
     }

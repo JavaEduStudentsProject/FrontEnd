@@ -6,6 +6,9 @@ import ProductList from "../../services/ProductList";
 import {useParams} from "react-router-dom";
 
 const Filter = (props) => {
+
+    //todo снятие галочек с чекбоксов и обновление полей текстбоксов после нажатия кнопки "Очистить"
+
     const {products, setProducts} = useContext(ProductListContext);
     const {immutableProductList} = React.useContext(ImmutableProductListContext);
     const {filterArray} = useContext(FilterArrayContext);
@@ -18,6 +21,14 @@ const Filter = (props) => {
     console.log(category)
     console.log("Субкатегория из use params:")
     console.log(subcategory)
+
+    function print5() {
+        console.log(category)
+    }
+
+    function print6() {
+        console.log(subcategory)
+    }
 
     function getFilterProps(productArray) {
         let filterProps = [];
@@ -78,12 +89,15 @@ const Filter = (props) => {
         setProducts(filteredProductList);
     }
 
-    function handleCancellClick(e) {
+    function handleCancelClick(e) {
         e.preventDefault();
         filterArray.splice(2);
+        priceDelta[0] = 0;
+        priceDelta[1] = 1000000000;
         let filteredProductList = ProductList.filterProducts(immutableProductList, priceDelta, filterArray);
         console.log(filteredProductList)
         setProducts(filteredProductList);
+        document.getElementById('form').reset();
     }
 
     const fieldComponent = filledFilterFieldArray.map((item, index) => {
@@ -97,12 +111,15 @@ const Filter = (props) => {
         return (
             <fieldset className="filter">
                 <legend>Фильтр по характеристикам</legend>
-                <form>
+                <form id="form">
                     <PriceFilterField/>
                     {fieldComponent}
                     <button type="submit" onClick={handleSubmitClick}>Найти</button>
-                    <button type="submit" onClick={handleCancellClick}>Сбросить</button>
+                    <button type="submit" onClick={handleCancelClick} >Сбросить</button>
+                    {/*<button type="reset" onClick={handleCancelClick} >Сбросить</button>*/}
                 </form>
+                <button onClick={print5}>Категория из юз парамс</button>
+                <button onClick={print6}>Субкатегория из юз парамс</button>
             </fieldset>
         );
     }

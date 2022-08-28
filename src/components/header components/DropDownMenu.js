@@ -5,7 +5,7 @@ import Category from "./Category";
 import SubCategory from "../all products components/SubCategory";
 
 function DropDownMenu() {
-    const {products} = React.useContext(ProductListContext);
+    // const {products} = React.useContext(ProductListContext);
     const {immutableProductList} = React.useContext(ImmutableProductListContext);
     console.log(immutableProductList)
 

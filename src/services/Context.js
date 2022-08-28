@@ -22,8 +22,16 @@ export const ProductListContext = React.createContext(null)
 //     }
 // );
 
-export const FilterArrayContext = React.createContext({
-    filterArray: ["", ""],
+// export const FilterArrayContext = React.createContext({
+//     filterArray: ["", ""],
+//     someChecked: false
+//     }
+// );
+
+export const FilterArrayContext = React.createContext(
+    {
+        filterArray: ["", ""],
+        setFilterArray: () => {}
     }
 );
 

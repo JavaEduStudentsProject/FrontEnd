@@ -20,6 +20,7 @@ const Products = (props) => {
     console.log(immutableProductList)
     // const [products, setProducts] = useState(immutableProductList);
     const {products, setProducts} = useContext(ProductListContext);
+    // const [products, setProducts] = useState(immutableProductList);
     console.log(products)
     const [sortingKey, setSortingKey] = useState("");
     const [directSort, setDirectSort] = useState(true);
@@ -93,16 +94,34 @@ const Products = (props) => {
         }, [currentPage, products.length, perPage]
     )
 
-    const productListPerOnePage = () => products.length
-        ?
-        products.slice(firstPageIndex, lastPageIndex).map(item => {
-            return <ProductCard
-                key={item.id}
-                item={item}
-            />
-        })
-        :
-        <h4>Продукты не найдены</h4>
+    const productListPerOnePage = () => {
+        let productList = [];
+
+        if (category) {
+
+            filterArray[0] = category;
+
+            if (subcategory) {
+                filterArray[1] = subcategory;
+            }
+            console.log(products);
+            productList = ProductList.filterProducts(products, priceDelta, filterArray);
+            console.log(productList)
+        } else {
+            productList = products;
+        }
+        console.log(productList)
+        return productList.length
+            ?
+            productList.slice(firstPageIndex, lastPageIndex).map(item => {
+                return <ProductCard
+                    key={item.id}
+                    item={item}
+                />
+            })
+            :
+            <h4>Продукты не найдены</h4>
+    }
 
     const sortProducts = (field) => {
         setSortingKey(field);
@@ -115,12 +134,13 @@ const Products = (props) => {
         setPerPage(Number(field))
     }
 
-
+    // setProducts(ProductList.filterProducts(products, filterArray, priceDelta));
 
     // let {filterArray} = useContext(FilterArrayContext);
     return (
+
         <div className="main-content-products">
-            <Filter productArray={products} category={category}/>
+            {category && <Filter productArray={products} category={category}/>}
             <div className="all-products">
                 <Title category={category}/>
                 <MySelect
@@ -135,13 +155,13 @@ const Products = (props) => {
                 />
                 <MySelect
                     value={sortingKey}
-                          onChange={paginationProducts}
-                          defaultValue="5"
-                          options={[
-                              {value: '10', name: "10"},
-                              {value: '50', name: "50"},
-                              {value: `-1`, name: "Показать все"},
-                    ]} />
+                    onChange={paginationProducts}
+                    defaultValue="5"
+                    options={[
+                        {value: '10', name: "10"},
+                        {value: '50', name: "50"},
+                        {value: `-1`, name: "Показать все"},
+                    ]}/>
 
                 {/*<Scroll>*/}
                 <ul className="products">

@@ -7,10 +7,10 @@ import SubCategory from "../all products components/SubCategory";
 function DropDownMenu() {
     // const {products} = React.useContext(ProductListContext);
     const {immutableProductList} = React.useContext(ImmutableProductListContext);
-    console.log(immutableProductList)
 
-    let categories = ProductService.getCategories(immutableProductList).map(category =>
-                <Category key={category.id} category={category.category}/>
+    let categories = ProductService.getCategories(immutableProductList).map(category => {
+            return <Category key={category.id} category={category.category}/>
+        }
                 )
 
     return (

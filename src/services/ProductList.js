@@ -30,56 +30,42 @@ class ProductList {
         let subCategoryProductList = [];
         let byPriceProductList = [];
         let finalProductList = [];
-        let filteredProductList = [];
+        let filteredProductList = products;
 
         if (filterArray[0] !== "") {
-            console.log("Первый цикл пошел")
             for (let i = 0; i < products.length; i++) {
-                console.log(products[i]["category"])
-                console.log(filterArray[0])
-
                 if (products[i]["category"] === filterArray[0]) {
                     categoryProductList.push(products[i]);
                 }
-
             }
-            console.log(categoryProductList)
             filteredProductList = categoryProductList;
+            console.log(categoryProductList)
         }
-        console.log("Промежуток один")
+
         if (filterArray[1] !== "") {
-            console.log("Второй цикл пошел (субкатегории)")
             for (let i = 0; i < categoryProductList.length; i++) {
-                console.log(categoryProductList[i]["filter_features"]["subCategory"])
-                console.log(filterArray[1])
                 if (categoryProductList[i]["filter_features"]["subCategory"] === filterArray[1]) {
                     subCategoryProductList.push(categoryProductList[i]);
                 }
             }
-            console.log(subCategoryProductList)
             filteredProductList = subCategoryProductList;
         }
-        console.log("Промежуток два")
-        if (priceDelta[0] > 0 || priceDelta[1] < 1000000000) {
-            console.log("Третий цикл пошел (цена)")
 
+        if (priceDelta[0] > 0 || priceDelta[1] < 1000000000) {
             for (let i = 0; i < filteredProductList.length; i++) {
                 if (filteredProductList[i]["price"] >= priceDelta[0] && filteredProductList[i]["price"] <= priceDelta[1]) {
                     byPriceProductList.push(filteredProductList[i]);
                 }
             }
-            console.log(byPriceProductList)
             filteredProductList = byPriceProductList;
         }
-        console.log("Промежуток три")
+
         if (filterArray.length > 2) {
-            console.log("Четвертый цикл пошел (поля фильтра)")
             for (let i = 0; i < filteredProductList.length; i++) {
                 for (let feature in filteredProductList[i]["filter_features"]) {
                     console.log(feature)
                     console.log(filterArray)
                     if (filterArray.includes(filteredProductList[i]["filter_features"][feature])) {
-
                         finalProductList.push(filteredProductList[i]);
                     }
                 }

@@ -1,4 +1,4 @@
-import React, {useContext, useState, useMemo} from 'react';
+import React, {useContext, useState, useMemo, useEffect} from 'react';
 import ProductCard from "./ProductCard";
 import MySelect from "../UI/select/MySelect";
 import Filter from "./Filter";
@@ -15,12 +15,8 @@ import ProductList from "../../services/ProductList";
 
 
 const Products = (props) => {
-    let productArrayForRendering = [];
     const {immutableProductList} = useContext(ImmutableProductListContext);
-    console.log(immutableProductList)
-    // const [products, setProducts] = useState(immutableProductList);
     const {products, setProducts} = useContext(ProductListContext);
-    // const [products, setProducts] = useState(immutableProductList);
     console.log(products)
     const [sortingKey, setSortingKey] = useState("");
     const [directSort, setDirectSort] = useState(true);
@@ -30,25 +26,11 @@ const Products = (props) => {
     const [currentPage, setCurrentPage] = useState(0);
     const [perPage, setPerPage] = useState(5);
 
-    const {filterArray} = useContext(FilterArrayContext);
+    let tempFilterArray = [category ? category : "", subcategory ? subcategory : ""];
+    console.log(tempFilterArray)
+    const {filterArray, setFilterArray} = useContext(FilterArrayContext);
     const {priceDelta} = useContext(PriceFilterArrayContext);
 
-
-    function print5() {
-        console.log(category)
-    }
-
-    function print6() {
-        console.log(subcategory)
-    }
-
-    // window.onbeforeunload = function(e) {
-    // function reload(e) {
-    //     let filteredProductList = ProductList.filterProducts(products, priceDelta, filterArray);
-    //     console.log("Итоговый лист продуктов для рендеринга после обновления страницы:")
-    //     console.log(filteredProductList)
-    //     setProducts(filteredProductList);
-    // }
 
     // productArrayForRendering
     // if (subcategory) {
@@ -95,25 +77,9 @@ const Products = (props) => {
     )
 
     const productListPerOnePage = () => {
-        let productList = [];
-
-        if (category) {
-
-            filterArray[0] = category;
-
-            if (subcategory) {
-                filterArray[1] = subcategory;
-            }
-            console.log(products);
-            productList = ProductList.filterProducts(products, priceDelta, filterArray);
-            console.log(productList)
-        } else {
-            productList = products;
-        }
-        console.log(productList)
-        return productList.length
+        return products.length
             ?
-            productList.slice(firstPageIndex, lastPageIndex).map(item => {
+            products.slice(firstPageIndex, lastPageIndex).map(item => {
                 return <ProductCard
                     key={item.id}
                     item={item}
@@ -134,51 +100,47 @@ const Products = (props) => {
         setPerPage(Number(field))
     }
 
-    // setProducts(ProductList.filterProducts(products, filterArray, priceDelta));
-
-    // let {filterArray} = useContext(FilterArrayContext);
     return (
+        // <ProductListContext.Provider value={{products, setProducts}}>
+            <div className="main-content-products">
+                {category && <Filter productArray={products} category={category}/>}
+                <div className="all-products">
+                    <Title category={category}/>
+                    <MySelect
+                        value={sortingKey}
+                        onChange={sortProducts}
+                        defaultValue="Сортировка по"
+                        options={[
+                            {value: 'id', name: "По id"},
+                            {value: 'category', name: "По категории"},
+                            {value: 'price', name: "По цене"},
+                        ]}
+                    />
+                    <MySelect
+                        value={sortingKey}
+                        onChange={paginationProducts}
+                        defaultValue="5"
+                        options={[
+                            {value: '10', name: "10"},
+                            {value: '50', name: "50"},
+                            {value: `-1`, name: "Показать все"},
+                        ]}/>
 
-        <div className="main-content-products">
-            {category && <Filter productArray={products} category={category}/>}
-            <div className="all-products">
-                <Title category={category}/>
-                <MySelect
-                    value={sortingKey}
-                    onChange={sortProducts}
-                    defaultValue="Сортировка по"
-                    options={[
-                        {value: 'id', name: "По id"},
-                        {value: 'category', name: "По категории"},
-                        {value: 'price', name: "По цене"},
-                    ]}
-                />
-                <MySelect
-                    value={sortingKey}
-                    onChange={paginationProducts}
-                    defaultValue="5"
-                    options={[
-                        {value: '10', name: "10"},
-                        {value: '50', name: "50"},
-                        {value: `-1`, name: "Показать все"},
-                    ]}/>
+                    {/*<Scroll>*/}
+                    <ul className="products">
+                        {productListPerOnePage()}
+                    </ul>
+                    {/*</Scroll>*/}
 
-                {/*<Scroll>*/}
-                <ul className="products">
-                    {productListPerOnePage()}
-                </ul>
-                {/*</Scroll>*/}
+                    <Pagination className='justify-content-center'>
+                        {/*<Pagination.Prev/>*/}
+                        {pagItems}
+                        {/*<Pagination.Next/>*/}
+                    </Pagination>
 
-                <Pagination className='justify-content-center'>
-                    {/*<Pagination.Prev/>*/}
-                    {pagItems}
-                    {/*<Pagination.Next/>*/}
-                </Pagination>
-
+                </div>
             </div>
-            <button onClick={print5}>Категория из юз парамс</button>
-            <button onClick={print6}>Субкатегория из юз парамс</button>
-        </div>
+        // </ProductListContext.Provider>
     );
 };
 

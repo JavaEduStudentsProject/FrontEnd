@@ -2,16 +2,17 @@ import React, {useContext} from 'react';
 import {FilterArrayContext} from "../../services/Context";
 
 const Row = (props) => {
-    const {filterArray} = useContext(FilterArrayContext);
+    const {filterArray, setFilterArray} = useContext(FilterArrayContext);
 
     function setCategoryValueToArray(event) {
         if (event.target.checked) {
+            setFilterArray([...filterArray, event.target.value])
             // filterArray[] = props.categoryValue;
-            filterArray.push(event.target.value);
-            console.log(filterArray);
+            // filterArray.push(event.target.value);
+            // console.log(filterArray);
         } else {
-            filterArray.splice(filterArray.indexOf(event.target.value), 1);
-            console.log(filterArray);
+            setFilterArray([...filterArray.splice(filterArray.indexOf(event.target.value), 1)]);
+            // console.log(filterArray);
         }
     }
 

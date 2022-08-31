@@ -120,6 +120,7 @@ const Filter = (props) => {
                     <button type="submit" onClick={handleSubmitClick}>Найти</button>
                     <button type="submit" onClick={handleCancelClick} >Сбросить</button>
                     <button onClick={print3}>Фильтры</button>
+                    {/*второй вариант для сброса введенных данных в фильтре:*/}
                     {/*<button type="reset" onClick={handleCancelClick} >Сбросить</button>*/}
                 </form>
             </fieldset>

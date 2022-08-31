@@ -65,7 +65,13 @@ const Products = (props) => {
         }
     }
 
-    productArrayForRendering = ProductList.filterProducts(immutableProductList, priceDelta, filterArray);
+    // if (props.productArray.length > 0) {
+    if (props.searchField !== "") {
+        productArrayForRendering = props.productArray;
+    } else {
+        productArrayForRendering = ProductList.filterProducts(immutableProductList, priceDelta, filterArray);
+    }
+
 
     const {pagItems, firstPageIndex, lastPageIndex} = useMemo(() => {
             const pageLimit = Math.ceil(productArrayForRendering.length / perPage)

@@ -6,13 +6,17 @@ const Row = (props) => {
 
     function setCategoryValueToArray(event) {
         if (event.target.checked) {
-            setFilterArray([...filterArray, event.target.value])
-            // filterArray[] = props.categoryValue;
-            // filterArray.push(event.target.value);
-            // console.log(filterArray);
+            // setFilterArray([...filterArray, event.target.value])
+            filterArray.push(event.target.value)
+            console.log(filterArray);
+            props.setFlag(prevState => !prevState);
+
         } else {
-            setFilterArray([...filterArray.splice(filterArray.indexOf(event.target.value), 1)]);
-            // console.log(filterArray);
+            let newFilterArray = filterArray;
+            if (filterArray.length > 2) {
+                newFilterArray.splice(newFilterArray.indexOf(event.target.value), 1)
+                setFilterArray(newFilterArray)
+            }
         }
     }
 

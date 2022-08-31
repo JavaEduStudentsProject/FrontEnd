@@ -1,21 +1,15 @@
-import React, {useEffect, useState, useContext, use} from 'react';
-// import { Link, BrowserRouter as Router, Route } from 'react-router-dom';
-import {BrowserRouter as Router, Route, Routes, useParams, useSearchParams} from 'react-router-dom';
-
+import React, {useEffect, useState, useContext} from 'react';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Header from "./header components/Header";
 import SingleProduct from "../components/single product components/SingleProduct";
 import Footer from "./footer components/Footer";
 import Products from "./all products components/Products";
 import ProductService from '../services/ProductService'
 import {
-    ProductListContext,
     ImmutableProductListContext,
     FilterArrayContext,
     PriceFilterArrayContext
 } from "../services/Context";
-import ProductList from "../services/ProductList";
-import * as ReactRouterDOM from "react-router-dom";
-import {useLocation} from "react-router";
 
 // import CatalogContent from "./CatalogContent";
 
@@ -54,7 +48,7 @@ function App() {
 
     return (
         <ImmutableProductListContext.Provider value={{immutableProductList}}>
-            <ProductListContext.Provider value={{products, setProducts}}>
+            {/*<ProductListContext.Provider value={{products, setProducts}}>*/}
                 <FilterArrayContext.Provider value={{filterArray, setFilterArray}}>
                     <div className="container">
                         <Router>
@@ -71,12 +65,15 @@ function App() {
                                 <Route path="/:category/:subcategory" element={<Products/>}/>
                                 <Route path="/:category" element={<Products/>}/>
                                 <Route path="/" element={<Products/>}/>
+                                {/*<Route path="/:category/:subcategory" element={<ProductsNew/>}/>*/}
+                                {/*<Route path="/:category" element={<ProductsNew/>}/>*/}
+                                {/*<Route path="/" element={<ProductsNew/>}/>*/}
                             </Routes>
                             <Footer/>
                         </Router>
                     </div>
                 </FilterArrayContext.Provider>
-            </ProductListContext.Provider>
+            {/*</ProductListContext.Provider>*/}
         </ImmutableProductListContext.Provider>
     )
 }

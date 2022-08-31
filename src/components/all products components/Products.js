@@ -15,9 +15,9 @@ import ProductList from "../../services/ProductList";
 
 
 const Products = (props) => {
+    let productArrayForRendering = [];
     const {immutableProductList} = useContext(ImmutableProductListContext);
-    const {products, setProducts} = useContext(ProductListContext);
-    console.log(products)
+
     const [sortingKey, setSortingKey] = useState("");
     const [directSort, setDirectSort] = useState(true);
 
@@ -26,10 +26,12 @@ const Products = (props) => {
     const [currentPage, setCurrentPage] = useState(0);
     const [perPage, setPerPage] = useState(5);
 
-    let tempFilterArray = [category ? category : "", subcategory ? subcategory : ""];
-    console.log(tempFilterArray)
+    // let tempFilterArray = [category ? category : "", subcategory ? subcategory : ""];
+    // console.log(tempFilterArray)
+
     const {filterArray, setFilterArray} = useContext(FilterArrayContext);
     const {priceDelta} = useContext(PriceFilterArrayContext);
+    const [flag, setFlag] = useState(false);
 
 
     // productArrayForRendering
@@ -52,8 +54,21 @@ const Products = (props) => {
     //
     // }
 
+
+    if (category) {
+        if (category !== filterArray[0]) {
+            filterArray[0] = category;
+            filterArray[1] = "";
+        }
+        if (subcategory) {
+            filterArray[1] = subcategory;
+        }
+    }
+
+    productArrayForRendering = ProductList.filterProducts(immutableProductList, priceDelta, filterArray);
+
     const {pagItems, firstPageIndex, lastPageIndex} = useMemo(() => {
-            const pageLimit = Math.ceil(products.length / perPage)
+            const pageLimit = Math.ceil(productArrayForRendering.length / perPage)
             let pagItems = []
             for (let i = 0; i < pageLimit; i++) {
                 pagItems.push(
@@ -73,13 +88,15 @@ const Products = (props) => {
                 firstPageIndex,
                 lastPageIndex
             }
-        }, [currentPage, products.length, perPage]
+        }, [currentPage, productArrayForRendering.length, perPage]
     )
 
+    // const productListPerOnePage = () => {
+    // const productList = productArrayForRendering.map(item => <ProductCard key={item.id} item={item}/>);
     const productListPerOnePage = () => {
-        return products.length
+        return productArrayForRendering.length
             ?
-            products.slice(firstPageIndex, lastPageIndex).map(item => {
+            productArrayForRendering.slice(firstPageIndex, lastPageIndex).map(item => {
                 return <ProductCard
                     key={item.id}
                     item={item}
@@ -91,7 +108,8 @@ const Products = (props) => {
 
     const sortProducts = (field) => {
         setSortingKey(field);
-        setProducts(ProductList.sortProducts(products, field, directSort));
+        productArrayForRendering = ProductList.sortProducts(productArrayForRendering, field, directSort);
+        console.log(productArrayForRendering)
         setDirectSort(!directSort);
         setSortingKey('');
     }
@@ -101,9 +119,9 @@ const Products = (props) => {
     }
 
     return (
-        // <ProductListContext.Provider value={{products, setProducts}}>
             <div className="main-content-products">
-                {category && <Filter productArray={products} category={category}/>}
+                {/*{category && <Filter setFlag={setFlag}/>}*/}
+                <Filter setFlag={setFlag}/>
                 <div className="all-products">
                     <Title category={category}/>
                     <MySelect
@@ -140,7 +158,6 @@ const Products = (props) => {
 
                 </div>
             </div>
-        // </ProductListContext.Provider>
     );
 };
 

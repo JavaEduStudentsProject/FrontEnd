@@ -1,5 +1,5 @@
 import React from 'react';
-import {ImmutableProductListContext, ProductListContext} from "../../services/Context";
+import {FilterArrayContext, ImmutableProductListContext, ProductListContext} from "../../services/Context";
 import ProductService from "../../services/ProductService";
 import Category from "./Category";
 import SubCategory from "../all products components/SubCategory";

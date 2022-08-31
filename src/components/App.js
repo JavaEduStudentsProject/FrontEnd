@@ -10,18 +10,19 @@ import {
     FilterArrayContext,
     PriceFilterArrayContext
 } from "../services/Context";
+import ProductList from "../services/ProductList";
 
 // import CatalogContent from "./CatalogContent";
 
 
 function App() {
+    const [productArray, setProductArray] = useState([]);
     let [immutableProductList, setImmutableProductList] = useState([]);
-    const [products, setProducts] = useState([]);
-    // const {products, setProducts} = useContext(ProductListContext);
     const [searchField, setSearchField] = useState("");
-    // const {filterArray} = useContext(FilterArrayContext);
     const [filterArray, setFilterArray] = useState(["", ""]);
     const {priceDelta} = useContext(PriceFilterArrayContext);
+
+    const [countProductInBasket, setCountProductInBasket] = useState(0);
 
     useEffect(() => {
         console.log("Вызов useEffect до геттера")
@@ -33,17 +34,14 @@ function App() {
         console.log("Вызов геттера")
         ProductService.getAllProducts().then((response) => {
             setImmutableProductList(response.data);
-            setProducts(response.data);
         }).catch(error => {
             console.log(error);
         })
     }
 
-    const handleChange = e => {
-        setSearchField(e.target.value);
-    };
-
-    const [countProductInBasket, setCountProductInBasket] = useState(0);
+    // const handleChange = e => {
+    //     setSearchField(e.target.value);
+    // };
 
 
     return (
@@ -53,7 +51,11 @@ function App() {
                     <div className="container">
                         <Router>
                             <Header countProductInBasket={countProductInBasket} searchField={searchField}
-                                    handleChange={handleChange}/>
+                                    // handleChange={handleChange}
+                                setSearchField={setSearchField}
+                                    setProductArray={setProductArray}/>
+                            {/*<Header countProductInBasket={countProductInBasket}*/}
+                            {/*        />*/}
                             <Routes>
                                 {/*<Route path="/" element={<Products searchField={searchField}/>}/>*/}
                                 <Route path="/product/:id"
@@ -62,9 +64,12 @@ function App() {
                                 {/*<Route path="/:category" element={<Products searchField={searchField}/>}/>*/}
 
                                 {/*<Route path="/:category/:subcategory" element={<Products searchField={searchField}/>}/>*/}
-                                <Route path="/:category/:subcategory" element={<Products/>}/>
-                                <Route path="/:category" element={<Products/>}/>
-                                <Route path="/" element={<Products/>}/>
+                                <Route path="/:category/:subcategory" element={<Products searchField={searchField}
+                                    productArray={productArray} setProductArray={setProductArray}/>}/>
+                                <Route path="/:category" element={<Products searchField={searchField}
+                                    productArray={productArray} setProductArray={setProductArray}/>}/>
+                                <Route path="/" element={<Products searchField={searchField}
+                                    productArray={productArray} setProductArray={setProductArray}/>}/>
                                 {/*<Route path="/:category/:subcategory" element={<ProductsNew/>}/>*/}
                                 {/*<Route path="/:category" element={<ProductsNew/>}/>*/}
                                 {/*<Route path="/" element={<ProductsNew/>}/>*/}

@@ -120,7 +120,63 @@ class ProductList {
             )).reverse();
 
         return sortDate;
+    }
+
+    static search(products, searchField) {
+        let productArray = [];
+        const [category, subcategory] = this.searchCategoryAndSubcategoryFromURL();
+        if (subcategory !== "") {
+            productArray = products.filter(product => ProductList.flatProduct(product)["subCategory"] === subcategory).filter(item => {
+                const fullFilter = item.title + item.description;
+                return fullFilter.toLowerCase().includes(searchField.toLowerCase());
+            })
+        } else if (category !== "") {
+            productArray = products.filter(product => product.category === category).filter(item => {
+                const fullFilter = item.title + item.description;
+                return fullFilter.toLowerCase().includes(searchField.toLowerCase());
+            })
+        } else {
+            productArray = products.filter(item => {
+                const fullFilter = item.title + item.description + item.category;
+                return fullFilter.toLowerCase().includes(searchField.toLowerCase());
+            })
         }
+        console.log(productArray)
+        return productArray;
+    }
+
+    static searchCategoryAndSubcategoryFromURL() {
+        let catAndSubcat = ["", ""];
+        let category;
+        let subCategory;
+        let regex = /http\:\/\/localhost\:3000\/([\w.\W.]{0,})\/([\w.\W.]{0,})/
+        let url = `http://localhost:3000${window.location.pathname}`
+        let re = /%20/gi;
+
+        if (url.match(regex) === null) {
+            regex = /http\:\/\/localhost\:3000\/([\w.\W.]{0,})/
+            if (url.match(regex) === null) {
+                return catAndSubcat;
+            }
+            category = url.match(regex)[1].replace(re, ' ')
+            subCategory = "";
+            catAndSubcat.push(category)
+            catAndSubcat.push(subCategory)
+            return catAndSubcat;
+        }
+        category = url.match(regex)[1].replace(re, ' ');
+
+        if (category === "product") {
+            return catAndSubcat;
+        }
+
+        subCategory = url.match(regex)[2].replace(re, ' ')
+
+        catAndSubcat.push(category)
+        catAndSubcat.push(subCategory)
+        console.log(catAndSubcat)
+        return catAndSubcat;
+    }
 
 }
 

@@ -1,28 +1,34 @@
-import React, {useContext} from "react";
+import React, {useContext, useState} from "react";
 import img from "../../images/img_1.png";
 import DropDownMenu from "./DropDownMenu";
 import SearchField from "./SearchField";
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import avatar1 from '../../images/avatar.jpg'
-import {
-    FilterArrayContext,
-    ImmutableProductListContext,
-    PriceFilterArrayContext,
-    ProductListContext
-} from "../../services/Context";
+import {FilterArrayContext, ImmutableProductListContext, PriceFilterArrayContext} from "../../services/Context";
 import {useParams} from "react-router-dom";
+import ProductList from "../../services/ProductList";
 
 
 export default function Header(props) {
 
+    // const [searchField, setSearchField] = useState("");
+    const {immutableProductList} = useContext(ImmutableProductListContext);
     const {countProductInBasket} = props;
 
+    // const handleChange = e => {
+    //     setSearchField(e.target.value);
+    //     let productArray = ProductList.search(immutableProductList, searchField);
+    // };
+
     //todo кнопки для отладки, удалить:
-    const {immutableProductList} = useContext(ImmutableProductListContext);
+
     const {filterArray} = useContext(FilterArrayContext);
     const {priceDelta} = useContext(PriceFilterArrayContext);
-    const {category, subCategory} = useParams();
+    const {category, subcategory} = useParams();
+
+    console.log(category)
+    console.log(subcategory)
 
     function print1() {
         console.log(immutableProductList)
@@ -44,7 +50,8 @@ export default function Header(props) {
                 <img className="nav-img" src={img} onClick={()=>{window.location.assign("/")}}/>
                 <DropDownMenu/>
 
-                <SearchField handleChange={props.handleChange} searchField={props.searchField} />
+                {/*<SearchField handleChange={props.handleChange} searchField={props.searchField} />*/}
+                <SearchField setProductArray={props.setProductArray} searchField={props.searchField} setSearchField={props.setSearchField}/>
                 <div className="userIcons">
                     <Stack>
                         <Avatar alt="Корзина"

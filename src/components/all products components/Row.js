@@ -9,7 +9,8 @@ const Row = (props) => {
             // setFilterArray([...filterArray, event.target.value])
             filterArray.push(event.target.value)
             console.log(filterArray);
-            props.setFlag(prevState => !prevState);
+            //todo!!! очень важно, не удалять!!!
+            // props.setFlag(prevState => !prevState);
 
         } else {
             let newFilterArray = filterArray;

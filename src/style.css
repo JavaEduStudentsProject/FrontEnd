@@ -1,3 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap');
+
 * {
+    font-family: 'Montserrat', sans-serif;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    background-color: #ffffff;
+    height: 100%;
+    margin: 0;
+}
+
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.single-product {
     box-sizing: border-box;
+    color: #ffcf0c;
+    height: auto;
+    /*padding: 57px 27px;*/
+    /*margin-top: 30px;*/
+    /*padding-top: 10px;*/
+    max-width: 1440px;
+    margin: 0 auto;
+
+}
+
+
+.productName {
+    color: darkslategrey;
+    padding: 10px;
+}
+
+.main-block {
+    /*margin-left: 30px;*/
+    margin-top: 30px;
+    /*align-items: stretch;*/
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-card {
+    margin-right: 50px;
+}
+
+.product-img {
+    margin-right: 40px;
+    height: 320px;
+}
+
+.short-descr {
+    color: black;
+    background: #fcfcfc;
+    padding: 30px;
+    /*background-color: dimgrey;*/
+    /*height: border-box;*/
+    /*margin-top: 0px;*/
+    /*margin-top: -100px;*/
+}
+
+.main-characts {
+    margin-top: 10px;
+}
+
+.img-and-shortdescr {
+    /*align-items: stretch;*/
+    display: flex;
+    /*justify-content: space-between;*/
+}
+
+.nav-list {
+    align-items: stretch;
+    display: flex;
+    background-color: grey;
+}
+
+.nav-list > p {
+    /*padding: 10px;*/
+}
+
+.main-content > h1 {
+    color: black;
+    font-size: 40px;
+    /*letter-spacing: -0.05em;*/
+}
+
+/*todo Квадратные маркеры списка и другой цвет. Почему-то перестали отображаться*/
+li {
+    /*display: list-item;*/
+}
+
+/*.main-content > ul {*/
+/*    list-style-type: square;*/
+/*}*/
+
+/*.main-content > ul > li::marker {*/
+/*    color: #61DAFB;*/
+/*}*/
+
+.short-descr > h4 {
+    margin: 5px;
+    font-size: 18px;
+}
+
+.full-descr {
+    color: black;
+    background: #fcfcfc;
+    padding: 30px;
+}
+
+/*звездный рейтинг*/
+.star-rating {
+    position: relative;
+    font-size: 40px;
+    display: inline-block;
+}
+
+.star-rating::before {
+    content: "★★★★★";
+    display: block;
+}
+
+.star-items {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: row-reverse;
+    overflow: hidden;
+}
+
+.star-radio-item {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    top: 0;
+    left: 0;
+}
+
+.star-label {
+    flex: 0 0 20%;
+    height: auto;
+    cursor: move;
+    color: #c9c9c9;
+}
+
+.star-label::before {
+    content: "★";
+    display: block;
+    transition: color 0.3s ease 0s;
+}
+
+.star-label:hover,
+.star-label:hover ~ .star-label,
+.star-label:checked ~ .star-label:hover {
+    color: #e8a30d;
+}
+
+.star-radio-item:checked,
+.star-radio-item:checked ~ .star-label {
+    color: #ffcf0c;
+}
+
+.star-form-btn {
+    color: black;
+    background-color: #ffcf0c;
+    font-weight: 600;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 3px;
+    margin: 10px;
+    cursor: pointer;
+    border: none;
+}
+
+.money-block {
+    display: block;
+}
+
+.price {
+    background-color: dimgrey;
+    margin-top: 0;
+}
+
+.credit {
+    background-color: dimgrey;
 }

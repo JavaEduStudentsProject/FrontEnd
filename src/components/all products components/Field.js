@@ -9,6 +9,7 @@ const Field = (props) => {
             key={index}
             categoryValue={item}
             // someChecked={someChecked}
+            setFlag={props.setFlag}
         />
     )
 

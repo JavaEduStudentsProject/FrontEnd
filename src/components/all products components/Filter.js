@@ -7,28 +7,29 @@ import {useParams} from "react-router-dom";
 
 const Filter = (props) => {
 
-    //todo снятие галочек с чекбоксов и обновление полей текстбоксов после нажатия кнопки "Очистить"
-
-    const {products, setProducts} = useContext(ProductListContext);
+    // const {products, setProducts} = useContext(ProductListContext);
     const {immutableProductList} = React.useContext(ImmutableProductListContext);
-    const {filterArray} = useContext(FilterArrayContext);
-    console.log(filterArray)
+    const {filterArray, setFilterArray} = useContext(FilterArrayContext);
     const {priceDelta} = useContext(PriceFilterArrayContext);
-    console.log(priceDelta)
 
     const {category, subcategory} = useParams();
-    console.log("Категория из use params:")
-    console.log(category)
-    console.log("Субкатегория из use params:")
-    console.log(subcategory)
 
-    function print5() {
-        console.log(category)
+    function print3(e) {
+        e.preventDefault()
+        console.log(filterArray)
     }
 
-    function print6() {
-        console.log(subcategory)
+
+    if (category) {
+        if (category !== filterArray[0]) {
+            setFilterArray([category, ""]);
+        }
+        if (subcategory) {
+            filterArray[1] = subcategory;
+        }
     }
+
+    let currentProductList = ProductList.filterProducts(immutableProductList, priceDelta, filterArray);
 
     function getFilterProps(productArray) {
         let filterProps = [];
@@ -42,7 +43,7 @@ const Filter = (props) => {
         return filterProps;
     }
 
-    const filterProps = getFilterProps(products);
+    const filterProps = getFilterProps(currentProductList);
     console.log(filterProps)
 
 
@@ -73,8 +74,7 @@ const Filter = (props) => {
         return emptyArray;
     }
 
-    console.log(products);
-    const filledFilterFieldArray = getFilledFilterFieldArray(filterProps, products, emptyFilterFieldArray);
+    const filledFilterFieldArray = getFilledFilterFieldArray(filterProps, currentProductList, emptyFilterFieldArray);
 
     console.log(filledFilterFieldArray);
 
@@ -82,22 +82,24 @@ const Filter = (props) => {
         e.preventDefault();
         console.log("For filter function: " + filterArray);
         console.log("For filter function: " + priceDelta);
-        console.log(props.productArray);
-        console.log(products);
-        let filteredProductList = ProductList.filterProducts(products, priceDelta, filterArray);
-        console.log(filteredProductList)
-        setProducts(filteredProductList);
+        // let filteredProductList = ProductList.filterProducts(immutableProductList, priceDelta, filterArray);
+        // console.log(filteredProductList)
+        // setProducts(filteredProductList);
+        props.setFlag(prevState => !prevState)
     }
 
     function handleCancelClick(e) {
         e.preventDefault();
-        filterArray.splice(2);
+        let newFilterArray = filterArray;
+        newFilterArray.splice(2)
+        setFilterArray(newFilterArray)
         priceDelta[0] = 0;
         priceDelta[1] = 1000000000;
-        let filteredProductList = ProductList.filterProducts(immutableProductList, priceDelta, filterArray);
-        console.log(filteredProductList)
-        setProducts(filteredProductList);
+        // let filteredProductList = ProductList.filterProducts(immutableProductList, priceDelta, filterArray);
+        // console.log(filteredProductList)
+        // setProducts(filteredProductList);
         document.getElementById('form').reset();
+        props.setFlag(prevState => !prevState)
     }
 
     const fieldComponent = filledFilterFieldArray.map((item, index) => {
@@ -105,21 +107,21 @@ const Filter = (props) => {
             key={index}
             fieldName={Object.keys(item)[0]}
             fieldArray={item[Object.keys(item)[0]]}
+            setFlag={props.setFlag}
         />
     })
-    if (props.category) {
+    if (category) {
         return (
             <fieldset className="filter">
-                <legend>Фильтр по характеристикам</legend>
+                <legend>Фильтр</legend>
                 <form id="form">
                     <PriceFilterField/>
                     {fieldComponent}
                     <button type="submit" onClick={handleSubmitClick}>Найти</button>
                     <button type="submit" onClick={handleCancelClick} >Сбросить</button>
+                    <button onClick={print3}>Фильтры</button>
                     {/*<button type="reset" onClick={handleCancelClick} >Сбросить</button>*/}
                 </form>
-                <button onClick={print5}>Категория из юз парамс</button>
-                <button onClick={print6}>Субкатегория из юз парамс</button>
             </fieldset>
         );
     }

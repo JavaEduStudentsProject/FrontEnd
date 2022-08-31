@@ -3,17 +3,17 @@
     "id": 1,
     "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
     "category": "clothing",
-    "price": 109.95,
+    "price": "109.95",
     "filter_features":
     {
       "subCategory": "men's clothing",
       "material": "wool",
-      "size": 48
+      "size": "48"
     },
     "non-filter_features": {
       "rating": {
-        "rate": 3.9,
-        "count": 120
+        "rate": "3.9",
+        "count": "120"
       },
       "color": "yellow",
       "country": "Bangladesh"
@@ -27,17 +27,17 @@
     "id": 2,
     "title": "Mens Casual Premium Slim Fit T-Shirts ",
     "category": "clothing",
-    "price": 22.3,
+    "price": "22.3",
     "filter_features":
     {
       "subCategory": "men's clothing",
       "material": "cotton",
-      "size": 48
+      "size": "48"
     },
     "non-filter_features": {
       "rating": {
-        "rate": 4.1,
-        "count": 259
+        "rate": "4.1",
+        "count": "259"
       },
       "color": "red",
       "country": "Bangladesh"
@@ -49,17 +49,17 @@
     "id": 3,
     "title": "Mens Cotton Jacket",
     "category": "clothing",
-    "price": 55.99,
+    "price": "55.99",
     "filter_features":
     {
       "subCategory": "men's clothing",
       "material": "cotton",
-      "size": 34
+      "size": "34"
     },
     "non-filter_features": {
       "rating": {
-        "rate": 4.7,
-        "count": 500
+        "rate": "4.7",
+        "count": "500"
       },
       "color": "red",
       "country": "Bangladesh",
@@ -73,17 +73,17 @@
     "id": 4,
     "title": "Kids Casual Slim Fit",
     "category": "clothing",
-    "price": 15.99,
+    "price": "15.99",
     "filter_features":
     {
       "subCategory": "kid's clothing",
       "material": "cotton",
-      "size": 28
+      "size": "28"
     },
     "non-filter_features": {
       "rating": {
-        "rate": 2.1,
-        "count": 430
+        "rate": "2.1",
+        "count": "430"
       },
       "color": "red",
       "country": "Bangladesh",
@@ -96,7 +96,7 @@
     "id": 5,
     "title": "John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet",
     "category": "jewelery",
-    "price": 695,
+    "price": "695",
     "filter_features":
     {
       "subCategory": "women's jewelery",
@@ -104,11 +104,11 @@
     },
     "non-filter_features": {
       "rating": {
-        "rate": 4.6,
-        "count": 400
+        "rate": "4.6",
+        "count": "400"
       },
       "country": "Italy",
-      "gold content": 999
+      "gold content": "999"
     },
     "description": "From our Legends Collection, the Naga was inspired by the mythical water dragon that protects the ocean's pearl. Wear facing inward to be bestowed with love and abundance, or outward for protection.",
     "image": "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg"
@@ -117,7 +117,7 @@
     "id": 6,
     "title": "Solid Gold Petite Micropave ",
     "category": "jewelery",
-    "price": 168,
+    "price": "168",
     "filter_features":
     {
       "subCategory": "men's jewelery",
@@ -125,11 +125,11 @@
     },
     "non-filter_features": {
       "rating": {
-        "rate": 3.9,
-        "count": 70
+        "rate": "3.9",
+        "count": "70"
       },
       "country": "Russia",
-      "silver content": 999
+      "silver content": "999"
     },
     "description": "Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.",
     "image": "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg"
@@ -138,7 +138,7 @@
     "id": 7,
     "title": "White Gold Plated Princess",
     "category": "jewelery",
-    "price": 9.99,
+    "price": "9.99",
     "filter_features":
     {
       "subCategory": "men's jewelery",
@@ -146,11 +146,11 @@
     },
     "non-filter_features": {
       "rating": {
-        "rate": 3,
-        "count": 400
+        "rate": "3",
+        "count": "400"
       },
       "country": "China",
-      "silver content": 550
+      "silver content": "550"
     },
     "description": "Classic Created Wedding Engagement Solitaire Diamond Promise Ring for Her. Gifts to spoil your love more for Engagement, Wedding, Anniversary, Valentine's Day...",
     "image": "https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg"
@@ -160,7 +160,7 @@
     "id": 9,
     "title": "WD 2TB Elements Portable External Hard Drive - USB 3.0 ",
     "category": "electronics",
-    "price": 64,
+    "price": "64",
     "filter_features":
     {
       "subCategory": "hard drives",
@@ -168,8 +168,8 @@
     },
     "non-filter_features": {
       "rating": {
-        "rate": 3.3,
-        "count": 203
+        "rate": "3.3",
+        "count": "203"
       },
       "producer": "Seagate",
       "color": "black"
@@ -181,7 +181,7 @@
     "id": 10,
     "title": "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s",
     "category": "electronics",
-    "price": 109,
+    "price": "109",
     "filter_features":
     {
       "subCategory": "hard drives",
@@ -189,8 +189,8 @@
     },
     "non-filter_features": {
       "rating": {
-        "rate": 2.9,
-        "count": 470
+        "rate": "2.9",
+        "count": "470"
       },
       "producer": "WD",
       "color": "white"
@@ -202,7 +202,7 @@
     "id": 11,
     "title": "Silicon Power 256GB SSD 3D NAND A55 SLC Cache Performance Boost SATA III 2.5",
     "category": "electronics",
-    "price": 64,
+    "price": "64",
     "filter_features":
     {
       "subCategory": "hard drives",
@@ -210,8 +210,8 @@
     },
     "non-filter_features": {
       "rating": {
-        "rate": 4.8,
-        "count": 319
+        "rate": "4.8",
+        "count": "319"
       },
       "producer": "Seagate",
       "color": "black"
@@ -224,7 +224,7 @@
     "id": 14,
     "title": "Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor (LC49HG90DMNXZA) – Super Ultrawide Screen QLED ",
     "category": "electronics",
-    "price": 999.99,
+    "price": "999.99",
     "filter_features":
     {
       "subCategory": "monitors",
@@ -233,8 +233,8 @@
     },
     "non-filter_features": {
       "rating": {
-        "rate": 2.2,
-        "count": 140
+        "rate": "2.2",
+        "count": "140"
       },
       "producer": "Samsung",
       "color": "black",
@@ -248,7 +248,7 @@
     "id": 21,
     "title": "R2D2",
     "category": "robots",
-    "price": 1500,
+    "price": "1500",
     "filter_features":
     {
       "subCategory": "assistant robots",
@@ -258,8 +258,8 @@
     },
     "non-filter_features": {
       "rating": {
-        "rate": 5.0,
-        "count": 99
+        "rate": "5.0",
+        "count": "99"
       },
       "producer": "Intel",
       "color": "silver",
@@ -274,7 +274,7 @@
     "id": 22,
     "title": "Bender",
     "category": "robots",
-    "price": 999,
+    "price": "999",
     "filter_features":
     {
       "subCategory": "humor robots",
@@ -283,8 +283,8 @@
     },
     "non-filter_features": {
       "rating": {
-        "rate": 4.5,
-        "count": 25
+        "rate": "4.5",
+        "count": "25"
       },
       "producer": "AMD",
       "color": "silver",
@@ -298,7 +298,7 @@
     "id": 24,
     "title": "21-A",
     "category": "robots",
-    "price": 5000,
+    "price": "5000",
     "filter_features":
     {
       "subCategory": "soldier robots",
@@ -307,8 +307,8 @@
     },
     "non-filter_features": {
       "rating": {
-        "rate": 5.0,
-        "count": 20000
+        "rate": "5.0",
+        "count": "20000"
       },
       "producer": "Samsung",
       "color": "dark grey",
@@ -322,7 +322,7 @@
     "id": 25,
     "title": "21-A type b",
     "category": "robots",
-    "price": 7000,
+    "price": "7000",
     "filter_features":
     {
       "subCategory": "recon robots",
@@ -331,8 +331,8 @@
     },
     "non-filter_features": {
       "rating": {
-        "rate": 5.0,
-        "count": 700
+        "rate": "5.0",
+        "count": "700"
       },
       "producer": "Samsung",
       "color": "dark grey",
@@ -346,7 +346,7 @@
     "id": 26,
     "title": "iPhone 9",
     "category": "electronics",
-    "price": 549,
+    "price": "549",
     "filter_features":
     {
       "subCategory": "smartphones",
@@ -355,13 +355,13 @@
     },
     "non-filter_features": {
       "rating": {
-        "rate": 4.6,
-        "count": 99
+        "rate": "4.6",
+        "count": "99"
       },
-      "discountPercentage": 12.96,
+      "discountPercentage": "12.96",
       "color": "silver",
       "power": "5 kWt",
-      "stock": 94
+      "stock": "94"
     },
     "description": "An apple mobile which is nothing like apple",
     "image": "https://dummyjson.com/image/i/products/1/thumbnail.jpg",
@@ -373,7 +373,7 @@
     "id": 27,
     "title": "iPhone X",
     "category": "electronics",
-    "price": 899,
+    "price": "899",
     "filter_features":
     {
       "subCategory": "smartphones",
@@ -382,13 +382,13 @@
     },
     "non-filter_features": {
       "rating": {
-        "rate": 4.4,
-        "count": 99
+        "rate": "4.4",
+        "count": "99"
       },
-      "discountPercentage": 17.94,
+      "discountPercentage": "17.94",
       "color": "silver",
       "power": "5 kWt",
-      "stock": 34
+      "stock": "34"
     },
     "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
     "image": "https://dummyjson.com/image/i/products/2/thumbnail.jpg",

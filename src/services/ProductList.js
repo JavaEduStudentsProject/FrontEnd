@@ -21,6 +21,14 @@ class ProductList {
     }
 
     // Фильтрация продуктов по выбранным чекбоксам в разделе фильтр
+    //todo Метод фильтрации требует следующей доработки: сейчас реализовано два варианта -
+    // 1. проверка вхождения всех элементов из фильтра в свойства продукта
+    // (но тогда при выборе двух разных размеров, он не покажет ни один продукт)
+    // 2. проверка вхождения хотя бы одного фильтрующего признака в свойства продукта
+    // (в этом случае в итоговый список попадают лишние продукты).
+    // Вероятно целесообразнее всего делать объект (мапу ключ-значение)
+    // и проверять на наличие хотя бы одного совпадения по каждому ключу.
+
     static filterProducts(products, priceDelta, filterArray) {
         //todo переписать через filter
         console.log(products)
@@ -61,12 +69,32 @@ class ProductList {
         }
 
         if (filterArray.length > 2) {
+            console.log("Запуск фильтрации")
+            console.log(filteredProductList);
             for (let i = 0; i < filteredProductList.length; i++) {
                 for (let feature in filteredProductList[i]["filter_features"]) {
                     console.log(feature)
                     console.log(filterArray)
-                    if (filterArray.includes(filteredProductList[i]["filter_features"][feature])) {
+                    console.log(filteredProductList[i]["filter_features"][feature])
+                    console.log(Object.values(filteredProductList[i]["filter_features"]))
+
+                    let tempObjectFeatures = Object.values(filteredProductList[i]["filter_features"]);
+                    let filterFeatures = filterArray.slice(2);
+
+                    console.log(tempObjectFeatures)
+                    let objectFeatures = tempObjectFeatures.map(item => `${item}`)
+                    console.log(objectFeatures)
+                    console.log(filterFeatures)
+
+                    function check(element) {
+                        return objectFeatures.includes(element)
+                    }
+
+                    if (filterFeatures.every(check)
+                        && !finalProductList.includes(filteredProductList[i])
+                    ) {
                         finalProductList.push(filteredProductList[i]);
+                        console.log(finalProductList)
                     }
                 }
             }

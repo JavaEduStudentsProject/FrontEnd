@@ -10,7 +10,7 @@ import {
 
 const SubCategory = (props) => {
     const {filterArray} = useContext(FilterArrayContext);
-    const {products, setProducts} = React.useContext(ProductListContext);
+    // const {products, setProducts} = React.useContext(ProductListContext);
     const {immutableProductList} = React.useContext(ImmutableProductListContext);
     const {priceDelta} = useContext(PriceFilterArrayContext);
 
@@ -20,7 +20,7 @@ const SubCategory = (props) => {
         let renderedProductList = ProductList.filterProducts(immutableProductList, priceDelta, filterArray);
         console.log("Лист продуктов для рендеринга после фильтрации по субкатегории")
         console.log(renderedProductList)
-        setProducts(renderedProductList);
+        // setProducts(renderedProductList);
     }
     return(
         <Link to = {`/${props.category}/${props.subCategory}`}

@@ -90,6 +90,7 @@ const Products = (props) => {
             <h4>Продукты не найдены</h4>
     }
 
+    //todo переделать сортировку
     const sortProducts = (field) => {
         setSortingKey(field);
         productArrayForRendering = ProductList.sortProducts(productArrayForRendering, field, directSort);
@@ -128,9 +129,9 @@ const Products = (props) => {
                         ]}/>
 
                     {/*<Scroll>*/}
-                    <ul className="products">
+                    <div className="products">
                         {productListPerOnePage()}
-                    </ul>
+                    </div>
                     {/*</Scroll>*/}
 
                     <Pagination className='justify-content-center'>

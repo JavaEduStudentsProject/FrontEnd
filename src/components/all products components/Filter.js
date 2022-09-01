@@ -6,19 +6,11 @@ import ProductList from "../../services/ProductList";
 import {useParams} from "react-router-dom";
 
 const Filter = (props) => {
-
-    // const {products, setProducts} = useContext(ProductListContext);
     const {immutableProductList} = React.useContext(ImmutableProductListContext);
     const {filterArray, setFilterArray} = useContext(FilterArrayContext);
     const {priceDelta} = useContext(PriceFilterArrayContext);
 
     const {category, subcategory} = useParams();
-
-    function print3(e) {
-        e.preventDefault()
-        console.log(filterArray)
-    }
-
 
     if (category) {
         if (category !== filterArray[0]) {
@@ -116,7 +108,6 @@ const Filter = (props) => {
                     {fieldComponent}
                     <button type="submit" onClick={handleSubmitClick}>Найти</button>
                     <button type="submit" onClick={handleCancelClick} >Сбросить</button>
-                    <button onClick={print3}>Фильтры</button>
                     {/*второй вариант для сброса введенных данных в фильтре:*/}
                     {/*<button type="reset" onClick={handleCancelClick} >Сбросить</button>*/}
                 </form>

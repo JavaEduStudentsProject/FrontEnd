@@ -22,66 +22,31 @@ class ProductList {
     }
 
     // Фильтрация продуктов по выбранным чекбоксам в разделе фильтр
-    //todo Метод фильтрации требует следующей доработки: сейчас реализовано два варианта -
-    // 1. проверка вхождения всех элементов из фильтра в свойства продукта
-    // (но тогда при выборе двух разных размеров, он не покажет ни один продукт)
-    // 2. проверка вхождения хотя бы одного фильтрующего признака в свойства продукта
-    // (в этом случае в итоговый список попадают лишние продукты).
-    // Вероятно целесообразнее всего делать объект (мапу ключ-значение)
-    // и проверять на наличие хотя бы одного совпадения по каждому ключу.
-
     static filterProducts(products, priceDelta, filterArray) {
-        //todo переписать через filter
         console.log(products)
         console.log(priceDelta)
         console.log(filterArray)
-        let categoryProductList = [];
-        let subCategoryProductList = [];
-        let byPriceProductList = [];
         let finalProductList = [];
         let filteredProductList = products;
 
         if (filterArray[0] !== "") {
-            for (let i = 0; i < products.length; i++) {
-                if (products[i]["category"] === filterArray[0]) {
-                    categoryProductList.push(products[i]);
-                }
-            }
-            filteredProductList = categoryProductList;
-            console.log(categoryProductList)
+            filteredProductList = products.filter(product => product["category"] === filterArray[0]);
         }
 
         if (filterArray[1] !== "") {
-            for (let i = 0; i < categoryProductList.length; i++) {
-                if (categoryProductList[i]["filter_features"]["subCategory"] === filterArray[1]) {
-                    subCategoryProductList.push(categoryProductList[i]);
-                }
-            }
-            filteredProductList = subCategoryProductList;
+            filteredProductList = filteredProductList.filter(product => ProductList.flatProduct(product)["subCategory"] === filterArray[1]);
         }
 
         if (priceDelta[0] > 0 || priceDelta[1] < 1000000000) {
-            for (let i = 0; i < filteredProductList.length; i++) {
-                if (filteredProductList[i]["price"] >= priceDelta[0] && filteredProductList[i]["price"] <= priceDelta[1]) {
-                    byPriceProductList.push(filteredProductList[i]);
-                }
-            }
-            filteredProductList = byPriceProductList;
+            filteredProductList = filteredProductList.filter(product =>
+                product["price"] >= priceDelta[0] && product["price"] <= priceDelta[1]);
         }
 
         if (filterArray.length > 2) {
-            console.log("Запуск фильтрации")
-            console.log(filteredProductList);
-
-            console.log("'Грязный' фильтрующий массив")
-            console.log(filterArray);
-
             const pureFilterArray = cloneDeep(filterArray.slice(2))
             for (let i = 0; i < pureFilterArray.length; i++) {
                 pureFilterArray[i].splice(0, 1);
             }
-            console.log("'Чистый' фильтрующий массив")
-            console.log(pureFilterArray);
 
             for (let i = 0; i < filteredProductList.length; i++) {
                 function check(element) {
@@ -100,10 +65,8 @@ class ProductList {
                 }
                 if (flag) {
                     finalProductList.push(filteredProductList[i]);
-                    console.log(finalProductList)
                 }
             }
-
             filteredProductList = finalProductList;
         }
         console.log("Итоговый лист продуктов для рендеринга")

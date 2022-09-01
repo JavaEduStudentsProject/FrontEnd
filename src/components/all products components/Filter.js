@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import Field from "./Field";
 import PriceFilterField from "./PriceFilterField";
 import {FilterArrayContext, ImmutableProductListContext, PriceFilterArrayContext, ProductListContext} from "../../services/Context";
@@ -87,6 +87,7 @@ const Filter = (props) => {
         setFilterArray(newFilterArray)
         priceDelta[0] = 0;
         priceDelta[1] = 1000000000;
+        console.log(document.getElementById('form'));
         document.getElementById('form').reset();
         props.setFlag(prevState => !prevState)
     }

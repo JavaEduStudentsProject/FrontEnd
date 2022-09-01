@@ -12,14 +12,8 @@ import ProductList from "../../services/ProductList";
 
 export default function Header(props) {
 
-    // const [searchField, setSearchField] = useState("");
     const {immutableProductList} = useContext(ImmutableProductListContext);
     const {countProductInBasket} = props;
-
-    // const handleChange = e => {
-    //     setSearchField(e.target.value);
-    //     let productArray = ProductList.search(immutableProductList, searchField);
-    // };
 
     //todo кнопки для отладки, удалить:
 
@@ -49,7 +43,7 @@ export default function Header(props) {
             <nav className="nav-panel">
                 <img className="nav-img" src={img} onClick={()=>{window.location.assign("/")}}/>
                 <DropDownMenu/>
-                <SearchField setProductArray={props.setProductArray} searchField={props.searchField} setSearchField={props.setSearchField}/>
+                <SearchField handleChange={props.handleChange} searchField={props.searchField}/>
                 <div className="userIcons">
                     <Stack>
                         <Avatar alt="Корзина"

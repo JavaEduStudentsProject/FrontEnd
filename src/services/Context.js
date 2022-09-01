@@ -5,12 +5,9 @@ export const ImmutableProductListContext = React.createContext(null
 //     // {immutableProductList: require('../temp_props.json'),}
     );
 
-// export const ProductListContext = React.createContext(
-//     {
-//         products: [],
-//         setProducts: () => {}
-//     }
-// )
+export const ProductListContext = React.createContext(null
+
+);
 
 // export const FilterArrayContext = React.createContext(
 //     {

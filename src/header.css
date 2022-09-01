@@ -16,7 +16,7 @@ nav > h3, nav > h4 {
 
 .nav-img {
     width: 70px;
-    margin-left: 150px;
+    /*margin-left: 150px;*/
     transform: rotate(-0.05turn);
 }
 

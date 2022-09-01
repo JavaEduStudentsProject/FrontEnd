@@ -1,14 +1,7 @@
-import React, {useContext} from 'react';
-import ProductList from "../../services/ProductList";
-import {ImmutableProductListContext} from "../../services/Context";
+import React from 'react';
+
 
 function SearchField(props) {
-    const {immutableProductList} = useContext(ImmutableProductListContext);
-
-    function handleChange(event) {
-        props.setSearchField(event.target.value);
-        props.setProductArray(ProductList.search(immutableProductList, props.searchField));
-    }
 
     return (
         <div className="search-block ">
@@ -17,7 +10,7 @@ function SearchField(props) {
                 className="search-field "
                 type="search"
                 placeholder=""
-                onChange={event => handleChange(event)}
+                onChange={event => props.handleChange(event)}
             />
         </div>
     );

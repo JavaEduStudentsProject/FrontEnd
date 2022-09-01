@@ -20,6 +20,7 @@ const Products = (props) => {
     const {immutableProductList} = useContext(ImmutableProductListContext);
     const {filterArray, setFilterArray} = useContext(FilterArrayContext);
     const {priceDelta} = useContext(PriceFilterArrayContext);
+    const {productArray} = useContext(ProductListContext);
 
     const [sortingKey, setSortingKey] = useState("");
     const [directSort, setDirectSort] = useState(true);
@@ -45,7 +46,7 @@ const Products = (props) => {
 
 
     if (props.searchField !== "") {
-        productArrayForRendering = props.productArray;
+        productArrayForRendering = productArray[0];
     } else {
         productArrayForRendering = ProductList.filterProducts(immutableProductList, priceDelta, filterArray);
     }

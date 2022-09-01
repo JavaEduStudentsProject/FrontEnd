@@ -5,22 +5,15 @@ import SingleProduct from "../components/single product components/SingleProduct
 import Footer from "./footer components/Footer";
 import Products from "./all products components/Products";
 import ProductService from '../services/ProductService'
-import {
-    ImmutableProductListContext,
-    FilterArrayContext,
-    PriceFilterArrayContext
-} from "../services/Context";
-import ProductList from "../services/ProductList";
+import {ImmutableProductListContext, FilterArrayContext} from "../services/Context";
 
 // import CatalogContent from "./CatalogContent";
 
-
 function App() {
     const [productArray, setProductArray] = useState([]);
-    let [immutableProductList, setImmutableProductList] = useState([]);
+    const [immutableProductList, setImmutableProductList] = useState([]);
     const [searchField, setSearchField] = useState("");
     const [filterArray, setFilterArray] = useState(["", ""]);
-    const {priceDelta} = useContext(PriceFilterArrayContext);
 
     const [countProductInBasket, setCountProductInBasket] = useState(0);
 
@@ -39,46 +32,27 @@ function App() {
         })
     }
 
-    // const handleChange = e => {
-    //     setSearchField(e.target.value);
-    // };
-
-
     return (
         <ImmutableProductListContext.Provider value={{immutableProductList}}>
-            {/*<ProductListContext.Provider value={{products, setProducts}}>*/}
                 <FilterArrayContext.Provider value={{filterArray, setFilterArray}}>
                     <div className="container">
                         <Router>
                             <Header countProductInBasket={countProductInBasket} searchField={searchField}
-                                    // handleChange={handleChange}
-                                setSearchField={setSearchField}
-                                    setProductArray={setProductArray}/>
-                            {/*<Header countProductInBasket={countProductInBasket}*/}
-                            {/*        />*/}
+                                setSearchField={setSearchField} setProductArray={setProductArray}/>
                             <Routes>
-                                {/*<Route path="/" element={<Products searchField={searchField}/>}/>*/}
-                                <Route path="/product/:id"
-                                       element={<SingleProduct countProductInBasket={countProductInBasket}
-                                                               setCountProductInBasket={setCountProductInBasket}/>}/>
-                                {/*<Route path="/:category" element={<Products searchField={searchField}/>}/>*/}
-
-                                {/*<Route path="/:category/:subcategory" element={<Products searchField={searchField}/>}/>*/}
+                                <Route path="/product/:id" element={<SingleProduct countProductInBasket={countProductInBasket}
+                                    setCountProductInBasket={setCountProductInBasket}/>}/>
                                 <Route path="/:category/:subcategory" element={<Products searchField={searchField}
                                     productArray={productArray} setProductArray={setProductArray}/>}/>
                                 <Route path="/:category" element={<Products searchField={searchField}
                                     productArray={productArray} setProductArray={setProductArray}/>}/>
                                 <Route path="/" element={<Products searchField={searchField}
                                     productArray={productArray} setProductArray={setProductArray}/>}/>
-                                {/*<Route path="/:category/:subcategory" element={<ProductsNew/>}/>*/}
-                                {/*<Route path="/:category" element={<ProductsNew/>}/>*/}
-                                {/*<Route path="/" element={<ProductsNew/>}/>*/}
                             </Routes>
                             <Footer/>
                         </Router>
                     </div>
                 </FilterArrayContext.Provider>
-            {/*</ProductListContext.Provider>*/}
         </ImmutableProductListContext.Provider>
     )
 }

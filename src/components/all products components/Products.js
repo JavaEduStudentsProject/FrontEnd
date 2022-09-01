@@ -25,7 +25,7 @@ const Products = (props) => {
     const [directSort, setDirectSort] = useState(true);
 
     const [currentPage, setCurrentPage] = useState(0);
-    const [perPage, setPerPage] = useState(5);
+    const [perPage, setPerPage] = useState(6);
 
     const [flag, setFlag] = useState(false);
 
@@ -90,6 +90,7 @@ const Products = (props) => {
             <h4>Продукты не найдены</h4>
     }
 
+    //todo переделать сортировку
     const sortProducts = (field) => {
         setSortingKey(field);
         productArrayForRendering = ProductList.sortProducts(productArrayForRendering, field, directSort);
@@ -120,17 +121,17 @@ const Products = (props) => {
                     <MySelect
                         value={sortingKey}
                         onChange={paginationProducts}
-                        defaultValue="5"
+                        defaultValue="6"
                         options={[
-                            {value: '10', name: "10"},
-                            {value: '50', name: "50"},
+                            {value: '12', name: "12"},
+                            {value: '48', name: "48"},
                             {value: `-1`, name: "Показать все"},
                         ]}/>
 
                     {/*<Scroll>*/}
-                    <ul className="products">
+                    <div className="products">
                         {productListPerOnePage()}
-                    </ul>
+                    </div>
                     {/*</Scroll>*/}
 
                     <Pagination className='justify-content-center'>

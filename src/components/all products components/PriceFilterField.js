@@ -1,12 +1,21 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {PriceFilterArrayContext} from "../../services/Context";
 
 const PriceFilterField = () => {
     const {priceDelta, setPriceDeltaLeft, setPriceDeltaRight} = useContext(PriceFilterArrayContext);
     console.log(priceDelta)
+
+
     function setLeftValue(event) {
-        priceDelta[0] = event.target.value;
-        console.log(priceDelta);
+        if (event.target.value < 0) {
+            //todo установление дефолтного значения
+            alert("Введите число больше нуля")
+            priceDelta[0] = "0";
+            document.getElementById('price-filter').reset();
+        } else {
+            priceDelta[0] = event.target.value;
+            console.log(priceDelta);
+        }
     }
 
     function setRightValue(event) {
@@ -18,9 +27,11 @@ const PriceFilterField = () => {
 
     return (
         <div>
-            <input className="form-input" type="number" placeholder="От" defaultValue="0"
+            {/*//todo по дефолту должны указываться цифры от нуля до самой высокой цены в каталоге (вытащить из списка продуктов) */}
+            {/*todo + сделать чуть прозрачным*/}
+            <input id="left-price" className="form-input" type="text" defaultValue="0"
                    onChange={event => setLeftValue(event)}/>
-            <input className="form-input" type="number" placeholder="До" defaultValue="1000000000"
+            <input className="form-input" type="text" defaultValue="1000000000"
                    onChange={event => setRightValue(event)}/>
         </div>
     );

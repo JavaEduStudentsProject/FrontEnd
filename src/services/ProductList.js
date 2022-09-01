@@ -106,7 +106,7 @@ class ProductList {
         return filteredProductList;
     }
 
-    // Сортировка
+    // Метод сортировки
     static sortProducts(products, field, directSort) {
         let sortDate;
         directSort
@@ -122,6 +122,7 @@ class ProductList {
         return sortDate;
     }
 
+    // Метод поиска в поисковой строке в хедере.
     static search(products, searchField) {
         let productArray = [];
         const [category, subcategory] = this.searchCategoryAndSubcategoryFromURL();
@@ -145,6 +146,8 @@ class ProductList {
         return productArray;
     }
 
+/*    Метод парсинга url для получения текущей категории и субкатегории.
+    Необходим в данном классе, потому что он не видит useParams().*/
     static searchCategoryAndSubcategoryFromURL() {
         let catAndSubcat = ["", ""];
         let category;
@@ -174,7 +177,7 @@ class ProductList {
 
         catAndSubcat.push(category)
         catAndSubcat.push(subCategory)
-        console.log(catAndSubcat)
+
         return catAndSubcat;
     }
 

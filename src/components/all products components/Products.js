@@ -16,44 +16,22 @@ import ProductList from "../../services/ProductList";
 
 const Products = (props) => {
     let productArrayForRendering = [];
+
     const {immutableProductList} = useContext(ImmutableProductListContext);
+    const {filterArray, setFilterArray} = useContext(FilterArrayContext);
+    const {priceDelta} = useContext(PriceFilterArrayContext);
 
     const [sortingKey, setSortingKey] = useState("");
     const [directSort, setDirectSort] = useState(true);
 
-    const {category, subcategory} = useParams();
-
     const [currentPage, setCurrentPage] = useState(0);
     const [perPage, setPerPage] = useState(5);
 
-    // let tempFilterArray = [category ? category : "", subcategory ? subcategory : ""];
-    // console.log(tempFilterArray)
-
-    const {filterArray, setFilterArray} = useContext(FilterArrayContext);
-    const {priceDelta} = useContext(PriceFilterArrayContext);
     const [flag, setFlag] = useState(false);
 
+    const {category, subcategory} = useParams();
 
-    // productArrayForRendering
-    // if (subcategory) {
-    //     productArray = products.filter(product => ProductList.flatProduct(product)["subCategory"] === subcategory).filter(item => {
-    //         const fullFilter = item.title + item.description;
-    //         return fullFilter.toLowerCase().includes(props.searchField.toLowerCase());
-    //     })
-    //
-    // } else if (category) {
-    //     productArray = products.filter(product => product.category === category).filter(item => {
-    //         const fullFilter = item.title + item.description;
-    //         return fullFilter.toLowerCase().includes(props.searchField.toLowerCase());
-    //     })
-    // } else {
-    //     productArray = products.filter(item => {
-    //         const fullFilter = item.title + item.description + item.category;
-    //         return fullFilter.toLowerCase().includes(props.searchField.toLowerCase());
-    //     })
-    //
-    // }
-
+    // let tempFilterArray = [category ? category : "", subcategory ? subcategory : ""];
 
     if (category) {
         if (category !== filterArray[0]) {
@@ -65,7 +43,7 @@ const Products = (props) => {
         }
     }
 
-    // if (props.productArray.length > 0) {
+
     if (props.searchField !== "") {
         productArrayForRendering = props.productArray;
     } else {
@@ -126,8 +104,7 @@ const Products = (props) => {
 
     return (
             <div className="main-content-products">
-                {/*{category && <Filter setFlag={setFlag}/>}*/}
-                <Filter setFlag={setFlag}/>
+                {category && <Filter setFlag={setFlag}/>}
                 <div className="all-products">
                     <Title category={category}/>
                     <MySelect

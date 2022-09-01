@@ -95,9 +95,6 @@ const Filter = (props) => {
         setFilterArray(newFilterArray)
         priceDelta[0] = 0;
         priceDelta[1] = 1000000000;
-        // let filteredProductList = ProductList.filterProducts(immutableProductList, priceDelta, filterArray);
-        // console.log(filteredProductList)
-        // setProducts(filteredProductList);
         document.getElementById('form').reset();
         props.setFlag(prevState => !prevState)
     }
@@ -108,9 +105,9 @@ const Filter = (props) => {
             fieldName={Object.keys(item)[0]}
             fieldArray={item[Object.keys(item)[0]]}
             setFlag={props.setFlag}
+            filledFilterFieldArray={filledFilterFieldArray}
         />
     })
-    if (category) {
         return (
             <fieldset className="filter">
                 <legend>Фильтр</legend>
@@ -125,7 +122,6 @@ const Filter = (props) => {
                 </form>
             </fieldset>
         );
-    }
 };
 
 export default Filter;

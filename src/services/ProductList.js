@@ -1,5 +1,6 @@
 import {useContext} from 'react'
 import {FilterArrayContext} from "../../src/services/Context";
+import cloneDeep from 'lodash.clonedeep'
 
 class ProductList {
     constructor(productArray) {
@@ -71,31 +72,35 @@ class ProductList {
         if (filterArray.length > 2) {
             console.log("Запуск фильтрации")
             console.log(filteredProductList);
+
+            console.log("'Грязный' фильтрующий массив")
+            console.log(filterArray);
+
+            const pureFilterArray = cloneDeep(filterArray.slice(2))
+            for (let i = 0; i < pureFilterArray.length; i++) {
+                pureFilterArray[i].splice(0, 1);
+            }
+            console.log("'Чистый' фильтрующий массив")
+            console.log(pureFilterArray);
+
             for (let i = 0; i < filteredProductList.length; i++) {
-                for (let feature in filteredProductList[i]["filter_features"]) {
-                    console.log(feature)
-                    console.log(filterArray)
-                    console.log(filteredProductList[i]["filter_features"][feature])
-                    console.log(Object.values(filteredProductList[i]["filter_features"]))
-
+                function check(element) {
                     let tempObjectFeatures = Object.values(filteredProductList[i]["filter_features"]);
-                    let filterFeatures = filterArray.slice(2);
-
-                    console.log(tempObjectFeatures)
                     let objectFeatures = tempObjectFeatures.map(item => `${item}`)
-                    console.log(objectFeatures)
-                    console.log(filterFeatures)
-
-                    function check(element) {
-                        return objectFeatures.includes(element)
+                    return objectFeatures.includes(element)
+                }
+                let flag = false;
+                for (let j = 0; j < pureFilterArray.length; j++) {
+                    if (pureFilterArray[j].some(check)) {
+                        flag = true;
+                    } else {
+                        flag = false;
+                        break;
                     }
-
-                    if (filterFeatures.every(check)
-                        && !finalProductList.includes(filteredProductList[i])
-                    ) {
-                        finalProductList.push(filteredProductList[i]);
-                        console.log(finalProductList)
-                    }
+                }
+                if (flag) {
+                    finalProductList.push(filteredProductList[i]);
+                    console.log(finalProductList)
                 }
             }
 

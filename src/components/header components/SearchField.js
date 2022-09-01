@@ -9,7 +9,6 @@ function SearchField(props) {
         props.setProductArray(ProductList.search(immutableProductList, e.target.value));
     };
 
-
     return (
         <div className="search-block ">
             <input
@@ -17,7 +16,6 @@ function SearchField(props) {
                 className="search-field "
                 type="search"
                 placeholder=""
-                // onChange={event => handleChange(event)}
                 onChange={handleChange}
             />
         </div>

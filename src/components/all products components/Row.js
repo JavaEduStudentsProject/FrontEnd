@@ -6,18 +6,35 @@ const Row = (props) => {
 
     function setCategoryValueToArray(event) {
         if (event.target.checked) {
-            // setFilterArray([...filterArray, event.target.value])
-            filterArray.push(event.target.value)
-            console.log(filterArray);
-            //todo!!! очень важно, не удалять!!!
-            // props.setFlag(prevState => !prevState);
-
-        } else {
-            let newFilterArray = filterArray;
-            if (filterArray.length > 2) {
-                newFilterArray.splice(newFilterArray.indexOf(event.target.value), 1)
-                setFilterArray(newFilterArray)
+            let fieldNames = [];
+            for (let i = 2; i < filterArray.length; i++) {
+                fieldNames.push(filterArray[i][0]);
             }
+
+            if (fieldNames.includes(props.fieldName)) {
+                filterArray[fieldNames.indexOf(props.fieldName) + 2].push(event.target.value);
+            } else {
+                filterArray.push([props.fieldName, event.target.value])
+            }
+        }
+
+        //!!! эта строка включает динамическое поведение фильтра !!!
+        // props.setFlag(prevState => !prevState);
+
+        else {
+            let newFilterArray = filterArray;
+            if (newFilterArray.length > 2) {
+                for (let i = 2; i < newFilterArray.length; i++) {
+                    if (newFilterArray[i].includes(props.fieldName) && newFilterArray[i].includes(event.target.value)) {
+                        if (newFilterArray[i].length === 2) {
+                            newFilterArray.splice(i, 1);
+                        } else {
+                            newFilterArray[i].splice(newFilterArray[i].indexOf(event.target.value), 1);
+                        }
+                    }
+                }
+            }
+            setFilterArray(newFilterArray);
         }
     }
 

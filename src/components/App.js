@@ -10,9 +10,6 @@ import ProductList from "../services/ProductList";
 
 function App() {
     const [immutableProductList, setImmutableProductList] = useState([]);
-    // // let {immutableProductList, setImmutableProductList} = useContext(ImmutableProductListContext);
-    // // let [immutableProductList, setImmutableProductList] = useState([]);
-    // const [products, setProducts] = useState([]);
     const [searchField, setSearchField] = useState("");
     const [filterArray, setFilterArray] = useState(["", ""]);
     const [countProductInBasket, setCountProductInBasket] = useState(0);
@@ -27,22 +24,14 @@ function App() {
         console.log("Вызов геттера")
         ProductService.getAllProducts().then((response) => {
             setImmutableProductList(response.data);
-        }).catch(error => {
-        // ProductService.getAllProducts().then((response) =>{
-        //
-        //     setProducts(response.data);
-        //     console.log(products)
-
         }).catch(error =>{
             console.log(error);
         })
     }
 
-    // localStorage.setItem('products', JSON.stringify(products))
-    //
-    // let immutableProductList = JSON.parse(localStorage.getItem('products'))
-    //
-    // console.log(products)
+//запустить один раз и закомментировать
+    // localStorage.setItem('immutableProductList', JSON.stringify(immutableProductList))
+
     const handleChange = e => {
         setSearchField(e.target.value);
     };

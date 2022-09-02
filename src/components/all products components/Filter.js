@@ -118,6 +118,6 @@ const Filter = (props) => {
             </fieldset>
         );
     }
-};
+
 
 export default Filter;

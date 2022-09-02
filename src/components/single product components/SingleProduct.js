@@ -1,25 +1,19 @@
-import React, {useContext} from "react";
+import React from "react";
 import PriceComponent from "./PriceComponent"
 import MoneyInCreditComponent from "./MoneyInCreditComponent"
 import img from "../../images/img_3.jpg";
 import ShortProductDescription from "./ShortProductDescription";
 import { useParams } from "react-router-dom"
-import {ImmutableProductListContext, ProductListContext} from "../../services/Context";
-
 
 export default function SingleProduct(props) {
-    const {products, setProducts} = useContext(ProductListContext);
+
     let immutable = JSON.parse(localStorage.getItem('immutableProductList'))
 
-    console.log(immutable)
     const {id} = useParams();
     localStorage.setItem(`${id}`, JSON.stringify(immutable.find(p => p.id === Number(id))))
 
     let product = JSON.parse(localStorage.getItem(`${id}`))
-    console.log(localStorage.getItem(`${id}`))
 
-    console.log(products)
-    console.log(product)
     const { setCountProductInBasket, countProductInBasket} = props;
 
     return (

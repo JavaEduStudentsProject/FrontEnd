@@ -5,7 +5,7 @@ import Filter from "./Filter";
 import Scroll from "./Scroll";
 import {
     FilterArrayContext,
-    ImmutableProductListContext,
+    ImmutableProductListContext, PriceFilterArrayContext,
     ProductListContext
 } from "../../services/Context";
 import {useParams} from "react-router-dom";
@@ -15,43 +15,45 @@ import ProductList from "../../services/ProductList";
 
 
 const Products = (props) => {
-    // let productArrayForRendering = [];
-    // const {immutableProductList} = React.useContext(ImmutableProductListContext);
-    // const [products, setProducts] = useState(immutableProductList);
-    const {products, setProducts} = useContext(ProductListContext);
+    let productArrayForRendering = [];
+
+    const {immutableProductList} = useContext(ImmutableProductListContext);
+    const {filterArray, setFilterArray} = useContext(FilterArrayContext);
+    const {priceDelta} = useContext(PriceFilterArrayContext);
+    const {productArray} = useContext(ProductListContext);
+
     const [sortingKey, setSortingKey] = useState("");
     const [directSort, setDirectSort] = useState(true);
-
-    const {category} = useParams();
-    const {subcategory} = useParams();
-    console.log(category)
-    console.log(subcategory)
 
     const [currentPage, setCurrentPage] = useState(0);
     const [perPage, setPerPage] = useState(5);
 
-    // productArrayForRendering
-    // if (subcategory) {
-    //     productArray = products.filter(product => ProductList.flatProduct(product)["subCategory"] === subcategory).filter(item => {
-    //         const fullFilter = item.title + item.description;
-    //         return fullFilter.toLowerCase().includes(props.searchField.toLowerCase());
-    //     })
-    //
-    // } else if (category) {
-    //     productArray = products.filter(product => product.category === category).filter(item => {
-    //         const fullFilter = item.title + item.description;
-    //         return fullFilter.toLowerCase().includes(props.searchField.toLowerCase());
-    //     })
-    // } else {
-    //     productArray = products.filter(item => {
-    //         const fullFilter = item.title + item.description + item.category;
-    //         return fullFilter.toLowerCase().includes(props.searchField.toLowerCase());
-    //     })
-    //
-    // }
+    const [flag, setFlag] = useState(false);
+
+    const {category, subcategory} = useParams();
+
+    // let tempFilterArray = [category ? category : "", subcategory ? subcategory : ""];
+
+    if (category) {
+        if (category !== filterArray[0]) {
+            filterArray[0] = category;
+            filterArray[1] = "";
+        }
+        if (subcategory) {
+            filterArray[1] = subcategory;
+        }
+    }
+
+
+    if (props.searchField !== "") {
+        productArrayForRendering = productArray[0];
+    } else {
+        productArrayForRendering = ProductList.filterProducts(immutableProductList, priceDelta, filterArray);
+    }
+
 
     const {pagItems, firstPageIndex, lastPageIndex} = useMemo(() => {
-            const pageLimit = Math.ceil(products.length / perPage)
+            const pageLimit = Math.ceil(productArrayForRendering.length / perPage)
             let pagItems = []
             for (let i = 0; i < pageLimit; i++) {
                 pagItems.push(
@@ -71,23 +73,29 @@ const Products = (props) => {
                 firstPageIndex,
                 lastPageIndex
             }
-        }, [currentPage, products.length, perPage]
+        }, [currentPage, productArrayForRendering.length, perPage]
     )
 
-    const productListPerOnePage = () => products.length
-        ?
-        products.slice(firstPageIndex, lastPageIndex).map(item => {
-            return <ProductCard
-                key={item.id}
-                item={item}
-            />
-        })
-        :
-        <h4>Продукты не найдены</h4>
+    // const productListPerOnePage = () => {
+    // const productList = productArrayForRendering.map(item => <ProductCard key={item.id} item={item}/>);
+    const productListPerOnePage = () => {
+        return productArrayForRendering.length
+            ?
+            productArrayForRendering.slice(firstPageIndex, lastPageIndex).map(item => {
+                return <ProductCard
+                    key={item.id}
+                    item={item}
+                />
+            })
+            :
+            <h4>Продукты не найдены</h4>
+    }
 
+    //todo переделать сортировку
     const sortProducts = (field) => {
         setSortingKey(field);
-        setProducts(ProductList.sortProducts(products, field, directSort));
+        productArrayForRendering = ProductList.sortProducts(productArrayForRendering, field, directSort);
+        console.log(productArrayForRendering)
         setDirectSort(!directSort);
         setSortingKey('');
     }
@@ -96,47 +104,45 @@ const Products = (props) => {
         setPerPage(Number(field))
     }
 
-    // let {filterArray} = useContext(FilterArrayContext);
     return (
-        <div className="main-content-products">
-            <Filter productArray={products} category={category}/>
-            <div className="all-products">
-                <Title category={category} subcategory={subcategory}/>
-                <MySelect
-                    value={sortingKey}
-                    onChange={sortProducts}
-                    defaultValue="Сортировка по"
-                    options={[
-                        {value: 'id', name: "По id"},
-                        {value: 'category', name: "По категории"},
-                        {value: 'price', name: "По цене"},
-                    ]}
-                />
-                <MySelect
-                    value={sortingKey}
-                          onChange={paginationProducts}
-                          defaultValue="5"
-                          options={[
-                              {value: '10', name: "10"},
-                              {value: '50', name: "50"},
-                              {value: `-1`, name: "Показать все"},
-                    ]} />
+            <div className="main-content-products">
+                {category && <Filter setFlag={setFlag}/>}
+                <div className="all-products">
+                    <Title category={category}/>
+                    <MySelect
+                        value={sortingKey}
+                        onChange={sortProducts}
+                        defaultValue="Сортировка по"
+                        options={[
+                            {value: 'id', name: "По id"},
+                            {value: 'category', name: "По категории"},
+                            {value: 'price', name: "По цене"},
+                        ]}
+                    />
+                    <MySelect
+                        value={sortingKey}
+                        onChange={paginationProducts}
+                        defaultValue="5"
+                        options={[
+                            {value: '10', name: "10"},
+                            {value: '50', name: "50"},
+                            {value: `-1`, name: "Показать все"},
+                        ]}/>
 
-                {/*<Scroll>*/}
-                <ul className="products">
-                    {productListPerOnePage()}
-                </ul>
-                {/*</Scroll>*/}
+                    {/*<Scroll>*/}
+                    <div className="products">
+                        {productListPerOnePage()}
+                    </div>
+                    {/*</Scroll>*/}
 
-                <Pagination className='justify-content-center'>
-                    {/*<Pagination.Prev/>*/}
-                    {pagItems}
-                    {/*<Pagination.Next/>*/}
-                </Pagination>
+                    <Pagination className='justify-content-center'>
+                        {/*<Pagination.Prev/>*/}
+                        {pagItems}
+                        {/*<Pagination.Next/>*/}
+                    </Pagination>
 
+                </div>
             </div>
-
-        </div>
     );
 };
 

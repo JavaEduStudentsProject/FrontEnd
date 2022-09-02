@@ -23,7 +23,7 @@ export default function SingleProduct(props) {
     const { setCountProductInBasket, countProductInBasket} = props;
 
     return (
-        <div className="main-content">
+        <div className="single-product">
             <h1 className="productName">{product.title}</h1>
             <div className="main-block">
                 <div className="product-card">

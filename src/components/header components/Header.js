@@ -1,23 +1,49 @@
-import React from "react";
+import React, {useContext, useState} from "react";
 import img from "../../images/img_1.png";
 import DropDownMenu from "./DropDownMenu";
 import SearchField from "./SearchField";
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import avatar1 from '../../images/avatar.jpg'
+import {FilterArrayContext, ImmutableProductListContext, PriceFilterArrayContext} from "../../services/Context";
+import {useParams} from "react-router-dom";
+import ProductList from "../../services/ProductList";
 
 
 export default function Header(props) {
 
+    const {immutableProductList} = useContext(ImmutableProductListContext);
     const {countProductInBasket} = props;
+
+    //todo кнопки для отладки, удалить:
+
+    const {filterArray} = useContext(FilterArrayContext);
+    const {priceDelta} = useContext(PriceFilterArrayContext);
+    const {category, subcategory} = useParams();
+
+    console.log(category)
+    console.log(subcategory)
+
+    function print1() {
+        console.log(immutableProductList)
+    }
+
+    function print3() {
+        console.log(filterArray)
+    }
+
+    function print4() {
+        console.log(priceDelta)
+    }
+
+
 
     return (
         <header>
             <nav className="nav-panel">
                 <img className="nav-img" src={img} onClick={()=>{window.location.assign("/")}}/>
                 <DropDownMenu/>
-
-                <SearchField handleChange={props.handleChange} searchField={props.searchField} />
+                <SearchField handleChange={props.handleChange} searchField={props.searchField}/>
                 <div className="userIcons">
                     <Stack>
                         <Avatar alt="Корзина"
@@ -36,6 +62,9 @@ export default function Header(props) {
                 <ul>первого</ul>
                 <ul>слоя</ul>
                 <ul>вложенности</ul>
+                <button onClick={print1}>Неизменямый список</button>
+                <button onClick={print3}>Фильтры</button>
+                <button onClick={print4}>Диапазон цен</button>
                 <a href="http://localhost:3000/">Все продукты</a>
             </nav>
         </header>

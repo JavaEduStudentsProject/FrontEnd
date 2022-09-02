@@ -6,12 +6,22 @@ import ProductList from "../../services/ProductList";
 import {useParams} from "react-router-dom";
 
 const Filter = (props) => {
-    const {products, setProducts} = useContext(ProductListContext);
     const {immutableProductList} = React.useContext(ImmutableProductListContext);
-    const {filterArray} = useContext(FilterArrayContext);
+    const {filterArray, setFilterArray} = useContext(FilterArrayContext);
     const {priceDelta} = useContext(PriceFilterArrayContext);
 
     const {category, subcategory} = useParams();
+
+    if (category) {
+        if (category !== filterArray[0]) {
+            setFilterArray([category, ""]);
+        }
+        if (subcategory) {
+            filterArray[1] = subcategory;
+        }
+    }
+
+    let currentProductList = ProductList.filterProducts(immutableProductList, priceDelta, filterArray);
 
     function getFilterProps(productArray) {
         let filterProps = [];
@@ -25,7 +35,8 @@ const Filter = (props) => {
         return filterProps;
     }
 
-    const filterProps = getFilterProps(products);
+    const filterProps = getFilterProps(currentProductList);
+    console.log(filterProps)
 
 
     function getEmptyFilterFieldArray(filterProps) {
@@ -35,11 +46,13 @@ const Filter = (props) => {
             obj[filterProps[i]] = [];
             fieldArray.push(obj);
         }
+        console.log(fieldArray)
         return fieldArray;
     }
 
     let emptyFilterFieldArray = getEmptyFilterFieldArray(filterProps);
 
+    console.log(emptyFilterFieldArray);
 
 
     function getFilledFilterFieldArray (keys, productArray, emptyArray) {
@@ -53,21 +66,33 @@ const Filter = (props) => {
         return emptyArray;
     }
 
-    const filledFilterFieldArray = getFilledFilterFieldArray(filterProps, products, emptyFilterFieldArray);
+    const filledFilterFieldArray = getFilledFilterFieldArray(filterProps, currentProductList, emptyFilterFieldArray);
 
+    console.log(filledFilterFieldArray);
 
     function handleSubmitClick(e) {
         e.preventDefault();
-
-        let filteredProductList = ProductList.filterProducts(products, priceDelta, filterArray);
-        setProducts(filteredProductList);
+        console.log("For filter function: " + filterArray);
+        console.log("For filter function: " + priceDelta);
+        // let filteredProductList = ProductList.filterProducts(immutableProductList, priceDelta, filterArray);
+        // console.log(filteredProductList)
+        // setProducts(filteredProductList);
+        props.setFlag(prevState => !prevState)
     }
 
-    function handleCancellClick(e) {
+    function handleCancelClick(e) {
         e.preventDefault();
-        filterArray.splice(2);
-        let filteredProductList = ProductList.filterProducts(immutableProductList, priceDelta, filterArray);
-        setProducts(filteredProductList);
+        let newFilterArray = filterArray;
+        newFilterArray.splice(2)
+        setFilterArray(newFilterArray)
+        priceDelta[0] = 0;
+        priceDelta[1] = 1000000000;
+        console.log(document.getElementById('form'));
+        document.getElementById('form').reset();
+        props.setFlag(prevState => !prevState)
+        // filterArray.splice(2);
+        // let filteredProductList = ProductList.filterProducts(immutableProductList, priceDelta, filterArray);
+        // setProducts(filteredProductList);
     }
 
     const fieldComponent = filledFilterFieldArray.map((item, index) => {
@@ -75,17 +100,20 @@ const Filter = (props) => {
             key={index}
             fieldName={Object.keys(item)[0]}
             fieldArray={item[Object.keys(item)[0]]}
+            setFlag={props.setFlag}
+            filledFilterFieldArray={filledFilterFieldArray}
         />
     })
-    if (props.category) {
         return (
             <fieldset className="filter">
-                <legend>Фильтр по характеристикам</legend>
-                <form>
+                <legend>Фильтр</legend>
+                <form id="form">
                     <PriceFilterField/>
                     {fieldComponent}
                     <button type="submit" onClick={handleSubmitClick}>Найти</button>
-                    <button type="submit" onClick={handleCancellClick}>Сбросить</button>
+                    <button type="submit" onClick={handleCancelClick} >Сбросить</button>
+                    {/*второй вариант для сброса введенных данных в фильтре:*/}
+                    {/*<button type="reset" onClick={handleCancelClick} >Сбросить</button>*/}
                 </form>
             </fieldset>
         );

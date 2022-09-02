@@ -1,65 +1,82 @@
-import React, {useEffect, useState, useContext} from 'react';
-// import { Link, BrowserRouter as Router, Route } from 'react-router-dom';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-
+import React, {useEffect, useState, useMemo} from 'react';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Header from "./header components/Header";
 import SingleProduct from "../components/single product components/SingleProduct";
 import Footer from "./footer components/Footer";
 import Products from "./all products components/Products";
 import ProductService from '../services/ProductService'
-import {ProductListContext, ImmutableProductListContext} from "../services/Context";
-// import CatalogContent from "./CatalogContent";
-
+import {ImmutableProductListContext, FilterArrayContext,ProductListContext} from "../services/Context";
+import ProductList from "../services/ProductList";
 
 function App() {
-    // let {immutableProductList, setImmutableProductList} = useContext(ImmutableProductListContext);
-    // let [immutableProductList, setImmutableProductList] = useState([]);
-    const [products, setProducts] = useState([]);
+    const [immutableProductList, setImmutableProductList] = useState([]);
+    // // let {immutableProductList, setImmutableProductList} = useContext(ImmutableProductListContext);
+    // // let [immutableProductList, setImmutableProductList] = useState([]);
+    // const [products, setProducts] = useState([]);
     const [searchField, setSearchField] = useState("");
+    const [filterArray, setFilterArray] = useState(["", ""]);
+    const [countProductInBasket, setCountProductInBasket] = useState(0);
 
     useEffect(() => {
+        console.log("Вызов useEffect до геттера")
         getAllProducts();
+        console.log("Вызов useEffect после геттера")
     }, [])
 
     const getAllProducts = () => {
-        ProductService.getAllProducts().then((response) =>{
-
-            setProducts(response.data);
-            console.log(products)
+        console.log("Вызов геттера")
+        ProductService.getAllProducts().then((response) => {
+            setImmutableProductList(response.data);
+        }).catch(error => {
+        // ProductService.getAllProducts().then((response) =>{
+        //
+        //     setProducts(response.data);
+        //     console.log(products)
 
         }).catch(error =>{
             console.log(error);
         })
     }
 
-    localStorage.setItem('products', JSON.stringify(products))
-
-    let immutableProductList = JSON.parse(localStorage.getItem('products'))
-
-    console.log(products)
+    // localStorage.setItem('products', JSON.stringify(products))
+    //
+    // let immutableProductList = JSON.parse(localStorage.getItem('products'))
+    //
+    // console.log(products)
     const handleChange = e => {
         setSearchField(e.target.value);
     };
 
-    const [countProductInBasket, setCountProductInBasket] = useState(0);
+    const {productArray}=useMemo(()=>{
+        let productArray = [];
+        productArray.push( ProductList.search(immutableProductList,searchField))
+        return {productArray}
+    },[searchField])
 
     return (
-        <ProductListContext.Provider value={{products, setProducts}}>
         <ImmutableProductListContext.Provider value={{immutableProductList}}>
-        <div className="container">
-            <Router>
-            <Header countProductInBasket={countProductInBasket} searchField={searchField} handleChange={handleChange} />
-                <Routes>
-                    <Route path="/" element={<Products searchField={searchField} />} />
-                    <Route path="/product/:id" element={<SingleProduct countProductInBasket={countProductInBasket} setCountProductInBasket={setCountProductInBasket}/>} />
-                    <Route path="/:category" element={<Products searchField={searchField} />} />
-                    <Route path="/:category/:subcategory" element={<Products searchField={searchField} />} />
-                </Routes>
-            <Footer/>
-            </Router>
-        </div>
+            <ProductListContext.Provider value={{productArray}}>
+            <FilterArrayContext.Provider value={{filterArray, setFilterArray}}>
+                    <div className="container">
+                        <Router>
+                            <Header countProductInBasket={countProductInBasket} searchField={searchField}
+                                 handleChange={handleChange}/>
+                            <Routes>
+                                <Route path="/product/:id" element={<SingleProduct countProductInBasket={countProductInBasket}
+                                    setCountProductInBasket={setCountProductInBasket}/>}/>
+                                <Route path="/:category/:subcategory" element={<Products searchField={searchField}
+                                     />}/>
+                                <Route path="/:category" element={<Products searchField={searchField}
+                                     />}/>
+                                <Route path="/" element={<Products searchField={searchField}
+                                     />}/>
+                            </Routes>
+                            <Footer/>
+                        </Router>
+                    </div>
+                </FilterArrayContext.Provider>
+            </ProductListContext.Provider>
         </ImmutableProductListContext.Provider>
-        </ProductListContext.Provider>
     )
 }
 

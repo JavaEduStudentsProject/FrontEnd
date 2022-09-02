@@ -5,26 +5,19 @@ export const ImmutableProductListContext = React.createContext(null
 //     // {immutableProductList: require('../temp_props.json'),}
     );
 
-export const ProductListContext = React.createContext(null)
+export const ProductListContext = React.createContext(null
 
+);
 
-// export const FilterKeyValueContext = React.createContext( {
-//     filterArray: [
-//         {category: ""},
-//         {subCategory: ""},
-//     ]
-// }
-//     );
-
-// export const FilterKeyValueContext = React.createContext({
-//         category: "",
-//         subCategory: "",
+// export const FilterArrayContext = React.createContext(
+//     {
+//         filterArray: ["", ""],
+//         setFilterArray: () => {}
 //     }
 // );
 
-export const FilterArrayContext = React.createContext({
-    filterArray: ["", ""],
-    }
+export const FilterArrayContext = React.createContext(
+    null
 );
 
 

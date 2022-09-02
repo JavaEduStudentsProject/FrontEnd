@@ -23,7 +23,7 @@ body {
     height: 100vh;
 }
 
-.main-content {
+.single-product {
     box-sizing: border-box;
     color: #ffcf0c;
     height: auto;
@@ -94,19 +94,6 @@ body {
     font-size: 40px;
     /*letter-spacing: -0.05em;*/
 }
-
-/*todo Квадратные маркеры списка и другой цвет. Почему-то перестали отображаться*/
-li {
-    /*display: list-item;*/
-}
-
-/*.main-content > ul {*/
-/*    list-style-type: square;*/
-/*}*/
-
-/*.main-content > ul > li::marker {*/
-/*    color: #61DAFB;*/
-/*}*/
 
 .short-descr > h4 {
     margin: 5px;

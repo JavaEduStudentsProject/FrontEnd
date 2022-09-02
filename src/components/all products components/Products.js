@@ -1,4 +1,4 @@
-import React, {useContext, useState, useMemo, useEffect} from 'react';
+import React, {useContext, useState, useMemo} from 'react';
 import ProductCard from "./ProductCard";
 import MySelect from "../UI/select/MySelect";
 import Filter from "./Filter";

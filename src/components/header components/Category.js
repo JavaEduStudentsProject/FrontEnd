@@ -19,7 +19,13 @@ const Category = (props) => {
     let subcategories = ProductService.getSubCategories(immutableProductList, props.category).map((subCategory, index) => {
             return <SubCategory key={index} category={props.category} subCategory={subCategory}/>;
         })
+    // const {products, setProducts} = React.useContext(ProductListContext);
+    // // const {immutableProductList} = React.useContext(ImmutableProductListContext);
+    // let subcategories = ProductService.getSubCategories(props.immutable, props.category).map((subCategory, index) => {
+    //     return <SubCategory key={index} category={props.category} subCategory={subCategory}/>;
+    // })
 
+    console.log(subcategories)
 
         function filterByCategory() {
             let newFilterArray = [props.category, ""]
@@ -33,6 +39,14 @@ const Category = (props) => {
             // setProducts(renderedProductList);
         }
 
+    // function filterByCategory() {
+    //     filterArray[0] = props.category;
+    //     filterArray[1] = "";
+    //     let renderedProductList = ProductList.filterProducts(props.immutable, priceDelta, filterArray);
+    //     localStorage.setItem(`${props.category}`, JSON.stringify(renderedProductList))
+    //     setProducts(JSON.parse(localStorage.getItem(`${props.category}`)));
+    //     console.log(products)
+    // }
 
     return (
         <div className="categories">

@@ -24,10 +24,13 @@ function App() {
         console.log("Вызов геттера")
         ProductService.getAllProducts().then((response) => {
             setImmutableProductList(response.data);
-        }).catch(error => {
+        }).catch(error =>{
             console.log(error);
         })
     }
+
+//запустить один раз и закомментировать
+    // localStorage.setItem('immutableProductList', JSON.stringify(immutableProductList))
 
     const handleChange = e => {
         setSearchField(e.target.value);

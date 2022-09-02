@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import Field from "./Field";
 import PriceFilterField from "./PriceFilterField";
 import {FilterArrayContext, ImmutableProductListContext, PriceFilterArrayContext, ProductListContext} from "../../services/Context";
@@ -90,6 +90,9 @@ const Filter = (props) => {
         console.log(document.getElementById('form'));
         document.getElementById('form').reset();
         props.setFlag(prevState => !prevState)
+        // filterArray.splice(2);
+        // let filteredProductList = ProductList.filterProducts(immutableProductList, priceDelta, filterArray);
+        // setProducts(filteredProductList);
     }
 
     const fieldComponent = filledFilterFieldArray.map((item, index) => {
@@ -114,6 +117,7 @@ const Filter = (props) => {
                 </form>
             </fieldset>
         );
-};
+    }
+
 
 export default Filter;

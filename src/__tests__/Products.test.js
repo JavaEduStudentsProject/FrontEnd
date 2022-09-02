@@ -1,6 +1,5 @@
 import {render, screen} from '@testing-library/react';
 
-import ProductCard from '../components/all products components/ProductCard'
 import {MemoryRouter} from "react-router";
 import '@testing-library/jest-dom/extend-expect';
 import Products from "../components/all products components/Products";

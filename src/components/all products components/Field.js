@@ -8,9 +8,8 @@ const Field = (props) => {
         <Row
             key={index}
             fieldName={props.fieldName}
-            categoryValue={item}
+            value={item}
             setFlag={props.setFlag}
-            filledFilterFieldArray={props.filledFilterFieldArray}
         />
     )
 

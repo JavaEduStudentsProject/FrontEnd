@@ -40,9 +40,9 @@ const Row = (props) => {
 
     return (
         <div className="filter-field-row">
-            <input type="checkbox" className="row" value={props.categoryValue}
+            <input type="checkbox" className="row" value={props.value}
                    onChange={event => setCategoryValueToArray(event)}/>
-            <label htmlFor="row">{props.categoryValue}</label>
+            <label htmlFor="row">{props.value}</label>
         </div>
     );
 };

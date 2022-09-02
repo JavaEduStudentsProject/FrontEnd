@@ -7,9 +7,8 @@ import { Link } from 'react-router-dom'
 
 
 const ProductCard = (props) => {
-
     const flatProduct = ProductList.flatProduct(props.item);
-    const keys = Object.keys(flatProduct).filter(key => key != "image" && key != "description");
+    const keys = Object.keys(flatProduct).filter(key => key != "image" && key != "description" && key != "title");
 
     const descriptionList = keys.map((key, index) =>
         <li key={flatProduct.id + index}>{keys[index]}: {flatProduct[key]}</li>

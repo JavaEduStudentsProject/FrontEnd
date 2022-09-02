@@ -94,6 +94,7 @@ class ProductList {
     static search(products, searchField) {
         let productArray = [];
         const [category, subcategory] = this.searchCategoryAndSubcategoryFromURL();
+        console.log(category, subcategory)
         if (subcategory !== "") {
             productArray = products.filter(product => ProductList.flatProduct(product)["subCategory"] === subcategory).filter(item => {
                 const fullFilter = item.title + item.description;
@@ -117,6 +118,8 @@ class ProductList {
 /*    Метод парсинга url для получения текущей категории и субкатегории.
     Необходим в данном классе, потому что он не видит useParams().*/
     static searchCategoryAndSubcategoryFromURL() {
+        console.log("Запуск метода парметров url")
+        console.log(window.location.pathname)
         let catAndSubcat = ["", ""];
         let category;
         let subCategory;
@@ -131,8 +134,8 @@ class ProductList {
             }
             category = url.match(regex)[1].replace(re, ' ')
             subCategory = "";
-            catAndSubcat.push(category)
-            catAndSubcat.push(subCategory)
+            catAndSubcat[0] = category;
+            catAndSubcat[1] = subCategory;
             return catAndSubcat;
         }
         category = url.match(regex)[1].replace(re, ' ');
@@ -143,8 +146,8 @@ class ProductList {
 
         subCategory = url.match(regex)[2].replace(re, ' ')
 
-        catAndSubcat.push(category)
-        catAndSubcat.push(subCategory)
+        catAndSubcat[0] = category;
+        catAndSubcat[1] = subCategory;
 
         return catAndSubcat;
     }

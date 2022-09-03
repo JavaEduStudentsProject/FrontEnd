@@ -49,7 +49,11 @@
       "last 1 safari version"
     ]
   },
+  "browser": {
+    "framework/selectors": "./framework/selectors.js"
+  },
   "devDependencies": {
+    "@testing-library/cypress": "^8.0.3",
     "cypress": "^10.7.0"
   }
 }

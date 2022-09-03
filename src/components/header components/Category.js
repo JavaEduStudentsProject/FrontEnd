@@ -17,8 +17,8 @@ const Category = (props) => {
     // const {products, setProducts} = React.useContext(ProductListContext);
     const {immutableProductList} = React.useContext(ImmutableProductListContext);
     let subcategories = ProductService.getSubCategories(immutableProductList, props.category).map((subCategory, index) => {
-            return <SubCategory key={index} category={props.category} subCategory={subCategory}/>;
-        })
+        return <SubCategory key={index} category={props.category} subCategory={subCategory}/>;
+    })
     // const {products, setProducts} = React.useContext(ProductListContext);
     // // const {immutableProductList} = React.useContext(ImmutableProductListContext);
     // let subcategories = ProductService.getSubCategories(props.immutable, props.category).map((subCategory, index) => {
@@ -27,17 +27,26 @@ const Category = (props) => {
 
     console.log(subcategories)
 
-        function filterByCategory() {
-            let newFilterArray = [props.category, ""]
-            setFilterArray(newFilterArray);
-            // setFilterArray(prevState => prevState.map((item, index) => index === 0 ? props.category : filterArray[index]))
-            // filterArray[0] = props.category;
-            console.log(filterArray);
-            let renderedProductList = ProductList.filterProducts(immutableProductList, priceDelta, filterArray);
-            console.log("Лист продуктов для рендеринга после фильтрации по категории")
-            console.log(renderedProductList)
-            // setProducts(renderedProductList);
-        }
+    function filterByCategory() {
+        let newFilterArray = [props.category, ""]
+        setFilterArray(newFilterArray);
+        // setFilterArray(prevState => prevState.map((item, index) => index === 0 ? props.category : filterArray[index]))
+        // filterArray[0] = props.category;
+        console.log(filterArray);
+        let renderedProductList = ProductList.filterProducts(immutableProductList, priceDelta, filterArray);
+        console.log("Лист продуктов для рендеринга после фильтрации по категории")
+        console.log(renderedProductList)
+        // setProducts(renderedProductList);
+
+
+        // if (document.getElementById("link-to-category").style.display === "block") {
+        //     document.getElementById("link-to-category").style.display = "none";
+        // }
+        // else {
+        //     document.getElementById("link-to-category").style.display = "block";
+        // }
+
+    }
 
     // function filterByCategory() {
     //     filterArray[0] = props.category;
@@ -51,7 +60,8 @@ const Category = (props) => {
     return (
         <div className="categories">
             <Link to={`/${props.category}`}
-                  onClick={filterByCategory}>{props.category}</Link>
+                  onClick={filterByCategory}
+                  id="link-to-category">{props.category}</Link>
             <div className="subcategories">
                 {/*<ul>*/}
                 {subcategories}

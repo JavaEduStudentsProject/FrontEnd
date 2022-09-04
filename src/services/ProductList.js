@@ -76,16 +76,15 @@ class ProductList {
 
     // Метод сортировки
     static sortProducts(products, field, directSort) {
-        let sortDate;
-        directSort
-            ?
-            sortDate = ([...products].sort(
-                (a, b) => this.flatProduct(a)[field] > this.flatProduct(b)[field] ? 1 : -1
-            ))
-            :
-            sortDate = ([...products].sort(
-                (a, b) => this.flatProduct(a)[field] > this.flatProduct(b)[field] ? 1 : -1
-            )).reverse();
+        let sortDate = ([...products].sort(
+            (a, b) => {
+                let first = field === "price" ? parseInt(this.flatProduct(a)[field], 10) : this.flatProduct(a)[field];
+                let second = field === "price" ? parseInt(this.flatProduct(b)[field], 10) : this.flatProduct(b)[field];
+                return first > second ? 1 : -1
+            }
+        ));
+
+        sortDate = directSort ? sortDate : sortDate.reverse();
 
         return sortDate;
     }

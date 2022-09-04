@@ -24,6 +24,7 @@ const Products = (props) => {
 
     const [sortingKey, setSortingKey] = useState("");
     const [directSort, setDirectSort] = useState(true);
+    const [sortedProductList, setSortedProductList] = useState([]);
 
     const [currentPage, setCurrentPage] = useState(0);
     const [perPage, setPerPage] = useState(5);
@@ -32,7 +33,6 @@ const Products = (props) => {
 
     const {category, subcategory} = useParams();
 
-    // let tempFilterArray = [category ? category : "", subcategory ? subcategory : ""];
 
     if (category) {
         if (category !== filterArray[0]) {
@@ -44,13 +44,25 @@ const Products = (props) => {
         }
     }
 
+    const sortProducts = (field) => {
+        setSortingKey(field);
+        productArrayForRendering = ProductList.sortProducts(productArrayForRendering, field, directSort);
+        setDirectSort(!directSort);
+        setSortingKey('');
+        setSortedProductList(productArrayForRendering);
+    }
 
     if (props.searchField !== "") {
         productArrayForRendering = productArray[0];
-    } else {
-        productArrayForRendering = ProductList.filterProducts(immutableProductList, priceDelta, filterArray);
     }
 
+    else if (sortedProductList.length) {
+        productArrayForRendering = sortedProductList;
+    }
+
+    else {
+        productArrayForRendering = ProductList.filterProducts(immutableProductList, priceDelta, filterArray);
+    }
 
     const {pagItems, firstPageIndex, lastPageIndex} = useMemo(() => {
             const pageLimit = Math.ceil(productArrayForRendering.length / perPage)
@@ -76,12 +88,14 @@ const Products = (props) => {
         }, [currentPage, productArrayForRendering.length, perPage]
     )
 
-    // const productListPerOnePage = () => {
-    // const productList = productArrayForRendering.map(item => <ProductCard key={item.id} item={item}/>);
     const productListPerOnePage = () => {
+        //вывод по "Показать все"
+        // let lastIndex = lastPageIndex === -1 ? productArrayForRendering.length : lastPageIndex;
         return productArrayForRendering.length
             ?
             productArrayForRendering.slice(firstPageIndex, lastPageIndex).map(item => {
+            //вывод по "Показать все"
+            // productArrayForRendering.slice(firstPageIndex, lastIndex).map(item => {
                 return <ProductCard
                     key={item.id}
                     item={item}
@@ -89,15 +103,6 @@ const Products = (props) => {
             })
             :
             <h4>Продукты не найдены</h4>
-    }
-
-    //todo переделать сортировку
-    const sortProducts = (field) => {
-        setSortingKey(field);
-        productArrayForRendering = ProductList.sortProducts(productArrayForRendering, field, directSort);
-        console.log(productArrayForRendering)
-        setDirectSort(!directSort);
-        setSortingKey('');
     }
 
     const paginationProducts = (field) => {

@@ -266,7 +266,7 @@
       "power": "5 kWt"
     },
     "description": "Very clever robot",
-    "image": "../../images/rd-d2.png"
+    "image": "rd-d2.png"
 
   },
 
@@ -291,7 +291,7 @@
       "power": "10 kWt"
     },
     "description": "With blackjack and...",
-    "image": "../../images/img_4.png"
+    "image": "img_4.png"
   },
 
   {
@@ -315,7 +315,7 @@
       "power": "57 kWt"
     },
     "description": "Will help you to conquer the whole universe",
-    "image": "../../images/img_3.jpg"
+    "image": "img_3.jpg"
   },
 
   {
@@ -339,7 +339,7 @@
       "power": "57 kWt"
     },
     "description": "Will help you to conquer the whole universe",
-    "image": "../../images/img_3.jpg"
+    "image": "img_3.jpg"
   },
 
   {

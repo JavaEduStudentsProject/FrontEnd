@@ -33,6 +33,7 @@ const Products = (props) => {
 
     const {category, subcategory} = useParams();
 
+    localStorage.setItem('immutableProductList', JSON.stringify(immutableProductList));
 
     if (category) {
         if (category !== filterArray[0]) {

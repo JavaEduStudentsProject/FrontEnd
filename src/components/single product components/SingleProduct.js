@@ -16,13 +16,22 @@ export default function SingleProduct(props) {
 
     const { setCountProductInBasket, countProductInBasket} = props;
 
+    function getImage() {
+        console.log(product.image)
+        return product.image[0] !== "h" ? require(`../../images/${product.image}`) : process.env.PUBLIC_URL + product.image;
+
+    }
+
+    let image = getImage();
+
+
     return (
         <div className="single-product">
             <h1 className="productName">{product.title}</h1>
             <div className="main-block">
                 <div className="product-card">
                     <div className="img-and-shortdescr">
-                    <img className="product-img" src={process.env.PUBLIC_URL + product.thumbnail} />
+                    <img className="product-img" src={image} />
                     <ShortProductDescription product={product}/>
                     </div>
                     <div className="full-descr">

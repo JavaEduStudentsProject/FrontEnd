@@ -1,0 +1,248 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductCard component List snapshot 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="card card border-success"
+      >
+        <img
+          alt="Kids Casual Slim Fit"
+          class="card-img-top product-img"
+          src="https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg"
+        />
+        <div
+          class="product-name card-title h5"
+        >
+          Kids Casual Slim Fit
+        </div>
+        <div
+          class="product-description card-body"
+        >
+          <ul>
+            <li>
+              id
+              : 
+              4
+            </li>
+            <li>
+              category
+              : 
+              clothing
+            </li>
+            <li>
+              price
+              : 
+              15.99
+            </li>
+            <li>
+              subCategory
+              : 
+              kid's clothing
+            </li>
+            <li>
+              material
+              : 
+              cotton
+            </li>
+            <li>
+              size
+              : 
+              28
+            </li>
+            <li>
+              rate
+              : 
+              2.1
+            </li>
+            <li>
+              count
+              : 
+              430
+            </li>
+            <li>
+              color
+              : 
+              red
+            </li>
+            <li>
+              country
+              : 
+              Bangladesh
+            </li>
+            <li>
+              style
+              : 
+              casual
+            </li>
+          </ul>
+        </div>
+        <div
+          class="product-price card-subtitle h6"
+        >
+          15.99
+           $
+        </div>
+        <button
+          class="product-button btn btn-primary"
+          type="button"
+        >
+          <a
+            class="link-button"
+            href="/product/4"
+          >
+            Просмотр
+          </a>
+        </button>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="card card border-success"
+    >
+      <img
+        alt="Kids Casual Slim Fit"
+        class="card-img-top product-img"
+        src="https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg"
+      />
+      <div
+        class="product-name card-title h5"
+      >
+        Kids Casual Slim Fit
+      </div>
+      <div
+        class="product-description card-body"
+      >
+        <ul>
+          <li>
+            id
+            : 
+            4
+          </li>
+          <li>
+            category
+            : 
+            clothing
+          </li>
+          <li>
+            price
+            : 
+            15.99
+          </li>
+          <li>
+            subCategory
+            : 
+            kid's clothing
+          </li>
+          <li>
+            material
+            : 
+            cotton
+          </li>
+          <li>
+            size
+            : 
+            28
+          </li>
+          <li>
+            rate
+            : 
+            2.1
+          </li>
+          <li>
+            count
+            : 
+            430
+          </li>
+          <li>
+            color
+            : 
+            red
+          </li>
+          <li>
+            country
+            : 
+            Bangladesh
+          </li>
+          <li>
+            style
+            : 
+            casual
+          </li>
+        </ul>
+      </div>
+      <div
+        class="product-price card-subtitle h6"
+      >
+        15.99
+         $
+      </div>
+      <button
+        class="product-button btn btn-primary"
+        type="button"
+      >
+        <a
+          class="link-button"
+          href="/product/4"
+        >
+          Просмотр
+        </a>
+      </button>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

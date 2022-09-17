@@ -5,12 +5,14 @@
 }
 
 html {
-    height: 100%;
+    /*height: 100%;*/
+
 }
 
 body {
+
     background-color: #ffffff;
-    height: 100%;
+    /*height: 100%;*/
     margin: 0;
 }
 
@@ -92,19 +94,6 @@ body {
     font-size: 40px;
     /*letter-spacing: -0.05em;*/
 }
-
-/*todo Квадратные маркеры списка и другой цвет. Почему-то перестали отображаться*/
-li {
-    /*display: list-item;*/
-}
-
-/*.main-content > ul {*/
-/*    list-style-type: square;*/
-/*}*/
-
-/*.main-content > ul > li::marker {*/
-/*    color: #61DAFB;*/
-/*}*/
 
 .short-descr > h4 {
     margin: 5px;

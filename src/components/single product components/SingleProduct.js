@@ -1,21 +1,29 @@
-import React, {useContext} from "react";
+import React from "react";
 import PriceComponent from "./PriceComponent"
 import MoneyInCreditComponent from "./MoneyInCreditComponent"
 import img from "../../images/img_3.jpg";
 import ShortProductDescription from "./ShortProductDescription";
 import { useParams } from "react-router-dom"
-import {ImmutableProductListContext, ProductListContext} from "../../services/Context";
-
 
 export default function SingleProduct(props) {
-    const {immutableProductList} = useContext(ImmutableProductListContext);
-    console.log(immutableProductList);
-    const {id} = useParams();
-    let product = immutableProductList.find(p => p.id === Number(id));
 
-    console.log(product);
+    let immutable = JSON.parse(localStorage.getItem('immutableProductList'))
+
+    const {id} = useParams();
+    localStorage.setItem(`${id}`, JSON.stringify(immutable.find(p => p.id === Number(id))))
+
+    let product = JSON.parse(localStorage.getItem(`${id}`))
 
     const { setCountProductInBasket, countProductInBasket} = props;
+
+    function getImage() {
+        console.log(product.image)
+        return product.image[0] !== "h" ? require(`../../images/${product.image}`) : process.env.PUBLIC_URL + product.image;
+
+    }
+
+    let image = getImage();
+
 
     return (
         <div className="single-product">
@@ -23,7 +31,7 @@ export default function SingleProduct(props) {
             <div className="main-block">
                 <div className="product-card">
                     <div className="img-and-shortdescr">
-                    <img className="product-img" src={process.env.PUBLIC_URL + product.thumbnail} />
+                    <img className="product-img" src={image} />
                     <ShortProductDescription product={product}/>
                     </div>
                     <div className="full-descr">

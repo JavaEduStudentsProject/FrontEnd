@@ -7,8 +7,8 @@ const Field = (props) => {
     let filterRows = props.fieldArray.map((item, index) =>
         <Row
             key={index}
-            categoryValue={item}
-            // someChecked={someChecked}
+            fieldName={props.fieldName}
+            value={item}
             setFlag={props.setFlag}
         />
     )

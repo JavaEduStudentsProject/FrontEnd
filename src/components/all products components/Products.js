@@ -1,4 +1,4 @@
-import React, {useContext, useState, useMemo, useEffect} from 'react';
+import React, {useContext, useState, useMemo} from 'react';
 import ProductCard from "./ProductCard";
 import MySelect from "../UI/select/MySelect";
 import Filter from "./Filter";
@@ -16,44 +16,24 @@ import ProductList from "../../services/ProductList";
 
 const Products = (props) => {
     let productArrayForRendering = [];
+
     const {immutableProductList} = useContext(ImmutableProductListContext);
+    const {filterArray, setFilterArray} = useContext(FilterArrayContext);
+    const {priceDelta} = useContext(PriceFilterArrayContext);
+    const {productArray} = useContext(ProductListContext);
 
     const [sortingKey, setSortingKey] = useState("");
     const [directSort, setDirectSort] = useState(true);
-
-    const {category, subcategory} = useParams();
+    const [sortedProductList, setSortedProductList] = useState([]);
 
     const [currentPage, setCurrentPage] = useState(0);
     const [perPage, setPerPage] = useState(5);
 
-    // let tempFilterArray = [category ? category : "", subcategory ? subcategory : ""];
-    // console.log(tempFilterArray)
-
-    const {filterArray, setFilterArray} = useContext(FilterArrayContext);
-    const {priceDelta} = useContext(PriceFilterArrayContext);
     const [flag, setFlag] = useState(false);
 
+    const {category, subcategory} = useParams();
 
-    // productArrayForRendering
-    // if (subcategory) {
-    //     productArray = products.filter(product => ProductList.flatProduct(product)["subCategory"] === subcategory).filter(item => {
-    //         const fullFilter = item.title + item.description;
-    //         return fullFilter.toLowerCase().includes(props.searchField.toLowerCase());
-    //     })
-    //
-    // } else if (category) {
-    //     productArray = products.filter(product => product.category === category).filter(item => {
-    //         const fullFilter = item.title + item.description;
-    //         return fullFilter.toLowerCase().includes(props.searchField.toLowerCase());
-    //     })
-    // } else {
-    //     productArray = products.filter(item => {
-    //         const fullFilter = item.title + item.description + item.category;
-    //         return fullFilter.toLowerCase().includes(props.searchField.toLowerCase());
-    //     })
-    //
-    // }
-
+    localStorage.setItem('immutableProductList', JSON.stringify(immutableProductList));
 
     if (category) {
         if (category !== filterArray[0]) {
@@ -65,7 +45,25 @@ const Products = (props) => {
         }
     }
 
-    productArrayForRendering = ProductList.filterProducts(immutableProductList, priceDelta, filterArray);
+    const sortProducts = (field) => {
+        setSortingKey(field);
+        productArrayForRendering = ProductList.sortProducts(productArrayForRendering, field, directSort);
+        setDirectSort(!directSort);
+        setSortingKey('');
+        setSortedProductList(productArrayForRendering);
+    }
+
+    if (props.searchField !== "") {
+        productArrayForRendering = productArray[0];
+    }
+
+    else if (sortedProductList.length) {
+        productArrayForRendering = sortedProductList;
+    }
+
+    else {
+        productArrayForRendering = ProductList.filterProducts(immutableProductList, priceDelta, filterArray);
+    }
 
     const {pagItems, firstPageIndex, lastPageIndex} = useMemo(() => {
             const pageLimit = Math.ceil(productArrayForRendering.length / perPage)
@@ -91,12 +89,14 @@ const Products = (props) => {
         }, [currentPage, productArrayForRendering.length, perPage]
     )
 
-    // const productListPerOnePage = () => {
-    // const productList = productArrayForRendering.map(item => <ProductCard key={item.id} item={item}/>);
     const productListPerOnePage = () => {
+        //вывод по "Показать все"
+        // let lastIndex = lastPageIndex === -1 ? productArrayForRendering.length : lastPageIndex;
         return productArrayForRendering.length
             ?
             productArrayForRendering.slice(firstPageIndex, lastPageIndex).map(item => {
+            //вывод по "Показать все"
+            // productArrayForRendering.slice(firstPageIndex, lastIndex).map(item => {
                 return <ProductCard
                     key={item.id}
                     item={item}
@@ -106,22 +106,13 @@ const Products = (props) => {
             <h4>Продукты не найдены</h4>
     }
 
-    const sortProducts = (field) => {
-        setSortingKey(field);
-        productArrayForRendering = ProductList.sortProducts(productArrayForRendering, field, directSort);
-        console.log(productArrayForRendering)
-        setDirectSort(!directSort);
-        setSortingKey('');
-    }
-
     const paginationProducts = (field) => {
         setPerPage(Number(field))
     }
 
     return (
             <div className="main-content-products">
-                {/*{category && <Filter setFlag={setFlag}/>}*/}
-                <Filter setFlag={setFlag}/>
+                {category && <Filter setFlag={setFlag}/>}
                 <div className="all-products">
                     <Title category={category}/>
                     <MySelect
@@ -145,9 +136,9 @@ const Products = (props) => {
                         ]}/>
 
                     {/*<Scroll>*/}
-                    <ul className="products">
+                    <div className="products">
                         {productListPerOnePage()}
-                    </ul>
+                    </div>
                     {/*</Scroll>*/}
 
                     <Pagination className='justify-content-center'>

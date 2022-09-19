@@ -8,6 +8,7 @@ import avatar1 from '../../images/avatar.jpg'
 import {FilterArrayContext, ImmutableProductListContext, PriceFilterArrayContext} from "../../services/Context";
 import {useParams} from "react-router-dom";
 import ProductList from "../../services/ProductList";
+import {InputFile} from "../file/InputFile";
 
 
 export default function Header(props) {
@@ -38,6 +39,7 @@ export default function Header(props) {
 
 
 
+
     return (
         <header>
             <nav className="nav-panel">
@@ -65,7 +67,9 @@ export default function Header(props) {
                 <button onClick={print1}>Неизменямый список</button>
                 <button onClick={print3}>Фильтры</button>
                 <button onClick={print4}>Диапазон цен</button>
+                {/*<button onClick={print5}>Загрузить файл</button>*/}
                 <a href="http://localhost:3000/">Все продукты</a>
+                <InputFile/>
             </nav>
         </header>
     )

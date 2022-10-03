@@ -7,6 +7,9 @@ import Products from "./all products components/Products";
 import ProductService from '../services/ProductService'
 import {ImmutableProductListContext, FilterArrayContext,ProductListContext} from "../services/Context";
 import ProductList from "../services/ProductList";
+import Login from "../forAuthorization/components/Login";
+import Register from "../forAuthorization/components/Register";
+import Profile from "../forAuthorization/components/Profile";
 
 function App() {
     const [immutableProductList, setImmutableProductList] = useState([]);
@@ -59,6 +62,9 @@ function App() {
                                      />}/>
                                 <Route path="/" element={<Products searchField={searchField}
                                      />}/>
+                                <Route exact path="/login" element={<Login />} />
+                                <Route exact path="/register" element={<Register />} />
+                                <Route exact path="/profile" element={<Profile />} />
                             </Routes>
                             <Footer/>
                         </Router>

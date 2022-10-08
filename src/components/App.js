@@ -45,18 +45,27 @@ function App() {
     }, [searchField])
 
     const addToOrder = (id) => {
-        let isInArray= false;
+        let isInArray = false;
         const newItem = immutableProductList.find((item) => item.id === id);
-        order.forEach(el=>{
-            if(el.id===id)
-                isInArray=true;
+        // let newItemTemp=[{
+        //     id:newItem.id,
+        //     title:newItem.title,
+        //     image:newItem.price,
+        //     discountPercentage:newItem["non-filter_features"]["discountPercentage"],
+        //     quantity:1
+        // }]
+        order.forEach(el => {
+            if (el.id === id)
+                isInArray = true;
         })
-        if(!isInArray)
-        setOrder([...order, newItem]);
+        if (!isInArray)
+
+            setOrder([...order, newItem])
     };
 
     const deleteOrder = (id) => {
-
+        const orderTemp=order.filter(el=>el.id!==id)
+        setOrder(orderTemp)
     };
 
     return (
@@ -65,20 +74,24 @@ function App() {
                 <FilterArrayContext.Provider value={{filterArray, setFilterArray}}>
                     <div className="container">
                         <Router>
-                            <Header order={order} setOrder={setOrder} deleteOrder={deleteOrder} countProductInBasket={countProductInBasket}
+                            <Header order={order} setOrder={setOrder} deleteOrder={deleteOrder}
+                                    countProductInBasket={countProductInBasket}
                                     searchField={searchField}
                                     handleChange={handleChange}/>
                             <Routes>
                                 <Route path="/product/:id"
                                        element={<SingleProduct countProductInBasket={countProductInBasket}
-                                                               deleteOrder={deleteOrder}  addToOrder={addToOrder}
+                                                               deleteOrder={deleteOrder} addToOrder={addToOrder}
                                                                setCountProductInBasket={setCountProductInBasket}/>}/>
                                 <Route path="/:category/:subcategory" element={<Products searchField={searchField}
-                                                                                         deleteOrder={deleteOrder}  addToOrder={addToOrder}/>}/>
+                                                                                         deleteOrder={deleteOrder}
+                                                                                         addToOrder={addToOrder}/>}/>
                                 <Route path="/:category" element={<Products searchField={searchField}
-                                                                            deleteOrder={deleteOrder}  addToOrder={addToOrder}/>}/>
+                                                                            deleteOrder={deleteOrder}
+                                                                            addToOrder={addToOrder}/>}/>
                                 <Route path="/" element={<Products searchField={searchField}
-                                                                   deleteOrder={deleteOrder}  addToOrder={addToOrder}/>}/>
+                                                                   deleteOrder={deleteOrder}
+                                                                   addToOrder={addToOrder}/>}/>
                             </Routes>
                             <Footer/>
                         </Router>

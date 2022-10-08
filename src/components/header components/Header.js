@@ -23,6 +23,7 @@ export default function Header(props) {
     const {filterArray} = useContext(FilterArrayContext);
     const {priceDelta} = useContext(PriceFilterArrayContext);
     const {category, subcategory} = useParams();
+    // const {cart, setCart} = useState(props.order)
 
     console.log(category)
     console.log(subcategory)
@@ -39,6 +40,21 @@ export default function Header(props) {
         console.log(priceDelta)
     }
 
+    // const increase = (id) => {
+    //     console.log("increase", id)/
+    //
+    //     setCart((cart) => {
+    //         return cart.map((product) => {
+    //             if (product.id === id) {
+    //                 return {
+    //                     ...product,
+    //                     quantity: ++product.quantity
+    //                 };
+    //             }
+    //             return product
+    //         })
+    //                 })
+    // }
 
     return (
         <header>
@@ -57,7 +73,8 @@ export default function Header(props) {
 
                         {cartOpen && (
                             <div className={'shop-cart'}>
-                                <Cart order={props.order} setOrder={props.setOrder} deleteOrder={props.deleteOrder}></Cart>
+                                <Cart  order={props.order} setOrder={props.setOrder}
+                                      deleteOrder={props.deleteOrder}></Cart>
                             </div>
                         )}
 

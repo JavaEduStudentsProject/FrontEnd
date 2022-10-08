@@ -9,15 +9,99 @@ html {
 
 }
 
-.title-cart{
-    font-size: 28px;
+.title-cart {
+    font-size: 20px;
     line-height: 1.3;
     font-weight: 700;
 }
 
+.cart {
+    width: 80%;
+    padding: 10px;
+    background: #fcfcfc;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.item-img {
+    position: center;
+    max-width: 40%;
+    max-height: 40%;
+
+    /*width: 40% ;*/
+    /*height: 40%;*/
+    /*margin: auto 40px 40px;*/
+}
+
+.item-name {
+    font-weight: 500;
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.item-price {
+    margin: 8px 0 8px;
+    font-weight: 600;
+    color: #769193;
+    font-size: 1.1em;
+}
+.item-sum{
+    margin: 8px 0 8px;
+    font-weight: 600;
+    color: #000000;
+    font-size: 1.4em;
+}
 
 
+.product-button {
+    background-color: #ffcf0c;
+    font-weight: 600;
+    padding: 15px;
+    font-size: 15px;
+    border-radius: 3px;
+    margin: 10px;
+    cursor: pointer;
+    border: none;
+}
 
+
+.count{
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+}
+
+.count_box{
+    width: 40px;
+    height: 30px;
+    background:white ;
+    border-radius: 3px;
+}
+.count_input{
+    max-width: 100%;
+    padding-top: 4px;
+    /*background-color: transparent;*/
+
+    text-align: center;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1.3;
+}
+.count_input::-webkit-inner-spin-button,
+.count_input::-webkit-outer-spin-button{
+    /*appearance: none;*/
+}
+.count_controls{
+    display: flex;
+
+    flex-direction: column;
+    row-gap: 9px;
+}
+count_controls img{
+    display: block;
+
+}
 
 
 

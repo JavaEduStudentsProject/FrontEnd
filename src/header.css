@@ -197,11 +197,10 @@ nav > h3, nav > h4 {
     position: absolute;
     top: 80px;
     right: 0;
-    width: 450px;
-    min-height: 100px;
-    background: #ffcf0c;
-    /*-webkit-box-shadow: 40px 5px 15px -7px #e80909;*/
-    /*box-shadow: 40px 5px 15px -5px #fc0b0b;*/
-    z-index: 1000;
+    width: 300px;
+        background: #ffcf0c;
+
+    padding: 20px;
+    padding-bottom: 0;
 }
 

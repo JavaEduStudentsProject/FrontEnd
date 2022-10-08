@@ -3,6 +3,7 @@ import ProductCard from "./ProductCard";
 import MySelect from "../UI/select/MySelect";
 import Filter from "./Filter";
 import Scroll from "./Scroll";
+
 import {
     FilterArrayContext,
     ImmutableProductListContext, PriceFilterArrayContext,
@@ -12,6 +13,7 @@ import {useParams} from "react-router-dom";
 import Title from "../../components/all products components/Title";
 import Pagination from "react-bootstrap/Pagination";
 import ProductList from "../../services/ProductList";
+import {useLocalStorage} from "../../hooks/useLocalStorage";
 
 
 const Products = (props) => {
@@ -33,7 +35,9 @@ const Products = (props) => {
 
     const {category, subcategory} = useParams();
 
+
     localStorage.setItem('immutableProductList', JSON.stringify(immutableProductList));
+
 
     if (category) {
         if (category !== filterArray[0]) {
@@ -55,13 +59,9 @@ const Products = (props) => {
 
     if (props.searchField !== "") {
         productArrayForRendering = productArray[0];
-    }
-
-    else if (sortedProductList.length) {
+    } else if (sortedProductList.length) {
         productArrayForRendering = sortedProductList;
-    }
-
-    else {
+    } else {
         productArrayForRendering = ProductList.filterProducts(immutableProductList, priceDelta, filterArray);
     }
 
@@ -89,17 +89,19 @@ const Products = (props) => {
         }, [currentPage, productArrayForRendering.length, perPage]
     )
 
+
     const productListPerOnePage = () => {
         //вывод по "Показать все"
         // let lastIndex = lastPageIndex === -1 ? productArrayForRendering.length : lastPageIndex;
         return productArrayForRendering.length
             ?
             productArrayForRendering.slice(firstPageIndex, lastPageIndex).map(item => {
-            //вывод по "Показать все"
-            // productArrayForRendering.slice(firstPageIndex, lastIndex).map(item => {
+                //вывод по "Показать все"
+                // productArrayForRendering.slice(firstPageIndex, lastIndex).map(item => {
                 return <ProductCard
                     key={item.id}
                     item={item}
+                    addToOrder={props.addToOrder}
                 />
             })
             :
@@ -111,44 +113,44 @@ const Products = (props) => {
     }
 
     return (
-            <div className="main-content-products">
-                {category && <Filter setFlag={setFlag}/>}
-                <div className="all-products">
-                    <Title category={category}/>
-                    <MySelect
-                        value={sortingKey}
-                        onChange={sortProducts}
-                        defaultValue="Сортировка по"
-                        options={[
-                            {value: 'id', name: "По id"},
-                            {value: 'category', name: "По категории"},
-                            {value: 'price', name: "По цене"},
-                        ]}
-                    />
-                    <MySelect
-                        value={sortingKey}
-                        onChange={paginationProducts}
-                        defaultValue="5"
-                        options={[
-                            {value: '10', name: "10"},
-                            {value: '50', name: "50"},
-                            {value: `-1`, name: "Показать все"},
-                        ]}/>
+        <div className="main-content-products">
+            {category && <Filter setFlag={setFlag}/>}
+            <div className="all-products">
+                <Title category={category}/>
+                <MySelect
+                    value={sortingKey}
+                    onChange={sortProducts}
+                    defaultValue="Сортировка по"
+                    options={[
+                        {value: 'id', name: "По id"},
+                        {value: 'category', name: "По категории"},
+                        {value: 'price', name: "По цене"},
+                    ]}
+                />
+                <MySelect
+                    value={sortingKey}
+                    onChange={paginationProducts}
+                    defaultValue="5"
+                    options={[
+                        {value: '10', name: "10"},
+                        {value: '50', name: "50"},
+                        {value: `-1`, name: "Показать все"},
+                    ]}/>
 
-                    {/*<Scroll>*/}
-                    <div className="products">
-                        {productListPerOnePage()}
-                    </div>
-                    {/*</Scroll>*/}
-
-                    <Pagination className='justify-content-center'>
-                        {/*<Pagination.Prev/>*/}
-                        {pagItems}
-                        {/*<Pagination.Next/>*/}
-                    </Pagination>
-
+                {/*<Scroll>*/}
+                <div className="products">
+                    {productListPerOnePage()}
                 </div>
+                {/*</Scroll>*/}
+
+                <Pagination className='justify-content-center'>
+                    {/*<Pagination.Prev/>*/}
+                    {pagItems}
+                    {/*<Pagination.Next/>*/}
+                </Pagination>
+
             </div>
+        </div>
     );
 };
 

@@ -5,7 +5,7 @@ function ProductPlusMinusButton(props) {
     // let price = 100000000;
     let [count, setCount] = useState(0);
 
-    const { setCountProductInBasket, countProductInBasket} = props;
+    const {setCountProductInBasket, countProductInBasket} = props;
 
     function incrementProductCount() {
         setCount(++count);
@@ -21,10 +21,16 @@ function ProductPlusMinusButton(props) {
         <div className="price">
             <h2>Цена: {props.product.price}</h2>
             <MyButton id="cartPlusButton" onClick={() => {
-                setCountProductInBasket(countProductInBasket+1)
+                props.addToOrder(props.product.id)
+                setCountProductInBasket(countProductInBasket + 1)
                 incrementProductCount()
             }}>В корзину</MyButton>
-            <MyButton id="cartMinusButton" onClick={decrementProductCount}>Удалить</MyButton>
+            <MyButton id="cartMinusButton" onClick={() => {
+                props.deleteOrder(props.product.id)
+                setCountProductInBasket(countProductInBasket - 1)
+
+                decrementProductCount()
+            }}>Удалить</MyButton>
             <h3>В корзине: {count}</h3>
         </div>
     );

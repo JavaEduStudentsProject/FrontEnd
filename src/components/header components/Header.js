@@ -57,7 +57,7 @@ export default function Header(props) {
 
                         {cartOpen && (
                             <div className={'shop-cart'}>
-                                <Cart></Cart>
+                                <Cart order={props.order} setOrder={props.setOrder} deleteOrder={props.deleteOrder}></Cart>
                             </div>
                         )}
 

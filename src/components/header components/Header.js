@@ -14,7 +14,7 @@ import Cart from "../Cart/Cart"
 
 export default function Header(props) {
     let [cartOpen, setCartOpen] = useState(false)
-
+    const [quantity, setQuantity] = useState(1);
     const {immutableProductList} = useContext(ImmutableProductListContext);
     const {countProductInBasket} = props;
 
@@ -74,7 +74,7 @@ export default function Header(props) {
                         {cartOpen && (
                             <div className={'shop-cart'}>
                                 <Cart  order={props.order} setOrder={props.setOrder}
-                                      deleteOrder={props.deleteOrder}></Cart>
+                                      deleteOrder={props.deleteOrder} quantity={quantity}  setQuantity ={setQuantity}></Cart>
                             </div>
                         )}
 

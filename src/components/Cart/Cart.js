@@ -6,12 +6,13 @@ import React, {useState} from 'react';
 import Count from "./Count";
 
 const increase = (id) => {
-     console.log("increase", id)
+    console.log("increase", id)
 
- }
+}
 const showOrders = (props) => {
+
     let summa = 0;
-    props.order.forEach(el => summa += Number.parseFloat(el.price))
+    props.order.forEach(el => summa += Number.parseFloat(el.price) * props.quantity)
     return (
         <div>
             <h1 className="title-cart">Корзина</h1>
@@ -26,12 +27,17 @@ const showOrders = (props) => {
                             <Button onClick={() => props.deleteOrder(productInCart.id)} className="product-button"
                                     variant="primary"> удалить
                             </Button>
-                            <Count increase={increase} id={productInCart.id}/>
+                            <Count Cart={Cart} increase={increase} quantity={props.quantity}
+                                   setQuantity={props.setQuantity} id={productInCart.id}/>
                         </Card>
                 )
             }
-            <p className="item-sum"> Cумма: {new Intl.NumberFormat().format(summa)}</p>
+            <p className="item-sum"> Cумма: {(new Intl.NumberFormat().format(summa))}</p>
 
+            <Button  className="order-button" variant="primary">
+                Создать заказ
+                <Link className="link-button" to={`/order`}></Link>
+            </Button>
         </div>)
 }
 
@@ -40,10 +46,11 @@ const showNothing = () => {
         <div>
             <h1 className="title-cart">Товаров нет</h1>
         </div>
+
     )
 }
 const Cart = (props) => {
-        return (
+    return (
         <div>
             {
                 props.order.length > 0 ?

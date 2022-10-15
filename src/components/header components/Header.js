@@ -16,6 +16,7 @@ export default function Header(props) {
 
     const {immutableProductList} = useContext(ImmutableProductListContext);
     const {countProductInBasket} = props;
+    const [testRESTAPIArray, setTestRESTAPIArray] = useState([]);
 
     //todo кнопки для отладки, удалить:
 
@@ -36,6 +37,22 @@ export default function Header(props) {
 
     function print4() {
         console.log(priceDelta)
+    }
+
+    function print5() {
+        let userId = 97 //в перспективе заменить на метод получения id текущего пользователя
+        ProductService.getRecommendedProducts(userId)
+            .then(result => result.json())
+            .then(currentData => setTestRESTAPIArray(currentData));
+    }
+    console.log("data 2: " + testRESTAPIArray)
+
+    function print6() {
+        let basketArray = [3, 6, 35]
+        ProductService.getRecommendedProductsFromBasket(basketArray)
+            .then(result => result.json())
+            .then(currentData => setTestRESTAPIArray(currentData));
+
     }
 
 
@@ -114,6 +131,8 @@ export default function Header(props) {
                 <button onClick={print1}>Неизменямый список</button>
                 <button onClick={print3}>Фильтры</button>
                 <button onClick={print4}>Диапазон цен</button>
+                <button onClick={print5}>Тест оркестратора</button>
+                <button onClick={print6}>Рекомендация для корзины</button>
                 <a href="http://localhost:3000/">Все продукты</a>
             </nav>
         </header>

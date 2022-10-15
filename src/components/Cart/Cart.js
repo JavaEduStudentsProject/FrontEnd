@@ -34,7 +34,7 @@ const showOrders = (props) => {
             }
             <p className="item-sum"> Cумма: {(new Intl.NumberFormat().format(summa))}</p>
 
-            <Button  className="order-button" variant="primary">
+            <Button className="order-button" variant="primary">
                 Создать заказ
                 <Link className="link-button" to={`/order`}></Link>
             </Button>

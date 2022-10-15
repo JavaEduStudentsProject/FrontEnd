@@ -16,6 +16,7 @@ function App() {
     const [searchField, setSearchField] = useState("");
     const [filterArray, setFilterArray] = useState(["", ""]);
     const [countProductInBasket, setCountProductInBasket] = useState(0);
+    const [order, setOrder] = useLocalStorage([], "order")
 
     useEffect(() => {
         console.log("Вызов useEffect до геттера")
@@ -27,7 +28,7 @@ function App() {
         console.log("Вызов геттера")
         ProductService.getAllProducts().then((response) => {
             setImmutableProductList(response.data);
-        }).catch(error =>{
+        }).catch(error => {
             console.log(error);
         })
     }
@@ -39,32 +40,64 @@ function App() {
         setSearchField(e.target.value);
     };
 
-    const {productArray}=useMemo(()=>{
+    const {productArray} = useMemo(() => {
         let productArray = [];
-        productArray.push( ProductList.search(immutableProductList,searchField))
+        productArray.push(ProductList.search(immutableProductList, searchField))
         return {productArray}
-    },[searchField])
+    }, [searchField])
+
+    const addToOrder = (id) => {
+        let isInArray = false;
+        const newItem = immutableProductList.find((item) => item.id === id);
+        // let newItemTemp=[{
+        //     id:newItem.id,
+        //     title:newItem.title,
+        //     image:newItem.price,
+        //     discountPercentage:newItem["non-filter_features"]["discountPercentage"],
+        //     quantity:1
+        // }]
+        order.forEach(el => {
+            if (el.id === id)
+                isInArray = true;
+        })
+        if (!isInArray)
+
+            setOrder([...order, newItem])
+    };
+
+    const deleteOrder = (id) => {
+        const orderTemp=order.filter(el=>el.id!==id)
+        setOrder(orderTemp)
+    };
 
     return (
         <ImmutableProductListContext.Provider value={{immutableProductList}}>
             <ProductListContext.Provider value={{productArray}}>
-            <FilterArrayContext.Provider value={{filterArray, setFilterArray}}>
+                <FilterArrayContext.Provider value={{filterArray, setFilterArray}}>
                     <div className="container">
                         <Router>
-                            <Header countProductInBasket={countProductInBasket} searchField={searchField}
-                                 handleChange={handleChange}/>
+                            <Header order={order} setOrder={setOrder} deleteOrder={deleteOrder}
+                                    countProductInBasket={countProductInBasket}
+                                    searchField={searchField}
+                                    handleChange={handleChange}/>
                             <Routes>
-                                <Route path="/product/:id" element={<SingleProduct countProductInBasket={countProductInBasket}
-                                    setCountProductInBasket={setCountProductInBasket}/>}/>
+                                <Route path="/product/:id"
+                                       element={<SingleProduct countProductInBasket={countProductInBasket}
+                                                               deleteOrder={deleteOrder} addToOrder={addToOrder}
+                                                               setCountProductInBasket={setCountProductInBasket}/>}/>
                                 <Route path="/:category/:subcategory" element={<Products searchField={searchField}
-                                     />}/>
+                                                                                         deleteOrder={deleteOrder}
+                                                                                         addToOrder={addToOrder}/>}/>
                                 <Route path="/:category" element={<Products searchField={searchField}
-                                     />}/>
+                                                                            deleteOrder={deleteOrder}
+                                                                            addToOrder={addToOrder}/>}/>
                                 <Route path="/" element={<Products searchField={searchField}
-                                     />}/>
+                                                                   deleteOrder={deleteOrder}
+                                                                   addToOrder={addToOrder}/>}/>
                                 <Route exact path="/login" element={<Login />} />
                                 <Route exact path="/register" element={<Register />} />
                                 <Route exact path="/profile" element={<Profile />} />
+
                             </Routes>
                             <Footer/>
                         </Router>

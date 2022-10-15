@@ -1,7 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap');
+/**/
+.header {
+    position: relative;
+}
 
 .nav-panel {
-    display: flex;
+        display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
@@ -53,7 +57,7 @@ nav > h3, nav > h4 {
     /*width: 100%;*/
     /*overflow:auto;*/
     /*width: 87%;*/
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
     /*margin-right: 10px;*/
     margin-left: 10px;
@@ -95,14 +99,13 @@ nav > h3, nav > h4 {
 .subcategories {
     font-weight: normal;
     font-size: 15px;
-    display:none;
+    display: none;
 }
 
-.categories:hover .subcategories{
+.categories:hover .subcategories {
 
-    display:block;
+    display: block;
 }
-
 
 
 /*=====Search menu block=====*/
@@ -119,7 +122,7 @@ nav > h3, nav > h4 {
 .search-field {
     margin-right: 340px;
     width: 600px;
-    height:40px;
+    height: 40px;
 }
 
 
@@ -143,6 +146,7 @@ nav > h3, nav > h4 {
     transition: 0.4s;
     transform: scale(1.1);
 }
+
 /*Оформление конфигурационных кнопок*/
 
 
@@ -165,15 +169,38 @@ nav > h3, nav > h4 {
 
 }
 
-.avatarIcon{
+.avatarIcon {
     margin-right: 90px;
     margin-left: 20px;
 }
 
-.userIcons{
+.userIcons {
     margin-right: 90px;
     display: flex;
     flex-direction: row;
 }
 
+.shop-cart-button {
+    float: right;
+    cursor: pointer;
+    transition: color, transform 500ms ease;
+}
+
+/*корзина новые стили*/
+.shop-cart-button:hover,
+.shop-cart-button.active {
+    color: #ffcf0c;
+    transform: scale(1.5);
+}
+
+.shop-cart {
+    position: absolute;
+    top: 80px;
+    right: 0;
+    width: 300px;
+        background: #ffcf0c;
+
+    padding: 20px;
+    padding-bottom: 0;
+}
 

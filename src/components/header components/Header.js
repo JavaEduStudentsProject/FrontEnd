@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect} from "react";
+import React, {useContext, useState} from "react";
 import img from "../../images/img_1.png";
 import DropDownMenu from "./DropDownMenu";
 import SearchField from "./SearchField";
@@ -10,10 +10,13 @@ import {Link, useParams} from "react-router-dom";
 import ProductList from "../../services/ProductList";
 import AuthService from "../../forAuthorization/services/auth.service";
 import EventBus from "../../forAuthorization/common/EventBus";
+import {FaShoppingCart} from "react-icons/fa";
+import Cart from "../Cart/Cart"
 
 
 export default function Header(props) {
-
+    let [cartOpen, setCartOpen] = useState(false)
+    const [quantity, setQuantity] = useState(1);
     const {immutableProductList} = useContext(ImmutableProductListContext);
     const {countProductInBasket} = props;
     const [testRESTAPIArray, setTestRESTAPIArray] = useState([]);
@@ -85,11 +88,28 @@ export default function Header(props) {
         setCurrentUser(undefined);
     };
 
+    // const increase = (id) => {
+    //     console.log("increase", id)/
+    //
+    //     setCart((cart) => {
+    //         return cart.map((product) => {
+    //             if (product.id === id) {
+    //                 return {
+    //                     ...product,
+    //                     quantity: ++product.quantity
+    //                 };
+    //             }
+    //             return product
+    //         })
+    //                 })
+    // }
 
     return (
         <header>
             <nav className="nav-panel">
-                <img className="nav-img" src={img} onClick={()=>{window.location.assign("/")}}/>
+                <img className="nav-img" src={img} onClick={() => {
+                    window.location.assign("/")
+                }}/>
                 <DropDownMenu/>
                 <SearchField handleChange={props.handleChange} searchField={props.searchField}/>
 
@@ -120,6 +140,29 @@ export default function Header(props) {
                                 </Stack>
                         </div>
                     )}
+                {/*<div className="userIcons">*/}
+                {/*    <Stack>*/}
+                {/*        /!*<Avatar alt="Корзина"*!/*/}
+                {/*        /!*        src='https://thumbs.dreamstime.com/b/%D0%B7%D0%BD%D0%B0%D1%87%D0%BE%D0%BA-%D0%BA%D0%BE%D1%80%D0%B7%D0%B8%D0%BD%D1%8B-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B9-%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D1%80-%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%B0-%D0%B7%D0%B0%D0%BF%D0%BE%D0%BB%D0%BD%D0%B8%D0%BB%D0%B0-%D0%BB%D0%B8%D0%BD%D0%B8%D1%8E-%D0%BF%D0%B8%D0%BA%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D1%83-171571446.jpg'/>*!/*/}
+                {/*        <FaShoppingCart onClick={() => setCartOpen(cartOpen = !cartOpen)}*/}
+                {/*                        className={`shop-cart-button ${cartOpen && 'active'}`}/>*/}
+
+                {/*        {cartOpen && (*/}
+                {/*            <div className={'shop-cart'}>*/}
+                {/*                <Cart order={props.order} setOrder={props.setOrder}*/}
+                {/*                      deleteOrder={props.deleteOrder} quantity={quantity}*/}
+                {/*                      setQuantity={setQuantity}></Cart>*/}
+                {/*            </div>*/}
+                {/*        )}*/}
+
+                {/*        <span className="count-products-in-basket">{countProductInBasket}</span>*/}
+                {/*    </Stack>*/}
+
+                {/*    <Stack className="avatarIcon">*/}
+                {/*        <Avatar alt="Пользователь" src={avatar1}/>*/}
+                {/*    </Stack>*/}
+
+                {/*</div>*/}
 
             </nav>
             <nav className="nav-list">

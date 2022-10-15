@@ -39,6 +39,11 @@ const ProductCard = (props) => {
                     <Link className="link-button" to={`/product/${flatProduct.id}`}>Просмотр</Link>
                 </Button>
 
+            <Button onClick={() => props.addToOrder(flatProduct.id)} className="product-button" variant="primary">
+            В корзину
+                {/*<Link className="link-button" to={`/product/${flatProduct.id}`}>В корзину</Link>*/}
+            </Button>
+
             </Card>
         </>
     );

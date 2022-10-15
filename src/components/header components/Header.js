@@ -23,7 +23,6 @@ export default function Header(props) {
     const {filterArray} = useContext(FilterArrayContext);
     const {priceDelta} = useContext(PriceFilterArrayContext);
     const {category, subcategory} = useParams();
-    // const {cart, setCart} = useState(props.order)
 
     console.log(category)
     console.log(subcategory)

@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import img from "../../images/img_1.png";
 import DropDownMenu from "./DropDownMenu";
 import SearchField from "./SearchField";
@@ -12,6 +12,7 @@ import AuthService from "../../forAuthorization/services/auth.service";
 import EventBus from "../../forAuthorization/common/EventBus";
 import {FaShoppingCart} from "react-icons/fa";
 import Cart from "../Cart/Cart"
+import ProductService from "../../services/ProductService";
 
 
 export default function Header(props) {
@@ -31,6 +32,7 @@ export default function Header(props) {
     console.log(subcategory)
 
     function print1() {
+        FaShoppingCart.
         console.log(immutableProductList)
     }
 
@@ -43,8 +45,8 @@ export default function Header(props) {
     }
 
     function print5() {
-        let userId = 97 //в перспективе заменить на метод получения id текущего пользователя
-        ProductService.getRecommendedProducts(userId)
+        let username = "cdavydochkin2o" //в перспективе заменить на метод получения id текущего пользователя
+        ProductService.getRecommendedProducts(username)
             .then(result => result.json())
             .then(currentData => setTestRESTAPIArray(currentData));
     }

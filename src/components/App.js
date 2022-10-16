@@ -10,6 +10,7 @@ import ProductList from "../services/ProductList";
 import Login from "../forAuthorization/components/Login";
 import Register from "../forAuthorization/components/Register";
 import Profile from "../forAuthorization/components/Profile";
+import {useLocalStorage} from "../hooks/useLocalStorage";
 
 function App() {
     const [immutableProductList, setImmutableProductList] = useState([]);

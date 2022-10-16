@@ -13,11 +13,11 @@ class ProductService{
         return axios.get(PRODUCT_BASE_REST_API_URL)
     }
 
-    getRecommendedProducts(userId) {
+    getRecommendedProducts(username) {
         console.log("Функция getRecommendedProducts начала работу")
         let promise;
         try {
-            promise = fetch(`http://localhost:8083/request_from_react/${userId}`, {
+            promise = fetch(`http://localhost:8083/request_from_react/${username}`, {
                 method: "GET",
                 headers: {
                     "Access-Control-Allow-Origin": '*',

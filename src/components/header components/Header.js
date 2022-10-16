@@ -7,7 +7,6 @@ import Stack from '@mui/material/Stack';
 import avatar1 from '../../images/avatar.jpg'
 import {FilterArrayContext, ImmutableProductListContext, PriceFilterArrayContext} from "../../services/Context";
 import {useParams} from "react-router-dom";
-import ProductList from "../../services/ProductList";
 import {FaShoppingCart} from "react-icons/fa";
 import Cart from "../Cart/Cart"
 
@@ -39,22 +38,6 @@ export default function Header(props) {
         console.log(priceDelta)
     }
 
-    // const increase = (id) => {
-    //     console.log("increase", id)/
-    //
-    //     setCart((cart) => {
-    //         return cart.map((product) => {
-    //             if (product.id === id) {
-    //                 return {
-    //                     ...product,
-    //                     quantity: ++product.quantity
-    //                 };
-    //             }
-    //             return product
-    //         })
-    //                 })
-    // }
-
     return (
         <header>
             <nav className="nav-panel">
@@ -74,7 +57,7 @@ export default function Header(props) {
                             <div className={'shop-cart'}>
                                 <Cart order={props.order} setOrder={props.setOrder}
                                       deleteOrder={props.deleteOrder} quantity={quantity}
-                                      setQuantity={setQuantity}></Cart>
+                                      setQuantity={setQuantity} cartOpen={cartOpen} setCartOpen={setCartOpen}></Cart>
                             </div>
                         )}
 

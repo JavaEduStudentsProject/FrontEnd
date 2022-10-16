@@ -1,7 +1,4 @@
-import { GoArrowSmallUp } from "react-icons/go";
-import { GoArrowSmallDown } from "react-icons/go";
-import Cart from "./Cart";
-import {useState} from "react";
+
 
 const Count=(props)=>{
 

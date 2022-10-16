@@ -8,6 +8,7 @@ import ProductService from '../services/ProductService'
 import {ImmutableProductListContext, FilterArrayContext, ProductListContext} from "../services/Context";
 import ProductList from "../services/ProductList";
 import {useLocalStorage} from "../hooks/useLocalStorage";
+import Order from "./Cart/Order";
 
 function App() {
     const [immutableProductList, setImmutableProductList] = useState([]);
@@ -92,6 +93,7 @@ function App() {
                                 <Route path="/" element={<Products searchField={searchField}
                                                                    deleteOrder={deleteOrder}
                                                                    addToOrder={addToOrder}/>}/>
+                                <Route path="/order" element={<Order order={order} setOrder={setOrder}/>} />
                             </Routes>
                             <Footer/>
                         </Router>

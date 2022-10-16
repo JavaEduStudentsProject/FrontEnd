@@ -2,8 +2,8 @@ import "./styleCart.css"
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import {Link} from "react-router-dom";
-import React, {useState} from 'react';
 import Count from "./Count";
+import React from "react";
 
 const increase = (id) => {
     console.log("increase", id)
@@ -34,9 +34,8 @@ const showOrders = (props) => {
             }
             <p className="item-sum"> Cумма: {(new Intl.NumberFormat().format(summa))}</p>
 
-            <Button className="order-button" variant="primary">
-                Создать заказ
-                <Link className="link-button" to={`/order`}></Link>
+            <Button className="order-button" onClick={() => props.setCartOpen(!props.cartOpen)}>
+                <Link className="link-button" to={`/order/`}>Создать заказ</Link>
             </Button>
         </div>)
 }

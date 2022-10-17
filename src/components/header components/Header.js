@@ -90,22 +90,6 @@ export default function Header(props) {
         setCurrentUser(undefined);
     };
 
-    // const increase = (id) => {
-    //     console.log("increase", id)/
-    //
-    //     setCart((cart) => {
-    //         return cart.map((product) => {
-    //             if (product.id === id) {
-    //                 return {
-    //                     ...product,
-    //                     quantity: ++product.quantity
-    //                 };
-    //             }
-    //             return product
-    //         })
-    //                 })
-    // }
-
     return (
         <header>
             <nav className="nav-panel">
@@ -123,9 +107,9 @@ export default function Header(props) {
 
                                         {cartOpen && (
                                             <div className={'shop-cart'}>
-                                                <Cart order={props.order} setOrder={props.setOrder}
-                                                      deleteOrder={props.deleteOrder} quantity={quantity}
-                                                      setQuantity={setQuantity}></Cart>
+                                                <Cart productsInCart={props.productsInCart} setProductsInCart={props.setProductsInCart}
+                                                      deleteProductInCart={props.deleteProductInCart} quantity={quantity}
+                                                      setQuantity={setQuantity} cartOpen={cartOpen} setCartOpen={setCartOpen}></Cart>
                                             </div>
                                         )}
                                 <span className="count-products-in-basket">{countProductInBasket}</span>

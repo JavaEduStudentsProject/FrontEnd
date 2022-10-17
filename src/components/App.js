@@ -11,13 +11,14 @@ import Login from "../forAuthorization/components/Login";
 import Register from "../forAuthorization/components/Register";
 import Profile from "../forAuthorization/components/Profile";
 import {useLocalStorage} from "../hooks/useLocalStorage";
+import Order from "./Cart/Order";
 
 function App() {
     const [immutableProductList, setImmutableProductList] = useState([]);
     const [searchField, setSearchField] = useState("");
     const [filterArray, setFilterArray] = useState(["", ""]);
     const [countProductInBasket, setCountProductInBasket] = useState(0);
-    const [order, setOrder] = useLocalStorage([], "order")
+    const [productsInCart, setProductsInCart] = useLocalStorage([], "productsInCart")
 
     useEffect(() => {
         console.log("Вызов useEffect до геттера")
@@ -47,7 +48,7 @@ function App() {
         return {productArray}
     }, [searchField])
 
-    const addToOrder = (id) => {
+    const addProductInCart = (id) => {
         let isInArray = false;
         const newItem = immutableProductList.find((item) => item.id === id);
         // let newItemTemp=[{
@@ -57,18 +58,18 @@ function App() {
         //     discountPercentage:newItem["non-filter_features"]["discountPercentage"],
         //     quantity:1
         // }]
-        order.forEach(el => {
+        productsInCart.forEach(el => {
             if (el.id === id)
                 isInArray = true;
         })
         if (!isInArray)
 
-            setOrder([...order, newItem])
+            setProductsInCart([...productsInCart, newItem])
     };
 
-    const deleteOrder = (id) => {
-        const orderTemp=order.filter(el=>el.id!==id)
-        setOrder(orderTemp)
+    const deleteProductInCart = (id) => {
+        const productsInCartTemp=productsInCart.filter(el=>el.id!==id)
+        setProductsInCart(productsInCartTemp)
     };
 
     return (
@@ -77,27 +78,28 @@ function App() {
                 <FilterArrayContext.Provider value={{filterArray, setFilterArray}}>
                     <div className="container">
                         <Router>
-                            <Header order={order} setOrder={setOrder} deleteOrder={deleteOrder}
+                            <Header productsInCart={productsInCart} setProductsInCart={setProductsInCart} deleteProductInCart={deleteProductInCart}
                                     countProductInBasket={countProductInBasket}
                                     searchField={searchField}
                                     handleChange={handleChange}/>
                             <Routes>
                                 <Route path="/product/:id"
                                        element={<SingleProduct countProductInBasket={countProductInBasket}
-                                                               deleteOrder={deleteOrder} addToOrder={addToOrder}
+                                                               deleteProductInCart={deleteProductInCart} addProductInCart={addProductInCart}
                                                                setCountProductInBasket={setCountProductInBasket}/>}/>
                                 <Route path="/:category/:subcategory" element={<Products searchField={searchField}
-                                                                                         deleteOrder={deleteOrder}
-                                                                                         addToOrder={addToOrder}/>}/>
+                                                                                         deleteProductInCart={deleteProductInCart}
+                                                                                         addProductInCart={addProductInCart}/>}/>
                                 <Route path="/:category" element={<Products searchField={searchField}
-                                                                            deleteOrder={deleteOrder}
-                                                                            addToOrder={addToOrder}/>}/>
+                                                                            deleteProductInCart={deleteProductInCart}
+                                                                            addProductInCart={addProductInCart}/>}/>
                                 <Route path="/" element={<Products searchField={searchField}
-                                                                   deleteOrder={deleteOrder}
-                                                                   addToOrder={addToOrder}/>}/>
+                                                                   deleteProductInCart={deleteProductInCart}
+                                                                   addProductInCart={addProductInCart}/>}/>
                                 <Route exact path="/login" element={<Login />} />
                                 <Route exact path="/register" element={<Register />} />
                                 <Route exact path="/profile" element={<Profile />} />
+                                <Route path="/order" element={<Order productsInCart={productsInCart} setProductsInCart={setProductsInCart}/>} />
 
                             </Routes>
                             <Footer/>

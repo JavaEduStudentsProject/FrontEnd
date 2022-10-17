@@ -81,7 +81,8 @@ function App() {
                             <Header productsInCart={productsInCart} setProductsInCart={setProductsInCart} deleteProductInCart={deleteProductInCart}
                                     countProductInBasket={countProductInBasket}
                                     searchField={searchField}
-                                    handleChange={handleChange}/>
+                                    handleChange={handleChange}
+                                    />
                             <Routes>
                                 <Route path="/product/:id"
                                        element={<SingleProduct countProductInBasket={countProductInBasket}
@@ -94,13 +95,12 @@ function App() {
                                                                             deleteProductInCart={deleteProductInCart}
                                                                             addProductInCart={addProductInCart}/>}/>
                                 <Route path="/" element={<Products searchField={searchField}
-
                                                                    deleteProductInCart={deleteProductInCart}
                                                                    addProductInCart={addProductInCart}/>}/>
                                 <Route exact path="/login" element={<Login />} />
                                 <Route exact path="/register" element={<Register />} />
                                 <Route exact path="/profile" element={<Profile />} />
-                                <Route path="/order" element={<Order productsInCart={productsInCart} setProductsInCart={setProductsInCart}/>} />
+                                <Route path="/order" element={<Order productsInCart={productsInCart} setProductsInCart={setProductsInCart} />} />
                             </Routes>
                             <Footer/>
                         </Router>

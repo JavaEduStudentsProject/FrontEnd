@@ -142,7 +142,7 @@ export default function Header(props) {
                 <ul>первого</ul>
                 <ul>слоя</ul>
                 <ul>вложенности</ul>
-                <button onClick={print1}>Неизменямый список</button>
+                <button onClick={print1}>Неизменяемый список</button>
                 <button onClick={print3}>Фильтры</button>
                 <button onClick={print4}>Диапазон цен</button>
                 <button onClick={print5}>Тест оркестратора</button>

@@ -1,9 +1,7 @@
 import React from "react";
 
-
 const Order = (props) => {
     // const currentUser = AuthService.getCurrentUser();
-
 
     return (
         <div>
@@ -15,3 +13,4 @@ const Order = (props) => {
 };
 
 export default Order;
+

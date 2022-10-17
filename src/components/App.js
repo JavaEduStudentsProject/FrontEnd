@@ -94,13 +94,13 @@ function App() {
                                                                             deleteProductInCart={deleteProductInCart}
                                                                             addProductInCart={addProductInCart}/>}/>
                                 <Route path="/" element={<Products searchField={searchField}
+
                                                                    deleteProductInCart={deleteProductInCart}
                                                                    addProductInCart={addProductInCart}/>}/>
                                 <Route exact path="/login" element={<Login />} />
                                 <Route exact path="/register" element={<Register />} />
                                 <Route exact path="/profile" element={<Profile />} />
                                 <Route path="/order" element={<Order productsInCart={productsInCart} setProductsInCart={setProductsInCart}/>} />
-
                             </Routes>
                             <Footer/>
                         </Router>

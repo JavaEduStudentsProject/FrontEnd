@@ -1,13 +1,7 @@
 import React from "react";
-import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
-import Count from "./Count";
-import Cart from "./Cart";
-import {Link} from "react-router-dom";
 
 const Order = (props) => {
     // const currentUser = AuthService.getCurrentUser();
-
 
     return (
         <div>
@@ -19,3 +13,4 @@ const Order = (props) => {
 };
 
 export default Order;
+

@@ -101,7 +101,7 @@ const Products = (props) => {
                 return <ProductCard
                     key={item.id}
                     item={item}
-                    addToOrder={props.addToOrder}
+                    addProductInCart={props.addProductInCart}
                 />
             })
             :

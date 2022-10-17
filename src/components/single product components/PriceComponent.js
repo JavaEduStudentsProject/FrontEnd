@@ -23,14 +23,14 @@ function ProductPlusMinusButton(props) {
         <div className="price">
             <h2>Цена: {props.product.price}</h2>
             <MyButton id="cartPlusButton" onClick={() => {
-                props.addToOrder(props.product.id)
+                props.addProductInCart(props.product.id)
                  setCountProductInBasket(countProductInBasket + 1)
                 incrementProductCount()
             }}>
 
                 В корзину</MyButton>
             <MyButton id="cartMinusButton" onClick={() => {
-                props.deleteOrder(props.product.id)
+                props.deleteProductInCart(props.product.id)
                  setCountProductInBasket(countProductInBasket - 1)
                 decrementProductCount()
             }}>Удалить</MyButton>

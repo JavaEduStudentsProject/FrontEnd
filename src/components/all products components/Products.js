@@ -23,21 +23,16 @@ const Products = (props) => {
     const {filterArray, setFilterArray} = useContext(FilterArrayContext);
     const {priceDelta} = useContext(PriceFilterArrayContext);
     const {productArray} = useContext(ProductListContext);
-
     const [sortingKey, setSortingKey] = useState("");
     const [directSort, setDirectSort] = useState(true);
     const [sortedProductList, setSortedProductList] = useState([]);
-
     const [currentPage, setCurrentPage] = useState(0);
     const [perPage, setPerPage] = useState(5);
-
     const [flag, setFlag] = useState(false);
-
     const {category, subcategory} = useParams();
 
 
     localStorage.setItem('immutableProductList', JSON.stringify(immutableProductList));
-
 
     if (category) {
         if (category !== filterArray[0]) {

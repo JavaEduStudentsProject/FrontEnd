@@ -1,8 +1,6 @@
-import React from "react";
+import React, {useState} from "react";
 import AuthService from "../../forAuthorization/services/auth.service";
-import {useState} from "/react";
-import Cart from "../Cart/Cart"
-import Count from "./Count";
+
 
 const Order = (props) => {
      const currentUser = AuthService.getCurrentUser();

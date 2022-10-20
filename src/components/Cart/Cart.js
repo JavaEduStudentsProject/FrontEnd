@@ -10,9 +10,13 @@ import React from "react";
 //     console.log("increase", id)
 //
 // }
+
+
+
 const showOrders = (props) => {
 
     let summa = 0;
+
     props.productsInCart.forEach(el => summa += Number.parseFloat(el.price) * Number.parseFloat(props.quantity))
     return (
         <div>
@@ -56,7 +60,6 @@ const Cart = (props) => {
                 props.productsInCart.length > 0 ?
                     showOrders(props) : showNothing()
             }
-
         </div>
     );
 }

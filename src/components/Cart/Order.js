@@ -4,18 +4,18 @@ import AuthService from "../../forAuthorization/services/auth.service";
 
 const Order = (props) => {
      const currentUser = AuthService.getCurrentUser();
-    let [orderId, setOrderId] = useState(0);
+    // let [orderId, setOrderId] = useState(0);
+    //
+    // function incrementOrderId() {
+    //     setOrderId(++orderId);
+    // }
 
-    function incrementOrderId() {
-        setOrderId(++orderId);
-    }
-
-
-let newOrder=[{
-    id: incrementOrderId(),
-    products:props.productsInCart,
-
-}]
+//
+// let newOrder=[{
+//     id: incrementOrderId(),
+//     products:props.productsInCart,
+//
+// }]
     //const newItem = props.productsInCart.find((item) => item.id === id);
     // let newItemTemp=[{
     //     id:newItem.id,

@@ -51,7 +51,7 @@ function App() {
         if (productInCart) {
             return {
                 ...productInCart,
-                totalPrice: productInCart.totalPrice + quantity * product.price,
+                total: productInCart.total + quantity * product.price,
                 quantity: productInCart.quantity + quantity
             };
         }
@@ -64,8 +64,8 @@ function App() {
             image: product.image,
             total: product.price * quantity,
             discountPercentage: product.non_filter_features.discountPercentage,
-            discountedPrice: Math.round(product.price - (product.price * product.non_filter_features.discountPercentage / 100))
-
+            discountedPrice: Math.round(product.price - (product.price * product.non_filter_features.discountPercentage / 100)),
+            category: product.category
         };
     };
 
@@ -161,7 +161,8 @@ function App() {
                                 <Route exact path="/profile" element={<Profile/>}/>
                                 {/*productsInCart={productsInCart} setProductsInCart={setProductsInCart}*/}
                                 <Route exact path="/order" element={<Order cartList={cartList} deleteProductFromCart={deleteProductFromCart}
-                                                                           removeProductFromCart = {removeProductFromCart} addProductInCart={addProductInCart}/>}/>
+                                                                           removeProductFromCart = {removeProductFromCart}
+                                                                           updateProduct={updateProduct} addProductInCart={addProductInCart}/>}/>
                             </Routes>
                             <Footer/>
                         </Router>

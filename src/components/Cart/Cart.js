@@ -1,4 +1,5 @@
 import "./styleCart.css"
+import "./styleOrder.css"
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import {Link} from "react-router-dom";
@@ -19,15 +20,26 @@ const showOrders = (props) => {
                                       src={productInCart.image}/>
                             <Card.Title className="item-name">{productInCart.title}</Card.Title>
                             <Card.Subtitle className="item-price">{productInCart.price} $</Card.Subtitle>
-                            <Button onClick={() => props.deleteProductFromCart(productInCart.id)} className="product-button"
+
+                            <div>
+                                <button className="button-cart"
+                                        onClick={() => props.addProductInCart(productInCart.id)}>+
+                                </button>
+                                <span className="cart-list-item__count">{productInCart.quantity}</span>
+                                <button className="button-cart"
+                                        onClick={() => props.removeProductFromCart(productInCart.id)}>-
+                                </button>
+                            </div>
+                            <Button onClick={() => props.deleteProductFromCart(productInCart.id)}
+                                    className="product-button"
                                     variant="primary"> удалить
                             </Button>
-                            {/*<Count Cart={Cart} quantity={productInCart.quantity}*/}
-                            {/*        id={productInCart.id}/>*/}
+
+
                         </Card>
                 )
             }
-            <p className="item-sum"> Cумма: {(new Intl.NumberFormat().format(summa))}</p>
+            <p className="item-sum"> Итого: {(new Intl.NumberFormat().format(summa))}</p>
 
             <Button className="order-button" onClick={() => props.setCartOpen(!props.cartOpen)}>
                 <Link className="link-button" to={`/order/`}>Создать заказ</Link>

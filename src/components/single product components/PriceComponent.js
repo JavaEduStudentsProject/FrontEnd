@@ -29,8 +29,7 @@ function ProductPlusMinusButton(props) {
             }}>
 
                 В корзину</MyButton>
-            <MyButton id="cartMinusButton" onClick={() => {
-                props.deleteProductInCart(props.product.id)
+            <MyButton id="cartMinusButton" onClick={() => {props.deleteProductFromCart(props.product.id)
                  setCountProductInBasket(countProductInBasket - 1)
                 decrementProductCount()
             }}>Удалить</MyButton>

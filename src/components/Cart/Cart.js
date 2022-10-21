@@ -5,35 +5,25 @@ import {Link} from "react-router-dom";
 import Count from "./Count";
 import React from "react";
 
-
-// const increase = (id) => {
-//     console.log("increase", id)
-//
-// }
-
-
-
 const showOrders = (props) => {
-
     let summa = 0;
-
-    props.productsInCart.forEach(el => summa += Number.parseFloat(el.price) * Number.parseFloat(props.quantity))
+    props.cartList.forEach(el => summa += Number.parseFloat(el.price) * Number.parseFloat(el.quantity))
     return (
         <div>
             <h1 className="title-cart">Корзина</h1>
             {
-                props.productsInCart.map(
+                props.cartList.map(
                     productInCart =>
                         <Card key={productInCart.id} className='cart'>
                             <Card.Img className='item-img' variant="top" alt={productInCart.title}
                                       src={productInCart.image}/>
                             <Card.Title className="item-name">{productInCart.title}</Card.Title>
                             <Card.Subtitle className="item-price">{productInCart.price} $</Card.Subtitle>
-                            <Button onClick={() => props.deleteProductInCart(productInCart.id)} className="product-button"
+                            <Button onClick={() => props.deleteProductFromCart(productInCart.id)} className="product-button"
                                     variant="primary"> удалить
                             </Button>
-                            <Count Cart={Cart} quantity={props.quantity}
-                                   setQuantity={props.setQuantity} id={productInCart.id}/>
+                            {/*<Count Cart={Cart} quantity={productInCart.quantity}*/}
+                            {/*        id={productInCart.id}/>*/}
                         </Card>
                 )
             }
@@ -57,7 +47,7 @@ const Cart = (props) => {
     return (
         <div>
             {
-                props.productsInCart.length > 0 ?
+                props.cartList.length > 0 ?
                     showOrders(props) : showNothing()
             }
         </div>

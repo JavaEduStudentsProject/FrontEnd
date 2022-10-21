@@ -97,6 +97,7 @@ const Products = (props) => {
                     key={item.id}
                     item={item}
                     addProductInCart={props.addProductInCart}
+                    deletePurchasedProduct={props.deletePurchasedProduct}
                 />
             })
             :

@@ -4,8 +4,8 @@ import ProductList from "../../src/services/ProductList";
 
 // const PRODUCT_BASE_REST_API_URL = '/temp_props_1.json';
 // const PRODUCT_BASE_REST_API_URL = '/props.json';
-
-const PRODUCT_BASE_REST_API_URL = 'http://localhost:8083/api/products';
+ const PRODUCT_BASE_REST_API_URL = '/products.json';
+// const PRODUCT_BASE_REST_API_URL = 'http://localhost:8083/api/products';
 
 class ProductService{
 

@@ -32,8 +32,7 @@ export default function Header(props) {
     console.log(subcategory)
 
     function print1() {
-        FaShoppingCart.
-        console.log(immutableProductList)
+        FaShoppingCart.console.log(immutableProductList)
     }
 
     function print3() {
@@ -50,6 +49,7 @@ export default function Header(props) {
             .then(result => result.json())
             .then(currentData => setTestRESTAPIArray(currentData));
     }
+
     console.log("data 2: " + testRESTAPIArray)
 
     function print6() {
@@ -99,41 +99,46 @@ export default function Header(props) {
                 <DropDownMenu/>
                 <SearchField handleChange={props.handleChange} searchField={props.searchField}/>
 
-                    {currentUser ? (
-                        <div className="userIcons">
-                            <Stack>
-                                <FaShoppingCart onClick={() => setCartOpen(cartOpen = !cartOpen)}
-                                                        className={`shop-cart-button ${cartOpen && 'active'}`}/>
+                {/*{currentUser ? (*/}
+                <div className="userIcons">
+                    <Stack>
+                        <FaShoppingCart onClick={() => setCartOpen(cartOpen = !cartOpen)}
+                                        className={`shop-cart-button ${cartOpen && 'active'}`}/>
 
-                                        {cartOpen && (
-                                            <div className={'shop-cart'}>
-                                                <Cart productsInCart={props.productsInCart} setProductsInCart={props.setProductsInCart}
-                                                      deleteProductInCart={props.deleteProductInCart} quantity={quantity}
-                                                      setQuantity={setQuantity} cartOpen={cartOpen} setCartOpen={setCartOpen}></Cart>
-                                            </div>
-                                        )}
-                                <span className="count-products-in-basket">{countProductInBasket}</span>
-                            </Stack>
-                        <div className="navbar-nav ml-auto">
+                        {cartOpen && (
+                            <div className={'shop-cart'}>
+                                <Cart cartList={props.cartList} setCartlist={props.setCartList}
+                                      deleteProductFromCart={props.deleteProductFromCart}
+                                      deletePurchasedProduct={props.deletePurchasedProduct}
+                                      removeProductFromCart={props.removeProductFromCart}
+                                      addProductInCart={props.addProductInCart}
+                                      cartOpen={cartOpen} setCartOpen={setCartOpen}/>
+                            </div>
+                        )}
+                        <span className="count-products-in-basket">{countProductInBasket}</span>
+                    </Stack>
+                    <div className="navbar-nav ml-auto">
 
-                                <Stack className="avatarIcon">
-                                <Avatar alt="Пользователь" src={currentUser.username} onClick={()=>{window.location.assign("/profile")}}/>
+                        <Stack className="avatarIcon">
+                            {/*<Avatar alt="Пользователь" src={currentUser.username} onClick={()=>{window.location.assign("/profile")}}/>*/}
                         </Stack>
 
-                            <li className="nav-item">
-                                <a href="/" className="nav-link" onClick={logOut}>
-                                    LogOut
-                                </a>
-                            </li>
-                        </div>
-                        </div>
-                    ) : (
-                        <div className="navbar-nav ml-auto">
-                                <Stack className="avatarIcon">
-                                    <Avatar alt="Пользователь" src={avatar1}  onClick={()=>{window.location.assign("/login")}}/>
-                                </Stack>
-                        </div>
-                    )}
+                        <li className="nav-item">
+                            <a href="/" className="nav-link" onClick={logOut}>
+                                LogOut
+                            </a>
+                        </li>
+                    </div>
+                </div>
+                {/*) : (*/}
+                <div className="navbar-nav ml-auto">
+                    <Stack className="avatarIcon">
+                        <Avatar alt="Пользователь" src={avatar1} onClick={() => {
+                            window.location.assign("/login")
+                        }}/>
+                    </Stack>
+                </div>
+                {/*)}*/}
 
             </nav>
             <nav className="nav-list">

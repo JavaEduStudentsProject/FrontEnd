@@ -5,7 +5,7 @@ import SingleProduct from "../components/single product components/SingleProduct
 import Footer from "./footer components/Footer";
 import Products from "./all products components/Products";
 import ProductService from '../services/ProductService'
-import {ImmutableProductListContext, FilterArrayContext,ProductListContext} from "../services/Context";
+import {ImmutableProductListContext, FilterArrayContext, ProductListContext} from "../services/Context";
 import ProductList from "../services/ProductList";
 import Login from "../forAuthorization/components/Login";
 import Register from "../forAuthorization/components/Register";
@@ -19,7 +19,7 @@ function App() {
     const [filterArray, setFilterArray] = useState(["", ""]);
     const [countProductInBasket, setCountProductInBasket] = useState(0);
     // const [productsInCart, setProductsInCart] = useLocalStorage([], "productsInCart")
-    const [cartList, setCartList]=useLocalStorage([], "cartList")
+    const [cartList, setCartList] = useLocalStorage([], "cartList")
 
     const updateCartList = (cartList, newProduct, index) => {
         // Метод slice()возвращает неглубокую копию части массива в новый объект
@@ -29,17 +29,18 @@ function App() {
 
         // Если количество одного продукта равняется 0, убрать его из корзины
         if (newProduct.count === 0) {
-            return [...cartList.slice(0, index), ...cartList.slice(index + 1)];
+            return setCartList([...cartList.slice(0, index), ...cartList.slice(index + 1)]);
         }
         // Если индекс элемента -1, это значит что в корзине нет этого продукта
         // И его нужно добавить
         if (index === -1) {
-            return [...cartList, newProduct];
+            return setCartList([...cartList, newProduct]);
+
         }
         // Если этот продукт есть, то массив нужно обновить
         // продукт, будь он обычным или обновлённым получаем из второго аргумента
         // Таким образом вычисление, и структура объекта продукта находится в newProduct
-        return [...cartList.slice(0, index), newProduct, ...cartList.slice(index + 1)];
+        return setCartList([...cartList.slice(0, index), newProduct, ...cartList.slice(index + 1)]);
     };
 
     // Функция, занимающаяся проверкой и структурой телефона
@@ -51,7 +52,7 @@ function App() {
             return {
                 ...productInCart,
                 totalPrice: productInCart.totalPrice + quantity * product.price,
-                count: productInCart.count + quantity
+                quantity: productInCart.quantity + quantity
             };
         }
 
@@ -61,47 +62,41 @@ function App() {
             price: product.price,
             quantity: 1,
             image: product.image,
-            total: product.price*quantity,
-            discountPercentage: product.discountPercentage,
-            discountedPrice: Math.round(product.price-(product.price*product.discountPercentage/100))
+            total: product.price * quantity,
+            discountPercentage: product.non_filter_features.discountPercentage,
+            discountedPrice: Math.round(product.price - (product.price * product.non_filter_features.discountPercentage / 100))
 
         };
     };
 
     const addProductInCart = (id) => {
-
         const product = immutableProductList.find((item) => item.id === id);
         const productIndex = cartList.findIndex((item) => item.id === id);
-        const productInCart=cartList[productIndex];
+        const productInCart = cartList[productIndex];
         const newProduct = updateProduct(product, productInCart, 1);
-        const newCartList=updateCartList(cartList, newProduct, productIndex);
-       return {
-           cartList : newCartList
-       };
+        const newCartList = updateCartList(cartList, newProduct, productIndex);
+        return {
+            cartList: newCartList
+        };
+    };
+
+    const removeProductFromCart = (id) => {
+        let product, productIndex, productInCart, newProduct, newCartList;
+        product = immutableProductList.find((item) => item.id === id);
+        productIndex = cartList.findIndex((item) => item.id === id);
+        productInCart = cartList[productIndex];
+        newProduct = updateProduct(product, productInCart, -1);
+        newCartList = updateCartList(cartList, newProduct, productIndex);
+        return {
+            cartList: newCartList
+        };
     };
 
     const deleteProductFromCart = (id) => {
-    const product = immutableProductList.find((item) => item.id === id);
-    const productIndex = cartList.findIndex((item) => item.id === id);
-    const productInCart=cartList[productIndex];
-    const newProduct = updateProduct(product, productInCart, -1);
-    const newCartList=updateCartList(cartList, newProduct, productIndex);
-    return {
-        cartList : newCartList
+        const productInCartTemp = cartList.filter(el => el.id !== id)
+        setCartList(productInCartTemp)
     };
-};
 
-    const deletePurchasedProduct = (id) => {
-
-        const product = immutableProductList.find((item) => item.id === id);
-        const productIndex = cartList.findIndex((item) => item.id === id);
-        const productInCart=cartList[productIndex];
-        const newProduct = updateProduct(product, productInCart, -productInCart.quantity);
-        const newCartList=updateCartList(cartList, newProduct, productIndex);
-        return {
-            cartList : newCartList
-        };
-    };
 
     useEffect(() => {
         console.log("Вызов useEffect до геттера")
@@ -131,31 +126,7 @@ function App() {
         return {productArray}
     }, [searchField])
 
-    // const addProductInCart = (id) => {
-    //     let isInArray = false;
-    //     const newItem = immutableProductList.find((item) => item.id === id);
-    //     // let newItemTemp=[{
-    //     //     id:newItem.id,
-    //     //     title:newItem.title,
-    //     //     image:newItem.price,
-    //     //     discountPercentage:newItem["non-filter_features"]["discountPercentage"],
-    //     //     quantity:1
-    //     // }]
-    //     productsInCart.forEach(el => {
-    //         if (el.id === id)
-    //             isInArray = true;
-    //     })
-    //     if (!isInArray)
-    //
-    //         setProductsInCart([...productsInCart, newItem])
-    // };
-
-    // const deleteProductInCart = (id) => {
-    //     const productsInCartTemp=productsInCart.filter(el=>el.id!==id)
-    //     setProductsInCart(productsInCartTemp)
-    // };
-
-    return (
+      return (
         <ImmutableProductListContext.Provider value={{immutableProductList}}>
             <ProductListContext.Provider value={{productArray}}>
                 <FilterArrayContext.Provider value={{filterArray, setFilterArray}}>
@@ -163,30 +134,34 @@ function App() {
 
                         <Router>
                             {/*productsInCart={productsInCart} setProductsInCart={setProductsInCart}*/}
-                            <Header deletePurchasedProduct={deletePurchasedProduct} cartList={cartList} deleteProductFromCart={deleteProductFromCart}
-                                    countProductInBasket={countProductInBasket}
-                                    searchField={searchField}
-                                    handleChange={handleChange}
-                                    />
+                            <Header cartList={cartList}
+                                    removeProductFromCart={removeProductFromCart}
+                                    countProductInBasket={countProductInBasket} addProductInCart={addProductInCart}
+                                    searchField={searchField} setCartList={setCartList}
+                                    handleChange={handleChange} deleteProductFromCart={deleteProductFromCart}
+                            />
                             <Routes>
                                 <Route path="/product/:id"
                                        element={<SingleProduct countProductInBasket={countProductInBasket}
-                                                               deleteProductFromCart={deleteProductFromCart} addProductInCart={addProductInCart}
+                                                               deleteProductFromCart={deleteProductFromCart}
+                                                               addProductInCart={addProductInCart}
                                                                setCountProductInBasket={setCountProductInBasket}/>}/>
                                 <Route path="/:category/:subcategory" element={<Products searchField={searchField}
                                                                                          deleteProductFromCart={deleteProductFromCart}
                                                                                          addProductInCart={addProductInCart}/>}/>
                                 <Route path="/:category" element={<Products searchField={searchField}
+
                                                                             deleteProductFromCart={deleteProductFromCart}
                                                                             addProductInCart={addProductInCart}/>}/>
                                 <Route path="/" element={<Products searchField={searchField}
                                                                    deleteProductFromCart={deleteProductFromCart}
                                                                    addProductInCart={addProductInCart}/>}/>
-                                <Route exact path="/login" element={<Login />} />
-                                <Route exact path="/register" element={<Register />} />
-                                <Route exact path="/profile" element={<Profile />} />
+                                <Route exact path="/login" element={<Login/>}/>
+                                <Route exact path="/register" element={<Register/>}/>
+                                <Route exact path="/profile" element={<Profile/>}/>
                                 {/*productsInCart={productsInCart} setProductsInCart={setProductsInCart}*/}
-                                <Route path="/order" element={<Order  />} />
+                                <Route exact path="/order" element={<Order cartList={cartList} deleteProductFromCart={deleteProductFromCart}
+                                                                           removeProductFromCart = {removeProductFromCart} addProductInCart={addProductInCart}/>}/>
                             </Routes>
                             <Footer/>
                         </Router>

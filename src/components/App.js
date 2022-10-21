@@ -162,7 +162,8 @@ function App() {
                                 {/*productsInCart={productsInCart} setProductsInCart={setProductsInCart}*/}
                                 <Route exact path="/order" element={<Order cartList={cartList} deleteProductFromCart={deleteProductFromCart}
                                                                            removeProductFromCart = {removeProductFromCart}
-                                                                           updateProduct={updateProduct} addProductInCart={addProductInCart}/>}/>
+                                                                           updateProduct={updateProduct} addProductInCart={addProductInCart}
+                                                                           setCartList ={setCartList}/>}/>
                             </Routes>
                             <Footer/>
                         </Router>

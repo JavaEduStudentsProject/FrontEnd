@@ -27,7 +27,6 @@ const Order = (props) => {
     const currentUser = AuthService.getCurrentUser();
     const createOrder = () => {
         let order = [{
-             "id": 1025874,
             "products": props.cartList,
             "total": summa,
             "discountedTotal": discountedTotalSum,
@@ -36,8 +35,11 @@ const Order = (props) => {
             "username": currentUser.username
         }]
         console.log(order)
-        OrderService.saveOrder(JSON.stringify(order)).then(r => {
-            localStorage.setItem("newOrder", JSON.stringify(order));
+        console.log(JSON.stringify(order[0]))
+        localStorage.setItem("newOrder",  JSON.stringify(order[0]));
+
+        OrderService.saveOrder(JSON.stringify(order[0])).then(r => {
+            props.setCartList([])
         });
     };
 

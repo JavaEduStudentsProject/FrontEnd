@@ -11,6 +11,8 @@ import Login from "../forAuthorization/components/Login";
 import Register from "../forAuthorization/components/Register";
 import Profile from "../forAuthorization/components/Profile";
 import {useLocalStorage} from "../hooks/useLocalStorage";
+import AuthService from "../forAuthorization/services/auth.service";
+
 
 function App() {
     const [immutableProductList, setImmutableProductList] = useState([]);
@@ -18,6 +20,29 @@ function App() {
     const [filterArray, setFilterArray] = useState(["", ""]);
     const [countProductInBasket, setCountProductInBasket] = useState(0);
     const [order, setOrder] = useLocalStorage([], "order")
+
+    // const [user, setUser] = useState(AuthService.getCurrentUser())
+    // // флаг editing - изначально false, функция установки флага
+    // const [editing, setEditing] = useState(false)
+    // // начальное значение для формы редактирования
+    // // так как мы не знаем, кто редактируется - пустые поля
+    // const initialFormState = {id: null, name: '', email: ''}
+    // // значение "текущий пользователь на редактировании" + функция установки этого значения
+    // const [currentUser, setCurrentUser] = useState(initialFormState)
+    //
+    // const updateUser = (id, updatedUser) => {
+    //     // когда мы готовы обновить пользователя, ставим флажок editing в false
+    //     setEditing(false)
+    //     // и обновляем пользователя, если нашли его по id
+    //     setUser(user.map(user => (user.id === id ? updatedUser : user)))
+    // }
+    // const editRow = user => {
+    //     // готовы редактировать - флажок в true
+    //     setEditing(true)
+    //     // устанавливаем значения полей для формы редактирования
+    //     // на основании выбранного "юзера"
+    //     setCurrentUser({ id: user.id, name: user.name, email: user.email})
+    // }
 
     useEffect(() => {
         console.log("Вызов useEffect до геттера")

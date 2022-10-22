@@ -63,6 +63,7 @@ function App() {
             quantity: 1,
             image: product.image,
             total: product.price * quantity,
+            rating:product.non_filter_features.rating,
             discountPercentage: product.non_filter_features.discountPercentage,
             discountedPrice: Math.round(product.price - (product.price * product.non_filter_features.discountPercentage / 100)),
             category: product.category

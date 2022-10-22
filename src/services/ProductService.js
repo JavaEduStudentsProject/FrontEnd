@@ -2,14 +2,54 @@ import axios from "axios";
 
 import ProductList from "../../src/services/ProductList";
 
-const PRODUCT_BASE_REST_API_URL = '/temp_props_1.json';
+// const PRODUCT_BASE_REST_API_URL = '/temp_props_1.json';
 // const PRODUCT_BASE_REST_API_URL = '/props.json';
-// const PRODUCT_BASE_REST_API_URL = '/initialDetails.json';
+ const PRODUCT_BASE_REST_API_URL = '/products.json';
+// const PRODUCT_BASE_REST_API_URL = 'http://localhost:8083/api/products';
 
 class ProductService{
 
     getAllProducts(){
         return axios.get(PRODUCT_BASE_REST_API_URL)
+    }
+
+    getRecommendedProducts(username) {
+        console.log("Функция getRecommendedProducts начала работу")
+        let promise;
+        try {
+            promise = fetch(`http://localhost:8083/request_from_react/${username}`, {
+                method: "GET",
+                headers: {
+                    "Access-Control-Allow-Origin": '*',
+                    "Access-Control-Allow-Credentials": 'true',
+                    "Content-Type": 'application/json',
+                    "Accept": 'application/json'
+                }
+            })
+            return promise
+        } catch (e) {
+            console.error(e)
+        }
+    }
+
+
+    getRecommendedProductsFromBasket(basketArray) {
+        console.log("Функция getRecommendedProducts начала работу")
+        let promise;
+        try {
+            promise = fetch(`http://localhost:8083/basket_request_from_react/${basketArray}`, {
+                method: "GET",
+                headers: {
+                    "Access-Control-Allow-Origin": '*',
+                    "Access-Control-Allow-Credentials": 'true',
+                    "Content-Type": 'application/json',
+                    "Accept": 'application/json'
+                }
+            })
+            return promise
+        } catch (e) {
+            console.error(e)
+        }
     }
 
     getCategories(prod) {

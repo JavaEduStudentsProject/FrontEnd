@@ -1,15 +1,13 @@
-import { GoArrowSmallUp } from "react-icons/go";
-import { GoArrowSmallDown } from "react-icons/go";
-import Cart from "./Cart";
-import {useState} from "react";
-
-const Count=(props)=>{
+const Count = (props) => {
 
     return (
         <div className="count">
             <div className="count_box">
-                <input type="number" className="count_input" min='1' max='100' defaultValue={1}  onChange={(event) => {props.setQuantity(event.target.value); console.log(event.target.value)}}
-
+                <input type="number" className="count_input" min='1' max='100' defaultValue={1}
+                       onChange={(event) => {
+                           props.setQuantity(event.target.value);
+                           console.log(event.target.value)
+                       }}
                 />
             </div>
             {/*<div className="count_controls">*/}

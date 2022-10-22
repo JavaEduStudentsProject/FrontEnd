@@ -12,6 +12,9 @@ import Register from "../forAuthorization/components/Register";
 import Profile from "../forAuthorization/components/Profile";
 import {useLocalStorage} from "../hooks/useLocalStorage";
 import Order from "./Cart/Order";
+import AboutUs from "./aditionalPages/AboutUs";
+import Contacts from "./aditionalPages/Contacts";
+import Delivery from "./aditionalPages/Delivery";
 
 function App() {
     const [immutableProductList, setImmutableProductList] = useState([]);
@@ -159,6 +162,9 @@ function App() {
                                                                    addProductInCart={addProductInCart}/>}/>
                                 <Route exact path="/login" element={<Login/>}/>
                                 <Route exact path="/register" element={<Register/>}/>
+                                <Route exact path="/aboutUs" element={<AboutUs/>}/>
+                                <Route exact path="/contacts" element={<Contacts/>}/>
+                                <Route exact path="/delivery" element={<Delivery/>}/>
                                 <Route exact path="/profile" element={<Profile/>}/>
                                 <Route exact path="/order"
                                        element={<Order cartList={cartList} deleteProductFromCart={deleteProductFromCart}

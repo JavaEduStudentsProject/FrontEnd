@@ -12,6 +12,7 @@ import EventBus from "../../forAuthorization/common/EventBus";
 import {FaShoppingCart} from "react-icons/fa";
 import Cart from "../Cart/Cart"
 import ProductService from "../../services/ProductService";
+import Button from "react-bootstrap/Button";
 
 
 export default function Header(props) {
@@ -139,17 +140,9 @@ export default function Header(props) {
 
             </nav>
             <nav className="nav-list">
-                <ul>Крупные</ul>
-                <ul>категории</ul>
-                <ul>первого</ul>
-                <ul>слоя</ul>
-                <ul>вложенности</ul>
-                <button onClick={print1}>Неизменяемый список</button>
-                <button onClick={print3}>Фильтры</button>
-                <button onClick={print4}>Диапазон цен</button>
-                <button onClick={print5}>Тест оркестратора</button>
-                <button onClick={print6}>Рекомендация для корзины</button>
-                <a href="http://localhost:3000/">Все продукты</a>
+                <button onClick={()=>{window.location.assign("/aboutUs")}}>About us</button>
+                <button onClick={()=>{window.location.assign("/contacts")}}>Contacts</button>
+                <button onClick={()=>{window.location.assign("/delivery")}}>Delivery</button>
             </nav>
         </header>
     )

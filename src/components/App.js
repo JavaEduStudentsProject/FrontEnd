@@ -12,6 +12,7 @@ import Register from "../forAuthorization/components/Register";
 import Profile from "../forAuthorization/components/Profile";
 import {useLocalStorage} from "../hooks/useLocalStorage";
 import Order from "./Cart/Order";
+import BestProductsRecommendation from "./Recommendation blocks/BestProductsRecommendation";
 
 function App() {
     const [immutableProductList, setImmutableProductList] = useState([]);
@@ -164,6 +165,7 @@ function App() {
                                                        removeProductFromCart={removeProductFromCart}
                                                        updateProduct={updateProduct} addProductInCart={addProductInCart}
                                                        setCartList={setCartList}/>}/>
+                                <Route exact path="/BPRecommendations" element={<BestProductsRecommendation/>}/>
                             </Routes>
                             <Footer/>
                         </Router>

@@ -6,8 +6,7 @@ import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import avatar1 from '../../images/avatar.jpg'
 import {FilterArrayContext, ImmutableProductListContext, PriceFilterArrayContext} from "../../services/Context";
-import {Link, useParams} from "react-router-dom";
-import ProductList from "../../services/ProductList";
+import { useParams} from "react-router-dom";
 import AuthService from "../../forAuthorization/services/auth.service";
 import EventBus from "../../forAuthorization/common/EventBus";
 import {FaShoppingCart} from "react-icons/fa";
@@ -17,8 +16,7 @@ import ProductService from "../../services/ProductService";
 
 export default function Header(props) {
     let [cartOpen, setCartOpen] = useState(false)
-    const [quantity, setQuantity] = useState(1);
-    const {immutableProductList} = useContext(ImmutableProductListContext);
+        const {immutableProductList} = useContext(ImmutableProductListContext);
     const {countProductInBasket} = props;
     const [testRESTAPIArray, setTestRESTAPIArray] = useState([]);
 
@@ -59,7 +57,6 @@ export default function Header(props) {
             .then(currentData => setTestRESTAPIArray(currentData));
 
     }
-
 
     const [showModeratorBoard, setShowModeratorBoard] = useState(false);
     const [showAdminBoard, setShowAdminBoard] = useState(false);

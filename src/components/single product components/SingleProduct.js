@@ -3,7 +3,7 @@ import PriceComponent from "./PriceComponent"
 import MoneyInCreditComponent from "./MoneyInCreditComponent"
 import img from "../../images/img_3.jpg";
 import ShortProductDescription from "./ShortProductDescription";
-import { useParams } from "react-router-dom"
+import {useParams} from "react-router-dom"
 
 export default function SingleProduct(props) {
 
@@ -14,7 +14,7 @@ export default function SingleProduct(props) {
 
     let product = JSON.parse(localStorage.getItem(`${id}`))
 
-    const { setCountProductInBasket, countProductInBasket} = props;
+    const {setCountProductInBasket, countProductInBasket} = props;
 
     function getImage() {
         console.log(product.image)
@@ -24,15 +24,14 @@ export default function SingleProduct(props) {
 
     let image = getImage();
 
-
     return (
         <div className="single-product">
             <h1 className="productName">{product.title}</h1>
             <div className="main-block">
                 <div className="product-card">
                     <div className="img-and-shortdescr">
-                    <img className="product-img" src={image} />
-                    <ShortProductDescription product={product}/>
+                        <img className="product-img" src={image}/>
+                        <ShortProductDescription product={product}/>
                     </div>
                     <div className="full-descr">
                         <h4>Описание товара</h4>
@@ -44,7 +43,9 @@ export default function SingleProduct(props) {
                     </div>
                 </div>
                 <div className="money-block">
-                    <PriceComponent countProductInBasket={countProductInBasket} setCountProductInBasket={setCountProductInBasket} product={product} deleteProductFromCart={props.deleteProductFromCart}
+                    <PriceComponent countProductInBasket={countProductInBasket}
+                                    setCountProductInBasket={setCountProductInBasket} product={product}
+                                    deleteProductFromCart={props.deleteProductFromCart}
 
                                     addProductInCart={props.addProductInCart}/>
                     <MoneyInCreditComponent/>

@@ -1,59 +1,94 @@
-// import React from "react";
-// import ProductCard from "../all products components/ProductCard";
-// import {useContext, useState} from "@types/react";
-// import {
-//     FilterArrayContext,
-//     ImmutableProductListContext,
-//     PriceFilterArrayContext,
-//     ProductListContext
-// } from "../../services/Context";
-// import {useParams} from "react-router-dom";
-// import Filter from "../all products components/Filter";
-// import Title from "../all products components/Title";
-// import MySelect from "../UI/select/MySelect";
-// import Pagination from "react-bootstrap/Pagination";
-//
-// const BestProductsRecommendation = (props) => {
-//     let productArrayForRendering = [];
-//     const {immutableProductList} = useContext(ImmutableProductListContext);
-//     const {filterArray, setFilterArray} = useContext(FilterArrayContext);
-//     const {priceDelta} = useContext(PriceFilterArrayContext);
-//     const {productArray} = useContext(ProductListContext);
-//     const [sortingKey, setSortingKey] = useState("");
-//     const [directSort, setDirectSort] = useState(true);
-//     const [sortedProductList, setSortedProductList] = useState([]);
-//     const [currentPage, setCurrentPage] = useState(0);
-//     const [perPage, setPerPage] = useState(5);
-//     const [flag, setFlag] = useState(false);
-//     const {category, subcategory} = useParams();
-//
-//
-//     const productListPerOnePage = () => {
-//
-//             productArrayForRendering.slice(firstPageIndex, lastPageIndex).map(item => {
-//                 //вывод по "Показать все"
-//                 // productArrayForRendering.slice(firstPageIndex, lastIndex).map(item => {
-//                 return <ProductCard
-//                     key={item.id}
-//                     item={item}
-//                     addProductInCart={props.addProductInCart}
-//                     deletePurchasedProduct={props.deletePurchasedProduct}
-//                 />
-//             })
-//             :
-//             <h4>Продукты не найдены</h4>
-//     }
-//
-//     return (
-//         <div className="all-products">
-//             <Title category={category}/>
-//
-//             <div className="products">
-//                 {productListPerOnePage()}
-//             </div>
-//         </div>
-//
-//     );
-//
-// }
-// export default BestProductsRecommendation
+import React, {useContext, useEffect, useState} from "react";
+// import data from '\best_products_data'
+// import {useContext} from "@types/react";
+import {ImmutableProductListContext} from "../../services/Context";
+import Title from "../all products components/Title";
+import ProductCard from "../all products components/ProductCard";
+
+
+
+const BestProductsRecommendation = (props) => {
+    const {immutableProductList} = useContext(ImmutableProductListContext);
+    const [recommendations, setRecommendations] = useState(JSON.stringify({'electronics': [1, 6, 9, 2],
+        'beauty and health': [16, 15, 13, 18],
+        'food': [24, 25, 23, 22],
+        'House and garden': [30, 28, 32, 29],
+        ' clothing': [64, 40, 57, 55],
+        ' decorations': [85, 83, 81, 75],
+        ' auto': [88, 93, 86, 87],
+        ' House and garden ': [98, 97, 96, 100]})
+    );
+
+    //Обрабатываем входные данные
+    console.log(immutableProductList)
+    const cardIdsArray = Object.values(JSON.parse(recommendations)).reduce((acc, value) => {
+        acc.push(value);
+        return acc;
+    }, []);
+
+    console.log(cardIdsArray);
+
+    //Делаем нормальный формат данных
+    const recomms = Object.keys(JSON.parse(recommendations)).reduce((acc, key) => {
+        acc.push({
+            name: key,
+            id: JSON.parse(recommendations)[key]
+        })
+        return acc
+    },[])
+
+    console.log(recomms);
+
+    const productsToRender = recomms.map(section => {
+        const ids = section.id;
+        section.id = section.id.map((id, index) => {
+            return immutableProductList.find(elem => elem.id === id)
+        })
+        return section
+    })
+
+    // const productsToRender = immutableProductList.filter(product => {
+    //     if (cardIdsArray.includes(product.id)) {
+    //         return true
+    //     }
+    // })
+
+    // console.log(productsToRender)
+
+
+    // for (let item of items) {
+    //
+    // }
+    //
+    // for (let key in obj) {
+    //
+    // }
+    // const filteredList = immutableProductList.filter()
+
+
+    return (
+        <>
+
+            <div>
+                {productsToRender.map(elem => {
+                    return (<>
+                        <h1>{elem.name}</h1>
+                        {elem.id.map(product => <ProductCard item={product} key={product.id}/>)}
+                    </>)
+                })}
+            </div>
+            <div>
+                {/*{productsToRender.map(product => <ProductCard key={product.id} item={product}/>)}*/}
+            </div>
+
+            {/*<div >*/}
+            {/*    /!*{Object.keys(JSON.parse(recommendations)).map((key) => <div>{JSON.parse(recommendations)[key].join(',')}</div>)}*!/*/}
+            {/*</div>*/}
+            {/*<div >*/}
+            {/*    /!*{Object.keys(JSON.parse(recommendations)).map((key) => <div>{key}</div>)}*!/*/}
+            {/*</div>*/}
+        </>
+    );
+
+}
+export default BestProductsRecommendation

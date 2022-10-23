@@ -11,13 +11,42 @@ import Login from "../forAuthorization/components/Login";
 import Register from "../forAuthorization/components/Register";
 import Profile from "../forAuthorization/components/Profile";
 import {useLocalStorage} from "../hooks/useLocalStorage";
+import SockJsClient from 'react-stomp';
+import cors from "cors";
 
 function App() {
+
+    // const cors = require('cors');
+    // var express = require('express')
+    // var app = express()
+    //
+    // const corsOptions ={
+    //     origin:'http://localhost:3000',
+    //     credentials:true,            //access-control-allow-credentials:true
+    //     optionSuccessStatus:200
+    // }
+    // app.use(cors(corsOptions));
+
     const [immutableProductList, setImmutableProductList] = useState([]);
     const [searchField, setSearchField] = useState("");
     const [filterArray, setFilterArray] = useState(["", ""]);
     const [countProductInBasket, setCountProductInBasket] = useState(0);
     const [order, setOrder] = useLocalStorage([], "order")
+
+    const SOCKET_URL = 'http://localhost:8083/ws-connect/';
+    const [messages, setMessages] = useState([])
+
+    let onConnected = () => {
+        console.log("Connected!!")
+    }
+
+    let onMessageReceived = (msg) => {
+        console.log('New Message Received!!', msg);
+        setMessages(messages.concat(msg));
+        console.log(messages)
+    }
+
+
 
     useEffect(() => {
         console.log("Вызов useEffect до геттера")
@@ -100,6 +129,16 @@ function App() {
                                 <Route exact path="/profile" element={<Profile />} />
 
                             </Routes>
+
+                            <SockJsClient
+                                url={SOCKET_URL}
+                                topics={['/topic/dataForRecommendationComponent']}
+                                onConnect={onConnected}
+                                onDisconnect={console.log("Disconnected!")}
+                                onMessage={msg => onMessageReceived(msg)}
+                                debug={false}
+                            />
+
                             <Footer/>
                         </Router>
                     </div>

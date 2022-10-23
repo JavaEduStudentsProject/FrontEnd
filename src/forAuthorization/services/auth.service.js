@@ -31,11 +31,13 @@ const logout = () => {
     return response.data;
   });
 };
-const updateUser = (user) => {
-  localStorage.setItem("user", JSON.stringify(user));
-  return axios.post(API_URL + "update").then((response) => {
-    return response.data;
-  });
+
+const updateUser = (username, email, id) => {
+  return axios.post(API_URL + "update", {
+      username,
+      email,
+    id,
+  })
 };
 
 const getCurrentUser = () => {

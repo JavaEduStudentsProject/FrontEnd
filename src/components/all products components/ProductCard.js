@@ -23,7 +23,7 @@ const ProductCard = (props) => {
 
     return (
         <>
-        <Card className='card' border={"success"} >
+            <Card className='card' border={"success"}>
                 <Card.Img className='product-img' variant="top" alt={flatProduct.title} src={image}/>
                 <Card.Title className="product-name">{flatProduct.title}</Card.Title>
                 <Card.Body className='product-description'>
@@ -39,10 +39,11 @@ const ProductCard = (props) => {
                     <Link className="link-button" to={`/product/${flatProduct.id}`}>Просмотр</Link>
                 </Button>
 
-            <Button onClick={() => props.addProductInCart(flatProduct.id)} className="product-button" variant="primary">
-            В корзину
-                {/*<Link className="link-button" to={`/product/${flatProduct.id}`}>В корзину</Link>*/}
-            </Button>
+
+                <Button onClick={() => props.incrementProductCount(flatProduct.id)} className="product-button"
+                        variant="primary">
+                    В корзину
+                </Button>
 
             </Card>
         </>

@@ -20,15 +20,16 @@ const showOrders = (props) => {
                             <Card.Title className="item-name">{productInCart.title}</Card.Title>
                             <Card.Subtitle className="item-price">{productInCart.price} $</Card.Subtitle>
                             <div>
+
                                 <button className="button-cart"
-                                        onClick={() => props.removeProductFromCart(productInCart.id)}>-
+                                        onClick={() => props.decrementProductCount(productInCart)}>-
                                 </button>
                                 <span className="cart-list-item__count">{productInCart.quantity}</span>
                                 <button className="button-cart"
-                                        onClick={() => props.addProductInCart(productInCart.id)}>+
+                                        onClick={() => props.incrementProductCount(productInCart.id)}>+
                                 </button>
                             </div>
-                            <Button onClick={() => props.deleteProductFromCart(productInCart.id)}
+                            <Button onClick={() => props.deleteProductFromCart(productInCart)}
                                     className="product-button"
                                     variant="primary"> удалить
                             </Button>

@@ -1,10 +1,7 @@
 import React, {useState} from "react";
 import MyButton from "../UI/button/MyButton";
-import {FaShoppingCart} from "react-icons/fa";
-import Cart from "../Cart/Cart";
 
 function ProductPlusMinusButton(props) {
-    // let price = 100000000;
     let [count, setCount] = useState(0);
     let [addCartActive, setAddCartActive] = useState(false)
     const {setCountProductInBasket, countProductInBasket} = props;
@@ -24,13 +21,14 @@ function ProductPlusMinusButton(props) {
             <h2>Цена: {props.product.price}</h2>
             <MyButton id="cartPlusButton" onClick={() => {
                 props.addProductInCart(props.product.id)
-                 setCountProductInBasket(countProductInBasket + 1)
+                setCountProductInBasket(countProductInBasket + 1)
                 incrementProductCount()
             }}>
 
                 В корзину</MyButton>
-            <MyButton id="cartMinusButton" onClick={() => {props.deleteProductFromCart(props.product.id)
-                 setCountProductInBasket(countProductInBasket - 1)
+            <MyButton id="cartMinusButton" onClick={() => {
+                props.deleteProductFromCart(props.product.id)
+                setCountProductInBasket(countProductInBasket - 1)
                 decrementProductCount()
             }}>Удалить</MyButton>
             {/*<h3>В корзине: {count}</h3>*/}

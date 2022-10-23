@@ -22,7 +22,7 @@ function App() {
     const [filterArray, setFilterArray] = useState(["", ""]);
     const [countProductInBasket, setCountProductInBasket] = useState(0);
     // const [productsInCart, setProductsInCart] = useLocalStorage([], "productsInCart")
-    const [cartList, setCartList] = useLocalStorage([], "cartList")
+    const [cartList, setCartList] = useLocalStorage([], "cartList");
 
     const updateCartList = (cartList, newProduct, index) => {
         // Метод slice()возвращает неглубокую копию части массива в новый объект
@@ -47,9 +47,9 @@ function App() {
     };
 
     // Функция, занимающаяся проверкой и структурой телефона
-// Принимает три параметра, полученный телефон, телефон в корзине (если тот есть), и количество которое нужно купить
-// Если телефон в корзине есть, то возвращаем все поля телефона, изменяя его totalPrice и count, которое зависит от количества купленного
-// Если телефона в корзине нет, то возвращаем объект, который содержит нужные для дальнейшего поля
+    // Принимает три параметра, полученный телефон, телефон в корзине (если тот есть), и количество которое нужно купить
+    // Если телефон в корзине есть, то возвращаем все поля телефона, изменяя его totalPrice и count, которое зависит от количества купленного
+    // Если телефона в корзине нет, то возвращаем объект, который содержит нужные для дальнейшего поля
     const updateProduct = (product, productInCart, quantity) => {
         if (productInCart) {
             return {
@@ -66,6 +66,7 @@ function App() {
             quantity: 1,
             image: product.image,
             total: product.price * quantity,
+            rating:product.non_filter_features.rating,
             discountPercentage: product.non_filter_features.discountPercentage,
             discountedPrice: Math.round(product.price - (product.price * product.non_filter_features.discountPercentage / 100)),
             category: product.category
@@ -129,7 +130,7 @@ function App() {
         return {productArray}
     }, [searchField])
 
-      return (
+    return (
         <ImmutableProductListContext.Provider value={{immutableProductList}}>
             <ProductListContext.Provider value={{productArray}}>
                 <FilterArrayContext.Provider value={{filterArray, setFilterArray}}>
@@ -165,11 +166,11 @@ function App() {
                                 <Route exact path="/contacts" element={<Contacts/>}/>
                                 <Route exact path="/delivery" element={<Delivery/>}/>
                                 <Route exact path="/profile" element={<Profile/>}/>
-                                {/*productsInCart={productsInCart} setProductsInCart={setProductsInCart}*/}
-                                <Route exact path="/order" element={<Order cartList={cartList} deleteProductFromCart={deleteProductFromCart}
-                                                                           removeProductFromCart = {removeProductFromCart}
-                                                                           updateProduct={updateProduct} addProductInCart={addProductInCart}
-                                                                           setCartList ={setCartList}/>}/>
+                                <Route exact path="/order"
+                                       element={<Order cartList={cartList} deleteProductFromCart={deleteProductFromCart}
+                                                       removeProductFromCart={removeProductFromCart}
+                                                       updateProduct={updateProduct} addProductInCart={addProductInCart}
+                                                       setCartList={setCartList}/>}/>
                             </Routes>
                             <Footer/>
                         </Router>

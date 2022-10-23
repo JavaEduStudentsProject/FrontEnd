@@ -2,29 +2,18 @@ import React, {useState} from "react";
 import "./styleOrder.css"
 import "./styleCart.css"
 import AuthService from "../../forAuthorization/services/auth.service";
-import {Link} from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import OrderService from "../../services/OrderService";
 
-
 const Order = (props) => {
-    let [orderId, setOrderId] = useState(0);
-
-    function generateOrderId() {
-        setOrderId(++orderId);
-    }
-
-// let sumTotalProd=0;
-//     props.cartList.forEach(el => sumTotalProd += Number.parseFloat(el.quantity))
-
     let sumTotalQuantity = 0;
     props.cartList.forEach(el => sumTotalQuantity += Number.parseFloat(el.quantity))
     console.log(sumTotalQuantity)
     let discountedTotalSum = 0;
     props.cartList.forEach(el => discountedTotalSum += Number.parseFloat(el.discountedPrice) * Number.parseFloat(el.quantity))
     console.log(discountedTotalSum)
-
     const currentUser = AuthService.getCurrentUser();
+
     const createOrder = () => {
         let order = [{
             "products": props.cartList,
@@ -36,7 +25,7 @@ const Order = (props) => {
         }]
         console.log(order)
         console.log(JSON.stringify(order[0]))
-        localStorage.setItem("newOrder",  JSON.stringify(order[0]));
+        localStorage.setItem("newOrder", JSON.stringify(order[0]));
 
         OrderService.saveOrder(JSON.stringify(order[0])).then(r => {
             props.setCartList([])
@@ -52,7 +41,6 @@ const Order = (props) => {
                 {/*<strong>{currentUser.username}</strong>*/}
             </h3>
             <ul className="cart-list">
-
                 {props.cartList.map((cartItem) => {
                     return (
                         <li key={cartItem.id}>
@@ -65,11 +53,11 @@ const Order = (props) => {
                                 </div>
                                 <div>
                                     <button className="button-cart"
-                                            onClick={() => props.addProductInCart(cartItem.id)}>+
+                                            onClick={() => props.removeProductFromCart(cartItem.id)}>-
                                     </button>
                                     <span className="cart-list-item__count">{cartItem.quantity}</span>
                                     <button className="button-cart"
-                                            onClick={() => props.removeProductFromCart(cartItem.id)}>-
+                                            onClick={() => props.addProductInCart(cartItem.id)}>+
                                     </button>
                                 </div>
                                 <span className="cart-list-item__count">{cartItem.total}</span>
@@ -89,7 +77,7 @@ const Order = (props) => {
                 скидкой: {(new Intl.NumberFormat().format(discountedTotalSum))}</p>
 
             <Button className="order-button" onClick={() => createOrder()}>
-            Заказать
+                Заказать
             </Button>
         </div>
     );

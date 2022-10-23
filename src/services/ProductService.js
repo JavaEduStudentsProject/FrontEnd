@@ -1,16 +1,11 @@
 import axios from "axios";
 
-// import SockJsClient from 'react-stomp';
-
-
 import ProductList from "../../src/services/ProductList";
 
 // const PRODUCT_BASE_REST_API_URL = '/temp_props_1.json';
 // const PRODUCT_BASE_REST_API_URL = '/props.json';
 
 const PRODUCT_BASE_REST_API_URL = 'http://localhost:8083/api/products';
-// const SOCKET_URL = 'http://localhost:8080/ws-connect/';
-
 
 class ProductService{
 

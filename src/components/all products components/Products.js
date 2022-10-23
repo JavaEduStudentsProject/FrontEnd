@@ -2,8 +2,6 @@ import React, {useContext, useState, useMemo} from 'react';
 import ProductCard from "./ProductCard";
 import MySelect from "../UI/select/MySelect";
 import Filter from "./Filter";
-import Scroll from "./Scroll";
-
 import {
     FilterArrayContext,
     ImmutableProductListContext, PriceFilterArrayContext,
@@ -13,31 +11,22 @@ import {useParams} from "react-router-dom";
 import Title from "../../components/all products components/Title";
 import Pagination from "react-bootstrap/Pagination";
 import ProductList from "../../services/ProductList";
-import {useLocalStorage} from "../../hooks/useLocalStorage";
-
 
 const Products = (props) => {
     let productArrayForRendering = [];
-
     const {immutableProductList} = useContext(ImmutableProductListContext);
     const {filterArray, setFilterArray} = useContext(FilterArrayContext);
     const {priceDelta} = useContext(PriceFilterArrayContext);
     const {productArray} = useContext(ProductListContext);
-
     const [sortingKey, setSortingKey] = useState("");
     const [directSort, setDirectSort] = useState(true);
     const [sortedProductList, setSortedProductList] = useState([]);
-
     const [currentPage, setCurrentPage] = useState(0);
     const [perPage, setPerPage] = useState(5);
-
     const [flag, setFlag] = useState(false);
-
     const {category, subcategory} = useParams();
 
-
     localStorage.setItem('immutableProductList', JSON.stringify(immutableProductList));
-
 
     if (category) {
         if (category !== filterArray[0]) {
@@ -101,7 +90,8 @@ const Products = (props) => {
                 return <ProductCard
                     key={item.id}
                     item={item}
-                    addToOrder={props.addToOrder}
+                    addProductInCart={props.addProductInCart}
+                    deletePurchasedProduct={props.deletePurchasedProduct}
                 />
             })
             :

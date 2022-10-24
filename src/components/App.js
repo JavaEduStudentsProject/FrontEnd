@@ -16,7 +16,7 @@ import AboutUs from "./aditionalPages/AboutUs";
 import Contacts from "./aditionalPages/Contacts";
 import Delivery from "./aditionalPages/Delivery";
 import Order from "./Cart/Order";
-import BestProductsRecommendation from "./Recommendation blocks/BestProductsRecommendation";
+import BestProductsRecommendation from "./main page components/BestProductsRecommendation";
 import SockJsClient from 'react-stomp';
 import MainPage from "./main page components/MainPage";
 

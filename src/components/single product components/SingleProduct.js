@@ -44,9 +44,11 @@ export default function SingleProduct(props) {
                 </div>
                 <div className="money-block">
                     <PriceComponent countProductInBasket={countProductInBasket}
+                                    incrementProductCount={props.incrementProductCount}
+                                    decrementProductCount={props.decrementProductCount}
                                     setCountProductInBasket={setCountProductInBasket} product={product}
                                     deleteProductFromCart={props.deleteProductFromCart}
-
+                                    removeProductFromCart={props.removeProductFromCart}
                                     addProductInCart={props.addProductInCart}/>
                     <MoneyInCreditComponent/>
                 </div>

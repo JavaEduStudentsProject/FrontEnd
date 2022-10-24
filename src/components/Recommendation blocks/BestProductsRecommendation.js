@@ -8,7 +8,7 @@ import ProductCard from "../all products components/ProductCard";
 
 
 const BestProductsRecommendation = (props) => {
-    const {immutableProductList} = useContext(ImmutableProductListContext);
+    const immutableProductList = JSON.parse(localStorage.getItem('immutableProductList'));
     const [recommendations, setRecommendations] = useState(JSON.stringify({'electronics': [1, 6, 9, 2],
         'beauty and health': [16, 15, 13, 18],
         'food': [24, 25, 23, 22],
@@ -20,12 +20,14 @@ const BestProductsRecommendation = (props) => {
     );
 
     //Обрабатываем входные данные
+    console.log("ImmutablePL");
     console.log(immutableProductList)
     const cardIdsArray = Object.values(JSON.parse(recommendations)).reduce((acc, value) => {
         acc.push(value);
         return acc;
     }, []);
 
+    console.log("first step");
     console.log(cardIdsArray);
 
     //Делаем нормальный формат данных
@@ -37,6 +39,7 @@ const BestProductsRecommendation = (props) => {
         return acc
     },[])
 
+    console.log("second step");
     console.log(recomms);
 
     const productsToRender = recomms.map(section => {
@@ -67,9 +70,9 @@ const BestProductsRecommendation = (props) => {
 
 
     return (
-        <>
-
-            <div>
+        <div>
+            <h1>Лидеры оценок пользователей</h1>
+            <div className="products">
                 {productsToRender.map(elem => {
                     return (<>
                         <h1>{elem.name}</h1>
@@ -87,7 +90,7 @@ const BestProductsRecommendation = (props) => {
             {/*<div >*/}
             {/*    /!*{Object.keys(JSON.parse(recommendations)).map((key) => <div>{key}</div>)}*!/*/}
             {/*</div>*/}
-        </>
+        </div>
     );
 
 }

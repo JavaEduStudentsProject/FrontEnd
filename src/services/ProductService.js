@@ -2,10 +2,8 @@ import axios from "axios";
 
 import ProductList from "../../src/services/ProductList";
 
-// const PRODUCT_BASE_REST_API_URL = '/temp_props_1.json';
-// const PRODUCT_BASE_REST_API_URL = '/props.json';
- const PRODUCT_BASE_REST_API_URL = '/products.json';
-// const PRODUCT_BASE_REST_API_URL = 'http://localhost:8083/api/products';
+
+const PRODUCT_BASE_REST_API_URL = 'http://localhost:8083/api/products';
 
 class ProductService{
 
@@ -20,8 +18,8 @@ class ProductService{
             promise = fetch(`http://localhost:8083/request_from_react/${username}`, {
                 method: "GET",
                 headers: {
-                    "Access-Control-Allow-Origin": '*',
-                    "Access-Control-Allow-Credentials": 'true',
+                    // "Access-Control-Allow-Origin": 'http://localhost:3000',
+                    // "Access-Control-Allow-Credentials": 'true',
                     "Content-Type": 'application/json',
                     "Accept": 'application/json'
                 }
@@ -40,8 +38,8 @@ class ProductService{
             promise = fetch(`http://localhost:8083/basket_request_from_react/${basketArray}`, {
                 method: "GET",
                 headers: {
-                    "Access-Control-Allow-Origin": '*',
-                    "Access-Control-Allow-Credentials": 'true',
+                    // "Access-Control-Allow-Origin": '*',
+                    // "Access-Control-Allow-Credentials": 'true',
                     "Content-Type": 'application/json',
                     "Accept": 'application/json'
                 }

@@ -5,16 +5,18 @@ import SingleProduct from "../components/single product components/SingleProduct
 import Footer from "./footer components/Footer";
 import Products from "./all products components/Products";
 import ProductService from '../services/ProductService'
-import {ImmutableProductListContext, FilterArrayContext, ProductListContext} from "../services/Context";
+import {ImmutableProductListContext, FilterArrayContext,ProductListContext} from "../services/Context";
 import ProductList from "../services/ProductList";
 import Login from "../forAuthorization/components/Login";
 import Register from "../forAuthorization/components/Register";
 import Profile from "../forAuthorization/components/Profile";
 import {useLocalStorage} from "../hooks/useLocalStorage";
-import Order from "./Cart/Order";
+import order from "./Cart/Order";
 import AboutUs from "./aditionalPages/AboutUs";
 import Contacts from "./aditionalPages/Contacts";
 import Delivery from "./aditionalPages/Delivery";
+import Order from "./Cart/Order";
+import SockJsClient from 'react-stomp';
 
 function App() {
     const [immutableProductList, setImmutableProductList] = useState([]);
@@ -127,6 +129,20 @@ function App() {
     };
 
 
+    const SOCKET_URL = 'http://localhost:8083/ws-connect/';
+    const [messages, setMessages] = useState([])
+
+    let onConnected = () => {
+        console.log("Connected!!")
+    }
+
+    let onMessageReceived = (msg) => {
+        console.log('New Message Received!!', msg);
+        setMessages(messages.concat(msg));
+        console.log(messages)
+    }
+
+
     useEffect(() => {
         console.log("Вызов useEffect до геттера")
         getAllProducts();
@@ -218,6 +234,16 @@ function App() {
                                                        setCartList={setCartList}/>}/>
 
                             </Routes>
+
+                            <SockJsClient
+                                url={SOCKET_URL}
+                                topics={['/topic/dataForRecommendationComponent']}
+                                onConnect={onConnected}
+                                onDisconnect={console.log("Disconnected!")}
+                                onMessage={msg => onMessageReceived(msg)}
+                                debug={false}
+                            />
+
                             <Footer/>
                         </Router>
                     </div>

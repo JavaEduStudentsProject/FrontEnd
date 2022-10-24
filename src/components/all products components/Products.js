@@ -92,6 +92,8 @@ const Products = (props) => {
                     item={item}
                     addProductInCart={props.addProductInCart}
                     deletePurchasedProduct={props.deletePurchasedProduct}
+                    incrementProductCount={props.incrementProductCount}
+                    decrementProductCount={props.decrementProductCount}
                 />
             })
             :

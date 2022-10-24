@@ -94,6 +94,10 @@ export default function Header(props) {
                         {cartOpen && (
                             <div className={'shop-cart'}>
                                 <Cart cartList={props.cartList} setCartlist={props.setCartList}
+                                      incrementProductCount={props.incrementProductCount}
+
+                                      setCountProductInBasket={props.setCountProductInBasket}
+                                      decrementProductCount={props.decrementProductCount}
                                       deleteProductFromCart={props.deleteProductFromCart}
                                       deletePurchasedProduct={props.deletePurchasedProduct}
                                       removeProductFromCart={props.removeProductFromCart}

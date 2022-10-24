@@ -19,6 +19,10 @@ const BestProductsRecommendation = (props) => {
         ' House and garden ': [98, 97, 96, 100]})
     );
 
+    //печатаю props с данными из рекомендаций для примера!!!
+    console.log("печатаю props с данными из рекомендаций для примера!!!")
+    console.log(props.bestProductArray)
+
     //Обрабатываем входные данные
     console.log("ImmutablePL");
     console.log(immutableProductList)
@@ -72,12 +76,12 @@ const BestProductsRecommendation = (props) => {
     return (
         <div>
             <h1>Лидеры оценок пользователей</h1>
-            <div className="products">
+            <div className="products-on-main">
                 {productsToRender.map(elem => {
-                    return (<>
+                    return (<div className="best-products-recommendation">
                         <h1>{elem.name}</h1>
                         {elem.id.map(product => <ProductCard item={product} key={product.id}/>)}
-                    </>)
+                    </div>)
                 })}
             </div>
             <div>

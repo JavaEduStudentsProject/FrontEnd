@@ -1,19 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import BestProductsRecommendation from "./BestProductsRecommendation";
+import CosineSimilarityRecommendation from "./CosineSimilarityRecommendation";
+import ProductService from "../../services/ProductService";
 
 const MainPage = (props) => {
-    const recommendedProducts = props.recommendationArray.map(id => {
-        return <div>{id}</div>
-    })
-
-
-
 
     return (
         <div>
-            <h1>Here will be recommendationArray:</h1>
-            {recommendedProducts}
-            <BestProductsRecommendation/>
+            <CosineSimilarityRecommendation cosineArray={props.cosineArray}/>
+            <BestProductsRecommendation bestProductArray={props.bestProductArray}/>
         </div>
     );
 };

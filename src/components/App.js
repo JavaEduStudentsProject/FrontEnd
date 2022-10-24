@@ -16,7 +16,9 @@ import AboutUs from "./aditionalPages/AboutUs";
 import Contacts from "./aditionalPages/Contacts";
 import Delivery from "./aditionalPages/Delivery";
 import Order from "./Cart/Order";
+import BestProductsRecommendation from "./Recommendation blocks/BestProductsRecommendation";
 import SockJsClient from 'react-stomp';
+
 
 function App() {
     const [immutableProductList, setImmutableProductList] = useState([]);
@@ -232,6 +234,7 @@ function App() {
                                                        setCountProductInBasket={setCountProductInBasket}
                                                        updateProduct={updateProduct} addProductInCart={addProductInCart}
                                                        setCartList={setCartList}/>}/>
+                                <Route exact path="/BPRecommendations" element={<BestProductsRecommendation/>}/>
 
                             </Routes>
 

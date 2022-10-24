@@ -18,6 +18,7 @@ import Delivery from "./aditionalPages/Delivery";
 import Order from "./Cart/Order";
 import BestProductsRecommendation from "./Recommendation blocks/BestProductsRecommendation";
 import SockJsClient from 'react-stomp';
+import MainPage from "./main page components/MainPage";
 
 
 function App() {
@@ -132,7 +133,7 @@ function App() {
 
 
     const SOCKET_URL = 'http://localhost:8083/ws-connect/';
-    const [messages, setMessages] = useState([])
+    const [recommendationArray, setRecommendationArray] = useState([])
 
     let onConnected = () => {
         console.log("Connected!!")
@@ -140,8 +141,9 @@ function App() {
 
     let onMessageReceived = (msg) => {
         console.log('New Message Received!!', msg);
-        setMessages(messages.concat(msg));
-        console.log(messages)
+        // setRecommendationArray(recommendationArray.concat(msg));
+        setRecommendationArray(msg);
+        console.log(recommendationArray)
     }
 
 
@@ -193,10 +195,16 @@ function App() {
 
                             />
                             <Routes>
+                                <Route path="/main"
+                                       element={
+                                    <MainPage
+                                        recommendationArray={recommendationArray}
+                                       />
+                                }
+                                />
                                 <Route path="/product/:id"
                                        element={<SingleProduct incrementProductCount={incrementProductCount}
                                                                decrementProductCount={decrementProductCount}
-
                                                                countProductInBasket={countProductInBasket}
                                                                deleteProductFromCart={deleteProductFromCart}
                                                                removeProductFromCart={removeProductFromCart}

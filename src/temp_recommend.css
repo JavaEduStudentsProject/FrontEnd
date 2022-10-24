@@ -1,0 +1,17 @@
+.cosine-similarity-recommendation {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+}
+
+.best-products-recommendation {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+}
+
+.products-on-main {
+    display: contents;
+    align-items: stretch;
+    justify-content: space-between;
+}

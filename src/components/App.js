@@ -131,19 +131,35 @@ function App() {
         });
     };
 
+    useEffect(() => {
+        let username = "cdavydochkin2o" //в перспективе заменить на метод получения id текущего пользователя
+        ProductService.getRecommendedProducts(username);
+            // .then(result => result.json())
+            // .then(currentData => console.log(currentData));
+    }, [])
 
     const SOCKET_URL = 'http://localhost:8083/ws-connect/';
-    const [recommendationArray, setRecommendationArray] = useState([])
+    const [cosineArray, setCosineArray] = useState([])
+    const [bestProductArray, setBestProductArray] = useState([])
 
     let onConnected = () => {
         console.log("Connected!!")
     }
 
-    let onMessageReceived = (msg) => {
-        console.log('New Message Received!!', msg);
+    let onMessageReceivedOne = (msg) => {
+
+        console.log('New Message Received (cosine)!!', msg);
         // setRecommendationArray(recommendationArray.concat(msg));
-        setRecommendationArray(msg);
-        console.log(recommendationArray)
+        setCosineArray(msg);
+        console.log(cosineArray)
+    }
+
+    let onMessageReceivedTwo = (msg) => {
+        console.log('New Message Received (best)!!', msg);
+        // setRecommendationArray(recommendationArray.concat(msg));
+
+        setBestProductArray(msg);
+        console.log(bestProductArray)
     }
 
 
@@ -198,7 +214,8 @@ function App() {
                                 <Route path="/main"
                                        element={
                                     <MainPage
-                                        recommendationArray={recommendationArray}
+                                        cosineArray={cosineArray}
+                                        bestProductArray={bestProductArray}
                                        />
                                 }
                                 />
@@ -248,10 +265,18 @@ function App() {
 
                             <SockJsClient
                                 url={SOCKET_URL}
-                                topics={['/topic/dataForRecommendationComponent']}
+                                topics={['/topic/cosineSimData']}
                                 onConnect={onConnected}
                                 onDisconnect={console.log("Disconnected!")}
-                                onMessage={msg => onMessageReceived(msg)}
+                                onMessage={msg => onMessageReceivedOne(msg)}
+                                debug={false}
+                            />
+                            <SockJsClient
+                                url={SOCKET_URL}
+                                topics={['/topic/bestProductData']}
+                                onConnect={onConnected}
+                                onDisconnect={console.log("Disconnected!")}
+                                onMessage={msg => onMessageReceivedTwo(msg)}
                                 debug={false}
                             />
 

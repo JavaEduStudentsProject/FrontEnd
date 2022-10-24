@@ -37,7 +37,7 @@ export default function Header(props) {
             .then(currentData => setTestRESTAPIArray(currentData));
     }
 
-    console.log("data 2: " + testRESTAPIArray)
+    console.log("data 1: " + testRESTAPIArray)
 
     function print6() {
         let basketArray = [3, 6, 35]
@@ -46,6 +46,8 @@ export default function Header(props) {
             .then(currentData => setTestRESTAPIArray(currentData));
 
     }
+
+    console.log("data 2: " + testRESTAPIArray)
 
     const [showModeratorBoard, setShowModeratorBoard] = useState(false);
     const [showAdminBoard, setShowAdminBoard] = useState(false);

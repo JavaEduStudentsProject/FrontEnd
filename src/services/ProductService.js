@@ -20,8 +20,8 @@ class ProductService{
             promise = fetch(`http://localhost:8083/request_from_react/${username}`, {
                 method: "GET",
                 headers: {
-                    "Access-Control-Allow-Origin": 'http://localhost:3000',
-                    "Access-Control-Allow-Credentials": 'true',
+                    // "Access-Control-Allow-Origin": 'http://localhost:3000',
+                    // "Access-Control-Allow-Credentials": 'true',
                     "Content-Type": 'application/json',
                     "Accept": 'application/json'
                 }
@@ -40,8 +40,8 @@ class ProductService{
             promise = fetch(`http://localhost:8083/basket_request_from_react/${basketArray}`, {
                 method: "GET",
                 headers: {
-                    "Access-Control-Allow-Origin": '*',
-                    "Access-Control-Allow-Credentials": 'true',
+                    // "Access-Control-Allow-Origin": '*',
+                    // "Access-Control-Allow-Credentials": 'true',
                     "Content-Type": 'application/json',
                     "Accept": 'application/json'
                 }

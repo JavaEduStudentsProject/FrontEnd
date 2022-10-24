@@ -30,18 +30,6 @@ export default function Header(props) {
     console.log(category)
     console.log(subcategory)
 
-    function print1() {
-        FaShoppingCart.console.log(immutableProductList)
-    }
-
-    function print3() {
-        console.log(filterArray)
-    }
-
-    function print4() {
-        console.log(priceDelta)
-    }
-
     function print5() {
         let username = "cdavydochkin2o" //в перспективе заменить на метод получения id текущего пользователя
         ProductService.getRecommendedProducts(username)
@@ -143,6 +131,8 @@ export default function Header(props) {
                 <button onClick={()=>{window.location.assign("/aboutUs")}}>About us</button>
                 <button onClick={()=>{window.location.assign("/contacts")}}>Contacts</button>
                 <button onClick={()=>{window.location.assign("/delivery")}}>Delivery</button>
+                <button onClick={print5}>Методы 1, 2</button>
+                <button onClick={print6}>Методы 3</button>
             </nav>
         </header>
     )

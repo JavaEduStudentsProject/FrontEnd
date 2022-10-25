@@ -1,9 +1,11 @@
 import React, {useState} from "react";
 import Modal from "./Modal";
 import AuthService from "../services/auth.service";
+import {EditUserForm} from "../../hooks/EditUserForm";
 
 const Profile = () => {
     const [user] = useState(AuthService.getCurrentUser())
+
     const [modalActive, setModalActive] = useState(false)
 
   return (
@@ -31,7 +33,13 @@ const Profile = () => {
       </div>
     <div>
         <Modal active={modalActive}
-               setActive={setModalActive}/>
+               setActive={setModalActive}>
+            <div>
+                <EditUserForm
+                    currentUser={user}
+                />
+            </div>
+            </Modal>
     </div>
 
 </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import "./aboutUs.css"
-import img from "../../images/c1_i1.png";
+import img from "../../images/123.png";
 
 const AboutUs = (props)=>{
     return(
@@ -14,7 +14,7 @@ const AboutUs = (props)=>{
                             About Us...
                             <span>October 22, 2022 | (0) Comments</span>
                         </h2>
-                        <img src={img} width="277" height="266" alt=""/>
+                        <img src={img} width="277" height="366" alt=""/>
                         <h3>Kefir fungi tried.</h3>
                         <br className="clear bottomClear"/>
                         <br></br>

@@ -17,8 +17,9 @@ import Contacts from "./aditionalPages/Contacts";
 import Delivery from "./aditionalPages/Delivery";
 import Order from "./Cart/Order";
 import BestProductsRecommendation from "./main page components/BestProductsRecommendation";
-import SockJsClient from 'react-stomp';
 import MainPage from "./main page components/MainPage";
+import SockJsClient from 'react-stomp';
+
 
 
 function App() {
@@ -211,7 +212,7 @@ function App() {
 
                             />
                             <Routes>
-                                <Route path="/main"
+                                <Route path="/"
                                        element={
                                     <MainPage
                                         cosineArray={cosineArray}
@@ -239,7 +240,7 @@ function App() {
                                                                             removeProductFromCart={removeProductFromCart}
                                                                             deleteProductFromCart={deleteProductFromCart}
                                                                             addProductInCart={addProductInCart}/>}/>
-                                <Route path="/" element={<Products searchField={searchField}
+                                <Route path="/catalog" element={<Products searchField={searchField}
                                                                    incrementProductCount={incrementProductCount}
                                                                    decrementProductCount={decrementProductCount}
                                                                    removeProductFromCart={removeProductFromCart}
@@ -259,7 +260,6 @@ function App() {
                                                        setCountProductInBasket={setCountProductInBasket}
                                                        updateProduct={updateProduct} addProductInCart={addProductInCart}
                                                        setCartList={setCartList}/>}/>
-                                <Route exact path="/BPRecommendations" element={<BestProductsRecommendation/>}/>
 
                             </Routes>
 

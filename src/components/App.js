@@ -11,16 +11,6 @@ import Login from "../forAuthorization/components/Login";
 import Register from "../forAuthorization/components/Register";
 import Profile from "../forAuthorization/components/Profile";
 import {useLocalStorage} from "../hooks/useLocalStorage";
-import order from "./Cart/Order";
-import AboutUs from "./aditionalPages/AboutUs";
-import Contacts from "./aditionalPages/Contacts";
-import Delivery from "./aditionalPages/Delivery";
-import Order from "./Cart/Order";
-import BestProductsRecommendation from "./main page components/BestProductsRecommendation";
-import MainPage from "./main page components/MainPage";
-import SockJsClient from 'react-stomp';
-
-
 
 function App() {
     const [immutableProductList, setImmutableProductList] = useState([]);
@@ -191,6 +181,30 @@ function App() {
         productArray.push(ProductList.search(immutableProductList, searchField))
         return {productArray}
     }, [searchField])
+
+    const addToOrder = (id) => {
+        let isInArray = false;
+        const newItem = immutableProductList.find((item) => item.id === id);
+        // let newItemTemp=[{
+        //     id:newItem.id,
+        //     title:newItem.title,
+        //     image:newItem.price,
+        //     discountPercentage:newItem["non-filter_features"]["discountPercentage"],
+        //     quantity:1
+        // }]
+        order.forEach(el => {
+            if (el.id === id)
+                isInArray = true;
+        })
+        if (!isInArray)
+
+            setOrder([...order, newItem])
+    };
+
+    const deleteOrder = (id) => {
+        const orderTemp=order.filter(el=>el.id!==id)
+        setOrder(orderTemp)
+    };
 
     return (
         <ImmutableProductListContext.Provider value={{immutableProductList}}>

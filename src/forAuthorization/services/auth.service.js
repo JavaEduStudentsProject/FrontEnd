@@ -32,6 +32,14 @@ const logout = () => {
   });
 };
 
+const updateUser = (username, email, id) => {
+  return axios.post(API_URL + "update", {
+      username,
+      email,
+    id,
+  })
+};
+
 const getCurrentUser = () => {
   return JSON.parse(localStorage.getItem("user"));
 };
@@ -41,6 +49,7 @@ const AuthService = {
   login,
   logout,
   getCurrentUser,
+  updateUser,
 }
 
 export default AuthService;

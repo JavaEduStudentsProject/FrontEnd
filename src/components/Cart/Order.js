@@ -87,8 +87,8 @@ const Order = (props) => {
                     <p className="sum-order"> Сумма заказа со
                         скидкой: {(new Intl.NumberFormat().format(discountedTotalSum))}</p>
 
-                    <h3>You can like thees products</h3>
                     <BasketRecommendations/>
+
                     <Button className="order-button" onClick={() => createOrder()}>
                         Заказать
                     </Button>

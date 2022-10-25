@@ -19,7 +19,7 @@ function DropDownMenu() {
 
     return (
         <div className="dropdown">
-            <button className="dropbtn">Каталог</button>
+            <button onClick={()=>{window.location.assign("/catalog")}} className="dropbtn" >Каталог</button>
             <div className="dropdown-content">
                 {/*<ul>*/}
                 {categories}

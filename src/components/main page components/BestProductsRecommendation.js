@@ -1,6 +1,4 @@
 import React, {useContext, useEffect, useState} from "react";
-// import data from '\best_products_data'
-// import {useContext} from "@types/react";
 import {ImmutableProductListContext} from "../../services/Context";
 import Title from "../all products components/Title";
 import ProductCard from "../all products components/ProductCard";

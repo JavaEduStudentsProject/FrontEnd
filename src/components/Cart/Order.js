@@ -4,6 +4,7 @@ import "./styleCart.css"
 import AuthService from "../../forAuthorization/services/auth.service";
 import Button from "react-bootstrap/Button";
 import OrderService from "../../services/OrderService";
+import BasketRecommendations from "./BasketRecommendations";
 
 const Order = (props) => {
     let sumTotalQuantity = 0;
@@ -86,6 +87,8 @@ const Order = (props) => {
                     <p className="sum-order"> Сумма заказа со
                         скидкой: {(new Intl.NumberFormat().format(discountedTotalSum))}</p>
 
+                    <h3>You can like thees products</h3>
+                    <BasketRecommendations/>
                     <Button className="order-button" onClick={() => createOrder()}>
                         Заказать
                     </Button>

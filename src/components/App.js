@@ -11,6 +11,25 @@ import Login from "../forAuthorization/components/Login";
 import Register from "../forAuthorization/components/Register";
 import Profile from "../forAuthorization/components/Profile";
 import {useLocalStorage} from "../hooks/useLocalStorage";
+import Order from "./Cart/Order";
+import AboutUs from "./aditionalPages/AboutUs";
+import Contacts from "./aditionalPages/Contacts";
+import Delivery from "./aditionalPages/Delivery";
+import * as PropTypes from "prop-types";
+import MainPage from "./main page components/MainPage";
+
+function SockJsClient(props) {
+    return null;
+}
+
+SockJsClient.propTypes = {
+    onConnect: PropTypes.func,
+    onDisconnect: PropTypes.any,
+    debug: PropTypes.bool,
+    topics: PropTypes.arrayOf(PropTypes.string),
+    onMessage: PropTypes.func,
+    url: PropTypes.string
+};
 
 function App() {
     const [immutableProductList, setImmutableProductList] = useState([]);
@@ -18,6 +37,7 @@ function App() {
     const [filterArray, setFilterArray] = useState(["", ""]);
     const [countProductInBasket, setCountProductInBasket] = useLocalStorage(0, "countProductInBasket");
     const [cartList, setCartList] = useLocalStorage([], "cartList");
+    const [order, setOrder] = useLocalStorage([], "cartList");
 
     const updateCartList = (cartList, newProduct, index) => {
         // Метод slice()возвращает неглубокую копию части массива в новый объект
@@ -152,7 +172,6 @@ function App() {
         setBestProductArray(msg);
         console.log(bestProductArray)
     }
-
 
     useEffect(() => {
         console.log("Вызов useEffect до геттера")

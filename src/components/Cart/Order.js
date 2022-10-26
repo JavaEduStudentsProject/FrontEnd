@@ -1,10 +1,13 @@
-import React from "react";
+import React, {useState} from "react";
 import "./styleOrder.css"
 import "./styleCart.css"
 import AuthService from "../../forAuthorization/services/auth.service";
 import Button from "react-bootstrap/Button";
 import OrderService from "../../services/OrderService";
 import BasketRecommendations from "./BasketRecommendations";
+import {Link, useLocation, Navigate} from "react-router-dom";
+import Modal from "../../forAuthorization/components/Modal";
+import login from "../../forAuthorization/components/Login";
 
 const Order = (props) => {
     let sumTotalQuantity = 0;
@@ -14,6 +17,9 @@ const Order = (props) => {
     props.cartList.forEach(el => discountedTotalSum += Number.parseFloat(el.discountedPrice) * Number.parseFloat(el.quantity))
     console.log(discountedTotalSum)
     const currentUser = AuthService.getCurrentUser();
+    const [modalActive, setModalActive] = useState(false)
+    const [modal, setModal] = useState(false)
+    const location = useLocation();
 
     const createOrder = () => {
         let order = [{
@@ -32,10 +38,14 @@ const Order = (props) => {
         props.setCountProductInBasket(prevCountProductInBasket => {
             return (prevCountProductInBasket === 0 ? prevCountProductInBasket : 0)
         });
+        setModal(true)
         OrderService.saveOrder(JSON.stringify(order[0])).then(r => {
             props.setCartList([])
         });
     };
+
+    // const navigate = useNavigate();
+
 
     let summa = 0;
     props.cartList.forEach(el => summa += Number.parseFloat(el.price) * Number.parseFloat(el.quantity))
@@ -89,15 +99,35 @@ const Order = (props) => {
 
                     <BasketRecommendations/>
 
-                    <Button className="order-button" onClick={() => createOrder()}>
+                    <Button className="order-button" onClick={
+                            () => currentUser ? (createOrder()):
+                        (
+                            // <Navigate to='/login' state={{from: location}}/>
+                            setModalActive(true)
+                    )
+                    }>
                         Заказать
                     </Button>
+
+                    <Modal active={modalActive}
+                           setActive={setModalActive}>
+                        <div>
+                                <Link className="link-button" to={`/login`} state={{from: location}}>
+                                    Для оформления заказа выполните вход на сайт
+                                </Link>
+                        </div>
+                    </Modal>
                 </div>
             ) : (
                 <div>
-                    <p></p>
-                </div>)}
-
+                    <Modal active={modal}
+                           setActive={setModal}>
+                        <div>
+                            <Link className="link-button" to={`/catalog`}> Ваш заказ успешно создан</Link>
+                        </div>
+                    </Modal>
+                </div>)
+            }
         </div>
     );
 };

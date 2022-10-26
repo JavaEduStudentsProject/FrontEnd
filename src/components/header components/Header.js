@@ -87,7 +87,7 @@ export default function Header(props) {
                 <DropDownMenu/>
                 <SearchField handleChange={props.handleChange} searchField={props.searchField}/>
 
-                {/*{currentUser ? (*/}
+
                 <div className="userIcons">
                     <Stack>
                         <FaShoppingCart onClick={() => setCartOpen(cartOpen = !cartOpen)}
@@ -109,10 +109,12 @@ export default function Header(props) {
                         )}
                         <span className="count-products-in-basket">{countProductInBasket}</span>
                     </Stack>
+                </div>
+                    {currentUser ? (
                     <div className="navbar-nav ml-auto">
 
                         <Stack className="avatarIcon">
-                            {/*<Avatar alt="Пользователь" src={currentUser.username} onClick={()=>{window.location.assign("/profile")}}/>*/}
+                            <Avatar alt="Пользователь" src={currentUser.username} onClick={()=>{window.location.assign("/profile")}}/>
                         </Stack>
 
                         <li className="nav-item">
@@ -121,8 +123,8 @@ export default function Header(props) {
                             </a>
                         </li>
                     </div>
-                </div>
-                {/*) : (*/}
+
+                ) : (
                 <div className="navbar-nav ml-auto">
                     <Stack className="avatarIcon">
                         <Avatar alt="Пользователь" src={avatar1} onClick={() => {
@@ -130,7 +132,8 @@ export default function Header(props) {
                         }}/>
                     </Stack>
                 </div>
-                {/*)}*/}
+            )}
+
 
             </nav>
             <nav className="nav-list">

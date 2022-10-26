@@ -38,9 +38,9 @@ const showOrders = (props) => {
             }
             <p className="item-sum"> Итого: {(new Intl.NumberFormat().format(summa))}</p>
 
-            <Button className="order-button" onClick={() => props.setCartOpen(!props.cartOpen)}>
-                <Link className="link-button" to={`/order/`}>Создать заказ</Link>
-            </Button>
+                <Button className="order-button" onClick={() => props.setCartOpen(!props.cartOpen)}>
+                    <Link className="link-button" to={`/order/`}>Создать заказ</Link>
+                </Button>
         </div>)
 }
 

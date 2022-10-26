@@ -143,10 +143,17 @@ function App() {
     };
 
     useEffect(() => {
-        let username = "cdavydochkin2o" //в перспективе заменить на метод получения id текущего пользователя
+        let user = JSON.parse(localStorage.getItem("user"));
+        let username = user.username;
+        console.log(username);
         ProductService.getRecommendedProducts(username);
-            // .then(result => result.json())
-            // .then(currentData => console.log(currentData));
+    }, [])
+
+    useEffect(() => {
+        let user = JSON.parse(localStorage.getItem("user"));
+        let username = user.username;
+        console.log(username);
+        ProductService.getRecommendedProducts(username);
     }, [])
 
     const SOCKET_URL = 'http://localhost:8083/ws-connect/';
@@ -167,8 +174,6 @@ function App() {
 
     let onMessageReceivedTwo = (msg) => {
         console.log('New Message Received (best)!!', msg);
-        // setRecommendationArray(recommendationArray.concat(msg));
-
         setBestProductArray(msg);
         console.log(bestProductArray)
     }

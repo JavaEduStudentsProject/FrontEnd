@@ -4,10 +4,7 @@ import img1 from "../../images/car.jpeg";
 import img2 from "../../images/sideBarListBoxBottom.png";
 import img3 from "../../images/samovivoz.jpeg";
 import img4 from "../../images/c2_i2.png";
-import img5 from "../../images/c2_i3.png";
-import img6 from "../../images/c2_i4.png";
 import img7 from "../../images/c2_i5.png";
-import img8 from "../../images/c2_i6.png";
 
 const Delivery = (props)=>{
     return(
@@ -58,12 +55,12 @@ const Delivery = (props)=>{
                     <div class="sideBarListBox">
                         <img src={img} alt="" width="240" height="10" />
                         <ul>
-                            <li><a href="#" >Доставка мелкогабаритной техники общей стоимостью более 4 990 ₽ (с учётом всех скидок)  10:00 - 22:00
-                            </a></li>
-                            <li><a href="#">Доставка мелкогабаритной техники общей стоимостью менее 4 990 ₽  10:00 - 22:00</a></li>
-                            <li><a href="#">Доставка крупногабаритной техники   10:00 - 22:00</a></li>
-                            <li><a href="#">Другое общей стоимостью более 4 990 ₽   10:00 - 22:00</a></li>
-                            <li><a href="#">Другое общей стоимостью менее 4 990 ₽   10:00 - 22:00</a></li>
+                            <li><a href="#" >Доставка мелкогабаритной техники общей стоимостью более 4 990 ₽
+                            </a><h4>Бесплатно</h4></li>
+                            <li><a href="#">Доставка мелкогабаритной техники общей стоимостью менее 4 990 ₽</a><h4>399р</h4></li>
+                            <li><a href="#">Доставка крупногабаритной техники</a><h4>599р</h4></li>
+                            <li><a href="#">Другое общей стоимостью более 4 990 ₽</a><h4>Бесплатно</h4></li>
+                            <li><a href="#">Другое общей стоимостью менее 4 990 ₽</a><h4>399р</h4></li>
                         </ul>
                         <img src={img2} alt="" width="240" height="10" />
                     </div>
@@ -85,9 +82,12 @@ const Delivery = (props)=>{
                         - Приходи за своим заказом после получения SMS.
                     </p>
                 </p>
+                <br className="clear bottomClear"/>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
                 <a href="#"><img src={img4} width="133" height="40" alt="" /></a>
-                <a href="#"><img src={img5} width="84" height="40" alt=""  /></a>
-                <a href="#"><img src={img6} width="93" height="40" alt=""  /></a>
                 <a href="#"><img src={img7} width="101" height="38" alt=""  /></a>		 </div>
     </div>
     </body>

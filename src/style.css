@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap');
 
 * {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Inter';
 }
 
 html {
@@ -22,6 +22,61 @@ body {
     flex-direction: column;
     height: 100vh;
 }
+.header{
+    max-width: 1440px;
+    margin-left: 150px;
+    margin-right: 150px;
+
+}
+.all-products>h1{
+    margin-left: 5px;
+    margin-bottom: 10px;
+}
+.my-select{
+    padding: 6px 8px 6px 12px;
+    margin-left: 5px;
+    border-radius: 4px;
+    border: solid 1px #b4b4bb;
+    margin-bottom: 10px;
+}
+.col-md-12>div>img{
+    margin: 9px 0 0 15%;
+}
+
+.my-select:focus{
+    padding: 6px 8px 6px 12px;
+    border-radius: 4px;
+    border: solid 1px #5a5b6a;
+}
+.form-group>button{
+    width: 88px;
+    height: 32px;
+    margin: 9px 0 0 30%;
+    padding: 2px 4px;
+    border-radius: 4px;
+    border: solid 1px #b4b4bb;
+    background-color: #fff;
+    color: #000;
+}
+
+.form-group>button:hover{
+    box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.1);
+}
+.form-group>button>a{
+    color: #000;
+    text-decoration: none;
+}
+form>.form-group:has(div):has(input){
+    margin: 9px 0 0 15%;
+}
+.form-group>input{
+    width: 136px;
+    height: 36px;
+    margin: 9px 0 0 30%;
+    padding: 6px 8px 6px 12px;
+    border-radius: 4px;
+    border: solid 1px #b4b4bb;
+}
 
 .single-product {
     box-sizing: border-box;
@@ -38,16 +93,17 @@ body {
 
 .productName {
     color: darkslategrey;
-    padding: 10px;
 }
 
 .main-block {
-    /*margin-left: 30px;*/
+    margin-left: 80px;
     margin-top: 30px;
     /*align-items: stretch;*/
     display: flex;
     justify-content: space-between;
-    align-items: center;
+}
+.single-product>.productName{
+    margin-left: 90px
 }
 
 .product-card {
@@ -59,24 +115,55 @@ body {
     height: 320px;
 }
 
-.short-descr {
+.short-descr>button {
+    width: 88px;
+    height: 32px;
+    margin: 9px 17px 0 0;
+    padding: 2px 4px;
+    border-radius: 4px;
+    border: solid 1px #9dc2ff;
+    background-color: #fff;
+    color: dimgray;
+}
+.short-descr>button:hover {
+    color: #2979ff;
+    background-color: #ebf2ff;
+    transition: 0.4s;
+    transform: scale(1.1);
+}
+.full-descr {
     color: black;
     background: #fcfcfc;
     padding: 30px;
-    /*background-color: dimgrey;*/
-    /*height: border-box;*/
-    /*margin-top: 0px;*/
-    /*margin-top: -100px;*/
+    border-radius: 10px;
+    box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.3);
+    margin-left: 10px;
 }
 
 .main-characts {
     margin-top: 10px;
 }
+.main-characts>li{
+    margin-top: 10px;
+    margin-left: 5px;
+    list-style: none;
+    color: dimgray;
+}
+.full-descr>.list>li{
+    margin-top: 10px;
+    list-style: none;
+    color: dimgray;
+}
 
 .img-and-shortdescr {
-    /*align-items: stretch;*/
     display: flex;
-    /*justify-content: space-between;*/
+    color: black;
+    background: #fcfcfc;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.3);
+    margin-bottom: 10px;
+    margin-left: 10px;
 }
 
 .nav-list {
@@ -100,11 +187,7 @@ body {
     font-size: 18px;
 }
 
-.full-descr {
-    color: black;
-    background: #fcfcfc;
-    padding: 30px;
-}
+
 
 /*звездный рейтинг*/
 .star-rating {
@@ -177,13 +260,73 @@ body {
 
 .money-block {
     display: block;
+    width: 304px;
+    padding: 0 0 8px;
+    border-radius: 4px;
+    background-color: #f7f7fa;
+    margin-right: 10px;
+    border: dimgray 1px solid;
 }
 
 .price {
-    background-color: dimgrey;
     margin-top: 0;
+    color: black;
+}
+.price>button{
+    width: 88px;
+    height: 32px;
+    margin: 9px 0 0 17px;
+    padding: 2px 4px;
+    border-radius: 4px;
+    border: solid 1px #b4b4bb;
+    background-color: #fff;
+    color: #000;
+}
+.price>h2{
+    margin: 9px 0 0 17px;
 }
 
 .credit {
-    background-color: dimgrey;
+    color: black;
+}
+.credit>button{
+    width: 155px;
+    height: 32px;
+    margin: 9px 0 0 17px;
+    padding: 2px 4px;
+    border-radius: 4px;
+    border: solid 1px #b4b4bb;
+    background-color: #fff;
+    color: #000;
+}
+.MyButton_myBtn__iTIVh{
+    width: 88px;
+    height: 32px;
+    margin: 9px 0 0 17px;
+    padding: 2px 4px;
+    border-radius: 4px;
+    border: solid 1px #b4b4bb;
+    background-color: #fff;
+    color: #000;
+}
+.MyInput_myInput__4pWkA{
+    width: 90%;
+    height: 36px;
+    margin: 9px 0 0 17px;
+    padding: 6px 8px 6px 12px;
+    border-radius: 4px;
+    border: solid 1px #b4b4bb;
+}
+.credit>h3{
+    margin: 9px 0 0 17px;
+}
+.credit>form>button{
+    width: 155px;
+    height: 32px;
+    margin: 9px 0 0 17px;
+    padding: 2px 4px;
+    border-radius: 4px;
+    border: solid 1px #b4b4bb;
+    background-color: #fff;
+    color: #000;
 }

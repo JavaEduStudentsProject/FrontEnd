@@ -1,40 +1,117 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap');
 /**/
 .header {
-    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .nav-panel {
-        display: flex;
+    display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    background-color: #383838;
-    height: 60px;
-    padding: 30px 25px;
+    background-color: #fff;
+    height: 70px;
+    margin-bottom: 10px;
+}
+
+.nav-list {
+    align-items: stretch;
+    display: flex;
+    background-color: #fff;
+    color: #ffffff;
+    margin-left: 325px;
+}
+
+/*Оформление конфигурационных кнопок*/
+.nav-list > button {
+    width: 124px;
+    height: 56px;
+    padding: 8px 4px 4px;
+    border: none;
+    background-color: #fff;
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.43;
+    letter-spacing: 0.25px;
+    text-align: center;
+    color: #787885;
+}
+
+.nav-list > button:hover {
+    background-color: #ebf2ff;
+    transition: 0.4s;
+    transform: scale(1.1);
+    border-radius: 10px;
+}
+
+/*Оформление конфигурационных кнопок*/
+
+
+.nav-list > a {
+    font-size: 20px;
+    color: cornsilk;
+    padding-top: 10px;
+    padding-left: 20px;
+}
+
+.nav-list > p {
+    margin-left: 30px;
+
 }
 
 nav > h3, nav > h4 {
     margin: 0;
 }
-
+.Logout{
+    width: 104px;
+    height: 40px;
+    padding: 6px 4px;
+    border-radius: 4px;
+    border: solid 1px #9dc2ff;
+    text-align: center;
+}
+.Logout:hover{
+    padding: 6px 12px;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px 0 rgba(41, 121, 255, 0.2), 0 2px 4px 0 rgba(27, 78, 163, 0.2);
+    background-color: #fff;
+}
+.Logout >a{
+    color: #2979ff;
+}
 .nav-img {
     width: 70px;
-    /*margin-left: 150px;*/
-    transform: rotate(-0.05turn);
+    margin-left: 325px;
 }
 
 /*=====Dropdown menu block=====*/
 .dropbtn {
-    border-radius: 3px;
-    background-color: #ffcf0c;
-    font-weight: 600;
-    color: #000000;
-    padding: 15px;
-    font-size: 20px;
-    border: none;
+    width: 104px;
+    height: 40px;
+    padding: 6px 4px;
+    margin-left: 10px;
     margin-right: 10px;
-    margin-left: 40px;
+    margin-top: 5px;
+    background-color: #fff;
+    font-weight: 600;
+    color: #2979ff;
+    border: solid 1px #9dc2ff;
+    border-radius: 4px;
+    transition: 0.5s;
+}
+.dropdown:hover .dropbtn {
+    background-color: #ebf2ff;
+    color: #2979ff;
+    border: none;
+    transition: 0.5s;
+    width: 208px;
+}
+.nav-link{
+   text-decoration: none;
 }
 
 .count-products-in-basket {
@@ -46,13 +123,13 @@ nav > h3, nav > h4 {
     position: relative;
     /*display: inline-block;*/
     /*margin: auto;*/;
-    margin-right: auto;
+    margin-right: 10px;
 }
 
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #ffcf0c;
+    background-color: #fff;
     /*min-width: 160px;*/
     /*width: 100%;*/
     /*overflow:auto;*/
@@ -64,17 +141,18 @@ nav > h3, nav > h4 {
 }
 
 .dropdown-content a {
-    color: black;
+    color: dimgray;
     padding: 20px;
+    font-weight: 600;
     text-decoration: none;
     display: block;
     text-align: center;
-    margin-top: 5px;
-    margin-bottom: 5px;
+
 }
 
 .dropdown-content a:hover {
-    background-color: #ffcf0c;
+    background-color: #ebf2ff;
+    color: #2979ff;
 }
 
 .dropdown:hover .dropdown-content {
@@ -84,22 +162,21 @@ nav > h3, nav > h4 {
     /*gap: 17px;*/
 }
 
-.dropdown:hover .dropbtn {
-    background-color: dimgrey;
-    color: #ffcf0c;
-}
+
 
 .categories {
 
     font-weight: bold;
     font-size: 20px;
     display: flex;
+
 }
 
 .subcategories {
     font-weight: normal;
     font-size: 15px;
     display: none;
+    border-left: dimgray 1px solid;
 }
 
 .categories:hover .subcategories {
@@ -120,87 +197,58 @@ nav > h3, nav > h4 {
 }
 
 .search-field {
-    margin-right: 340px;
-    width: 600px;
-    height: 40px;
+    width: 668px;
+    height: 48px;
+    margin: 20px 14px 20px 10px;
+    padding: 8px;
+    border-radius: 99px;
+    background-color: #ededf0;
+    border: none;
+}
+.search-field:focus{
+    background-color: #c9c8c8;
+    border: none;
 }
 
 
-/*Оформление конфигурационных кнопок*/
-.nav-list > button {
-    align-items: center;
-    background-color: #ffcf0c;
-    font-weight: 600;
-    color: red;
-    padding: 10px;
-    font-size: 10px;
-    border-radius: 3px;
-    border: 3px dashed red;
-    margin: 10px;
-    cursor: pointer;
-    width: 100px;
-}
-
-.nav-list > button:hover {
-    color: #000000;
-    transition: 0.4s;
-    transform: scale(1.1);
-}
-
-/*Оформление конфигурационных кнопок*/
-
-
-.nav-list {
-    align-items: stretch;
-    display: flex;
-    background-color: #5b5b5b;
-    color: #ffffff;
-}
-
-.nav-list > a {
-    font-size: 20px;
-    color: cornsilk;
-    padding-top: 10px;
-    padding-left: 20px;
-}
-
-.nav-list > p {
-    margin-left: 30px;
-
-}
 
 .avatarIcon {
-    margin-right: 90px;
-    margin-left: 20px;
+    flex-grow: 0;
+    margin: 0 0 0;
+    border-radius: 99px;
 }
 
 .userIcons {
-    margin-right: 90px;
+    margin-right: 10px;
     display: flex;
     flex-direction: row;
 }
 
 .shop-cart-button {
-    float: right;
-    cursor: pointer;
-    transition: color, transform 500ms ease;
+    width: 104px;
+    height: 40px;
+    margin: 20px 14px 20px 10px;
+    padding: 6px 4px;
+    border-radius: 4px;
+    border: solid 1px #9dc2ff;
 }
 
 /*корзина новые стили*/
 .shop-cart-button:hover,
 .shop-cart-button.active {
-    color: #ffcf0c;
-    transform: scale(1.5);
+    padding: 6px 12px;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px 0 rgba(41, 121, 255, 0.2), 0 2px 4px 0 rgba(27, 78, 163, 0.2);
+    background-color: #fff;
 }
 
 .shop-cart {
     position: absolute;
     top: 80px;
-    right: 0;
     width: 300px;
-        background: #ffcf0c;
-
+    border-radius: 4px;
+    border: solid 1px #9dc2ff;
     padding: 20px;
-    padding-bottom: 0;
+    background-color: white;
 }
 

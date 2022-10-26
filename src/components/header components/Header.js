@@ -87,7 +87,7 @@ export default function Header(props) {
                 <DropDownMenu/>
                 <SearchField handleChange={props.handleChange} searchField={props.searchField}/>
 
-
+                {/*{currentUser ? (*/}
                 <div className="userIcons">
                     <Stack>
                         <FaShoppingCart onClick={() => setCartOpen(cartOpen = !cartOpen)}
@@ -105,9 +105,10 @@ export default function Header(props) {
                                       removeProductFromCart={props.removeProductFromCart}
                                       addProductInCart={props.addProductInCart}
                                       cartOpen={cartOpen} setCartOpen={setCartOpen}/>
+                                <span className="count-products-in-basket">{countProductInBasket}</span>
                             </div>
                         )}
-                        <span className="count-products-in-basket">{countProductInBasket}</span>
+
                     </Stack>
                 </div>
                     {currentUser ? (
@@ -118,9 +119,11 @@ export default function Header(props) {
                         </Stack>
 
                         <li className="nav-item">
+                            <p className="Logout" >
                             <a href="/" className="nav-link" onClick={logOut}>
-                                LogOut
+                                Log out
                             </a>
+                            </p>
                         </li>
                     </div>
 
@@ -131,6 +134,13 @@ export default function Header(props) {
                             window.location.assign("/login")
                         }}/>
                     </Stack>
+                    {/*<div className="navbar-nav ml-auto">*/}
+                    {/*    <div className="avatarIcon">*/}
+                    {/*        <Avatar alt="Пользователь" src={avatar1} onClick={() => {*/}
+                    {/*            window.location.assign("/login")*/}
+                    {/*        }}/>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
                 </div>
             )}
 

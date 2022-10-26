@@ -5,8 +5,6 @@ import ProductService from "../../services/ProductService";
 import {ImmutableProductListContext} from "../../services/Context";
 
 const MainPage = (props) => {
-    const {immutableProductList} = useContext(ImmutableProductListContext);
-    localStorage.setItem('immutableProductList', JSON.stringify(immutableProductList));
 
     return (
         <div>

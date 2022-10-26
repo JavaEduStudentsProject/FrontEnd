@@ -22,6 +22,18 @@ const Profile = () => {
               <p>
                   <strong>Email:</strong> {user.email}
               </p>
+              <p>
+                  <strong>LastName:</strong> {user.lastname}
+              </p>
+              <p>
+                  <strong>FirstName:</strong> {user.firstname}
+              </p>
+              <p>
+                  <strong>Phone:</strong> {user.phone}
+              </p>
+              <p>
+                  <strong>Image:</strong> {user.image}
+              </p>
               <strong>Authorities:</strong>
               <ul>
                   {user.roles &&

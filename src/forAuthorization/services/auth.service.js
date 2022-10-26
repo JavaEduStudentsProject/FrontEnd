@@ -18,6 +18,7 @@ const login = (username, password) => {
     })
     .then((response) => {
       if (response.data.username) {
+        console.log(response.data)
         localStorage.setItem("user", JSON.stringify(response.data));
       }
 
@@ -32,11 +33,12 @@ const logout = () => {
   });
 };
 
-const updateUser = (username, email, id) => {
+const updateUser = (lastname, firstname,phone, id) => {
   return axios.post(API_URL + "update", {
-      username,
-      email,
-    id,
+        lastname,
+        firstname,
+        phone,
+        id,
   })
 };
 

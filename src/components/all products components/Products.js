@@ -26,7 +26,7 @@ const Products = (props) => {
     const [flag, setFlag] = useState(false);
     const {category, subcategory} = useParams();
 
-    // localStorage.setItem('immutableProductList', JSON.stringify(immutableProductList));
+    localStorage.setItem('immutableProductList', JSON.stringify(immutableProductList));
 
     if (category) {
         if (category !== filterArray[0]) {

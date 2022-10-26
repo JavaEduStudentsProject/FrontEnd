@@ -6,30 +6,36 @@ import {useNavigate} from "react-router-dom";
 const EditUserForm = props => {
     const navigate =useNavigate();
 
-    const [username, setUsername] = useState(props.currentUser.username);
-    const [email, setEmail] = useState(props.currentUser.email);
+    const [lastname, setLastname] = useState(props.currentUser.lastname);
+    const [firstname, setFirstname] = useState(props.currentUser.firstname);
+    const [phone, setPhone] = useState(props.currentUser.phone);
 
     const {user} = useMemo(() => {
         let user = ({
             "id": props.currentUser.id,
-            "username": username,
-            "email": email,
-            "roles": props.currentUser.roles
+            "username": props.currentUser.username,
+            "email": props.currentUser.email,
+            "roles": props.currentUser.roles,
+            "lastname": lastname,
+            "firstname": firstname,
+            "phone": phone,
+            "image": props.currentUser.image,
+
         })
         console.log(user)
             return {
                 user
             }
-        }, [username, email]
+        }, [lastname, firstname,phone]
     )
 
     localStorage.setItem("user", JSON.stringify(user))
 
     const handleSubmit = e => {
         e.preventDefault()
-        if (!user.username || !user.email) return
+        if (!user.lastname || !user.firstname || !user.phone) return
         {
-            AuthService.updateUser(username, email, props.currentUser.id).then(
+            AuthService.updateUser(lastname, firstname,phone, props.currentUser.id).then(
                 () => {
                     navigate("/profile")
                     window.location.reload();
@@ -41,19 +47,28 @@ const EditUserForm = props => {
 
     return (
         <form >
-            <label>Name</label>
+            <label>LastName</label>
             <input
                 type="text"
-                name="username"
-                value={username}
-                onChange= {(e)=> setUsername(e.target.value)}
+                name="lastname"
+                value={lastname}
+                onChange= {(e)=> setLastname(e.target.value)}
             />
-            <label>Email</label>
+            <label>FirstName</label>
             <input
                 type="text"
-                name="email"
-                value={email}
-                onChange= {(e)=> setEmail(e.target.value)}
+                name="firstname"
+                value={firstname}
+                onChange= {(e)=> setFirstname(e.target.value)}
+            />
+            <label>Phone</label>
+            <input
+                type="tel"
+                data-tel-input
+                maxLength={18}
+                name="firstname"
+                value={phone}
+                onChange= {(e)=> setPhone(e.target.value)}
             />
             <br/>
             <button className="btn-update"

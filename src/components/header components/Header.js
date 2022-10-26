@@ -87,7 +87,6 @@ export default function Header(props) {
                 <DropDownMenu/>
                 <SearchField handleChange={props.handleChange} searchField={props.searchField}/>
 
-                {/*{currentUser ? (*/}
                 <div className="userIcons">
                     <Stack>
                         <FaShoppingCart onClick={() => setCartOpen(cartOpen = !cartOpen)}
@@ -134,25 +133,15 @@ export default function Header(props) {
                             window.location.assign("/login")
                         }}/>
                     </Stack>
-                    {/*<div className="navbar-nav ml-auto">*/}
-                    {/*    <div className="avatarIcon">*/}
-                    {/*        <Avatar alt="Пользователь" src={avatar1} onClick={() => {*/}
-                    {/*            window.location.assign("/login")*/}
-                    {/*        }}/>*/}
-                    {/*    </div>*/}
-                    {/*</div>*/}
                 </div>
             )}
 
 
             </nav>
             <nav className="nav-list">
-                <button onClick={()=>{window.location.assign("/")}}>Home Page</button>
                 <button onClick={()=>{window.location.assign("/aboutUs")}}>About us</button>
                 <button onClick={()=>{window.location.assign("/contacts")}}>Contacts</button>
                 <button onClick={()=>{window.location.assign("/delivery")}}>Delivery</button>
-                <button onClick={print5}>Методы 1, 2</button>
-                <button onClick={print6}>Методы 3</button>
             </nav>
         </header>
     )

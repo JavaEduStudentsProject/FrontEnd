@@ -32,7 +32,7 @@ class ProductService{
 
 
     getRecommendedProductsFromBasket(basketArray) {
-        console.log("Функция getRecommendedProducts начала работу")
+        console.log("Функция getRecommendedProductsForBasket начала работу")
         let promise;
         try {
             promise = fetch(`http://localhost:8083/basket_request_from_react/${basketArray}`, {

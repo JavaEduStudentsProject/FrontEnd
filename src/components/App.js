@@ -1,4 +1,5 @@
 import React, {useEffect, useState, useMemo} from 'react';
+import SockJsClient from 'react-stomp';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Header from "./header components/Header";
 import SingleProduct from "../components/single product components/SingleProduct";
@@ -18,7 +19,7 @@ import Delivery from "./aditionalPages/Delivery";
 import Order from "./Cart/Order";
 import BestProductsRecommendation from "./main page components/BestProductsRecommendation";
 import MainPage from "./main page components/MainPage";
-import SockJsClient from 'react-stomp';
+
 
 
 
@@ -132,41 +133,39 @@ function App() {
         });
     };
 
-    useEffect(() => {
-        let user = JSON.parse(localStorage.getItem("user"));
-        let username = user.username;
-        console.log(username);
-        ProductService.getRecommendedProducts(username);
-    }, [])
-
-    useEffect(() => {
-        let user = JSON.parse(localStorage.getItem("user"));
-        let username = user.username;
-        console.log(username);
-        ProductService.getRecommendedProducts(username);
-    }, [])
-
-    const SOCKET_URL = 'http://localhost:8083/ws-connect/';
-    const [cosineArray, setCosineArray] = useState([])
-    const [bestProductArray, setBestProductArray] = useState([])
-
-    let onConnected = () => {
-        console.log("Connected!!")
-    }
-
-    let onMessageReceivedOne = (msg) => {
-
-        console.log('New Message Received (cosine)!!', msg);
-        // setRecommendationArray(recommendationArray.concat(msg));
-        setCosineArray(msg);
-        console.log(cosineArray)
-    }
-
-    let onMessageReceivedTwo = (msg) => {
-        console.log('New Message Received (best)!!', msg);
-        setBestProductArray(msg);
-        console.log(bestProductArray)
-    }
+    // useEffect(() => {
+    //     let user = JSON.parse(localStorage.getItem("user"));
+    //     let username = user.username;
+    //     console.log(username);
+    //     ProductService.getRecommendedProducts(username);
+    // }, [])
+    //
+    //
+    // const SOCKET_URL = 'http://localhost:8083/ws-connect/';
+    // const [cosineArray, setCosineArray] = useState([])
+    // const [bestProductArray, setBestProductArray] = useState([])
+    //
+    // let onConnected = () => {
+    //     console.log("Connected!!")
+    // }
+    //
+    // let onDisconnected = () => {
+    //     console.log("Disconnected!")
+    // }
+    //
+    // let onMessageReceivedOne = (msg) => {
+    //
+    //     console.log('New Message Received (cosine)!!', msg);
+    //     // setRecommendationArray(recommendationArray.concat(msg));
+    //     setCosineArray(msg);
+    //     console.log(cosineArray)
+    // }
+    //
+    // let onMessageReceivedTwo = (msg) => {
+    //     console.log('New Message Received (best)!!', msg);
+    //     setBestProductArray(msg);
+    //     console.log(bestProductArray)
+    // }
 
 
     useEffect(() => {
@@ -220,8 +219,8 @@ function App() {
                                 <Route path="/"
                                        element={
                                     <MainPage
-                                        cosineArray={cosineArray}
-                                        bestProductArray={bestProductArray}
+                                        // cosineArray={cosineArray}
+                                        // bestProductArray={bestProductArray}
                                        />
                                 }
                                 />
@@ -268,22 +267,22 @@ function App() {
 
                             </Routes>
 
-                            <SockJsClient
-                                url={SOCKET_URL}
-                                topics={['/topic/cosineSimData']}
-                                onConnect={onConnected}
-                                onDisconnect={console.log("Disconnected!")}
-                                onMessage={msg => onMessageReceivedOne(msg)}
-                                debug={false}
-                            />
-                            <SockJsClient
-                                url={SOCKET_URL}
-                                topics={['/topic/bestProductData']}
-                                onConnect={onConnected}
-                                onDisconnect={console.log("Disconnected!")}
-                                onMessage={msg => onMessageReceivedTwo(msg)}
-                                debug={false}
-                            />
+                            {/*<SockJsClient*/}
+                            {/*    url={SOCKET_URL}*/}
+                            {/*    topics={['/topic/cosineSimData']}*/}
+                            {/*    onConnect={onConnected}*/}
+                            {/*    onDisconnect={onDisconnected}*/}
+                            {/*    onMessage={msg => onMessageReceivedOne(msg)}*/}
+                            {/*    debug={false}*/}
+                            {/*/>*/}
+                            {/*<SockJsClient*/}
+                            {/*    url={SOCKET_URL}*/}
+                            {/*    topics={['/topic/bestProductData']}*/}
+                            {/*    onConnect={onConnected}*/}
+                            {/*    onDisconnect={onDisconnected}*/}
+                            {/*    onMessage={msg => onMessageReceivedTwo(msg)}*/}
+                            {/*    debug={false}*/}
+                            {/*/>*/}
 
                             <Footer/>
                         </Router>

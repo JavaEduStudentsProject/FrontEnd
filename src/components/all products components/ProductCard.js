@@ -11,6 +11,10 @@ const ProductCard = (props) => {
     console.log(flatProduct)
 
     //const keys = Object.keys(flatProduct).filter(key => key !== "image" && key !== "description" && key !== "title" && key !== "0"&& key !== "1"&& key !== "2"&& key !== "3"&& key !== "4"&& key !== "id");
+    // const descriptionList = keys.map((key, index) =>
+    //         <li key={flatProduct.id + index}>{keys[index]}: {flatProduct[key]}</li>
+    // );
+
 
     const keys = Object.keys(flatProduct).filter(key => key === "brand" || key === "description" || key === "category");
 

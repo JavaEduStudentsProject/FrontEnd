@@ -1,13 +1,13 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
+import SockJsClient from 'react-stomp';
 import "./styleOrder.css"
 import "./styleCart.css"
 import AuthService from "../../forAuthorization/services/auth.service";
 import Button from "react-bootstrap/Button";
 import OrderService from "../../services/OrderService";
 import BasketRecommendations from "./BasketRecommendations";
-import {Link, useLocation, Navigate} from "react-router-dom";
-import Modal from "../../forAuthorization/components/Modal";
-import login from "../../forAuthorization/components/Login";
+import Header from "../header components/Header"
+import ProductService from "../../services/ProductService";
 
 const Order = (props) => {
     let sumTotalQuantity = 0;
@@ -44,11 +44,27 @@ const Order = (props) => {
         });
     };
 
-    // const navigate = useNavigate();
-
-
     let summa = 0;
     props.cartList.forEach(el => summa += Number.parseFloat(el.price) * Number.parseFloat(el.quantity))
+
+
+    const SOCKET_URL = 'http://localhost:8083/ws-connect/';
+    const [basketCategoriesArray, setBasketCategoriesArray] = useState([])
+
+    let onConnected = () => {
+        console.log("Connected!!")
+    }
+
+    let onDisconnected = () => {
+        console.log("Disconnected!")
+    }
+
+    let onMessageReceived = (msg) => {
+        console.log('New Message Received (basketCategoriesArray)!!', msg);
+        setBasketCategoriesArray(msg);
+    }
+    console.log(basketCategoriesArray)
+
     return (
         <div>
 
@@ -97,7 +113,9 @@ const Order = (props) => {
                     <p className="sum-order"> Сумма заказа со
                         скидкой: {(new Intl.NumberFormat().format(discountedTotalSum))}</p>
 
-                    <BasketRecommendations/>
+                    <BasketRecommendations basketCategoriesArray={basketCategoriesArray}/>
+                    <div>For basket recommendation: {basketCategoriesArray}</div>
+
 
                     <Button className="order-button" onClick={
                             () => currentUser ? (createOrder()):
@@ -128,6 +146,14 @@ const Order = (props) => {
                     </Modal>
                 </div>)
             }
+            <SockJsClient
+                url={SOCKET_URL}
+                topics={['/topic/basketCategoriesData']}
+                onConnect={onConnected}
+                onDisconnect={onDisconnected}
+                onMessage={msg => onMessageReceived(msg)}
+                debug={false}
+            />
         </div>
     );
 };

@@ -70,6 +70,8 @@ const Delivery = (props)=>{
         </div>
             <span><img src={img3} width="253" height="320" alt="" /></span>
             <div class="midBox1Top">
+                <br className="clear bottomClear"/>
+                <br></br>
                 <h3>Самовывоз</h3>
                 <br className="clear bottomClear"/>
                 <br></br>
@@ -82,13 +84,7 @@ const Delivery = (props)=>{
                         - Приходи за своим заказом после получения SMS.
                     </p>
                 </p>
-                <br className="clear bottomClear"/>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <a href="#"><img src={img4} width="133" height="40" alt="" /></a>
-                <a href="#"><img src={img7} width="101" height="38" alt=""  /></a>		 </div>
+             	 </div>
     </div>
     </body>
 </html>

@@ -2,8 +2,20 @@ import React from "react";
 import img from "../../images/img.png";
 import "./aboutUs.css";
 import GoogleMapReact from 'google-map-react';
+import * as PropTypes from "prop-types";
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
+
+const Marker = ({ text }) => <div>{text}</div>;
+
+Marker.propTypes = {
+    labelClass: PropTypes.string,
+    markerWithLabel: PropTypes.any,
+    position: PropTypes.shape({lng: PropTypes.number, lat: PropTypes.number}),
+    labelContet: PropTypes.string,
+    opacity: PropTypes.number
+};
+
 function Contacts(){
 
     const defaultProps = {
@@ -48,12 +60,20 @@ function Contacts(){
                         bootstrapURLKeys={{ key: "" }}
                         defaultCenter={defaultProps.center}
                         defaultZoom={defaultProps.zoom}
+                        options={defaultProps.options}
                     >
                             <AnyReactComponent
                                 lat={55.785569516554474}
                                 lng={37.63575093262811}
                                 text="Marker"
                             />
+                        <Marker
+                            opacity={0}
+                            markerWithLabel={window.MarkerWithLabel}
+                            position={{lat:0, lng:0}}
+                            labelClass="example"
+                            labelContet={'<div>example</div>'}
+                        />
                     </GoogleMapReact>
                  </div>
                 </div>

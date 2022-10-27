@@ -10,14 +10,6 @@ const Count = (props) => {
                        }}
                 />
             </div>
-            {/*<div className="count_controls">*/}
-            {/*    /!*<button type="button" className='count_up' onClick={()=>{props.increase(props.id)}}>*!/*/}
-            {/*    /!*    <GoArrowSmallUp className='count_up'/>*!/*/}
-            {/*    /!*</button>*!/*/}
-            {/*    /!*<button type="button" className='count_down'>*!/*/}
-            {/*    /!*    <GoArrowSmallDown className='count_down'/>*!/*/}
-            {/*    /!*</button>*!/*/}
-            {/*</div>*/}
         </div>
     )
 

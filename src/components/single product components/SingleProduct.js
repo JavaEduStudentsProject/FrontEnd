@@ -4,6 +4,10 @@ import MoneyInCreditComponent from "./MoneyInCreditComponent"
 import img from "../../images/img_3.jpg";
 import ShortProductDescription from "./ShortProductDescription";
 import {useParams} from "react-router-dom"
+import ControlledCarousel from "./ImageGallery";
+import ImagesGallery from "./ImageGallery";
+
+
 
 export default function SingleProduct(props) {
 
@@ -17,9 +21,8 @@ export default function SingleProduct(props) {
     const {setCountProductInBasket, countProductInBasket} = props;
 
     function getImage() {
-        console.log(product.image)
+        console.log(product.gallery_images.length)
         return product.image[0] !== "h" ? require(`../../images/${product.image}`) : process.env.PUBLIC_URL + product.image;
-
     }
 
     let image = getImage();
@@ -30,7 +33,7 @@ export default function SingleProduct(props) {
             <div className="main-block">
                 <div className="product-card">
                     <div className="img-and-shortdescr">
-                        <img className="product-img" src={image}/>
+                        <ImagesGallery product={product}/>
                         <ShortProductDescription product={product}/>
                     </div>
                     {/*<div className="full-descr">*/}

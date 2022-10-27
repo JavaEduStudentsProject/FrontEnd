@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap');
 
 * {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Inter';
 }
 
 html {
@@ -13,6 +13,10 @@ html {
     font-size: 20px;
     line-height: 1.3;
     font-weight: 700;
+}
+.col-md-12{
+    padding-left: 40%;
+    padding-right: 40%;
 }
 
 .cart {
@@ -56,14 +60,20 @@ html {
 
 
 .product-button {
-    background-color: #ffcf0c;
-    font-weight: 600;
-    padding: 15px;
-    font-size: 15px;
-    border-radius: 3px;
-    margin: 10px;
-    cursor: pointer;
-    border: none;
+    width: 88px;
+    height: 32px;
+    margin: 9px 17px 0 0;
+    padding: 2px 4px;
+    border-radius: 4px;
+    border: solid 1px #9dc2ff;
+    background-color: #fff;
+    color: dimgray;
+}
+.product-button:hover {
+    color: #2979ff;
+    background-color: #ebf2ff;
+    transition: 0.4s;
+    transform: scale(1.1);
 }
 
 .order-button {
@@ -79,7 +89,10 @@ html {
 
 .link-button {
     text-decoration: none;
-    color: #000000;
+    color: dimgray;
+}
+.link-button:hover{
+    color: #2979ff;
 }
 
 .count {

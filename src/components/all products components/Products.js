@@ -22,7 +22,7 @@ const Products = (props) => {
     const [directSort, setDirectSort] = useState(true);
     const [sortedProductList, setSortedProductList] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
-    const [perPage, setPerPage] = useState(5);
+    const [perPage, setPerPage] = useState(6);
     const [flag, setFlag] = useState(false);
     const {category, subcategory} = useParams();
 
@@ -122,9 +122,9 @@ const Products = (props) => {
                 <MySelect
                     value={sortingKey}
                     onChange={paginationProducts}
-                    defaultValue="5"
+                    defaultValue="6"
                     options={[
-                        {value: '10', name: "10"},
+                        {value: '12', name: "12"},
                         {value: '50', name: "50"},
                         {value: `-1`, name: "Показать все"},
                     ]}/>

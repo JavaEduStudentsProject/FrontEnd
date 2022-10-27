@@ -32,7 +32,11 @@
 }
 .contant_1_right img{
     float: right;
-    margin-right:10px;
+    width: 30%;
+    background: #c2baba;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    border-radius: 10px;
 }
 .contant_1_left p{
     font-size:14px;
@@ -55,16 +59,14 @@
 }
 .contant_1_right h3{
     float: right;
-    margin-right:10px;
-    /*font-size:24px;*/
+    margin-right:50px;
     background:#757575;
     color:#FFFFFF;
-    display:inline;
     padding-left:10px;
     padding-right:10px;
     font-weight:normal;
     line-height:32px;
-    border-bottom:1px solid #C8C8C8;
+    /*border-bottom:1px solid #C8C8C8;*/
 }
 .sideBar{
     width:240px;

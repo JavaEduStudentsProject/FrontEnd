@@ -8,6 +8,8 @@ import OrderService from "../../services/OrderService";
 import BasketRecommendations from "./BasketRecommendations";
 import Header from "../header components/Header"
 import ProductService from "../../services/ProductService";
+import {Link, useLocation} from "react-router-dom";
+import Modal from "../../forAuthorization/components/Modal";
 
 const Order = (props) => {
     let sumTotalQuantity = 0;

@@ -53,7 +53,7 @@ export default function SingleProduct(props) {
                                     deleteProductFromCart={props.deleteProductFromCart}
                                     removeProductFromCart={props.removeProductFromCart}
                                     addProductInCart={props.addProductInCart}/>
-                    <MoneyInCreditComponent/>
+                    {/*<MoneyInCreditComponent/>*/}
                 </div>
             </div>
         </div>

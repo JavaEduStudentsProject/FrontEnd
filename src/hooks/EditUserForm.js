@@ -1,11 +1,12 @@
-import React, {useEffect, useState, useMemo} from 'react'
+import React, {useEffect, useState, useMemo, useRef} from 'react'
 import AuthService from "../forAuthorization/services/auth.service";
 import {useNavigate} from "react-router-dom";
-
+import InputMask from "react-input-mask";
+import {TextField} from "@mui/material";
 
 const EditUserForm = props => {
     const navigate =useNavigate();
-
+    const inputNameRef = useRef();
     const [lastname, setLastname] = useState(props.currentUser.lastname);
     const [firstname, setFirstname] = useState(props.currentUser.firstname);
     const [phone, setPhone] = useState(props.currentUser.phone);
@@ -28,14 +29,15 @@ const EditUserForm = props => {
         }, [lastname, firstname,phone]
     )
 
-    localStorage.setItem("user", JSON.stringify(user))
-
     const handleSubmit = e => {
         e.preventDefault()
+
+
         if (!user.lastname || !user.firstname || !user.phone) return
         {
             AuthService.updateUser(lastname, firstname,phone, props.currentUser.id).then(
                 () => {
+                    localStorage.setItem("user", JSON.stringify(user))
                     navigate("/profile")
                     window.location.reload();
                 }).catch(error => {
@@ -53,6 +55,7 @@ const EditUserForm = props => {
                 value={lastname}
                 onChange= {(e)=> setLastname(e.target.value)}
             />
+            <br></br>
             <label>FirstName</label>
             <input
                 type="text"
@@ -60,15 +63,19 @@ const EditUserForm = props => {
                 value={firstname}
                 onChange= {(e)=> setFirstname(e.target.value)}
             />
+            <br></br>
             <label>Phone</label>
-            <input
-                type="tel"
-                data-tel-input
-                maxLength={18}
-                name="firstname"
-                value={phone}
-                onChange= {(e)=> setPhone(e.target.value)}
-            />
+            <div>
+                <InputMask
+                    mask="+7 (999) 999 99 99"
+                    value={phone}
+                    disabled={false}
+                    maskChar=" "
+                    onChange= {(e)=> setPhone(e.target.value)}
+                >
+                </InputMask>
+            </div>
+
             <br/>
             <button className="btn-update"
                    onClick={(e)=> {
@@ -77,12 +84,12 @@ const EditUserForm = props => {
                     }}
             >
                Обновить юзера</button>
-            <button
-                className="button muted-button"
-            >
-                <a href="/profile">Отменить изменения</a>
+            {/*<button*/}
+            {/*    className="button muted-button"*/}
+            {/*>*/}
+            {/*    <a href="/profile">Отменить изменения</a>*/}
 
-            </button>
+            {/*</button>*/}
         </form>
     )
 }

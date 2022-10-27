@@ -6,22 +6,16 @@ import * as PropTypes from "prop-types";
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
-const Marker = ({ text }) => <div>{text}</div>;
-
-Marker.propTypes = {
-    labelClass: PropTypes.string,
-    markerWithLabel: PropTypes.any,
-    position: PropTypes.shape({lng: PropTypes.number, lat: PropTypes.number}),
-    labelContet: PropTypes.string,
-    opacity: PropTypes.number
-};
+function DirectionsRenderer(props) {
+    return null;
+}
 
 function Contacts(){
 
     const defaultProps = {
                 center: {
-                        lat: 10.99835602,
-                        lng: 77.01502627
+                        lat: 55.785569516554474,
+                        lng:37.63575093262811
                 },
                 zoom: 11
         };
@@ -37,7 +31,7 @@ function Contacts(){
                                 <span>October 22, 2022 | (0) Comments</span>
                             </h2>
                             <div className="contant_1_right">
-                                <h3>Как до нас добраться</h3>
+                                {/*<h3>Как до нас добраться</h3>*/}
                             <img src={img} width="277" height="266" alt=""/>
             <h4>Адрес офиса:</h4><p>129110 г. Москва, проспект Мира, д. 62, стр. 1</p>
                             <br></br>
@@ -65,15 +59,8 @@ function Contacts(){
                             <AnyReactComponent
                                 lat={55.785569516554474}
                                 lng={37.63575093262811}
-                                text="Marker"
+                                text="This Place"
                             />
-                        <Marker
-                            opacity={0}
-                            markerWithLabel={window.MarkerWithLabel}
-                            position={{lat:0, lng:0}}
-                            labelClass="example"
-                            labelContet={'<div>example</div>'}
-                        />
                     </GoogleMapReact>
                  </div>
                 </div>

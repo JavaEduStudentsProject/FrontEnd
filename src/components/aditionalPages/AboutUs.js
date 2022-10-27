@@ -14,7 +14,7 @@ const AboutUs = (props)=>{
                             About Us...
                             <span>October 22, 2022 | (0) Comments</span>
                         </h2>
-                        <img src={img} width="277" height="366" alt=""/>
+                        <img src={img} width="177" height="206" alt=""/>
                         <h3>Kefir fungi tried.</h3>
                         <br className="clear bottomClear"/>
                         <br></br>

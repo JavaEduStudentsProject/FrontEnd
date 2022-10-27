@@ -7,23 +7,23 @@ import ProductCard from "../all products components/ProductCard";
 
 const BestProductsRecommendation = (props) => {
     const immutableProductList = JSON.parse(localStorage.getItem('immutableProductList'));
-    const [recommendations, setRecommendations] = useState(JSON.stringify({'electronics': [1, 6, 9, 2],
-        'beauty and health': [16, 15, 13, 18],
-        'food': [24, 25, 23, 22],
-        'House and garden': [30, 28, 32, 29],
-        ' clothing': [64, 40, 57, 55],
-        ' decorations': [85, 83, 81, 75],
-        ' auto': [88, 93, 86, 87],
-        ' House and garden ': [98, 97, 96, 100]})
-    );
+    // const [recommendations, setRecommendations] = useState(JSON.stringify({'electronics': [1, 6, 9, 2],
+    //     'beauty and health': [16, 15, 13, 18],
+    //     'food': [24, 25, 23, 22],
+    //     'House and garden': [30, 28, 32, 29],
+    //     ' clothing': [64, 40, 57, 55],
+    //     ' decorations': [85, 83, 81, 75],
+    //     ' auto': [88, 93, 86, 87],
+    //     ' House and garden ': [98, 97, 96, 100]})
+    // );
 
-    //печатаю props с данными из рекомендаций для примера!!!
-    console.log("печатаю props с данными из рекомендаций для примера!!!")
-    console.log(props.bestProductArray)
+    const recommendations = JSON.stringify(props.bestProductArray);
 
     //Обрабатываем входные данные
     console.log("ImmutablePL");
     console.log(immutableProductList)
+
+
     const cardIdsArray = Object.values(JSON.parse(recommendations)).reduce((acc, value) => {
         acc.push(value);
         return acc;
@@ -75,8 +75,8 @@ const BestProductsRecommendation = (props) => {
         <div>
             <h1>Лидеры оценок пользователей</h1>
             <div className="products-on-main">
-                {productsToRender.map(elem => {
-                    return (<div className="best-products-recommendation">
+                {productsToRender.map((elem, index) => {
+                    return (<div className="best-products-recommendation" key={index}>
                         <h1>{elem.name}</h1>
                         {elem.id.map(product => <ProductCard item={product} key={product.id}/>)}
                     </div>)

@@ -39,8 +39,8 @@ export default function Header(props) {
 
     console.log("data 1: " + testRESTAPIArray)
 
-    function print6() {
-        let basketArray = [3, 6, 35]
+    function print6(basketArray) {
+        // let basketArray = [3, 6, 35]
         ProductService.getRecommendedProductsFromBasket(basketArray)
             .then(result => result.json())
             .then(currentData => setTestRESTAPIArray(currentData));

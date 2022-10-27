@@ -22,7 +22,7 @@ const Products = (props) => {
     const [directSort, setDirectSort] = useState(true);
     const [sortedProductList, setSortedProductList] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
-    const [perPage, setPerPage] = useState(5);
+    const [perPage, setPerPage] = useState(6);
     const [flag, setFlag] = useState(false);
     const {category, subcategory} = useParams();
 

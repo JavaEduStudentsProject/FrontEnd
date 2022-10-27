@@ -3,16 +3,10 @@ import BestProductsRecommendation from "./BestProductsRecommendation";
 import CosineSimilarityRecommendation from "./CosineSimilarityRecommendation";
 import ProductService from "../../services/ProductService";
 import SockJsClient from "react-stomp";
-import BestProductsRecommendationTwo from "./BestProductsRecommendationTwo";
 
 const MainPage = (props) => {
     const [cosineArray, setCosineArray] = useState([])
     const [bestProductArray, setBestProductArray] = useState({})
-
-    // let user = JSON.parse(localStorage.getItem("user"));
-    // let username = user.username;
-    // console.log(username);
-    // ProductService.getRecommendedProducts(username);
 
     useEffect(() => {
         let user = JSON.parse(localStorage.getItem("user"));
@@ -52,7 +46,6 @@ const MainPage = (props) => {
         <div>
             <CosineSimilarityRecommendation cosineArray={cosineArray}/>
             <BestProductsRecommendation bestProductArray={bestProductArray}/>
-            {/*<BestProductsRecommendationTwo bestProductArray={bestProductArray}/>*/}
             <SockJsClient
                 url={SOCKET_URL}
                 topics={['/topic/cosineSimData']}

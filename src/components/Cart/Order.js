@@ -43,21 +43,6 @@ const Order = (props) => {
     let summa = 0;
     props.cartList.forEach(el => summa += Number.parseFloat(el.price) * Number.parseFloat(el.quantity))
 
-    // let productsInBasketArray = JSON.parse(localStorage.getItem("cartList"));
-    // // const [arrayForRecomComp, setArrayForRecomComp] = useState([]);
-    //
-    // let arrayWithdIds = productsInBasketArray.map(product => product.id)
-    // console.log(arrayWithdIds);
-    // // let arrayForRecomComp
-    // ProductService.getRecommendedProductsFromBasket(arrayWithdIds);
-
-    // useEffect(() => {
-    //     console.log(productsInBasketArray);
-    //     let arrayWithdIds = productsInBasketArray.map(product => product.id)
-    //     console.log(arrayWithdIds);
-    //     setArrayForRecomComp(arrayWithdIds)
-    //     ProductService.getRecommendedProductsFromBasket(arrayForRecomComp);
-    // }, [])
 
     const SOCKET_URL = 'http://localhost:8083/ws-connect/';
     const [basketCategoriesArray, setBasketCategoriesArray] = useState([])
@@ -73,12 +58,9 @@ const Order = (props) => {
     let onMessageReceived = (msg) => {
         console.log('New Message Received (basketCategoriesArray)!!', msg);
         setBasketCategoriesArray(msg);
-        console.log(basketCategoriesArray)
-
     }
+    console.log(basketCategoriesArray)
 
-
-    let tempBasketCategoriesArray = [1, 2, 3]
     return (
         <div>
 

@@ -19,35 +19,6 @@ export default function Header(props) {
     let [cartOpen, setCartOpen] = useState(false)
         const {immutableProductList} = useContext(ImmutableProductListContext);
     const {countProductInBasket} = props;
-    const [testRESTAPIArray, setTestRESTAPIArray] = useState([]);
-
-    //todo кнопки для отладки, удалить:
-
-    const {filterArray} = useContext(FilterArrayContext);
-    const {priceDelta} = useContext(PriceFilterArrayContext);
-    const {category, subcategory} = useParams();
-
-    console.log(category)
-    console.log(subcategory)
-
-    function print5() {
-        let username = "cdavydochkin2o" //в перспективе заменить на метод получения id текущего пользователя
-        ProductService.getRecommendedProducts(username)
-            .then(result => result.json())
-            .then(currentData => setTestRESTAPIArray(currentData));
-    }
-
-    console.log("data 1: " + testRESTAPIArray)
-
-    function print6(basketArray) {
-        // let basketArray = [3, 6, 35]
-        ProductService.getRecommendedProductsFromBasket(basketArray)
-            .then(result => result.json())
-            .then(currentData => setTestRESTAPIArray(currentData));
-
-    }
-
-    console.log("data 2: " + testRESTAPIArray)
 
     const [showModeratorBoard, setShowModeratorBoard] = useState(false);
     const [showAdminBoard, setShowAdminBoard] = useState(false);
@@ -138,8 +109,6 @@ export default function Header(props) {
                 <button onClick={()=>{window.location.assign("/aboutUs")}}>About us</button>
                 <button onClick={()=>{window.location.assign("/contacts")}}>Contacts</button>
                 <button onClick={()=>{window.location.assign("/delivery")}}>Delivery</button>
-                <button onClick={print5}>Методы 1, 2</button>
-                <button onClick={print6}>Методы 3</button>
             </nav>
         </header>
     )

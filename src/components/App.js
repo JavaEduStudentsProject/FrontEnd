@@ -20,20 +20,6 @@ import BestProductsRecommendation from "./main page components/BestProductsRecom
 import * as PropTypes from "prop-types";
 import MainPage from "./main page components/MainPage";
 
-//
-// function SockJsClient(props) {
-//     return null;
-// }
-//
-// SockJsClient.propTypes = {
-//     onConnect: PropTypes.func,
-//     onDisconnect: PropTypes.any,
-//     debug: PropTypes.bool,
-//     topics: PropTypes.arrayOf(PropTypes.string),
-//     onMessage: PropTypes.func,
-//     url: PropTypes.string
-// };
-
 function App() {
     const [immutableProductList, setImmutableProductList] = useState([]);
     const [searchField, setSearchField] = useState("");
@@ -145,39 +131,6 @@ function App() {
         });
     };
 
-    // useEffect(() => {
-    //     let user = JSON.parse(localStorage.getItem("user"));
-    //     let username = user.username;
-    //     console.log(username);
-    //     ProductService.getRecommendedProducts(username);
-    // }, [])
-    //
-    //
-    // const SOCKET_URL = 'http://localhost:8083/ws-connect/';
-    // const [cosineArray, setCosineArray] = useState([])
-    // const [bestProductArray, setBestProductArray] = useState([])
-    //
-    // let onConnected = () => {
-    //     console.log("Connected!!")
-    // }
-    //
-    // let onDisconnected = () => {
-    //     console.log("Disconnected!")
-    // }
-    //
-    // let onMessageReceivedOne = (msg) => {
-    //
-    //     console.log('New Message Received (cosine)!!', msg);
-    //     // setRecommendationArray(recommendationArray.concat(msg));
-    //     setCosineArray(msg);
-    //     console.log(cosineArray)
-    // }
-    //
-    // let onMessageReceivedTwo = (msg) => {
-    //     console.log('New Message Received (best)!!', msg);
-    //     setBestProductArray(msg);
-    //     console.log(bestProductArray)
-    // }
 
     useEffect(() => {
         console.log("Вызов useEffect до геттера")
@@ -186,7 +139,6 @@ function App() {
     }, [])
 
     const getAllProducts = () => {
-        console.log("Вызов геттера")
         ProductService.getAllProducts().then((response) => {
             setImmutableProductList(response.data);
         }).catch(error => {
@@ -210,13 +162,6 @@ function App() {
     const addToOrder = (id) => {
         let isInArray = false;
         const newItem = immutableProductList.find((item) => item.id === id);
-        // let newItemTemp=[{
-        //     id:newItem.id,
-        //     title:newItem.title,
-        //     image:newItem.price,
-        //     discountPercentage:newItem["non-filter_features"]["discountPercentage"],
-        //     quantity:1
-        // }]
         order.forEach(el => {
             if (el.id === id)
                 isInArray = true;
@@ -253,10 +198,7 @@ function App() {
                             <Routes>
                                 <Route path="/"
                                        element={
-                                    <MainPage
-                                        // cosineArray={cosineArray}
-                                        // bestProductArray={bestProductArray}
-                                       />
+                                    <MainPage/>
                                 }
                                 />
                                 <Route path="/product/:id"
@@ -301,23 +243,6 @@ function App() {
                                                        setCartList={setCartList}/>}/>
 
                             </Routes>
-
-                            {/*<SockJsClient*/}
-                            {/*    url={SOCKET_URL}*/}
-                            {/*    topics={['/topic/cosineSimData']}*/}
-                            {/*    onConnect={onConnected}*/}
-                            {/*    onDisconnect={onDisconnected}*/}
-                            {/*    onMessage={msg => onMessageReceivedOne(msg)}*/}
-                            {/*    debug={false}*/}
-                            {/*/>*/}
-                            {/*<SockJsClient*/}
-                            {/*    url={SOCKET_URL}*/}
-                            {/*    topics={['/topic/bestProductData']}*/}
-                            {/*    onConnect={onConnected}*/}
-                            {/*    onDisconnect={onDisconnected}*/}
-                            {/*    onMessage={msg => onMessageReceivedTwo(msg)}*/}
-                            {/*    debug={false}*/}
-                            {/*/>*/}
 
                             <Footer/>
                         </Router>

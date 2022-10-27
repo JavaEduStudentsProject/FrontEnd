@@ -18,7 +18,6 @@ const login = (username, password) => {
     })
     .then((response) => {
       if (response.data.username) {
-        console.log(response.data)
         localStorage.setItem("user", JSON.stringify(response.data));
       }
 

@@ -8,7 +8,6 @@ import {Link} from 'react-router-dom'
 
 const ProductCard = (props) => {
     const flatProduct = ProductList.flatProduct(props.item);
-    console.log(flatProduct)
 
     //const keys = Object.keys(flatProduct).filter(key => key !== "image" && key !== "description" && key !== "title" && key !== "0"&& key !== "1"&& key !== "2"&& key !== "3"&& key !== "4"&& key !== "id");
     // const descriptionList = keys.map((key, index) =>

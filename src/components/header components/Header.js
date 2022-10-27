@@ -6,18 +6,16 @@ import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import avatar1 from '../../images/avatar.jpg'
 import {FilterArrayContext, ImmutableProductListContext, PriceFilterArrayContext} from "../../services/Context";
-import { useParams} from "react-router-dom";
 import AuthService from "../../forAuthorization/services/auth.service";
 import EventBus from "../../forAuthorization/common/EventBus";
 import {FaShoppingCart} from "react-icons/fa";
 import Cart from "../Cart/Cart"
-import ProductService from "../../services/ProductService";
-import Button from "react-bootstrap/Button";
+
 
 
 export default function Header(props) {
     let [cartOpen, setCartOpen] = useState(false)
-        const {immutableProductList} = useContext(ImmutableProductListContext);
+    const {immutableProductList} = useContext(ImmutableProductListContext);
     const {countProductInBasket} = props;
 
     const [showModeratorBoard, setShowModeratorBoard] = useState(false);
@@ -106,8 +104,6 @@ export default function Header(props) {
                     </Stack>
                 </div>
             )}
-
-
             </nav>
             <nav className="nav-list">
                 <button onClick={()=>{window.location.assign("/aboutUs")}}>About us</button>

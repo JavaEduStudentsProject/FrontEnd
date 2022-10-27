@@ -6,8 +6,6 @@ import AuthService from "../../forAuthorization/services/auth.service";
 import Button from "react-bootstrap/Button";
 import OrderService from "../../services/OrderService";
 import BasketRecommendations from "./BasketRecommendations";
-import Header from "../header components/Header"
-import ProductService from "../../services/ProductService";
 import {Link, useLocation} from "react-router-dom";
 import Modal from "../../forAuthorization/components/Modal";
 
@@ -25,7 +23,6 @@ const Order = (props) => {
 
     const createOrder = () => {
         let order = [{
-            // "id":7845,
             "products": props.cartList,
             "total": summa,
             "discountedTotal": discountedTotalSum,
@@ -34,7 +31,6 @@ const Order = (props) => {
             "totalQuantity": sumTotalQuantity,
             "username": currentUser.username
         }]
-        console.log(JSON.stringify(order[0]))
         localStorage.setItem("newOrder", JSON.stringify(order[0]));
         localStorage.setItem("countProductInBasket", JSON.stringify(0))
         props.setCountProductInBasket(prevCountProductInBasket => {
@@ -122,7 +118,6 @@ const Order = (props) => {
                     <Button className="order-button" onClick={
                             () => currentUser ? (createOrder()):
                         (
-                            // <Navigate to='/login' state={{from: location}}/>
                             setModalActive(true)
                     )
                     }>

@@ -22,7 +22,6 @@ const EditUserForm = props => {
             "image": props.currentUser.image,
 
         })
-        console.log(user)
             return {
                 user
             }

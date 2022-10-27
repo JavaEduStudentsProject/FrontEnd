@@ -25,17 +25,14 @@ const Category = (props) => {
     //     return <SubCategory key={index} category={props.category} subCategory={subCategory}/>;
     // })
 
-    console.log(subcategories)
 
     function filterByCategory() {
         let newFilterArray = [props.category, ""]
         setFilterArray(newFilterArray);
         // setFilterArray(prevState => prevState.map((item, index) => index === 0 ? props.category : filterArray[index]))
         // filterArray[0] = props.category;
-        console.log(filterArray);
         let renderedProductList = ProductList.filterProducts(immutableProductList, priceDelta, filterArray);
-        console.log("Лист продуктов для рендеринга после фильтрации по категории")
-        console.log(renderedProductList)
+
         // setProducts(renderedProductList);
 
 

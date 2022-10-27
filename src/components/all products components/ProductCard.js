@@ -8,10 +8,15 @@ import {Link} from 'react-router-dom'
 
 const ProductCard = (props) => {
     const flatProduct = ProductList.flatProduct(props.item);
-    const keys = Object.keys(flatProduct).filter(key => key !== "image" && key !== "description" && key !== "title" && key !== "0"&& key !== "1"&& key !== "2"&& key !== "3"&& key !== "4"&& key !== "id");
+
+    //const keys = Object.keys(flatProduct).filter(key => key !== "image" && key !== "description" && key !== "title" && key !== "0"&& key !== "1"&& key !== "2"&& key !== "3"&& key !== "4"&& key !== "id");
 
     const descriptionList = keys.map((key, index) =>
-        <li key={flatProduct.id + index}>{keys[index]}: {flatProduct[key]}</li>
+        keys[index] === "description" ?
+            flatProduct[key].length < 90 ?
+            <li key={flatProduct.id + index}>{flatProduct[key]}</li> :
+            <li key={flatProduct.id + index}>{flatProduct[key].substring(0, 90)}...</li> :
+            <li key={flatProduct.id + index}>{flatProduct[key]}</li>
     );
 
     function getImage() {
@@ -23,7 +28,7 @@ const ProductCard = (props) => {
 
     return (
         <>
-        <Card className='card' border={"success"} >
+            <Card className='card' border={"success"}>
                 <Card.Img className='product-img' variant="top" alt={flatProduct.title} src={image}/>
                 <Card.Title className="product-name">{flatProduct.title}</Card.Title>
                 <Card.Body className='product-description'>
@@ -39,10 +44,11 @@ const ProductCard = (props) => {
                     <Link className="link-button" to={`/product/${flatProduct.id}`}>Просмотр</Link>
                 </Button>
 
-            <Button onClick={() => props.addProductInCart(flatProduct.id)} className="product-button" variant="primary">
-            В корзину
-                {/*<Link className="link-button" to={`/product/${flatProduct.id}`}>В корзину</Link>*/}
-            </Button>
+
+                <Button onClick={() => props.incrementProductCount(flatProduct.id)} className="product-button"
+                        variant="primary">
+                    В корзину
+                </Button>
 
             </Card>
         </>

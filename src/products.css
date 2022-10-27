@@ -65,6 +65,11 @@
     grid-template-rows: auto auto auto;
     grid-template-columns: auto auto auto;
 
+
+    /*display: flex;*/
+    /*align-items: stretch;*/
+    /*justify-content: space-between;*/
+
 }
 
 

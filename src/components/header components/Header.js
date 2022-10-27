@@ -19,45 +19,6 @@ export default function Header(props) {
     let [cartOpen, setCartOpen] = useState(false)
         const {immutableProductList} = useContext(ImmutableProductListContext);
     const {countProductInBasket} = props;
-    const [testRESTAPIArray, setTestRESTAPIArray] = useState([]);
-
-    //todo кнопки для отладки, удалить:
-
-    const {filterArray} = useContext(FilterArrayContext);
-    const {priceDelta} = useContext(PriceFilterArrayContext);
-    const {category, subcategory} = useParams();
-
-    console.log(category)
-    console.log(subcategory)
-
-    function print1() {
-        FaShoppingCart.console.log(immutableProductList)
-    }
-
-    function print3() {
-        console.log(filterArray)
-    }
-
-    function print4() {
-        console.log(priceDelta)
-    }
-
-    function print5() {
-        let username = "cdavydochkin2o" //в перспективе заменить на метод получения id текущего пользователя
-        ProductService.getRecommendedProducts(username)
-            .then(result => result.json())
-            .then(currentData => setTestRESTAPIArray(currentData));
-    }
-
-    console.log("data 2: " + testRESTAPIArray)
-
-    function print6() {
-        let basketArray = [3, 6, 35]
-        ProductService.getRecommendedProductsFromBasket(basketArray)
-            .then(result => result.json())
-            .then(currentData => setTestRESTAPIArray(currentData));
-
-    }
 
     const [showModeratorBoard, setShowModeratorBoard] = useState(false);
     const [showAdminBoard, setShowAdminBoard] = useState(false);
@@ -106,6 +67,10 @@ export default function Header(props) {
                         {cartOpen && (
                             <div className={'shop-cart'}>
                                 <Cart cartList={props.cartList} setCartlist={props.setCartList}
+                                      incrementProductCount={props.incrementProductCount}
+
+                                      setCountProductInBasket={props.setCountProductInBasket}
+                                      decrementProductCount={props.decrementProductCount}
                                       deleteProductFromCart={props.deleteProductFromCart}
                                       deletePurchasedProduct={props.deletePurchasedProduct}
                                       removeProductFromCart={props.removeProductFromCart}
@@ -144,6 +109,7 @@ export default function Header(props) {
 
             </nav>
             <nav className="nav-list">
+                <button onClick={()=>{window.location.assign("/")}}>Home Page</button>
                 <button onClick={()=>{window.location.assign("/aboutUs")}}>About us</button>
                 <button onClick={()=>{window.location.assign("/contacts")}}>Contacts</button>
                 <button onClick={()=>{window.location.assign("/delivery")}}>Delivery</button>

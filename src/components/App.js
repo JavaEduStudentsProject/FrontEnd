@@ -1,27 +1,33 @@
 import React, {useEffect, useState, useMemo} from 'react';
+import SockJsClient from 'react-stomp';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Header from "./header components/Header";
 import SingleProduct from "../components/single product components/SingleProduct";
 import Footer from "./footer components/Footer";
 import Products from "./all products components/Products";
 import ProductService from '../services/ProductService'
-import {ImmutableProductListContext, FilterArrayContext, ProductListContext} from "../services/Context";
+import {ImmutableProductListContext, FilterArrayContext,ProductListContext} from "../services/Context";
 import ProductList from "../services/ProductList";
 import Login from "../forAuthorization/components/Login";
 import Register from "../forAuthorization/components/Register";
 import Profile from "../forAuthorization/components/Profile";
 import {useLocalStorage} from "../hooks/useLocalStorage";
-import Order from "./Cart/Order";
+import order from "./Cart/Order";
 import AboutUs from "./aditionalPages/AboutUs";
 import Contacts from "./aditionalPages/Contacts";
 import Delivery from "./aditionalPages/Delivery";
+import Order from "./Cart/Order";
+import BestProductsRecommendation from "./main page components/BestProductsRecommendation";
+import MainPage from "./main page components/MainPage";
+
+
+
 
 function App() {
     const [immutableProductList, setImmutableProductList] = useState([]);
     const [searchField, setSearchField] = useState("");
     const [filterArray, setFilterArray] = useState(["", ""]);
-    const [countProductInBasket, setCountProductInBasket] = useState(0);
-    // const [productsInCart, setProductsInCart] = useLocalStorage([], "productsInCart")
+    const [countProductInBasket, setCountProductInBasket] = useLocalStorage(0, "countProductInBasket");
     const [cartList, setCartList] = useLocalStorage([], "cartList");
 
     const updateCartList = (cartList, newProduct, index) => {
@@ -66,12 +72,34 @@ function App() {
             quantity: 1,
             image: product.image,
             total: product.price * quantity,
-            rating:product.non_filter_features.rating,
+            rating: product.non_filter_features.rating,
             discountPercentage: product.non_filter_features.discountPercentage,
             discountedPrice: Math.round(product.price - (product.price * product.non_filter_features.discountPercentage / 100)),
             category: product.category
         };
     };
+
+
+    function incrementProductCount(id) {
+        addProductInCart(id)
+        setCountProductInBasket(prevCountProductInBasket => prevCountProductInBasket + 1
+        );
+        console.log("Added to card. Product quantity: " + countProductInBasket)
+    }
+
+
+    function decrementProductCount(productCart) {
+        removeProductFromCart(productCart)
+        setCountProductInBasket(prevCountProductInBasket => {
+            return (prevCountProductInBasket > 0 ? prevCountProductInBasket - 1 : 0)
+
+        });
+        if (countProductInBasket <= 1) {
+            deleteProductFromCart(productCart)
+        }
+        console.log("Deleted from card. Product quantity: " + countProductInBasket)
+    }
+
 
     const addProductInCart = (id) => {
         const product = immutableProductList.find((item) => item.id === id);
@@ -84,10 +112,10 @@ function App() {
         };
     };
 
-    const removeProductFromCart = (id) => {
+    const removeProductFromCart = (productCart) => {
         let product, productIndex, productInCart, newProduct, newCartList;
-        product = immutableProductList.find((item) => item.id === id);
-        productIndex = cartList.findIndex((item) => item.id === id);
+        product = immutableProductList.find((item) => item.id === productCart.id);
+        productIndex = cartList.findIndex((item) => item.id === productCart.id);
         productInCart = cartList[productIndex];
         newProduct = updateProduct(product, productInCart, -1);
         newCartList = updateCartList(cartList, newProduct, productIndex);
@@ -96,10 +124,48 @@ function App() {
         };
     };
 
-    const deleteProductFromCart = (id) => {
-        const productInCartTemp = cartList.filter(el => el.id !== id)
+    const deleteProductFromCart = (productCart) => {
+        const productInCartTemp = cartList.filter(el => el.id !== productCart.id)
         setCartList(productInCartTemp)
+        setCountProductInBasket(prevCountProductInBasket => {
+            return (prevCountProductInBasket > 0 ? prevCountProductInBasket - productCart.quantity : 0)
+
+        });
     };
+
+    // useEffect(() => {
+    //     let user = JSON.parse(localStorage.getItem("user"));
+    //     let username = user.username;
+    //     console.log(username);
+    //     ProductService.getRecommendedProducts(username);
+    // }, [])
+    //
+    //
+    // const SOCKET_URL = 'http://localhost:8083/ws-connect/';
+    // const [cosineArray, setCosineArray] = useState([])
+    // const [bestProductArray, setBestProductArray] = useState([])
+    //
+    // let onConnected = () => {
+    //     console.log("Connected!!")
+    // }
+    //
+    // let onDisconnected = () => {
+    //     console.log("Disconnected!")
+    // }
+    //
+    // let onMessageReceivedOne = (msg) => {
+    //
+    //     console.log('New Message Received (cosine)!!', msg);
+    //     // setRecommendationArray(recommendationArray.concat(msg));
+    //     setCosineArray(msg);
+    //     console.log(cosineArray)
+    // }
+    //
+    // let onMessageReceivedTwo = (msg) => {
+    //     console.log('New Message Received (best)!!', msg);
+    //     setBestProductArray(msg);
+    //     console.log(bestProductArray)
+    // }
 
 
     useEffect(() => {
@@ -140,24 +206,48 @@ function App() {
                             {/*productsInCart={productsInCart} setProductsInCart={setProductsInCart}*/}
                             <Header cartList={cartList}
                                     removeProductFromCart={removeProductFromCart}
-                                    countProductInBasket={countProductInBasket} addProductInCart={addProductInCart}
+                                    countProductInBasket={countProductInBasket}
+                                    setCountProductInBasket={setCountProductInBasket}
+                                    addProductInCart={addProductInCart}
                                     searchField={searchField} setCartList={setCartList}
+                                    incrementProductCount={incrementProductCount}
+                                    decrementProductCount={decrementProductCount}
                                     handleChange={handleChange} deleteProductFromCart={deleteProductFromCart}
+
                             />
                             <Routes>
+                                <Route path="/"
+                                       element={
+                                    <MainPage
+                                        // cosineArray={cosineArray}
+                                        // bestProductArray={bestProductArray}
+                                       />
+                                }
+                                />
                                 <Route path="/product/:id"
-                                       element={<SingleProduct countProductInBasket={countProductInBasket}
+                                       element={<SingleProduct incrementProductCount={incrementProductCount}
+                                                               decrementProductCount={decrementProductCount}
+                                                               countProductInBasket={countProductInBasket}
                                                                deleteProductFromCart={deleteProductFromCart}
+                                                               removeProductFromCart={removeProductFromCart}
                                                                addProductInCart={addProductInCart}
                                                                setCountProductInBasket={setCountProductInBasket}/>}/>
                                 <Route path="/:category/:subcategory" element={<Products searchField={searchField}
+                                                                                         incrementProductCount={incrementProductCount}
+                                                                                         decrementProductCount={decrementProductCount}
+                                                                                         removeProductFromCart={removeProductFromCart}
                                                                                          deleteProductFromCart={deleteProductFromCart}
                                                                                          addProductInCart={addProductInCart}/>}/>
                                 <Route path="/:category" element={<Products searchField={searchField}
-
+                                                                            incrementProductCount={incrementProductCount}
+                                                                            decrementProductCount={decrementProductCount}
+                                                                            removeProductFromCart={removeProductFromCart}
                                                                             deleteProductFromCart={deleteProductFromCart}
                                                                             addProductInCart={addProductInCart}/>}/>
-                                <Route path="/" element={<Products searchField={searchField}
+                                <Route path="/catalog" element={<Products searchField={searchField}
+                                                                   incrementProductCount={incrementProductCount}
+                                                                   decrementProductCount={decrementProductCount}
+                                                                   removeProductFromCart={removeProductFromCart}
                                                                    deleteProductFromCart={deleteProductFromCart}
                                                                    addProductInCart={addProductInCart}/>}/>
                                 <Route exact path="/login" element={<Login/>}/>
@@ -169,9 +259,31 @@ function App() {
                                 <Route exact path="/order"
                                        element={<Order cartList={cartList} deleteProductFromCart={deleteProductFromCart}
                                                        removeProductFromCart={removeProductFromCart}
+                                                       incrementProductCount={incrementProductCount}
+                                                       decrementProductCount={decrementProductCount}
+                                                       setCountProductInBasket={setCountProductInBasket}
                                                        updateProduct={updateProduct} addProductInCart={addProductInCart}
                                                        setCartList={setCartList}/>}/>
+
                             </Routes>
+
+                            {/*<SockJsClient*/}
+                            {/*    url={SOCKET_URL}*/}
+                            {/*    topics={['/topic/cosineSimData']}*/}
+                            {/*    onConnect={onConnected}*/}
+                            {/*    onDisconnect={onDisconnected}*/}
+                            {/*    onMessage={msg => onMessageReceivedOne(msg)}*/}
+                            {/*    debug={false}*/}
+                            {/*/>*/}
+                            {/*<SockJsClient*/}
+                            {/*    url={SOCKET_URL}*/}
+                            {/*    topics={['/topic/bestProductData']}*/}
+                            {/*    onConnect={onConnected}*/}
+                            {/*    onDisconnect={onDisconnected}*/}
+                            {/*    onMessage={msg => onMessageReceivedTwo(msg)}*/}
+                            {/*    debug={false}*/}
+                            {/*/>*/}
+
                             <Footer/>
                         </Router>
                     </div>

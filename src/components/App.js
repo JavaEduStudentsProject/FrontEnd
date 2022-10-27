@@ -12,16 +12,27 @@ import Login from "../forAuthorization/components/Login";
 import Register from "../forAuthorization/components/Register";
 import Profile from "../forAuthorization/components/Profile";
 import {useLocalStorage} from "../hooks/useLocalStorage";
-import order from "./Cart/Order";
+import Order from "./Cart/Order";
 import AboutUs from "./aditionalPages/AboutUs";
 import Contacts from "./aditionalPages/Contacts";
 import Delivery from "./aditionalPages/Delivery";
-import Order from "./Cart/Order";
 import BestProductsRecommendation from "./main page components/BestProductsRecommendation";
+import * as PropTypes from "prop-types";
 import MainPage from "./main page components/MainPage";
 
-
-
+//
+// function SockJsClient(props) {
+//     return null;
+// }
+//
+// SockJsClient.propTypes = {
+//     onConnect: PropTypes.func,
+//     onDisconnect: PropTypes.any,
+//     debug: PropTypes.bool,
+//     topics: PropTypes.arrayOf(PropTypes.string),
+//     onMessage: PropTypes.func,
+//     url: PropTypes.string
+// };
 
 function App() {
     const [immutableProductList, setImmutableProductList] = useState([]);
@@ -29,6 +40,7 @@ function App() {
     const [filterArray, setFilterArray] = useState(["", ""]);
     const [countProductInBasket, setCountProductInBasket] = useLocalStorage(0, "countProductInBasket");
     const [cartList, setCartList] = useLocalStorage([], "cartList");
+    const [order, setOrder] = useLocalStorage([], "cartList");
 
     const updateCartList = (cartList, newProduct, index) => {
         // Метод slice()возвращает неглубокую копию части массива в новый объект
@@ -167,7 +179,6 @@ function App() {
     //     console.log(bestProductArray)
     // }
 
-
     useEffect(() => {
         console.log("Вызов useEffect до геттера")
         getAllProducts();
@@ -195,6 +206,30 @@ function App() {
         productArray.push(ProductList.search(immutableProductList, searchField))
         return {productArray}
     }, [searchField])
+
+    const addToOrder = (id) => {
+        let isInArray = false;
+        const newItem = immutableProductList.find((item) => item.id === id);
+        // let newItemTemp=[{
+        //     id:newItem.id,
+        //     title:newItem.title,
+        //     image:newItem.price,
+        //     discountPercentage:newItem["non-filter_features"]["discountPercentage"],
+        //     quantity:1
+        // }]
+        order.forEach(el => {
+            if (el.id === id)
+                isInArray = true;
+        })
+        if (!isInArray)
+
+            setOrder([...order, newItem])
+    };
+
+    const deleteOrder = (id) => {
+        const orderTemp=order.filter(el=>el.id!==id)
+        setOrder(orderTemp)
+    };
 
     return (
         <ImmutableProductListContext.Provider value={{immutableProductList}}>

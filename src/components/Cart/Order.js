@@ -8,6 +8,8 @@ import OrderService from "../../services/OrderService";
 import BasketRecommendations from "./BasketRecommendations";
 import Header from "../header components/Header"
 import ProductService from "../../services/ProductService";
+import {Link, useLocation} from "react-router-dom";
+import Modal from "../../forAuthorization/components/Modal";
 
 const Order = (props) => {
     let sumTotalQuantity = 0;
@@ -17,6 +19,9 @@ const Order = (props) => {
     props.cartList.forEach(el => discountedTotalSum += Number.parseFloat(el.discountedPrice) * Number.parseFloat(el.quantity))
     console.log(discountedTotalSum)
     const currentUser = AuthService.getCurrentUser();
+    const [modalActive, setModalActive] = useState(false)
+    const [modal, setModal] = useState(false)
+    const location = useLocation();
 
     const createOrder = () => {
         let order = [{
@@ -35,6 +40,7 @@ const Order = (props) => {
         props.setCountProductInBasket(prevCountProductInBasket => {
             return (prevCountProductInBasket === 0 ? prevCountProductInBasket : 0)
         });
+        setModal(true)
         OrderService.saveOrder(JSON.stringify(order[0])).then(r => {
             props.setCartList([])
         });
@@ -111,14 +117,37 @@ const Order = (props) => {
 
                     <BasketRecommendations basketCategoriesArray={basketCategoriesArray}/>
                     <div>For basket recommendation: {basketCategoriesArray}</div>
-                    <Button className="order-button" onClick={() => createOrder()}>
+
+
+                    <Button className="order-button" onClick={
+                            () => currentUser ? (createOrder()):
+                        (
+                            // <Navigate to='/login' state={{from: location}}/>
+                            setModalActive(true)
+                    )
+                    }>
                         Заказать
                     </Button>
+
+                    <Modal active={modalActive}
+                           setActive={setModalActive}>
+                        <div>
+                                <Link className="link-button" to={`/login`} state={{from: location}}>
+                                    Для оформления заказа выполните вход на сайт
+                                </Link>
+                        </div>
+                    </Modal>
                 </div>
             ) : (
                 <div>
-                    <p></p>
-                </div>)}
+                    <Modal active={modal}
+                           setActive={setModal}>
+                        <div>
+                            <Link className="link-button" to={`/catalog`}> Ваш заказ успешно создан</Link>
+                        </div>
+                    </Modal>
+                </div>)
+            }
             <SockJsClient
                 url={SOCKET_URL}
                 topics={['/topic/basketCategoriesData']}

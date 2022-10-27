@@ -18,6 +18,7 @@ const login = (username, password) => {
     })
     .then((response) => {
       if (response.data.username) {
+        console.log(response.data)
         localStorage.setItem("user", JSON.stringify(response.data));
       }
 
@@ -32,6 +33,15 @@ const logout = () => {
   });
 };
 
+const updateUser = (lastname, firstname,phone, id) => {
+  return axios.post(API_URL + "update", {
+        lastname,
+        firstname,
+        phone,
+        id,
+  })
+};
+
 const getCurrentUser = () => {
   return JSON.parse(localStorage.getItem("user"));
 };
@@ -41,6 +51,7 @@ const AuthService = {
   login,
   logout,
   getCurrentUser,
+  updateUser,
 }
 
 export default AuthService;

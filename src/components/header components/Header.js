@@ -58,7 +58,6 @@ export default function Header(props) {
                 <DropDownMenu/>
                 <SearchField handleChange={props.handleChange} searchField={props.searchField}/>
 
-                {/*{currentUser ? (*/}
                 <div className="userIcons">
                     <Stack>
                         <FaShoppingCart onClick={() => setCartOpen(cartOpen = !cartOpen)}
@@ -81,11 +80,13 @@ export default function Header(props) {
                         )}
 
                     </Stack>
+                </div>
+                    {currentUser ? (
                     <div className="navbar-nav ml-auto">
 
-                        <div className="avatarIcon">
-                            {/*<Avatar alt="Пользователь" src={currentUser.username} onClick={()=>{window.location.assign("/profile")}}/>*/}
-                        </div>
+                        <Stack className="avatarIcon">
+                            <Avatar alt="Пользователь" src={currentUser.username} onClick={()=>{window.location.assign("/profile")}}/>
+                        </Stack>
 
                         <li className="nav-item">
                             <p className="Logout" >
@@ -95,21 +96,20 @@ export default function Header(props) {
                             </p>
                         </li>
                     </div>
-                    <div className="navbar-nav ml-auto">
-                        <div className="avatarIcon">
-                            <Avatar alt="Пользователь" src={avatar1} onClick={() => {
-                                window.location.assign("/login")
-                            }}/>
-                        </div>
-                    </div>
-                </div>
-                {/*) : (*/}
 
-                {/*)}*/}
+                ) : (
+                <div className="navbar-nav ml-auto">
+                    <Stack className="avatarIcon">
+                        <Avatar alt="Пользователь" src={avatar1} onClick={() => {
+                            window.location.assign("/login")
+                        }}/>
+                    </Stack>
+                </div>
+            )}
+
 
             </nav>
             <nav className="nav-list">
-                <button onClick={()=>{window.location.assign("/")}}>Home Page</button>
                 <button onClick={()=>{window.location.assign("/aboutUs")}}>About us</button>
                 <button onClick={()=>{window.location.assign("/contacts")}}>Contacts</button>
                 <button onClick={()=>{window.location.assign("/delivery")}}>Delivery</button>

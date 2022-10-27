@@ -33,14 +33,14 @@ export default function SingleProduct(props) {
                         <img className="product-img" src={image}/>
                         <ShortProductDescription product={product}/>
                     </div>
-                    <div className="full-descr">
-                        <h4>Описание товара</h4>
-                        <ul className="list">
-                            <li>Размер: {product.size}</li>
-                            <li>Цвет</li>
-                            <li>Вес</li>
-                        </ul>
-                    </div>
+                    {/*<div className="full-descr">*/}
+                    {/*    <h4>Описание товара</h4>*/}
+                    {/*    <ul className="list">*/}
+                    {/*        <li>Размер: {product.size}</li>*/}
+                    {/*        <li>Цвет</li>*/}
+                    {/*        <li>Вес</li>*/}
+                    {/*    </ul>*/}
+                    {/*</div>*/}
                 </div>
                 <div className="money-block">
                     <PriceComponent countProductInBasket={countProductInBasket}

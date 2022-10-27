@@ -2,14 +2,20 @@ import React from "react";
 import img from "../../images/img.png";
 import "./aboutUs.css";
 import GoogleMapReact from 'google-map-react';
+import * as PropTypes from "prop-types";
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
+
+function DirectionsRenderer(props) {
+    return null;
+}
+
 function Contacts(){
 
     const defaultProps = {
                 center: {
-                        lat: 10.99835602,
-                        lng: 77.01502627
+                        lat: 55.785569516554474,
+                        lng:37.63575093262811
                 },
                 zoom: 11
         };
@@ -25,7 +31,7 @@ function Contacts(){
                                 <span>October 22, 2022 | (0) Comments</span>
                             </h2>
                             <div className="contant_1_right">
-                                <h3>Как до нас добраться</h3>
+                                {/*<h3>Как до нас добраться</h3>*/}
                             <img src={img} width="277" height="266" alt=""/>
             <h4>Адрес офиса:</h4><p>129110 г. Москва, проспект Мира, д. 62, стр. 1</p>
                             <br></br>
@@ -48,11 +54,12 @@ function Contacts(){
                         bootstrapURLKeys={{ key: "" }}
                         defaultCenter={defaultProps.center}
                         defaultZoom={defaultProps.zoom}
+                        options={defaultProps.options}
                     >
                             <AnyReactComponent
                                 lat={55.785569516554474}
                                 lng={37.63575093262811}
-                                text="Marker"
+                                text="This Place"
                             />
                     </GoogleMapReact>
                  </div>

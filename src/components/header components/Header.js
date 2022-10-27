@@ -76,31 +76,35 @@ export default function Header(props) {
                                       removeProductFromCart={props.removeProductFromCart}
                                       addProductInCart={props.addProductInCart}
                                       cartOpen={cartOpen} setCartOpen={setCartOpen}/>
+                                <span className="count-products-in-basket">{countProductInBasket}</span>
                             </div>
                         )}
-                        <span className="count-products-in-basket">{countProductInBasket}</span>
+
                     </Stack>
                     <div className="navbar-nav ml-auto">
 
-                        <Stack className="avatarIcon">
+                        <div className="avatarIcon">
                             {/*<Avatar alt="Пользователь" src={currentUser.username} onClick={()=>{window.location.assign("/profile")}}/>*/}
-                        </Stack>
+                        </div>
 
                         <li className="nav-item">
+                            <p className="Logout" >
                             <a href="/" className="nav-link" onClick={logOut}>
-                                LogOut
+                                Log out
                             </a>
+                            </p>
                         </li>
+                    </div>
+                    <div className="navbar-nav ml-auto">
+                        <div className="avatarIcon">
+                            <Avatar alt="Пользователь" src={avatar1} onClick={() => {
+                                window.location.assign("/login")
+                            }}/>
+                        </div>
                     </div>
                 </div>
                 {/*) : (*/}
-                <div className="navbar-nav ml-auto">
-                    <Stack className="avatarIcon">
-                        <Avatar alt="Пользователь" src={avatar1} onClick={() => {
-                            window.location.assign("/login")
-                        }}/>
-                    </Stack>
-                </div>
+
                 {/*)}*/}
 
             </nav>

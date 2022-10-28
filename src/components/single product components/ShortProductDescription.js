@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import MainCharacteristics from "./MainCharacteristics";
 import StarRating from "./StarRating";
 import Row from "../all products components/Row";
 
@@ -24,7 +23,9 @@ const ShortProductDescription = (props) => {
             {/*    <MainCharacteristics characteristic = {characteristic} key={characteristic.id}/>*/}
             {/*)}*/}
             </ul>
-            <StarRating/>
+            <StarRating
+                id={props.product.id}
+            />
         </div>
     );
 };

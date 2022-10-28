@@ -12,7 +12,6 @@ class ProductService{
     }
 
     getRecommendedProducts(username) {
-        console.log("Функция getRecommendedProducts начала работу")
         let promise;
         try {
             promise = fetch(`http://localhost:8083/request_from_react/${username}`, {
@@ -32,7 +31,6 @@ class ProductService{
 
 
     getRecommendedProductsFromBasket(basketArray) {
-        console.log("Функция getRecommendedProductsForBasket начала работу")
         let promise;
         try {
             promise = fetch(`http://localhost:8083/basket_request_from_react/${basketArray}`, {

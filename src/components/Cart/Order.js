@@ -6,8 +6,6 @@ import AuthService from "../../forAuthorization/services/auth.service";
 import Button from "react-bootstrap/Button";
 import OrderService from "../../services/OrderService";
 import BasketRecommendations from "./BasketRecommendations";
-import Header from "../header components/Header"
-import ProductService from "../../services/ProductService";
 import {Link, useLocation} from "react-router-dom";
 import Modal from "../../forAuthorization/components/Modal";
 import Review from "../review/Review";
@@ -26,7 +24,6 @@ const Order = (props) => {
 
     const createOrder = () => {
         let order = [{
-            // "id":7845,
             "products": props.cartList,
             "total": summa,
             "discountedTotal": discountedTotalSum,
@@ -35,7 +32,6 @@ const Order = (props) => {
             "totalQuantity": sumTotalQuantity,
             "username": currentUser.username
         }]
-        console.log(JSON.stringify(order[0]))
         localStorage.setItem("newOrder", JSON.stringify(order[0]));
         localStorage.setItem("countProductInBasket", JSON.stringify(0))
         props.setCountProductInBasket(prevCountProductInBasket => {
@@ -51,22 +47,22 @@ const Order = (props) => {
     props.cartList.forEach(el => summa += Number.parseFloat(el.price) * Number.parseFloat(el.quantity))
 
 
-    const SOCKET_URL = 'http://localhost:8083/ws-connect/';
-    const [basketCategoriesArray, setBasketCategoriesArray] = useState([])
-
-    let onConnected = () => {
-        console.log("Connected!!")
-    }
-
-    let onDisconnected = () => {
-        console.log("Disconnected!")
-    }
-
-    let onMessageReceived = (msg) => {
-        console.log('New Message Received (basketCategoriesArray)!!', msg);
-        setBasketCategoriesArray(msg);
-    }
-    console.log(basketCategoriesArray)
+    // const SOCKET_URL = 'http://localhost:8083/ws-connect/';
+    // const [basketCategoriesArray, setBasketCategoriesArray] = useState([])
+    //
+    // let onConnected = () => {
+    //     console.log("Connected!!")
+    // }
+    //
+    // let onDisconnected = () => {
+    //     console.log("Disconnected!")
+    // }
+    //
+    // let onMessageReceived = (msg) => {
+    //     console.log('New Message Received (basketCategoriesArray)!!', msg);
+    //     setBasketCategoriesArray(msg);
+    // }
+    // console.log(basketCategoriesArray)
 
     return (
         <div>
@@ -86,7 +82,10 @@ const Order = (props) => {
                                     <div className="cart-list-item">
                                         <div className="cart-list-item__header">
                                             <div className="cart-list-item__image">
-                                                <img src={cartItem.image}/>
+                                                <img src={cartItem.image}
+                                                    //  onClick={() => {
+                                                    // window.location.assign(`/product/${cartItem.id}`)}}
+                                                />
                                             </div>
                                             <h4 className='cart-list-item__name'>{cartItem.title}</h4>
                                         </div>
@@ -116,14 +115,13 @@ const Order = (props) => {
                     <p className="sum-order"> Сумма заказа со
                         скидкой: {(new Intl.NumberFormat().format(discountedTotalSum))}</p>
 
-                    <BasketRecommendations basketCategoriesArray={basketCategoriesArray}/>
-                    <div>For basket recommendation: {basketCategoriesArray}</div>
+                    {/*<BasketRecommendations basketCategoriesArray={basketCategoriesArray}/>*/}
+                    {/*<div>For basket recommendation: {basketCategoriesArray}</div>*/}
 
 
                     <Button className="order-button" onClick={
                             () => currentUser ? (createOrder()):
                         (
-                            // <Navigate to='/login' state={{from: location}}/>
                             setModalActive(true)
                     )
                     }>
@@ -149,15 +147,14 @@ const Order = (props) => {
                     </Modal>
                 </div>)
             }
-            <SockJsClient
-                url={SOCKET_URL}
-                topics={['/topic/basketCategoriesData']}
-                onConnect={onConnected}
-                onDisconnect={onDisconnected}
-                onMessage={msg => onMessageReceived(msg)}
-                debug={false}
-            />
-            <Review/>
+            {/*<SockJsClient*/}
+            {/*    url={SOCKET_URL}*/}
+            {/*    topics={['/topic/basketCategoriesData']}*/}
+            {/*    onConnect={onConnected}*/}
+            {/*    onDisconnect={onDisconnected}*/}
+            {/*    onMessage={msg => onMessageReceived(msg)}*/}
+            {/*    debug={false}*/}
+            {/*/>*/}
         </div>
     );
 };

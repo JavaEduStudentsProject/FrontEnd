@@ -1,9 +1,8 @@
 import React from "react";
 import PriceComponent from "./PriceComponent"
-import MoneyInCreditComponent from "./MoneyInCreditComponent"
-import img from "../../images/img_3.jpg";
 import ShortProductDescription from "./ShortProductDescription";
 import {useParams} from "react-router-dom"
+import ImagesGallery from "./ImageGallery";
 
 export default function SingleProduct(props) {
 
@@ -17,9 +16,8 @@ export default function SingleProduct(props) {
     const {setCountProductInBasket, countProductInBasket} = props;
 
     function getImage() {
-        console.log(product.image)
+        console.log(product.gallery_images.length)
         return product.image[0] !== "h" ? require(`../../images/${product.image}`) : process.env.PUBLIC_URL + product.image;
-
     }
 
     let image = getImage();
@@ -30,17 +28,17 @@ export default function SingleProduct(props) {
             <div className="main-block">
                 <div className="product-card">
                     <div className="img-and-shortdescr">
-                        <img className="product-img" src={image}/>
+                        <ImagesGallery product={product}/>
                         <ShortProductDescription product={product}/>
                     </div>
-                    {/*<div className="full-descr">*/}
-                    {/*    <h4>Описание товара</h4>*/}
-                    {/*    <ul className="list">*/}
-                    {/*        <li>Размер: {product.size}</li>*/}
-                    {/*        <li>Цвет</li>*/}
-                    {/*        <li>Вес</li>*/}
-                    {/*    </ul>*/}
-                    {/*</div>*/}
+                    <div className="full-descr">
+                        <h4>Описание товара</h4>
+                        <ul className="list">
+                            <li>Рейтинг: {product.rate}</li>
+                            {/*<li>Цвет</li>*/}
+                            {/*<li>Вес</li>*/}
+                        </ul>
+                    </div>
                 </div>
                 <div className="money-block">
                     <PriceComponent countProductInBasket={countProductInBasket}
@@ -50,7 +48,7 @@ export default function SingleProduct(props) {
                                     deleteProductFromCart={props.deleteProductFromCart}
                                     removeProductFromCart={props.removeProductFromCart}
                                     addProductInCart={props.addProductInCart}/>
-                    <MoneyInCreditComponent/>
+                    {/*<MoneyInCreditComponent/>*/}
                 </div>
             </div>
         </div>

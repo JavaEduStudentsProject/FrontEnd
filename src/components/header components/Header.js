@@ -6,21 +6,18 @@ import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import avatar1 from '../../images/avatar.jpg'
 import {FilterArrayContext, ImmutableProductListContext, PriceFilterArrayContext} from "../../services/Context";
-import { useParams} from "react-router-dom";
 import AuthService from "../../forAuthorization/services/auth.service";
 import EventBus from "../../forAuthorization/common/EventBus";
 import {FaShoppingCart} from "react-icons/fa";
 import Cart from "../Cart/Cart"
-import ProductService from "../../services/ProductService";
-import Button from "react-bootstrap/Button";
+
 
 
 export default function Header(props) {
     let [cartOpen, setCartOpen] = useState(false)
-        const {immutableProductList} = useContext(ImmutableProductListContext);
+    const {immutableProductList} = useContext(ImmutableProductListContext);
     const {countProductInBasket} = props;
 
-    const [showModeratorBoard, setShowModeratorBoard] = useState(false);
     const [showAdminBoard, setShowAdminBoard] = useState(false);
     const [currentUser, setCurrentUser] = useState(undefined);
 
@@ -29,7 +26,6 @@ export default function Header(props) {
 
         if (user) {
             setCurrentUser(user);
-            setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
             setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
         }
 
@@ -44,7 +40,6 @@ export default function Header(props) {
 
     const logOut = () => {
         AuthService.logout();
-        setShowModeratorBoard(false);
         setShowAdminBoard(false);
         setCurrentUser(undefined);
     };
@@ -106,8 +101,6 @@ export default function Header(props) {
                     </Stack>
                 </div>
             )}
-
-
             </nav>
             <nav className="nav-list">
                 <button onClick={()=>{window.location.assign("/aboutUs")}}>About us</button>

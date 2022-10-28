@@ -10,6 +10,7 @@ import Header from "../header components/Header"
 import ProductService from "../../services/ProductService";
 import {Link, useLocation} from "react-router-dom";
 import Modal from "../../forAuthorization/components/Modal";
+import Review from "../review/Review";
 
 const Order = (props) => {
     let sumTotalQuantity = 0;
@@ -156,6 +157,7 @@ const Order = (props) => {
                 onMessage={msg => onMessageReceived(msg)}
                 debug={false}
             />
+            <Review/>
         </div>
     );
 };

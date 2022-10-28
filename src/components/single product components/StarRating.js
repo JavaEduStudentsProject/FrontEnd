@@ -6,6 +6,7 @@ export default function StarRating(props) {
         const rate = document.querySelector('input[name="star-radio"]:checked').value
         const idProduct = props.id;
         console.log(rate)
+        console.log(idProduct)
         e.preventDefault()
         RatingService.saveRating(rate, idProduct).then(
             () => {

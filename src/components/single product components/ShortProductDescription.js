@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import MainCharacteristics from "./MainCharacteristics";
 import StarRating from "./StarRating";
 import Row from "../all products components/Row";
 
@@ -19,13 +20,12 @@ const ShortProductDescription = (props) => {
             <h4>Короткое описание товара. Характеристики для фильтров</h4>
             <ul className="main-characts">
                 {descriptionList}
+                <li>Рейтинг: {props.product["non_filter_features"]["rating"]}</li>
             {/*{characteristics.map(characteristic =>*/}
             {/*    <MainCharacteristics characteristic = {characteristic} key={characteristic.id}/>*/}
             {/*)}*/}
             </ul>
-            <StarRating
-                id={props.product.id}
-            />
+            <StarRating id={props.product.id}/>
         </div>
     );
 };

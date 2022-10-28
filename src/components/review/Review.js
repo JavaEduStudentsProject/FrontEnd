@@ -100,6 +100,7 @@ const Review = (props) => {
                                 onChange={onChangeRating}
                             />
                         </div>
+
                         <div className="form-group">
                             <label>Review</label>
                             <textarea

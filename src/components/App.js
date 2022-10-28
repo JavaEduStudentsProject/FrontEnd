@@ -16,8 +16,6 @@ import Order from "./Cart/Order";
 import AboutUs from "./aditionalPages/AboutUs";
 import Contacts from "./aditionalPages/Contacts";
 import Delivery from "./aditionalPages/Delivery";
-import BestProductsRecommendation from "./main page components/BestProductsRecommendation";
-import * as PropTypes from "prop-types";
 import MainPage from "./main page components/MainPage";
 
 function App() {
@@ -27,6 +25,19 @@ function App() {
     const [countProductInBasket, setCountProductInBasket] = useLocalStorage(0, "countProductInBasket");
     const [cartList, setCartList] = useLocalStorage([], "cartList");
     const [order, setOrder] = useLocalStorage([], "cartList");
+
+
+    useEffect(() => {
+        console.log("Вызов useEffect до геттера")
+        ProductService.getAllProducts().then((response) => {
+            localStorage.setItem('immutableProductList', JSON.stringify(response.data))
+            setImmutableProductList(response.data);
+        }).catch(error => {
+            console.log(error);
+        })
+        console.log("Вызов useEffect после геттера")
+    }, [])
+
 
     const updateCartList = (cartList, newProduct, index) => {
         // Метод slice()возвращает неглубокую копию части массива в новый объект
@@ -132,19 +143,6 @@ function App() {
     };
 
 
-    useEffect(() => {
-        console.log("Вызов useEffect до геттера")
-        getAllProducts();
-        console.log("Вызов useEffect после геттера")
-    }, [])
-
-    const getAllProducts = () => {
-        ProductService.getAllProducts().then((response) => {
-            setImmutableProductList(response.data);
-        }).catch(error => {
-            console.log(error);
-        })
-    }
 
 //запустить один раз и закомментировать
     // localStorage.setItem('immutableProductList', JSON.stringify(immutableProductList))

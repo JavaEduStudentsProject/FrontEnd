@@ -1,16 +1,19 @@
-import React, {useEffect, useState, useMemo, useRef} from 'react'
+import React, {useState, useMemo} from 'react'
 import AuthService from "../forAuthorization/services/auth.service";
 import {useNavigate} from "react-router-dom";
-import InputMask from "react-input-mask";
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
+import CountryDropdown from 'country-dropdown-with-flags-for-react';
 import {TextField} from "@mui/material";
 
 const EditUserForm = props => {
     const navigate =useNavigate();
-    const inputNameRef = useRef();
     const [lastname, setLastname] = useState(props.currentUser.lastname);
     const [firstname, setFirstname] = useState(props.currentUser.firstname);
     const [phone, setPhone] = useState(props.currentUser.phone);
-
+    const [country, setCountry] = useState(props.currentUser.country);
+    const [dateOfBirth, setDateOfBirth] = useState(props.currentUser.dateOfBirth);
+    // registerLocale('ru',ru);
     const {user} = useMemo(() => {
         let user = ({
             "id": props.currentUser.id,
@@ -21,21 +24,21 @@ const EditUserForm = props => {
             "firstname": firstname,
             "phone": phone,
             "image": props.currentUser.image,
-
+            "country": country,
+            "dateOfBirth": dateOfBirth
         })
             return {
                 user
             }
-        }, [lastname, firstname,phone]
+        }, [lastname, firstname,phone, country, dateOfBirth]
     )
 
     const handleSubmit = e => {
         e.preventDefault()
 
-
-        if (!user.lastname || !user.firstname || !user.phone) return
+        if (!user.lastname || !user.firstname || !user.phone || !user.country || !user.dateOfBirth) return
         {
-            AuthService.updateUser(lastname, firstname,phone, props.currentUser.id).then(
+            AuthService.updateUser(lastname, firstname,phone, country, dateOfBirth,  props.currentUser.id).then(
                 () => {
                     localStorage.setItem("user", JSON.stringify(user))
                     navigate("/profile")
@@ -53,7 +56,7 @@ const EditUserForm = props => {
                 type="text"
                 name="lastname"
                 value={lastname}
-                onChange= {(e)=> setLastname(e.target.value)}
+                onChange= {(e)=> setLastname(e.target.value.replace(/[^A-Za-z]/g, ''))}
             />
             <br></br>
             <label>FirstName</label>
@@ -61,20 +64,37 @@ const EditUserForm = props => {
                 type="text"
                 name="firstname"
                 value={firstname}
-                onChange= {(e)=> setFirstname(e.target.value)}
+                onChange= {(e)=> setFirstname(e.target.value.replace(/[^A-Za-z]/g, ''))}
             />
             <br></br>
             <label>Phone</label>
             <div>
-                <InputMask
-                    mask="+7 (999) 999 99 99"
+                <PhoneInput
+                    country={'ru'}
                     value={phone}
-                    disabled={false}
-                    maskChar=" "
-                    onChange= {(e)=> setPhone(e.target.value)}
-                >
-                </InputMask>
+                    onChange={phone => setPhone( "+" + phone )}
+                />
+
             </div>
+
+            <br/>
+            <label>Country</label>
+
+            <br/>
+            <CountryDropdown
+                value={country}
+                handleChange={e => setCountry(e.target.value)}/>
+
+            <br/>
+            <label>Date of Birth</label>
+
+            <br/>
+            <TextField
+                id="date"
+                label="Birthday"
+                type="date"
+                defaultValue={dateOfBirth ? dateOfBirth : "2017-05-24"}
+                onChange={e => setDateOfBirth(e.target.value)}/>
 
             <br/>
             <button className="btn-update"
@@ -84,12 +104,6 @@ const EditUserForm = props => {
                     }}
             >
                Обновить юзера</button>
-            {/*<button*/}
-            {/*    className="button muted-button"*/}
-            {/*>*/}
-            {/*    <a href="/profile">Отменить изменения</a>*/}
-
-            {/*</button>*/}
         </form>
     )
 }

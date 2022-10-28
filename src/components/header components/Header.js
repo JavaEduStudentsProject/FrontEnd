@@ -18,7 +18,6 @@ export default function Header(props) {
     const {immutableProductList} = useContext(ImmutableProductListContext);
     const {countProductInBasket} = props;
 
-    const [showModeratorBoard, setShowModeratorBoard] = useState(false);
     const [showAdminBoard, setShowAdminBoard] = useState(false);
     const [currentUser, setCurrentUser] = useState(undefined);
 
@@ -27,7 +26,6 @@ export default function Header(props) {
 
         if (user) {
             setCurrentUser(user);
-            setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
             setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
         }
 
@@ -42,7 +40,6 @@ export default function Header(props) {
 
     const logOut = () => {
         AuthService.logout();
-        setShowModeratorBoard(false);
         setShowAdminBoard(false);
         setCurrentUser(undefined);
     };

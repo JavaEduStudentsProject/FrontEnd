@@ -40,6 +40,14 @@ const Profile = () => {
                   <strong>Phone:</strong> {user.phone}
               </h3>
               <br></br>
+              <h3>
+                  <strong>Country:</strong> {user.country}
+              </h3>
+              <br></br>
+              <h3>
+                  <strong>Date of Birth:</strong> {user.dateOfBirth}
+              </h3>
+              <br></br>
 
               <button className='open-btn' onClick={() => setModalActive(true)}
               >Редактировать юзера</button>

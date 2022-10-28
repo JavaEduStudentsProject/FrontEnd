@@ -1,13 +1,8 @@
 import React from "react";
 import PriceComponent from "./PriceComponent"
-import MoneyInCreditComponent from "./MoneyInCreditComponent"
-import img from "../../images/img_3.jpg";
 import ShortProductDescription from "./ShortProductDescription";
 import {useParams} from "react-router-dom"
-import ControlledCarousel from "./ImageGallery";
 import ImagesGallery from "./ImageGallery";
-
-
 
 export default function SingleProduct(props) {
 

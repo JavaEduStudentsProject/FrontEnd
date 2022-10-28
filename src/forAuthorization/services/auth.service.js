@@ -32,11 +32,13 @@ const logout = () => {
   });
 };
 
-const updateUser = (lastname, firstname,phone, id) => {
+const updateUser = (lastname, firstname,phone, country, dateOfBirth, id) => {
   return axios.post(API_URL + "update", {
         lastname,
         firstname,
         phone,
+        country,
+        dateOfBirth,
         id,
   })
 };

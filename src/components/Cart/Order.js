@@ -155,6 +155,7 @@ const Order = (props) => {
             {/*    onMessage={msg => onMessageReceived(msg)}*/}
             {/*    debug={false}*/}
             {/*/>*/}
+            <Review/>
         </div>
     );
 };

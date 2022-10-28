@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import Modal from "./Modal";
 import AuthService from "../services/auth.service";
 import {EditUserForm} from "../../hooks/EditUserForm";
+import Avatar from "@mui/material/Avatar";
+import Stack from "@mui/material/Stack";
 
 const Profile = () => {
     const [user] = useState(AuthService.getCurrentUser())
@@ -12,33 +14,41 @@ const Profile = () => {
       <div>
           <div>
               <header className="jumbotron">
-                  <h3>
-                      <strong>{user.username}</strong> Profile
-                  </h3>
+                  <h2>
+                      Profile   <strong>{user.username}</strong>
+                  </h2>
+                  <br></br>
               </header>
-              <p>
-                  <strong>Id:</strong> {user.id}
-              </p>
-              <p>
+              <Stack className="avatarIcon">
+                  <Avatar alt="Пользователь" src={user.image} />
+              </Stack>
+              <br></br>
+
+              <h3>
                   <strong>Email:</strong> {user.email}
-              </p>
-              <p>
+              </h3>
+              <br></br>
+              <h3>
                   <strong>LastName:</strong> {user.lastname}
-              </p>
-              <p>
+              </h3>
+              <br></br>
+              <h3>
                   <strong>FirstName:</strong> {user.firstname}
-              </p>
-              <p>
+              </h3>
+              <br></br>
+              <h3>
                   <strong>Phone:</strong> {user.phone}
-              </p>
-              <p>
-                  <strong>Image:</strong> {user.image}
-              </p>
-              <strong>Authorities:</strong>
-              <ul>
-                  {user.roles &&
-                      user.roles.map((role, index) => <li key={index}>{role}</li>)}
-              </ul>
+              </h3>
+              <br></br>
+              <h3>
+                  <strong>Country:</strong> {user.country}
+              </h3>
+              <br></br>
+              <h3>
+                  <strong>Date of Birth:</strong> {user.dateOfBirth}
+              </h3>
+              <br></br>
+
               <button className='open-btn' onClick={() => setModalActive(true)}
               >Редактировать юзера</button>
 

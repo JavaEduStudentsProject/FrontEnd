@@ -23,9 +23,7 @@ class ProductList {
 
     // Фильтрация продуктов по выбранным чекбоксам в разделе фильтр
     static filterProducts(products, priceDelta, filterArray) {
-        console.log(products)
-        console.log(priceDelta)
-        console.log(filterArray)
+
         let finalProductList = [];
         let filteredProductList = products;
 
@@ -69,8 +67,7 @@ class ProductList {
             }
             filteredProductList = finalProductList;
         }
-        console.log("Итоговый лист продуктов для рендеринга")
-        console.log(filteredProductList)
+
         return filteredProductList;
     }
 
@@ -93,7 +90,6 @@ class ProductList {
     static search(products, searchField) {
         let productArray = [];
         const [category, subcategory] = this.searchCategoryAndSubcategoryFromURL();
-        console.log(category, subcategory)
         if (subcategory !== "") {
             productArray = products.filter(product => ProductList.flatProduct(product)["subCategory"] === subcategory).filter(item => {
                 const fullFilter = item.title + item.description;
@@ -110,15 +106,13 @@ class ProductList {
                 return fullFilter.toLowerCase().includes(searchField.toLowerCase());
             })
         }
-        console.log(productArray)
         return productArray;
     }
 
 /*    Метод парсинга url для получения текущей категории и субкатегории.
     Необходим в данном классе, потому что он не видит useParams().*/
     static searchCategoryAndSubcategoryFromURL() {
-        console.log("Запуск метода парметров url")
-        console.log(window.location.pathname)
+
         let catAndSubcat = ["", ""];
         let category;
         let subCategory;

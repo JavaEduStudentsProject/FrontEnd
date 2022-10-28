@@ -4,6 +4,8 @@ import MoneyInCreditComponent from "./MoneyInCreditComponent"
 import img from "../../images/img_3.jpg";
 import ShortProductDescription from "./ShortProductDescription";
 import {useParams} from "react-router-dom"
+import {Tab, TabList, TabPanel, Tabs} from "react-tabs";
+import 'react-tabs/style/react-tabs.css';
 
 export default function SingleProduct(props) {
 
@@ -13,6 +15,9 @@ export default function SingleProduct(props) {
     localStorage.setItem(`${id}`, JSON.stringify(immutable.find(p => p.id === Number(id))))
 
     let product = JSON.parse(localStorage.getItem(`${id}`))
+    const characteristics = [product.filter_features];
+    console.log(characteristics)
+
 
     const {setCountProductInBasket, countProductInBasket} = props;
 
@@ -33,14 +38,30 @@ export default function SingleProduct(props) {
                         <img className="product-img" src={image}/>
                         <ShortProductDescription product={product}/>
                     </div>
-                    {/*<div className="full-descr">*/}
-                    {/*    <h4>Описание товара</h4>*/}
-                    {/*    <ul className="list">*/}
-                    {/*        <li>Размер: {product.size}</li>*/}
-                    {/*        <li>Цвет</li>*/}
-                    {/*        <li>Вес</li>*/}
-                    {/*    </ul>*/}
-                    {/*</div>*/}
+                    <div> <Tabs>
+                        <TabList>
+                            <Tab>Description</Tab>
+                            <Tab>Characteristic</Tab>
+                            <Tab>Review</Tab>
+                        </TabList>
+
+                        <TabPanel>
+                            <li>
+                                {product.description}
+                            </li>
+                        </TabPanel>
+                        <TabPanel>
+                            hello
+                            {/*<ul>*/}
+                            {/*    {characteristics.map(characteristic => (*/}
+                            {/*        <li>{characteristic}</li>*/}
+                            {/*    ))}*/}
+                            {/*</ul>*/}
+                        </TabPanel>
+                        <TabPanel>
+                            <h2>review</h2>
+                        </TabPanel>
+                    </Tabs> </div>
                 </div>
                 <div className="money-block">
                     <PriceComponent countProductInBasket={countProductInBasket}

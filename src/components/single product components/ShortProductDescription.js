@@ -25,7 +25,7 @@ const ShortProductDescription = (props) => {
             {/*    <MainCharacteristics characteristic = {characteristic} key={characteristic.id}/>*/}
             {/*)}*/}
             </ul>
-            {/*<StarRating/>*/}
+            <StarRating id={props.product.id}/>
         </div>
     );
 };

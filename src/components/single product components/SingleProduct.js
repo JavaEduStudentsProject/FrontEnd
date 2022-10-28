@@ -1,9 +1,8 @@
 import React from "react";
 import PriceComponent from "./PriceComponent"
-import MoneyInCreditComponent from "./MoneyInCreditComponent"
-import img from "../../images/img_3.jpg";
 import ShortProductDescription from "./ShortProductDescription";
 import {useParams} from "react-router-dom"
+import ImagesGallery from "./ImageGallery";
 import {Tab, TabList, TabPanel, Tabs} from "react-tabs";
 import 'react-tabs/style/react-tabs.css';
 
@@ -22,9 +21,8 @@ export default function SingleProduct(props) {
     const {setCountProductInBasket, countProductInBasket} = props;
 
     function getImage() {
-        console.log(product.image)
+        console.log(product.gallery_images.length)
         return product.image[0] !== "h" ? require(`../../images/${product.image}`) : process.env.PUBLIC_URL + product.image;
-
     }
 
     let image = getImage();
@@ -35,7 +33,7 @@ export default function SingleProduct(props) {
             <div className="main-block">
                 <div className="product-card">
                     <div className="img-and-shortdescr">
-                        <img className="product-img" src={image}/>
+                        <ImagesGallery product={product}/>
                         <ShortProductDescription product={product}/>
                     </div>
                     <div> <Tabs>
@@ -71,7 +69,7 @@ export default function SingleProduct(props) {
                                     deleteProductFromCart={props.deleteProductFromCart}
                                     removeProductFromCart={props.removeProductFromCart}
                                     addProductInCart={props.addProductInCart}/>
-                    <MoneyInCreditComponent/>
+                    {/*<MoneyInCreditComponent/>*/}
                 </div>
             </div>
         </div>

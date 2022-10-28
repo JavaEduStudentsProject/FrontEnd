@@ -14,7 +14,8 @@ import ProductList from "../../services/ProductList";
 
 const Products = (props) => {
     let productArrayForRendering = [];
-    const {immutableProductList} = useContext(ImmutableProductListContext);
+    // const {immutableProductList} = useContext(ImmutableProductListContext);
+    const immutableProductList = JSON.parse(localStorage.getItem('immutableProductList'));
     const {filterArray, setFilterArray} = useContext(FilterArrayContext);
     const {priceDelta} = useContext(PriceFilterArrayContext);
     const {productArray} = useContext(ProductListContext);
@@ -25,8 +26,6 @@ const Products = (props) => {
     const [perPage, setPerPage] = useState(6);
     const [flag, setFlag] = useState(false);
     const {category, subcategory} = useParams();
-
-    localStorage.setItem('immutableProductList', JSON.stringify(immutableProductList));
 
     if (category) {
         if (category !== filterArray[0]) {

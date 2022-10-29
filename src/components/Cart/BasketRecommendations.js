@@ -4,22 +4,39 @@ import ProductCard from "../all products components/ProductCard";
 
 const BasketRecommendations = (props) => {
     const allProductList = JSON.parse(localStorage.getItem('immutableProductList'));
-    const [recommendations, setRecommendations] = useState(JSON.stringify([1, 2, 3, 4]));
+    let flag = true;
 
-    const recommendedProductsArray = allProductList.filter(product => recommendations.includes(product.id));
-    const recommendedProducts = recommendedProductsArray.map(product => {
-        return <ProductCard
-            key={product.id}
-            item={product}
+    let recommendedProducts = null;
 
-        />
-    })
+    console.log(props.basketCategoriesArray)
+    console.log(props.basketCategoriesArray.length)
+    if (props.basketCategoriesArray.length > 0) {
+
+        const recommendedProductsArray = allProductList.filter(product => props.basketCategoriesArray.includes(product.id));
+
+        recommendedProducts = recommendedProductsArray.map(product => {
+            return <ProductCard
+                key={product.id}
+                item={product}
+                addProductInCart={props.addProductInCart}
+                deletePurchasedProduct={props.deletePurchasedProduct}
+                incrementProductCount={props.incrementProductCount}
+                decrementProductCount={props.decrementProductCount}
+            />
+        })
+    } else {
+        flag = false
+    }
+    console.log("flag: " + flag)
+
     return (
         <div>
-            <h3>You can like thees products</h3>
-            <div className="best-products-recommendation">
-                {recommendedProducts}
-            </div>
+            <h3>You can like</h3>
+            {flag &&
+                <div className="cosine-similarity-recommendation">
+                    {recommendedProducts}
+                </div>
+            }
         </div>
     );
 };

@@ -5,8 +5,6 @@ import {Form} from "react-bootstrap";
 import ReviewService from "./ReviewService";
 import {useRef} from "react";
 import {useNavigate} from "react-router-dom";
-import {TextArea} from "semantic-ui-react";
-
 
 const Review = (props) => {
     const form = useRef();
@@ -20,14 +18,7 @@ const Review = (props) => {
     const [review, setReview] = useState("");
     const [message, setMessage] = useState("");
 
-    const onChangeUserId = (e) => {
-        const userId = e.target.value;
-        setUserId(userId);
-    };
-    const onChangeProductId = (e) => {
-        const productId = e.target.value;
-        setProductId(productId);
-    };
+
     const onChangeRating = (e) => {
         const rating = e.target.value;
         setRating(rating);
@@ -37,12 +28,12 @@ const Review = (props) => {
         setReview(review);
     };
 
-
+    console.log(props.product.id)
     const handleSubmit = (e) => {
         e.preventDefault();
         setMessage("");
         setSuccessful(false);
-        ReviewService.saveReview(productId, rating, currentUser.username, review).then(
+        ReviewService.saveReview(props.product.id, rating, currentUser.username, review).then(
             (response) => {
                 navigate("/profile");
                 window.location.reload();
@@ -59,8 +50,7 @@ const Review = (props) => {
                 setMessage(resMessage);
                 setSuccessful(false);
             }
-            );
-
+        );
     };
 
     return (
@@ -68,29 +58,7 @@ const Review = (props) => {
             <div className="card card-container">
 
                 <Form onSubmit={handleSubmit} ref={form}>
-
                     <div>
-                        <div className="form-group">
-                            <label>UserId</label>
-                            <Input
-                                type="text"
-                                className="form-control"
-                                name="username"
-                                value={currentUser.username}
-                                onChange={onChangeUserId}
-                            />
-                        </div>
-
-                        <div className="form-group">
-                            <label>ProductId</label>
-                            <Input
-                                type="text"
-                                name="ProductId"
-                                value={productId}
-                                onChange={onChangeProductId}
-                            />
-                        </div>
-
                         <div className="form-group">
                             <label>Rating</label>
                             <Input

@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="005e1935-0390-4d89-9c0c-b7395f03f01b" name="Changes" comment="form for review">
+      <change afterPath="$PROJECT_DIR$/src/components/Cart/UserOrder.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Cart/UserOrderItems.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Cart/Order.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Cart/Order.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/review/Review.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/review/Review.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forAuthorization/components/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/forAuthorization/components/Login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/forAuthorization/components/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/forAuthorization/components/Profile.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/services/OrderService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/OrderService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/services/ProductService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/ProductService.js" afterDir="false" />
@@ -67,7 +71,8 @@
       <workItem from="1666800654728" duration="160000" />
       <workItem from="1666944292880" duration="7071000" />
       <workItem from="1666994728680" duration="523000" />
-      <workItem from="1667026623522" duration="1188000" />
+      <workItem from="1667026623522" duration="1599000" />
+      <workItem from="1667032293992" duration="21297000" />
     </task>
     <task id="LOCAL-00001" summary="form for review">
       <created>1666988689032</created>

@@ -18,12 +18,12 @@ const showOrders = (props) => {
         let productsInBasketArray = JSON.parse(localStorage.getItem("cartList"));
         let arrayWithIds = productsInBasketArray.map(product => product.id)
         console.log(arrayWithIds);
-        // ProductService.getRecommendedProductsFromBasket(arrayWithIds)
-        //     .then(result => result.json())
-        //     .then(currentData => setOrchestratorResponse(currentData));
-        // console.log(orchestratorResponse)
+        ProductService.getRecommendedProductsFromBasket(arrayWithIds)
+            .then(result => result.json())
+            .then(currentData => setOrchestratorResponse(currentData));
         }
 
+    console.log(orchestratorResponse)
 
     return (
         <div>

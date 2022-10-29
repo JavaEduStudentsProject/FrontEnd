@@ -46,22 +46,22 @@ const Order = (props) => {
     props.cartList.forEach(el => summa += Number.parseFloat(el.price) * Number.parseFloat(el.quantity))
 
 
-    // const SOCKET_URL = 'http://localhost:8083/ws-connect/';
-    // const [basketCategoriesArray, setBasketCategoriesArray] = useState([])
-    //
-    // let onConnected = () => {
-    //     console.log("Connected!!")
-    // }
-    //
-    // let onDisconnected = () => {
-    //     console.log("Disconnected!")
-    // }
-    //
-    // let onMessageReceived = (msg) => {
-    //     console.log('New Message Received (basketCategoriesArray)!!', msg);
-    //     setBasketCategoriesArray(msg);
-    // }
-    // console.log(basketCategoriesArray)
+    const SOCKET_URL = 'http://localhost:8083/ws-connect/';
+    const [basketCategoriesArray, setBasketCategoriesArray] = useState([])
+
+    let onConnected = () => {
+        console.log("Connected!!")
+    }
+
+    let onDisconnected = () => {
+        console.log("Disconnected!")
+    }
+
+    let onMessageReceived = (msg) => {
+        console.log('New Message Received (basketCategoriesArray)!!', msg);
+        setBasketCategoriesArray(msg);
+    }
+    console.log(basketCategoriesArray)
 
     return (
         <div>
@@ -114,8 +114,8 @@ const Order = (props) => {
                     <p className="sum-order"> Сумма заказа со
                         скидкой: {(new Intl.NumberFormat().format(discountedTotalSum))}</p>
 
-                    {/*<BasketRecommendations basketCategoriesArray={basketCategoriesArray}/>*/}
-                    {/*<div>For basket recommendation: {basketCategoriesArray}</div>*/}
+                    <BasketRecommendations basketCategoriesArray={basketCategoriesArray}/>
+                    <div>For basket recommendation: {basketCategoriesArray}</div>
 
 
                     <Button className="order-button" onClick={
@@ -146,14 +146,14 @@ const Order = (props) => {
                     </Modal>
                 </div>)
             }
-            {/*<SockJsClient*/}
-            {/*    url={SOCKET_URL}*/}
-            {/*    topics={['/topic/basketCategoriesData']}*/}
-            {/*    onConnect={onConnected}*/}
-            {/*    onDisconnect={onDisconnected}*/}
-            {/*    onMessage={msg => onMessageReceived(msg)}*/}
-            {/*    debug={false}*/}
-            {/*/>*/}
+            <SockJsClient
+                url={SOCKET_URL}
+                topics={['/topic/basketCategoriesData']}
+                onConnect={onConnected}
+                onDisconnect={onDisconnected}
+                onMessage={msg => onMessageReceived(msg)}
+                debug={false}
+            />
         </div>
     );
 };

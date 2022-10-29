@@ -66,7 +66,6 @@ const Order = (props) => {
     return (
         <div>
 
-
             {props.cartList.length > 0 ? (
 
                 <div>

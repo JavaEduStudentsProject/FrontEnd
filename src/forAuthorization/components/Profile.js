@@ -13,6 +13,7 @@ import UserOrder from "../../components/Cart/UserOrder";
 const Profile = (props) => {
     const [user] = useState(AuthService.getCurrentUser())
     const allOrdersFromDB = JSON.parse(localStorage.getItem('allOrderFromDB'))
+
     const filteredOrders = allOrdersFromDB.filter(order => order.userId === user.id)
     const userOrders = Object.values(filteredOrders)
     const keys = Object.keys(userOrders)
@@ -75,18 +76,16 @@ const Profile = (props) => {
 
                     <TabPanel>
                         <div>
-                            <h2>My orders</h2>
+                            <h1 className="title-cart"> История заказов</h1>
                             <div>
                                 {userOrders.map(el => (
                                     <div><h2>Номер заказа {el.id}</h2>
+                                        <br/>
                                         <UserOrder key={el.id} order={el.products}
                                         />
                                     </div>
                                 ))}
                             </div>
-
-
-
                         </div>
 
                     </TabPanel>

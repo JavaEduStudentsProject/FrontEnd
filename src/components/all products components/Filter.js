@@ -32,7 +32,7 @@ const Filter = (props) => {
                 }
             }
         }
-        return filterProps;
+        return filterProps;// получаем цвет  key
     }
 
     const filterProps = getFilterProps(currentProductList);
@@ -47,7 +47,7 @@ const Filter = (props) => {
             fieldArray.push(obj);
         }
         console.log(fieldArray)
-        return fieldArray;
+        return fieldArray;// массив [значение: пусто]
     }
 
     let emptyFilterFieldArray = getEmptyFilterFieldArray(filterProps);
@@ -63,7 +63,7 @@ const Filter = (props) => {
                 }
             })
         }
-        return emptyArray;
+        return emptyArray; //заполненный массив
     }
 
     const filledFilterFieldArray = getFilledFilterFieldArray(filterProps, currentProductList, emptyFilterFieldArray);

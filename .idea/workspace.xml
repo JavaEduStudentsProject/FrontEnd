@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="005e1935-0390-4d89-9c0c-b7395f03f01b" name="Changes" comment="">
+    <list default="true" id="005e1935-0390-4d89-9c0c-b7395f03f01b" name="Changes" comment="form for review">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Cart/Order.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Cart/Order.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/review/Review.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/review/Review.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/review/ReviewService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/review/ReviewService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/forAuthorization/components/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/forAuthorization/components/Profile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forAuthorization/components/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/forAuthorization/components/Register.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/OrderService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/OrderService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/ProductService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/ProductService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,14 +40,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "sqlserver.localdb",
-      "mongo"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlserver.localdb&quot;,
+      &quot;mongo&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -60,7 +66,17 @@
       <updated>1666800652098</updated>
       <workItem from="1666800654728" duration="160000" />
       <workItem from="1666944292880" duration="7071000" />
+      <workItem from="1666994728680" duration="523000" />
+      <workItem from="1667026623522" duration="1188000" />
     </task>
+    <task id="LOCAL-00001" summary="form for review">
+      <created>1666988689032</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1666988689032</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -76,5 +92,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="form for review" />
+    <option name="LAST_COMMIT_MESSAGE" value="form for review" />
   </component>
 </project>

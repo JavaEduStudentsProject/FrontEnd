@@ -17,10 +17,10 @@ const CosineSimilarityRecommendation = (props) => {
             return <ProductCard
                 key={product.id}
                 item={product}
-                // addProductInCart={props.addProductInCart}
-                // deletePurchasedProduct={props.deletePurchasedProduct}
-                // incrementProductCount={props.incrementProductCount}
-                // decrementProductCount={props.decrementProductCount}
+                addProductInCart={props.addProductInCart}
+                deletePurchasedProduct={props.deletePurchasedProduct}
+                incrementProductCount={props.incrementProductCount}
+                decrementProductCount={props.decrementProductCount}
             />
         })
     } else {

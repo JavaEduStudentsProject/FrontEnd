@@ -196,7 +196,12 @@ function App() {
                             <Routes>
                                 <Route path="/"
                                        element={
-                                    <MainPage/>
+                                    <MainPage
+                                        incrementProductCount={incrementProductCount}
+                                        decrementProductCount={decrementProductCount}
+                                        deleteProductFromCart={deleteProductFromCart}
+                                        addProductInCart={addProductInCart}
+                                    />
                                 }
                                 />
                                 <Route path="/product/:id"

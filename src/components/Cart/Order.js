@@ -59,7 +59,7 @@ const Order = (props) => {
 
     let onMessageReceived = (msg) => {
         console.log('New Message Received (basketCategoriesArray)!!', msg);
-        setBasketCategoriesArray(msg);
+        setBasketCategoriesArray(prevArray => [...prevArray].concat(msg));
     }
     console.log(basketCategoriesArray)
 
@@ -114,9 +114,13 @@ const Order = (props) => {
                     <p className="sum-order"> Сумма заказа со
                         скидкой: {(new Intl.NumberFormat().format(discountedTotalSum))}</p>
 
-                    <BasketRecommendations basketCategoriesArray={basketCategoriesArray}/>
-                    <div>For basket recommendation: {basketCategoriesArray}</div>
-
+                    <BasketRecommendations
+                        basketCategoriesArray={basketCategoriesArray}
+                        incrementProductCount={props.incrementProductCount}
+                        decrementProductCount={props.decrementProductCount}
+                        deleteProductFromCart={props.deleteProductFromCart}
+                        addProductInCart={props.addProductInCart}
+                    />
 
                     <Button className="order-button" onClick={
                             () => currentUser ? (createOrder()):

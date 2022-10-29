@@ -6,7 +6,7 @@ import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
 import {Tab, TabList, TabPanel, Tabs} from "react-tabs";
 import 'react-tabs/style/react-tabs.css';
-import Review from "../../components/review/Review";
+
 import UserOrder from "../../components/Cart/UserOrder";
 
 

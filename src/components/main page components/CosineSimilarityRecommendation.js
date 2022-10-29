@@ -3,26 +3,40 @@ import ProductCard from "../all products components/ProductCard";
 
 const CosineSimilarityRecommendation = (props) => {
     const allProductList = JSON.parse(localStorage.getItem('immutableProductList'));
+    let flag = true;
 
-    const recommendedProductsArray = allProductList.filter(product => props.cosineArray.includes(product.id));
+    let recommendedProducts = null;
 
-    const recommendedProducts = recommendedProductsArray.map(product => {
-        return <ProductCard
-            key={product.id}
-            item={product}
-            // addProductInCart={props.addProductInCart}
-            // deletePurchasedProduct={props.deletePurchasedProduct}
-            // incrementProductCount={props.incrementProductCount}
-            // decrementProductCount={props.decrementProductCount}
-        />
-    })
+    console.log(props.cosineArray)
+    console.log(props.cosineArray.length)
+    if (props.cosineArray.length > 0) {
+
+        const recommendedProductsArray = allProductList.filter(product => props.cosineArray.includes(product.id));
+
+        recommendedProducts = recommendedProductsArray.map(product => {
+            return <ProductCard
+                key={product.id}
+                item={product}
+                addProductInCart={props.addProductInCart}
+                deletePurchasedProduct={props.deletePurchasedProduct}
+                incrementProductCount={props.incrementProductCount}
+                decrementProductCount={props.decrementProductCount}
+            />
+        })
+    } else {
+        flag = false
+    }
+    console.log("flag: " + flag)
 
     return (
         <div>
-            <h1>Here will be recommendationArray:</h1>
-            <div className="cosine-similarity-recommendation">
-                {recommendedProducts}
-            </div>
+            <h1>You can like</h1>
+            {flag
+                ? <div className="cosine-similarity-recommendation">
+                    {recommendedProducts}
+                </div>
+                : <h3>Try to make at least one order to see these recommendations</h3>
+            }
         </div>
     );
 };

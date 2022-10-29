@@ -79,7 +79,7 @@ const Review = (props) => {
                             />
                         </div>
                         <div className="form-group">
-                            <button className="btn btn-primary btn-block">Send review</button>
+                            <button className="product-button">Send review</button>
                         </div>
                     </div>
                 </Form>

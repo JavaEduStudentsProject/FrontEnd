@@ -44,8 +44,20 @@ const MainPage = (props) => {
 
     return (
         <div>
-            <CosineSimilarityRecommendation cosineArray={cosineArray}/>
-            <BestProductsRecommendation bestProductArray={bestProductArray}/>
+            <CosineSimilarityRecommendation
+                cosineArray={cosineArray}
+                incrementProductCount={props.incrementProductCount}
+                decrementProductCount={props.decrementProductCount}
+                deleteProductFromCart={props.deleteProductFromCart}
+                addProductInCart={props.addProductInCart}
+            />
+            <BestProductsRecommendation
+                bestProductArray={bestProductArray}
+                incrementProductCount={props.incrementProductCount}
+                decrementProductCount={props.decrementProductCount}
+                deleteProductFromCart={props.deleteProductFromCart}
+                addProductInCart={props.addProductInCart}
+            />
             <SockJsClient
                 url={SOCKET_URL}
                 topics={['/topic/cosineSimData']}

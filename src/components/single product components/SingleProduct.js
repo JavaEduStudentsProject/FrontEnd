@@ -3,6 +3,8 @@ import PriceComponent from "./PriceComponent"
 import ShortProductDescription from "./ShortProductDescription";
 import {useParams} from "react-router-dom"
 import ImagesGallery from "./ImageGallery";
+import {Tab, TabList, TabPanel, Tabs} from "react-tabs";
+import 'react-tabs/style/react-tabs.css';
 
 export default function SingleProduct(props) {
 
@@ -13,6 +15,8 @@ export default function SingleProduct(props) {
 
     let product = JSON.parse(localStorage.getItem(`${id}`))
 
+
+
     const {setCountProductInBasket, countProductInBasket} = props;
 
     function getImage() {
@@ -20,37 +24,73 @@ export default function SingleProduct(props) {
         return product.image[0] !== "h" ? require(`../../images/${product.image}`) : process.env.PUBLIC_URL + product.image;
     }
 
-    let image = getImage();
+    function getFilterProps(product) {
+        let filterProps = [];
+            for (let feature in product["filter_features"]) {
+                if (!filterProps.includes(feature) && feature !== "subCategory") {
+                    filterProps.push(feature);
+                }
+            }console.log(filterProps)
+        return filterProps;
+    }
 
-    return (
-        <div className="single-product">
-            <h1 className="productName">{product.title}</h1>
-            <div className="main-block">
-                <div className="product-card">
-                    <div className="img-and-shortdescr">
-                        <ImagesGallery product={product}/>
-                        <ShortProductDescription product={product}/>
+
+
+        return (
+            <div className="single-product">
+                <h1 className="productName">{product.title}</h1>
+                <div className="main-block">
+                    <div className="product-card">
+                        <div className="img-and-shortdescr">
+                            <ImagesGallery product={product}/>
+                            <ShortProductDescription product={product}/>
+                        </div>
+                        <div>
+                            {/*<button onClick={()=>getFilterProps(product)}> govno</button>*/}
+                            <Tabs>
+                                <TabList>
+                                    <Tab>Description</Tab>
+                                    <Tab>Characteristic</Tab>
+                                    <Tab>Review</Tab>
+                                </TabList>
+
+                                <TabPanel>
+                                    <li>
+                                        {product.description}
+
+                                    </li>
+                                </TabPanel>
+                                <TabPanel>
+                                    hello
+                                    <ul>
+                                        {/*<li>{product["filter_features"]}</li>*/}
+                                        {/*{characteristics.forEach(ch=>{*/}
+                                        {/*    if (ch != null){*/}
+                                        {/*        <li>{ch}</li>*/}
+                                        {/*    }*/}
+                                        {/*}*/}
+                                        {/*    */}
+                                        {/*)}*/}
+                                    </ul>
+                                </TabPanel>
+                                <TabPanel>
+                                    <h2>review</h2>
+                                </TabPanel>
+                            </Tabs>
+                        </div>
                     </div>
-                    {/*<div className="full-descr">*/}
-                    {/*    <h4>Описание товара</h4>*/}
-                    {/*    <ul className="list">*/}
-                    {/*        <li>Размер: {product.size}</li>*/}
-                    {/*        <li>Цвет</li>*/}
-                    {/*        <li>Вес</li>*/}
-                    {/*    </ul>*/}
-                    {/*</div>*/}
-                </div>
-                <div className="money-block">
-                    <PriceComponent countProductInBasket={countProductInBasket}
-                                    incrementProductCount={props.incrementProductCount}
-                                    decrementProductCount={props.decrementProductCount}
-                                    setCountProductInBasket={setCountProductInBasket} product={product}
-                                    deleteProductFromCart={props.deleteProductFromCart}
-                                    removeProductFromCart={props.removeProductFromCart}
-                                    addProductInCart={props.addProductInCart}/>
-                    {/*<MoneyInCreditComponent/>*/}
+                    <div className="money-block">
+                        <PriceComponent countProductInBasket={countProductInBasket}
+                                        incrementProductCount={props.incrementProductCount}
+                                        decrementProductCount={props.decrementProductCount}
+                                        setCountProductInBasket={setCountProductInBasket} product={product}
+                                        deleteProductFromCart={props.deleteProductFromCart}
+                                        removeProductFromCart={props.removeProductFromCart}
+                                        addProductInCart={props.addProductInCart}/>
+                        {/*<MoneyInCreditComponent/>*/}
+                    </div>
                 </div>
             </div>
-        </div>
-    )
+        )
+
 }

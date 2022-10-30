@@ -18,6 +18,7 @@ import Contacts from "./aditionalPages/Contacts";
 import Delivery from "./aditionalPages/Delivery";
 import MainPage from "./main page components/MainPage";
 
+
 function App() {
     const [immutableProductList, setImmutableProductList] = useState([]);
     const [searchField, setSearchField] = useState("");
@@ -37,6 +38,8 @@ function App() {
         })
         console.log("Вызов useEffect после геттера")
     }, [])
+
+
 
 
     const updateCartList = (cartList, newProduct, index) => {
@@ -196,7 +199,12 @@ function App() {
                             <Routes>
                                 <Route path="/"
                                        element={
-                                    <MainPage/>
+                                    <MainPage
+                                        incrementProductCount={incrementProductCount}
+                                        decrementProductCount={decrementProductCount}
+                                        deleteProductFromCart={deleteProductFromCart}
+                                        addProductInCart={addProductInCart}
+                                    />
                                 }
                                 />
                                 <Route path="/product/:id"
@@ -230,7 +238,7 @@ function App() {
                                 <Route exact path="/aboutUs" element={<AboutUs/>}/>
                                 <Route exact path="/contacts" element={<Contacts/>}/>
                                 <Route exact path="/delivery" element={<Delivery/>}/>
-                                <Route exact path="/profile" element={<Profile/>}/>
+                                <Route exact path="/profile" element={<Profile />}/>
                                 <Route exact path="/order"
                                        element={<Order cartList={cartList} deleteProductFromCart={deleteProductFromCart}
                                                        removeProductFromCart={removeProductFromCart}
@@ -241,10 +249,10 @@ function App() {
                                                        setCartList={setCartList}/>}/>
 
                             </Routes>
-
-                            <Footer/>
                         </Router>
+                        <Footer/>
                     </div>
+
                 </FilterArrayContext.Provider>
             </ProductListContext.Provider>
         </ImmutableProductListContext.Provider>

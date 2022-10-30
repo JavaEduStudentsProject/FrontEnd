@@ -3,6 +3,7 @@
 .header {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .nav-panel {
@@ -13,6 +14,12 @@
     background-color: #fff;
     height: 70px;
     margin-bottom: 10px;
+    max-width: 1440px;
+}
+.navbar-nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
 }
 
 .nav-list {
@@ -20,17 +27,17 @@
     display: flex;
     background-color: #fff;
     color: #ffffff;
-    margin-left: 325px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 /*Оформление конфигурационных кнопок*/
 .nav-list > button {
-    width: 124px;
-    height: 56px;
-    padding: 8px 4px 4px;
-    border: none;
-    background-color: #fff;
-    font-family: Inter;
+    width: 104px;
+    height: 40px;
+    padding: 6px 4px;
+
+    background-color: #ededf0;
     font-size: 14px;
     font-weight: normal;
     font-stretch: normal;
@@ -39,10 +46,15 @@
     letter-spacing: 0.25px;
     text-align: center;
     color: #787885;
+    border: dimgray 1px solid;
+    border-radius: 4px;
+    margin-right: 10px;
 }
 
 .nav-list > button:hover {
+    border: none;
     background-color: #ebf2ff;
+    color: #000;
     transition: 0.4s;
     transform: scale(1.1);
     border-radius: 10px;
@@ -73,6 +85,7 @@ nav > h3, nav > h4 {
     border-radius: 4px;
     border: solid 1px #9dc2ff;
     text-align: center;
+    margin-left: 10px;
 }
 .Logout:hover{
     padding: 6px 12px;
@@ -85,7 +98,7 @@ nav > h3, nav > h4 {
 }
 .nav-img {
     width: 70px;
-    margin-left: 325px;
+
 }
 
 /*=====Dropdown menu block=====*/
@@ -199,7 +212,7 @@ nav > h3, nav > h4 {
 .search-field {
     width: 668px;
     height: 48px;
-    margin: 20px 14px 20px 10px;
+    margin: 20px 1% 20px 1%;
     padding: 8px;
     border-radius: 99px;
     background-color: #ededf0;
@@ -208,8 +221,11 @@ nav > h3, nav > h4 {
 .search-field:focus{
     background-color: #c9c8c8;
     border: none;
+    outline: none;
 }
-
+.search-block{
+    margin: 20px 5% 20px 2%;
+}
 
 
 .avatarIcon {
@@ -227,10 +243,10 @@ nav > h3, nav > h4 {
 .shop-cart-button {
     width: 104px;
     height: 40px;
-    margin: 20px 14px 20px 10px;
     padding: 6px 4px;
     border-radius: 4px;
     border: solid 1px #9dc2ff;
+    margin-left: 2%;
 }
 
 /*корзина новые стили*/

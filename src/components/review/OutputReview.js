@@ -1,24 +1,31 @@
+import {useEffect, useState} from "react";
+import ProductService from "../../services/ProductService";
 
 const OutputReview = (props)=> {
 
-    const allReviewsFromDB = JSON.parse(localStorage.getItem("allReviewsFromDB"))
-    // const filteredReviews = allReviewsFromDB.filter(review => review.productId === props.product.id)
-    // const review = Object.values(filteredReviews)
-    const reviews = Object.values(allReviewsFromDB)
-    const reviewsF = Object.values(reviews)
+    useEffect(() => {
+        console.log("Вызов useEffect до геттера")
+        ProductService.getAllReviews().then((response) => {
+            console.log(response.data)
+            localStorage.setItem('allReviewsFromDB', JSON.stringify(response.data))
+        }).catch(error => {
+            console.log(error);
+        })
+        console.log("Вызов useEffect после геттера")
+    }, [])
+    const allReviewsFromDB = JSON.parse(localStorage.getItem('allReviewsFromDB'));
 
-    const keys = Object.keys(allReviewsFromDB)
-
+    const filteredReviews = allReviewsFromDB.filter(review => review.productId === props.productId.toString())
+    console.log(filteredReviews)
 
     console.log("allReviewsFromDB" + allReviewsFromDB)
-    console.log("userOrders" + reviews)
-    console.log("local" + localStorage.getItem("allReviewsFromDB"))
-    console.log("reviewsF" + reviewsF)
-    // console.log("filteredReviews"+filteredReviews)
-    // console.log("review"+review)
+
 
     return <div>
-        {/*{review.review}*/}
+        {filteredReviews.map(review=>(
+            <div key={review.id}> {review.review}</div>
+        ))}
+
 
     </div>
 

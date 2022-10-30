@@ -4,14 +4,18 @@ import AuthService from "../services/auth.service";
 import {EditUserForm} from "../../hooks/EditUserForm";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
+import axios from "axios";
+import {NavLink} from "react-bootstrap";
+import {useNavigate} from "react-router-dom";
 import {Tab, TabList, TabPanel, Tabs} from "react-tabs";
 import 'react-tabs/style/react-tabs.css';
 
 import UserOrder from "../../components/Cart/UserOrder";
 
 
-const Profile = () => {
+const Profile = (props) => {
     const [user] = useState(AuthService.getCurrentUser())
+    const navigate =useNavigate();
     const allOrdersFromDB = JSON.parse(localStorage.getItem('allOrderFromDB'))
 
     const filteredOrders = allOrdersFromDB.filter(order => order.userId === user.id)
@@ -19,6 +23,31 @@ const Profile = () => {
     const keys = Object.keys(userOrders)
 
     const [modalActive, setModalActive] = useState(false)
+
+    const [file, setFile] = useState()
+
+    function handleChange(event) {
+        setFile(event.target.files[0])
+    }
+
+    function handleSubmit(event) {
+        event.preventDefault()
+        const url = 'http://localhost:8085/api/auth/image';
+        const formData = new FormData();
+        formData.append('file', file);
+        // formData.append('fileName', file.name);
+        // const config = {
+        //     headers: {
+        //         'content-type': 'multipart/form-data',
+        //     },
+        // };
+        axios.post(url, formData, user.id).then((response) => {
+            localStorage.setItem("user", JSON.stringify(user))
+            navigate("/profile")
+            window.location.reload();
+        });
+
+    }
 
     return (
         <div>
@@ -42,6 +71,14 @@ const Profile = () => {
                                 <Avatar alt="Пользователь" src={user.image}/>
                             </Stack>
                             <br></br>
+                            {/*    <h1>React File Upload</h1>*/}
+                            {/*    <input type="file" onChange={handleChange}/>*/}
+                            {/*    <button type="submit">Upload</button>*/}
+
+
+                            <NavLink className="avatarIcon">
+                                <Avatar alt="Пользователь" src={`/img/${user.image}`} onChange={handleChange}/>
+                            </NavLink>
 
                             <h3>
                                 <strong>Email:</strong> {user.email}

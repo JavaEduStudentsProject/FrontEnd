@@ -46,7 +46,7 @@ export default function SingleProduct(props) {
                             <ShortProductDescription product={product}/>
                         </div>
                         <div>
-                            <button onClick={()=>getFilterProps(product)}> govno</button>
+                            {/*<button onClick={()=>getFilterProps(product)}> govno</button>*/}
                             <Tabs>
                                 <TabList>
                                     <Tab>Description</Tab>

@@ -6,7 +6,7 @@ import AuthService from "../../forAuthorization/services/auth.service";
 import Button from "react-bootstrap/Button";
 import OrderService from "../../services/OrderService";
 import BasketRecommendations from "./BasketRecommendations";
-import {Link, useLocation} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import Modal from "../../forAuthorization/components/Modal";
 
 const Order = (props) => {
@@ -20,7 +20,7 @@ const Order = (props) => {
     const [modalActive, setModalActive] = useState(false)
     const [modal, setModal] = useState(false)
     const location = useLocation();
-
+    const navigate =useNavigate();
     const createOrder = () => {
         let order = [{
             "products": props.cartList,
@@ -82,8 +82,8 @@ const Order = (props) => {
                                         <div className="cart-list-item__header">
                                             <div className="cart-list-item__image">
                                                 <img src={cartItem.image}
-                                                    //  onClick={() => {
-                                                    // window.location.assign(`/product/${cartItem.id}`)}}
+                                                     onClick={() => {
+                                                    navigate(`/product/${cartItem.id}`)}}
                                                 />
                                             </div>
                                             <h4 className='cart-list-item__name'>{cartItem.title}</h4>

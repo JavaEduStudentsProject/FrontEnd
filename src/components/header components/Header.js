@@ -79,9 +79,7 @@ export default function Header(props) {
                     {currentUser ? (
                     <div className="navbar-nav ml-auto">
 
-                        <Stack className="avatarIcon">
-                            <Avatar alt="Пользователь" src={currentUser.username} onClick={()=>{window.location.assign("/profile")}}/>
-                        </Stack>
+
 
                         {/*<li className="nav-item">*/}
                             <p className="Logout" >
@@ -89,6 +87,9 @@ export default function Header(props) {
                                 Log out
                             </a>
                             </p>
+                        <Stack className="avatarIcon">
+                            <Avatar alt="Пользователь" src={currentUser.username} onClick={()=>{window.location.assign("/profile")}}/>
+                        </Stack>
                         {/*</li>*/}
                     </div>
 

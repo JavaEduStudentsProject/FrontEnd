@@ -60,9 +60,17 @@ export default function SingleProduct(props) {
                                     </li>
                                 </TabPanel>
                                 <TabPanel>
-                                    <li>
-                                        {product["filter_features"]["brand"]}
-                                    </li>
+                                    hello
+                                    <ul>
+                                        {/*<li>{product["filter_features"]}</li>*/}
+                                        {/*{characteristics.forEach(ch=>{*/}
+                                        {/*    if (ch != null){*/}
+                                        {/*        <li>{ch}</li>*/}
+                                        {/*    }*/}
+                                        {/*}*/}
+                                        {/*    */}
+                                        {/*)}*/}
+                                    </ul>
                                 </TabPanel>
                                 <TabPanel>
                                     <h2>Review</h2>

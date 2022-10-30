@@ -17,10 +17,12 @@ import AboutUs from "./aditionalPages/AboutUs";
 import Contacts from "./aditionalPages/Contacts";
 import Delivery from "./aditionalPages/Delivery";
 import MainPage from "./main page components/MainPage";
+import ReviewService from "./review/ReviewService";
 
 
 function App() {
     const [immutableProductList, setImmutableProductList] = useState([]);
+    const [reviewList, setReviewList] = useState([]);
     const [searchField, setSearchField] = useState("");
     const [filterArray, setFilterArray] = useState(["", ""]);
     const [countProductInBasket, setCountProductInBasket] = useLocalStorage(0, "countProductInBasket");
@@ -33,6 +35,17 @@ function App() {
         ProductService.getAllProducts().then((response) => {
             localStorage.setItem('immutableProductList', JSON.stringify(response.data))
             setImmutableProductList(response.data);
+        }).catch(error => {
+            console.log(error);
+        })
+        console.log("Вызов useEffect после геттера")
+    }, [])
+
+    useEffect(() => {
+        console.log("Вызов useEffect до геттера")
+        ProductService.getAllReviews().then((response) => {
+            localStorage.setItem('allReviewsFromDB', JSON.stringify(response.data))
+            setReviewList(response.data);
         }).catch(error => {
             console.log(error);
         })

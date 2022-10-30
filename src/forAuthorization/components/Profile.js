@@ -10,7 +10,7 @@ import 'react-tabs/style/react-tabs.css';
 import UserOrder from "../../components/Cart/UserOrder";
 
 
-const Profile = (props) => {
+const Profile = () => {
     const [user] = useState(AuthService.getCurrentUser())
     const allOrdersFromDB = JSON.parse(localStorage.getItem('allOrderFromDB'))
 

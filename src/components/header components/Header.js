@@ -83,13 +83,13 @@ export default function Header(props) {
                             <Avatar alt="Пользователь" src={currentUser.username} onClick={()=>{window.location.assign("/profile")}}/>
                         </Stack>
 
-                        <li className="nav-item">
+                        {/*<li className="nav-item">*/}
                             <p className="Logout" >
                             <a href="/" className="nav-link" onClick={logOut}>
                                 Log out
                             </a>
                             </p>
-                        </li>
+                        {/*</li>*/}
                     </div>
 
                 ) : (

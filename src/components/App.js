@@ -249,10 +249,10 @@ function App() {
                                                        setCartList={setCartList}/>}/>
 
                             </Routes>
-
-                            <Footer/>
                         </Router>
+                        <Footer/>
                     </div>
+
                 </FilterArrayContext.Provider>
             </ProductListContext.Provider>
         </ImmutableProductListContext.Provider>

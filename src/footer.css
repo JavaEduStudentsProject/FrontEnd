@@ -9,13 +9,15 @@
     /*position: fixed;*/
     bottom: 0;
     left: 0;
-    width: 100%;
+    width: 142%;
     align-items: stretch;
     justify-content: space-between;
     border-radius: 0;
-    margin: auto 0 0 0;
     /*height: 80px;*/
     /*margin-top: -80px;*/
+    margin-left: 50%;
+    transform: translateX(-50%);
+
 }
 
 .copyright {

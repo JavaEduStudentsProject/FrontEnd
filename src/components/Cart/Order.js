@@ -79,12 +79,12 @@ const Order = (props) => {
                                 <li key={cartItem.id}>
                                     <div className="cart-list-item">
                                         <div className="cart-list-item__header">
-                                            <div className="cart-list-item__image">
-                                                <img src={cartItem.image}
-                                                    //  onClick={() => {
-                                                    // window.location.assign(`/product/${cartItem.id}`)}}
-                                                />
-                                            </div>
+                                            {/*<div className="cart-list-item__image">*/}
+                                            {/*    <img src={cartItem.image}*/}
+                                            {/*        //  onClick={() => {*/}
+                                            {/*        // window.location.assign(`/product/${cartItem.id}`)}}*/}
+                                            {/*    />*/}
+                                            {/*</div>*/}
                                             <h4 className='cart-list-item__name'>{cartItem.title}</h4>
                                         </div>
                                         <div>

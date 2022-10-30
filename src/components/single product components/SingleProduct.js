@@ -74,7 +74,7 @@ export default function SingleProduct(props) {
                                     </ul>
                                 </TabPanel>
                                 <TabPanel>
-                                    <h2>review</h2>
+                                    <li>review</li>
                                 </TabPanel>
                             </Tabs>
                         </div>

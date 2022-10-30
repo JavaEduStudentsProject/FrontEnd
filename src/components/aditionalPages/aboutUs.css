@@ -3,9 +3,8 @@
     width:960px;
 }
 #contant h2{
-    font-family:Georgia, "Times New Roman", Times, serif;
     font-size:38px;
-    color:#3a3a3a;
+    color:#000;
     font-weight:normal;
     margin-bottom:20px;
 }
@@ -14,17 +13,16 @@
     font-size:10px;
     color:#808080;
     border-top:2px dotted #3a3a3a;
-    font-family:tahoma, arial;
     padding-top:5px;
 }
 #contant h4 {
     color:#808080;
-    font-family:tahoma, arial;
     padding-top:5px;
 }
 .contant_1_left {
     width:710px;
     float:left;
+    margin-bottom: auto;
 }
 .contant_1_left img{
     float: left;
@@ -79,8 +77,10 @@
     padding-bottom:10px;
 }
 .sideBarListBox ul{
-    background:#EBE8D9;
+    border-radius: 4px;
+    background-color: #f7f7fa;
     padding:0 10px;
+    list-style: none;
 }
 .sideBarListBox ul li{
     padding-top:10px;
@@ -123,7 +123,6 @@
 }
 .midBox1Top h4{
     color:#808080;
-    font-family:tahoma, arial;
     padding-top:5px;
 }
 .midBox1Top p{
@@ -153,7 +152,6 @@
     display:block;
     line-height:24px;
     padding-right:10px;
-    font-family:tahoma, "Trebuchet MS";
     font-size:14px;
     font-weight:bold;
     margin-right:20px;
@@ -177,7 +175,6 @@
     margin-right:10px;
 }
 .midBox2L h2{
-    font-family:Georgia, "Times New Roman", Times, serif;
     font-size:38px;
     color:#3A3A3A;
     font-weight:bold;
@@ -185,7 +182,6 @@
     text-align:left;
 }
 .midBox2L h3{
-    font-family:Georgia, "Times New Roman", Times, serif;
     font-size:18px;
     line-height:20px;
     color:#3A3A3A;
@@ -220,7 +216,6 @@
 
 
 .footerForm h3{
-    font-family:Georgia, "Times New Roman", Times, serif;
     font-size:38px;
     color:#e9e9e9;
     font-weight:bold;
@@ -229,7 +224,6 @@
     margin-bottom:5px;
 }
 .footerForm h4{
-    font-family:Georgia, "Times New Roman", Times, serif;
     font-size:18px;
     color:#b7b7b7;
     font-weight:bold;
@@ -284,7 +278,6 @@ input.footerSubmit {
     height:50px;
     line-height:50px;
     font-size:12px;
-    font-family:Georgia, "Times New Roman", Times, serif;
     color:#B7B7B7;
     width:100%;
 }

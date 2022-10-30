@@ -4,11 +4,17 @@ import ProductList from "../../src/services/ProductList";
 
 const PRODUCT_BASE_REST_API_URL = 'http://localhost:8083/api/products';
 
+const PRODUCT_REVIEW_REST_API_URL = 'http://localhost:8083/api/reviews';
+
 class ProductService{
 
     getAllProducts(){
         return axios.get(PRODUCT_BASE_REST_API_URL)
     }
+    getAllReviews = () => {
+        return axios.get(PRODUCT_REVIEW_REST_API_URL)
+    }
+
 
     getRecommendedProducts(username) {
         let promise;

@@ -17,6 +17,7 @@ import AboutUs from "./aditionalPages/AboutUs";
 import Contacts from "./aditionalPages/Contacts";
 import Delivery from "./aditionalPages/Delivery";
 import MainPage from "./main page components/MainPage";
+import ReviewService from "./review/ReviewService";
 
 
 function App() {
@@ -38,6 +39,8 @@ function App() {
         })
         console.log("Вызов useEffect после геттера")
     }, [])
+
+
 
 
 

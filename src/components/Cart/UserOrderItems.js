@@ -1,6 +1,5 @@
 import Review from "../review/Review";
 import Modal from "../../forAuthorization/components/Modal";
-import {EditUserForm} from "../../hooks/EditUserForm";
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
 
@@ -12,7 +11,6 @@ const UserOrderItems = (props) => {
 
     return (
         <div>
-            {/*<h1 className="order-history"> История заказов</h1>*/}
             <ul className="cart-list">
                         <li key={props.product.id}>
                             <div className="cart-list-item">

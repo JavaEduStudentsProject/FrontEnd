@@ -5,6 +5,10 @@ import {useParams} from "react-router-dom"
 import ImagesGallery from "./ImageGallery";
 import {Tab, TabList, TabPanel, Tabs} from "react-tabs";
 import 'react-tabs/style/react-tabs.css';
+import Review from "../review/Review";
+import ReviewService from "../review/ReviewService";
+import UserOrder from "../Cart/UserOrder";
+import OutputReview from "../review/OutputReview";
 
 export default function SingleProduct(props) {
 
@@ -14,8 +18,6 @@ export default function SingleProduct(props) {
     localStorage.setItem(`${id}`, JSON.stringify(immutable.find(p => p.id === Number(id))))
 
     let product = JSON.parse(localStorage.getItem(`${id}`))
-
-
 
     const {setCountProductInBasket, countProductInBasket} = props;
 
@@ -34,8 +36,6 @@ export default function SingleProduct(props) {
         return filterProps;
     }
 
-
-
         return (
             <div className="single-product">
                 <h1 className="productName">{product.title}</h1>
@@ -46,14 +46,13 @@ export default function SingleProduct(props) {
                             <ShortProductDescription product={product}/>
                         </div>
                         <div>
-                            {/*<button onClick={()=>getFilterProps(product)}> govno</button>*/}
+                            <button onClick={()=>getFilterProps(product)}> govno</button>
                             <Tabs>
                                 <TabList>
                                     <Tab>Description</Tab>
                                     <Tab>Characteristic</Tab>
                                     <Tab>Review</Tab>
                                 </TabList>
-
                                 <TabPanel>
                                     <li>
                                         {product.description}
@@ -61,20 +60,15 @@ export default function SingleProduct(props) {
                                     </li>
                                 </TabPanel>
                                 <TabPanel>
-                                    hello
-                                    <ul>
-                                        {/*<li>{product["filter_features"]}</li>*/}
-                                        {/*{characteristics.forEach(ch=>{*/}
-                                        {/*    if (ch != null){*/}
-                                        {/*        <li>{ch}</li>*/}
-                                        {/*    }*/}
-                                        {/*}*/}
-                                        {/*    */}
-                                        {/*)}*/}
-                                    </ul>
+                                    <li>
+                                        {product["filter_features"]["brand"]}
+                                    </li>
                                 </TabPanel>
                                 <TabPanel>
-                                    <h2>review</h2>
+                                    <h2>Review</h2>
+                                    <OutputReview
+                                    productId = {product.id}/>
+
                                 </TabPanel>
                             </Tabs>
                         </div>

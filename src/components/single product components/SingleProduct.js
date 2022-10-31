@@ -76,7 +76,7 @@ export default function SingleProduct(props) {
                             </TabPanel>
                             <TabPanel>
                                 <OutputReview
-                                    productId={product.id}/>x
+                                    productId={product.id}/>
                             </TabPanel>
                         </Tabs>
                     </div>

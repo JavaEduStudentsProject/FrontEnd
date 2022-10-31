@@ -21,11 +21,7 @@ const ShortProductDescription = (props) => {
             <ul className="main-characts">
                 {descriptionList}
                 <li>Рейтинг: {props.product["non_filter_features"]["rating"]}</li>
-                {/*{characteristics.map(characteristic =>*/}
-                {/*    <MainCharacteristics characteristic = {characteristic} key={characteristic.id}/>*/}
-                {/*)}*/}
             </ul>
-            {/*<StarRating id={props.product.id}/>*/}
         </div>
     );
 };

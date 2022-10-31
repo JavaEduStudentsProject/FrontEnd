@@ -88,7 +88,6 @@ const EditUserForm = props => {
             <br/>
             <TextField
                 id="date"
-                label="Birthday"
                 type="date"
                 defaultValue={dateOfBirth ? dateOfBirth : "2017-05-24"}
                 onChange={e => setDateOfBirth(e.target.value)}/>
@@ -98,7 +97,7 @@ const EditUserForm = props => {
                         handleSubmit(e)
                     }}
             >
-               Обновить юзера</button>
+               Обновить</button>
         </form>
     )
 }

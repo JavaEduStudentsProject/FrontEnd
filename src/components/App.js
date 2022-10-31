@@ -27,8 +27,7 @@ function App() {
     const [cartList, setCartList] = useLocalStorage([], "cartList");
     //const [order, setOrder] = useLocalStorage([], "cartList");
 
-
-    useEffect(() => {
+     useEffect(() => {
         console.log("Вызов useEffect до геттера")
         ProductService.getAllProducts().then((response) => {
             localStorage.setItem('immutableProductList', JSON.stringify(response.data))
@@ -158,6 +157,8 @@ function App() {
         productArray.push(ProductList.search(immutableProductList, searchField))
         return {productArray}
     }, [searchField])
+
+    console.log(productArray)
 
     // const addToOrder = (id) => {
     //     let isInArray = false;

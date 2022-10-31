@@ -1,20 +1,7 @@
 import React from 'react';
 import RatingService from "../../services/RatingService";
 
-export default function StarRating(props) {
-    const handleSubmit = e => {
-        const rate = document.querySelector('input[name="star-radio"]:checked').value
-        const idProduct = props.id;
-        console.log(rate)
-        console.log(idProduct)
-        e.preventDefault()
-        RatingService.saveRating(rate, idProduct).then(
-            () => {
-                console.log("good")
-            }).catch(error => {
-            console.log(error)
-        })
-    }
+export default function StarRating() {
 
     return (
         <>
@@ -34,12 +21,6 @@ export default function StarRating(props) {
             </div>
         </div>
         </form>
-        <button htmlFor="form" type="submit" className="star-form-btn"
-                onClick={(e) => {
-                    handleSubmit(e);
-                }
-        }>
-            Оценить</button>
         </>
 );
 };

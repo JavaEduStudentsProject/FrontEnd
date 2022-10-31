@@ -49,8 +49,8 @@ const Profile = (props) => {
             <div>
                 <Tabs>
                     <TabList>
-                        <Tab>My Profile</Tab>
-                        <Tab>My Orders</Tab>
+                        <Tab>Мой профиль</Tab>
+                        <Tab>Мои заказы</Tab>
                         {/*<Tab>My Reviews</Tab>*/}
                     </TabList>
 
@@ -69,28 +69,28 @@ const Profile = (props) => {
                             </h3>
                             <br></br>
                             <h3>
-                                <strong>LastName:</strong> {user.lastname}
+                                <strong>Фамилия: </strong> {user.lastname}
                             </h3>
                             <br></br>
                             <h3>
-                                <strong>FirstName:</strong> {user.firstname}
+                                <strong>Имя: </strong> {user.firstname}
                             </h3>
                             <br></br>
                             <h3>
-                                <strong>Phone:</strong> {user.phone}
+                                <strong>Телефон: </strong> {user.phone}
                             </h3>
                             <br></br>
                             <h3>
-                                <strong>Country:</strong> {user.country}
+                                <strong>Страна проживания: </strong> {user.country}
                             </h3>
                             <br></br>
                             <h3>
-                                <strong>Date of Birth:</strong> {user.dateOfBirth}
+                                <strong>Дата рождения: </strong> {user.dateOfBirth}
                             </h3>
                             <br></br>
 
                             <button className='open-btn' onClick={() => setModalActive(true)}
-                            >Редактировать юзера
+                            >Редактировать мой профиль
                             </button>
                         </div>
                     </TabPanel>

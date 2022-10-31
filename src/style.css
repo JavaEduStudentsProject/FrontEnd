@@ -287,17 +287,23 @@ TabPanel{
     color: #ffcf0c;
 }
 
-/*.star-form-btn {*/
-/*    color: black;*/
-/*    background-color: #ffcf0c;*/
-/*    font-weight: 600;*/
-/*    padding: 10px;*/
-/*    font-size: 15px;*/
-/*    border-radius: 3px;*/
-/*    margin: 10px;*/
-/*    cursor: pointer;*/
-/*    border: none;*/
-/*}*/
+.open-btn {
+    width: 188px;
+    height: 42px;
+    margin: 9px 17px 0 0;
+    padding: 2px 4px;
+    border-radius: 4px;
+    border: solid 1px #9dc2ff;
+    background-color: #fff;
+    color: dimgray;
+}
+
+.open-btn>button:hover {
+    color: #2979ff;
+    background-color: #ebf2ff;
+    transition: 0.4s;
+    transform: scale(1.1);
+}
 
 .money-block {
     display: block;

@@ -144,11 +144,11 @@ const Products = (props) => {
                         {value: `-1`, name: "Показать все"},
                     ]}/>
 
-                {/*<Scroll>*/}
+                {/*<Scroll_Horizontal>*/}
                 <div className="products">
                     {productListPerOnePage()}
                 </div>
-                {/*</Scroll>*/}
+                {/*</Scroll_Horizontal>*/}
 
                 <Pagination className='justify-content-center'>
                     {/*<Pagination.Prev/>*/}

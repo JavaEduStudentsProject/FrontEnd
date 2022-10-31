@@ -52,7 +52,7 @@ export default function Header(props) {
                 }}/>
                 <DropDownMenu/>
                 <SearchField handleChange={props.handleChange} searchField={props.searchField}/>
-
+                <span className="count-products-in-basket">{countProductInBasket}</span>
                 <div className="userIcons">
                     <Stack>
                         <FaShoppingCart onClick={() => setCartOpen(cartOpen = !cartOpen)}
@@ -60,6 +60,7 @@ export default function Header(props) {
 
                         {cartOpen && (
                             <div className={'shop-cart'}>
+
                                 <Cart cartList={props.cartList} setCartlist={props.setCartList}
                                       incrementProductCount={props.incrementProductCount}
 
@@ -70,7 +71,7 @@ export default function Header(props) {
                                       removeProductFromCart={props.removeProductFromCart}
                                       addProductInCart={props.addProductInCart}
                                       cartOpen={cartOpen} setCartOpen={setCartOpen}/>
-                                <span className="count-products-in-basket">{countProductInBasket}</span>
+
                             </div>
                         )}
 

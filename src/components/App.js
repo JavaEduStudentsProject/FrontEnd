@@ -100,13 +100,12 @@ function App() {
 
     function decrementProductCount(productCart) {
         removeProductFromCart(productCart)
-        setCountProductInBasket(prevCountProductInBasket => {
-            return (prevCountProductInBasket > 0 ? prevCountProductInBasket - 1 : 0)
-
-        });
-        if (countProductInBasket <= 1) {
+        if (countProductInBasket  <= 1) {
             deleteProductFromCart(productCart)
         }
+        setCountProductInBasket(prevCountProductInBasket => {
+            return (prevCountProductInBasket > 0 ? prevCountProductInBasket - 1 : 0)
+        });
         console.log("Deleted from card. Product quantity: " + countProductInBasket)
     }
 
@@ -127,7 +126,10 @@ function App() {
         product = immutableProductList.find((item) => item.id === productCart.id);
         productIndex = cartList.findIndex((item) => item.id === productCart.id);
         productInCart = cartList[productIndex];
-        newProduct = updateProduct(product, productInCart, -1);
+        if (productCart.quantity>1){
+            newProduct = updateProduct(product, productInCart, -1);
+        }
+
         newCartList = updateCartList(cartList, newProduct, productIndex);
         return {
             cartList: newCartList

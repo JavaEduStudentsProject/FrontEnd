@@ -58,12 +58,6 @@ const CreateAvatar = ({ getData }) => {
 
     }
 
-    const onCancelSelect = () => {
-        getData( "");
-
-
-    };
-
     return (
         <div className="createAvatarDiv_content m-auto">
         <div className="container">
@@ -98,16 +92,7 @@ const CreateAvatar = ({ getData }) => {
                 </div>
             </div>
             <div className="row">
-                {/*<div className="col-6">*/}
-                {/*    <button*/}
-                {/*        type="button"*/}
-                {/*        className="btn btn-secondary btn-md float-left ml-2 mb-3 text-center"*/}
-                {/*        style={{ minWidth: "100px" }}*/}
-                {/*        onClick={onCancelSelect}*/}
-                {/*    >*/}
-                {/*        Cancel*/}
-                {/*    </button>*/}
-                {/*</div>*/}
+
                 <div className="col-6">
                     <button
                         type="button"

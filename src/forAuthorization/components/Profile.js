@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Modal from "./Modal";
 import AuthService from "../services/auth.service";
 import {EditUserForm} from "../../hooks/EditUserForm";
@@ -11,6 +11,7 @@ import {Tab, TabList, TabPanel, Tabs} from "react-tabs";
 import 'react-tabs/style/react-tabs.css';
 
 import UserOrder from "../../components/Cart/UserOrder";
+import OrderService from "../../services/OrderService";
 
 
 const Profile = (props) => {
@@ -29,6 +30,18 @@ const Profile = (props) => {
     function handleChange(event) {
         setFile(event.target.files[0])
     }
+
+    useEffect(() => {
+        console.log("Вызов useEffect до геттера")
+        OrderService.getAllOrders()
+            .then((response) => {
+                console.log(response.data)
+                localStorage.setItem('allOrderFromDB', JSON.stringify(response.data))
+            }).catch(error => {
+            console.log(error);
+        })
+        console.log("Вызов useEffect после геттера")
+    }, [])
 
     function handleSubmit(event) {
         event.preventDefault()
@@ -67,10 +80,10 @@ const Profile = (props) => {
                                 </h2>
                                 <br></br>
                             </header>
-                            <Stack className="avatarIcon">
-                                <Avatar alt="Пользователь" src={user.image}/>
-                            </Stack>
-                            <br></br>
+                            {/*<Stack className="avatarIcon">*/}
+                            {/*    <Avatar alt="Пользователь" src={user.image}/>*/}
+                            {/*</Stack>*/}
+                            {/*<br></br>*/}
                             {/*    <h1>React File Upload</h1>*/}
                             {/*    <input type="file" onChange={handleChange}/>*/}
                             {/*    <button type="submit">Upload</button>*/}

@@ -8,6 +8,10 @@ const MainPage = (props) => {
     const [cosineArray, setCosineArray] = useState([])
     const [bestProductArray, setBestProductArray] = useState({})
 
+    let flag = true;
+
+
+
     useEffect(() => {
         let user = JSON.parse(localStorage.getItem("user"));
         let username = user.username;
@@ -33,6 +37,13 @@ const MainPage = (props) => {
         setCosineArray(prevArray => [...prevArray].concat(msg));
     }
 
+    if (cosineArray) {
+        console.log(cosineArray)
+        if (cosineArray[0] === 'None') {
+            flag = false;
+        }
+    }
+    console.log("flag: " + flag)
     console.log(cosineArray)
 
     let onMessageReceivedTwo = (msg) => {
@@ -44,13 +55,13 @@ const MainPage = (props) => {
 
     return (
         <div>
-            <CosineSimilarityRecommendation
+            {flag && <CosineSimilarityRecommendation
                 cosineArray={cosineArray}
                 incrementProductCount={props.incrementProductCount}
                 decrementProductCount={props.decrementProductCount}
                 deleteProductFromCart={props.deleteProductFromCart}
                 addProductInCart={props.addProductInCart}
-            />
+            />}
             <BestProductsRecommendation
                 bestProductArray={bestProductArray}
                 incrementProductCount={props.incrementProductCount}

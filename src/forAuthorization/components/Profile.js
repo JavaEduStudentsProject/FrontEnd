@@ -31,17 +31,6 @@ const Profile = (props) => {
         setFile(event.target.files[0])
     }
 
-    useEffect(() => {
-        console.log("Вызов useEffect до геттера")
-        OrderService.getAllOrders()
-            .then((response) => {
-                console.log(response.data)
-                localStorage.setItem('allOrderFromDB', JSON.stringify(response.data))
-            }).catch(error => {
-            console.log(error);
-        })
-        console.log("Вызов useEffect после геттера")
-    }, [])
 
     function handleSubmit(event) {
         event.preventDefault()

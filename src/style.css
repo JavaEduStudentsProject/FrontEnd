@@ -52,7 +52,12 @@ li {
     border-radius: 4px;
     border: solid 1px #5a5b6a;
 }
-
+.recommended-products>h1{
+    margin-bottom: 20px;
+}
+.additional-recommendations>h1{
+    margin-bottom: 20px;
+}
 
 .form-group>button:hover{
     box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.1);

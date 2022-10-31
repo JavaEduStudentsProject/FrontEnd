@@ -11,6 +11,8 @@ import {useParams} from "react-router-dom";
 import Title from "../../components/all products components/Title";
 import Pagination from "react-bootstrap/Pagination";
 import ProductList from "../../services/ProductList";
+import {useEffect} from "react";
+import OrderService from "../../services/OrderService";
 
 const Products = (props) => {
     let productArrayForRendering = [];
@@ -37,6 +39,17 @@ const Products = (props) => {
         }
     }
 
+    useEffect(() => {
+        console.log("Вызов useEffect до геттера")
+        OrderService.getAllOrders()
+            .then((response) => {
+                console.log(response.data)
+                localStorage.setItem('allOrderFromDB', JSON.stringify(response.data))
+            }).catch(error => {
+            console.log(error);
+        })
+        console.log("Вызов useEffect после геттера")
+    }, [])
     const sortProducts = (field) => {
         setSortingKey(field);
         productArrayForRendering = ProductList.sortProducts(productArrayForRendering, field, directSort);

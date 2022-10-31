@@ -26,6 +26,7 @@ const Products = (props) => {
     const [sortedProductList, setSortedProductList] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
     const [perPage, setPerPage] = useState(8);
+    const [perPageKey, setPerPageKey] = useState("");
     const [flag, setFlag] = useState(false);
     const {category, subcategory} = useParams();
 
@@ -54,7 +55,7 @@ const Products = (props) => {
         setSortingKey(field);
         productArrayForRendering = ProductList.sortProducts(productArrayForRendering, field, directSort);
         setDirectSort(!directSort);
-        setSortingKey('');
+        // setSortingKey('');
         setSortedProductList(productArrayForRendering);
     }
 
@@ -114,6 +115,7 @@ const Products = (props) => {
 
     const paginationProducts = (field) => {
         setPerPage(Number(field))
+        setPerPageKey(field);
     }
 
     return (
@@ -126,16 +128,17 @@ const Products = (props) => {
                     onChange={sortProducts}
                     defaultValue="Сортировка по"
                     options={[
-                        {value: 'id', name: "По id"},
-                        {value: 'category', name: "По категории"},
-                        {value: 'price', name: "По цене"},
+                        {value: 'id', name: "id"},
+                        {value: 'category', name: "категории"},
+                        {value: 'price', name: "цене"},
                     ]}
                 />
                 <MySelect
-                    value={sortingKey}
+                    value={perPageKey}
                     onChange={paginationProducts}
-                    defaultValue="8"
+                    defaultValue="Товаров на странице"
                     options={[
+                        {value: '8', name: "8"},
                         {value: '16', name: "16"},
                         {value: '50', name: "50"},
                         {value: `-1`, name: "Показать все"},

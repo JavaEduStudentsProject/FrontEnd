@@ -29,8 +29,8 @@ const CosineSimilarityRecommendation = (props) => {
     console.log("flag: " + flag)
 
     return (
-        <div>
-            <h1>You can like</h1>
+        <div className="additional-recommendations">
+            <h1>You may like</h1>
             {flag
                 ? <div className="cosine-similarity-recommendation">
                     {recommendedProducts}

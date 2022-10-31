@@ -1,5 +1,6 @@
 import React from 'react';
 import ProductCard from "../all products components/ProductCard";
+import Scroll_Horizontal from "../all products components/Scroll_Horizontal";
 
 const CosineSimilarityRecommendation = (props) => {
     const allProductList = JSON.parse(localStorage.getItem('immutableProductList'));
@@ -26,9 +27,11 @@ const CosineSimilarityRecommendation = (props) => {
     return (
         <div>
             <h1>Рекомендуемые товары</h1>
-            <div className="cosine-similarity-recommendation">
-                    {recommendedProducts}
-            </div>
+            <Scroll_Horizontal>
+                <div className="cosine-similarity-recommendation">
+                        {recommendedProducts}
+                </div>
+            </Scroll_Horizontal>
         </div>
     );
 };

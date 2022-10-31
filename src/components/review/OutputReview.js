@@ -1,4 +1,5 @@
 import StarRating from "../single product components/StarRating";
+import Scroll_Vertical from "../all products components/Scroll_Vertical";
 
 
 const OutputReview = (props)=> {
@@ -13,6 +14,7 @@ const OutputReview = (props)=> {
 
 
     return <div>
+        <Scroll_Vertical>
         {filteredReviews.map(review=>(
             <div key={review.id}>
                     <div className="review-div">
@@ -31,7 +33,9 @@ const OutputReview = (props)=> {
                              </div>
 
             </div>
+
         ))}
+        </Scroll_Vertical>
     </div>
 
 }

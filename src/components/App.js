@@ -40,6 +40,11 @@ function App() {
         console.log("Вызов useEffect после геттера")
     }, [])
 
+
+
+
+
+
     const updateCartList = (cartList, newProduct, index) => {
         // Метод slice()возвращает неглубокую копию части массива в новый объект
         // массива, выбранный из start до end (end не включенный),
@@ -100,12 +105,13 @@ function App() {
 
     function decrementProductCount(productCart) {
         removeProductFromCart(productCart)
-        if (countProductInBasket  <= 1) {
-            deleteProductFromCart(productCart)
-        }
         setCountProductInBasket(prevCountProductInBasket => {
             return (prevCountProductInBasket > 0 ? prevCountProductInBasket - 1 : 0)
+
         });
+        if (countProductInBasket <= 1) {
+            deleteProductFromCart(productCart)
+        }
         console.log("Deleted from card. Product quantity: " + countProductInBasket)
     }
 
@@ -126,10 +132,7 @@ function App() {
         product = immutableProductList.find((item) => item.id === productCart.id);
         productIndex = cartList.findIndex((item) => item.id === productCart.id);
         productInCart = cartList[productIndex];
-        if (productCart.quantity>1){
-            newProduct = updateProduct(product, productInCart, -1);
-        }
-
+        newProduct = updateProduct(product, productInCart, -1);
         newCartList = updateCartList(cartList, newProduct, productIndex);
         return {
             cartList: newCartList

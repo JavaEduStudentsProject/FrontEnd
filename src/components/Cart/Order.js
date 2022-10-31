@@ -113,6 +113,15 @@ const Order = (props) => {
                     <p className="sum-order"> Сумма заказа со
                         скидкой: {(new Intl.NumberFormat().format(discountedTotalSum))}</p>
 
+                    <Button className="order-button" onClick={
+                        () => currentUser ? (createOrder()):
+                            (
+                                setModalActive(true)
+                            )
+                    }>
+                        Заказать
+                    </Button>
+
                     <BasketRecommendations
                         basketCategoriesArray={basketCategoriesArray}
                         incrementProductCount={props.incrementProductCount}
@@ -121,14 +130,7 @@ const Order = (props) => {
                         addProductInCart={props.addProductInCart}
                     />
 
-                    <Button className="order-button" onClick={
-                            () => currentUser ? (createOrder()):
-                        (
-                            setModalActive(true)
-                    )
-                    }>
-                        Заказать
-                    </Button>
+
 
                     <Modal active={modalActive}
                            setActive={setModalActive}>

@@ -8,12 +8,13 @@ import avatar1 from '../../images/avatar.jpg'
 import {FilterArrayContext, ImmutableProductListContext, PriceFilterArrayContext} from "../../services/Context";
 import AuthService from "../../forAuthorization/services/auth.service";
 import EventBus from "../../forAuthorization/common/EventBus";
-import {FaShoppingCart} from "react-icons/fa";
 import Cart from "../Cart/Cart"
 import Badge from '@mui/material/Badge';
 import IconButton from '@mui/material/IconButton';
 import { styled } from '@mui/material/styles';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import img1 from "../../images/istockphoto-1214428300-170667a.jpg"
+
 
 export default function Header(props) {
     let [cartOpen, setCartOpen] = useState(false)
@@ -104,7 +105,7 @@ export default function Header(props) {
                             </a>
                             </p>
                         <Stack className="avatarIcon">
-                            <Avatar alt="Пользователь" src={currentUser.username} onClick={()=>{window.location.assign("/profile")}}/>
+                            <Avatar alt="Пользователь" src={currentUser.image? currentUser.image: img1} onClick={()=>{window.location.assign("/profile")}}/>
                         </Stack>
                         {/*</li>*/}
                     </div>

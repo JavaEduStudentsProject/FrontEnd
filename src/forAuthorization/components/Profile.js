@@ -9,9 +9,11 @@ import {NavLink} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
 import {Tab, TabList, TabPanel, Tabs} from "react-tabs";
 import 'react-tabs/style/react-tabs.css';
-
 import UserOrder from "../../components/Cart/UserOrder";
-import OrderService from "../../services/OrderService";
+import "./styleAvatar.css"
+import Portal from "./Portal";
+import CreateAvatar from "./CreateAvatar";
+import ProfilePhoto from "./ProfilePhoto";
 
 
 const Profile = (props) => {
@@ -25,42 +27,20 @@ const Profile = (props) => {
 
     const [modalActive, setModalActive] = useState(false)
 
-    const [file, setFile] = useState()
+    const [avatar, setAvatar] = useState(user.image)
+    const [image, setImage] = useState(false)
 
     function handleChange(event) {
-        setFile(event.target.files[0])
+        setAvatar(event.target.files[0])
     }
 
-    useEffect(() => {
-        console.log("Вызов useEffect до геттера")
-        OrderService.getAllOrders()
-            .then((response) => {
-                console.log(response.data)
-                localStorage.setItem('allOrderFromDB', JSON.stringify(response.data))
-            }).catch(error => {
-            console.log(error);
-        })
-        console.log("Вызов useEffect после геттера")
-    }, [])
 
-    function handleSubmit(event) {
-        event.preventDefault()
-        const url = 'http://localhost:8085/api/auth/image';
-        const formData = new FormData();
-        formData.append('file', file);
-        // formData.append('fileName', file.name);
-        // const config = {
-        //     headers: {
-        //         'content-type': 'multipart/form-data',
-        //     },
-        // };
-        axios.post(url, formData, user.id).then((response) => {
-            localStorage.setItem("user", JSON.stringify(user))
-            navigate("/profile")
-            window.location.reload();
-        });
 
-    }
+
+    const getData = ( imageSrc) => {
+        setAvatar(imageSrc);
+    };
+
 
     return (
         <div>
@@ -78,20 +58,9 @@ const Profile = (props) => {
                                 <h2>
                                     Profile <strong>{user.username}</strong>
                                 </h2>
-                                <br></br>
                             </header>
-                            {/*<Stack className="avatarIcon">*/}
-                            {/*    <Avatar alt="Пользователь" src={user.image}/>*/}
-                            {/*</Stack>*/}
-                            {/*<br></br>*/}
-                            {/*    <h1>React File Upload</h1>*/}
-                            {/*    <input type="file" onChange={handleChange}/>*/}
-                            {/*    <button type="submit">Upload</button>*/}
 
-
-                            <NavLink className="avatarIcon">
-                                <Avatar alt="Пользователь" src={`/img/${user.image}`} onChange={handleChange}/>
-                            </NavLink>
+                            <ProfilePhoto imageSrc={avatar} getData={getData}  user = {user}/>
 
                             <h3>
                                 <strong>Email:</strong> {user.email}
@@ -129,7 +98,7 @@ const Profile = (props) => {
                             <h1 className="title-cart"> История заказов</h1>
                             <div>
                                 {userOrders.map(el => (
-                                    <div><h2>Номер заказа {el.id}</h2>
+                                    <div key={el.id}><h2>Номер заказа {el.id}</h2>
                                         <br/>
                                         <UserOrder key={el.id} order={el.products}
                                         />
@@ -150,9 +119,6 @@ const Profile = (props) => {
                         </Modal>
                     </div>
 
-                    {/*<TabPanel>*/}
-                    {/*    <h2>reviews</h2>*/}
-                    {/*</TabPanel>*/}
 
                 </Tabs>
             </div>

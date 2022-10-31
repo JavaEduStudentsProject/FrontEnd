@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap');
+
+.createAvatarDiv_content {
+    width: 650px;
+    height: 500px;
+    border: 1px solid grey;
+
+}
+
+.avatarIcon {
+    flex-grow: 0;
+    border-radius: 99px;
+    margin-left: 10px;
+}
+
+.previewDiv{
+    /*border: 1px solid grey;*/
+    width: 150px;
+    height: 150px;
+}
+
+.choose-file{
+    width: 150px;
+}
+
+
+.profile-pic{
+     width: 20%;
+     height: 20%;
+     padding: 0;
+    flex-grow: 0;
+    border-radius: 100px;
+ }
+
+
+

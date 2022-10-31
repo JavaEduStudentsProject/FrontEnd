@@ -42,6 +42,12 @@ const updateUser = (lastname, firstname,phone, country, dateOfBirth, id) => {
         id,
   })
 };
+const imageUser = (image, id)=>{
+    return axios.post(API_URL + "image", {
+       image,
+        id
+    })
+}
 
 const getCurrentUser = () => {
   return JSON.parse(localStorage.getItem("user"));
@@ -53,6 +59,7 @@ const AuthService = {
   logout,
   getCurrentUser,
   updateUser,
+    imageUser,
 }
 
 export default AuthService;

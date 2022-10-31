@@ -1,4 +1,4 @@
-import React, {useContext, useState, useMemo} from 'react';
+import React, {useContext, useState, useMemo, useEffect} from 'react';
 import ProductCard from "./ProductCard";
 import MySelect from "../UI/select/MySelect";
 import Filter from "./Filter";
@@ -11,6 +11,7 @@ import {useParams} from "react-router-dom";
 import Title from "../../components/all products components/Title";
 import Pagination from "react-bootstrap/Pagination";
 import ProductList from "../../services/ProductList";
+import OrderService from "../../services/OrderService";
 
 const Products = (props) => {
     let productArrayForRendering = [];
@@ -36,6 +37,18 @@ const Products = (props) => {
             filterArray[1] = subcategory;
         }
     }
+
+    useEffect(() => {
+        console.log("Вызов useEffect до геттера")
+        OrderService.getAllOrders()
+            .then((response) => {
+                console.log(response.data)
+                localStorage.setItem('allOrderFromDB', JSON.stringify(response.data))
+            }).catch(error => {
+            console.log(error);
+        })
+        console.log("Вызов useEffect после геттера")
+    }, [])
 
     const sortProducts = (field) => {
         setSortingKey(field);

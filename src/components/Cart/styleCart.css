@@ -52,13 +52,14 @@ html {
     background: #fcfcfc;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
     margin: 10px;
-    border-radius: 10px;
+    border-radius: 3%;
 }
 
 .item-img {
     position: center;
-    max-width: 40%;
-    max-height: 40%;
+    max-width: 25%;
+    max-height: 25%;
+    border-radius: 3%;
 
     /*width: 40% ;*/
     /*height: 40%;*/
@@ -87,6 +88,7 @@ html {
 
 
 .product-button {
+
     width: 88px;
     height: 32px;
     margin: 9px 17px 0 0;

@@ -1,7 +1,10 @@
 import React from "react";
 import MyButton from "../UI/button/MyButton";
+import products from "../all products components/Products";
 
 function ProductPlusMinusButton(props) {
+    const productsInBasket=JSON.parse(localStorage.getItem('cartList'))
+    let product = productsInBasket.filter(product => product.id === props.product.id)
 
     return (
         <div className="price">
@@ -14,7 +17,7 @@ function ProductPlusMinusButton(props) {
                 props.decrementProductCount(props.product)}
 
             >Удалить</MyButton>
-            <h3>В корзине: {props.countProductInBasket}</h3>
+            <h3>В корзине: {product[0].quantity}</h3>
         </div>
     );
 }

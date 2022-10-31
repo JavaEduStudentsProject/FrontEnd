@@ -10,8 +10,10 @@ import AuthService from "../../forAuthorization/services/auth.service";
 import EventBus from "../../forAuthorization/common/EventBus";
 import {FaShoppingCart} from "react-icons/fa";
 import Cart from "../Cart/Cart"
-
-
+import Badge from '@mui/material/Badge';
+import IconButton from '@mui/material/IconButton';
+import { styled } from '@mui/material/styles';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 export default function Header(props) {
     let [cartOpen, setCartOpen] = useState(false)
@@ -23,16 +25,13 @@ export default function Header(props) {
 
     useEffect(() => {
         const user = AuthService.getCurrentUser();
-
         if (user) {
             setCurrentUser(user);
             setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
         }
-
         EventBus.on("logout", () => {
             logOut();
         });
-
         return () => {
             EventBus.remove("logout");
         };
@@ -44,6 +43,15 @@ export default function Header(props) {
         setCurrentUser(undefined);
     };
 
+
+    const StyledBadge = styled(Badge)(({ theme }) => ({
+        '& .MuiBadge-badge': {
+            right: -3,
+            top: 13,
+            border: `2px solid ${theme.palette.background.paper}`,
+            padding: '0 4px',
+        },
+    }));
     return (
         <header>
             <nav className="nav-panel">
@@ -52,12 +60,19 @@ export default function Header(props) {
                 }}/>
                 <DropDownMenu/>
                 <SearchField handleChange={props.handleChange} searchField={props.searchField}/>
-                <span className="count-products-in-basket">{countProductInBasket}</span>
+
                 <div className="userIcons">
                     <Stack>
-                        <FaShoppingCart onClick={() => setCartOpen(cartOpen = !cartOpen)}
-                                        className={`shop-cart-button ${cartOpen && 'active'}`}/>
 
+                        <IconButton
+                            aria-label="cart"
+                            size="large">
+
+                            <StyledBadge badgeContent={countProductInBasket} color= "primary">
+                                <ShoppingCartIcon fontSize="inherit" onClick={() => setCartOpen(cartOpen = !cartOpen)}
+                                />
+                            </StyledBadge>
+                        </IconButton>
                         {cartOpen && (
                             <div className={'shop-cart'}>
 

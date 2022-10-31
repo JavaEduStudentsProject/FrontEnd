@@ -68,7 +68,7 @@ const Products = (props) => {
     }
 
     const {pagItems, firstPageIndex, lastPageIndex} = useMemo(() => {
-            const pageLimit = Math.ceil(productArrayForRendering.length / perPage)
+            let pageLimit = Math.ceil(productArrayForRendering.length / perPage)
             let pagItems = []
             for (let i = 0; i < pageLimit; i++) {
                 pagItems.push(
@@ -93,13 +93,10 @@ const Products = (props) => {
 
 
     const productListPerOnePage = () => {
-        //вывод по "Показать все"
-        // let lastIndex = lastPageIndex === -1 ? productArrayForRendering.length : lastPageIndex;
+        const index = lastPageIndex === -1 ? productArrayForRendering.length : lastPageIndex;
         return productArrayForRendering.length
             ?
-            productArrayForRendering.slice(firstPageIndex, lastPageIndex).map(item => {
-                //вывод по "Показать все"
-                // productArrayForRendering.slice(firstPageIndex, lastIndex).map(item => {
+            productArrayForRendering.slice(firstPageIndex, index).map(item => {
                 return <ProductCard
                     key={item.id}
                     item={item}

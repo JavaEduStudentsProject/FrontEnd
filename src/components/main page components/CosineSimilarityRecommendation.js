@@ -25,7 +25,7 @@ const CosineSimilarityRecommendation = (props) => {
 
     return (
         <div>
-            <h1>You can like</h1>
+            <h1>Рекомендуемые товары</h1>
             <div className="cosine-similarity-recommendation">
                     {recommendedProducts}
             </div>

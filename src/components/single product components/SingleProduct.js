@@ -5,9 +5,6 @@ import {useParams} from "react-router-dom"
 import ImagesGallery from "./ImageGallery";
 import {Tab, TabList, TabPanel, Tabs} from "react-tabs";
 import 'react-tabs/style/react-tabs.css';
-import Review from "../review/Review";
-import ReviewService from "../review/ReviewService";
-import UserOrder from "../Cart/UserOrder";
 import OutputReview from "../review/OutputReview";
 import {useEffect} from "react";
 import ProductService from "../../services/ProductService";
@@ -17,7 +14,6 @@ export default function SingleProduct(props) {
     useEffect(() => {
         console.log("Вызов useEffect до геттера")
         ProductService.getAllReviews().then((response) => {
-            // console.log("fblsfkbjnsfkbjnsfkbjn" + response.data)
             localStorage.setItem('allReviewsFromDB', JSON.stringify(response.data))
         }).catch(error => {
             console.log(error);
@@ -93,7 +89,6 @@ export default function SingleProduct(props) {
                                     deleteProductFromCart={props.deleteProductFromCart}
                                     removeProductFromCart={props.removeProductFromCart}
                                     addProductInCart={props.addProductInCart}/>
-                    {/*<MoneyInCreditComponent/>*/}
                 </div>
             </div>
         </div>

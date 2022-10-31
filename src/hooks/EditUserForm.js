@@ -48,10 +48,9 @@ const EditUserForm = props => {
             })
         }
     }
-
     return (
         <form >
-            <label>LastName</label>
+            <label>Фамилия</label>
             <input
                 type="text"
                 name="lastname"
@@ -59,7 +58,7 @@ const EditUserForm = props => {
                 onChange= {(e)=> setLastname(e.target.value.replace(/[^A-Za-z]/g, ''))}
             />
             <br></br>
-            <label>FirstName</label>
+            <label>Имя</label>
             <input
                 type="text"
                 name="firstname"
@@ -67,7 +66,7 @@ const EditUserForm = props => {
                 onChange= {(e)=> setFirstname(e.target.value.replace(/[^A-Za-z]/g, ''))}
             />
             <br></br>
-            <label>Phone</label>
+            <label>Номер телефона</label>
             <div>
                 <PhoneInput
                     country={'ru'}
@@ -78,15 +77,13 @@ const EditUserForm = props => {
             </div>
 
             <br/>
-            <label>Country</label>
-
+            <label>Страна</label>
             <br/>
             <CountryDropdown
                 value={country}
                 handleChange={e => setCountry(e.target.value)}/>
-
             <br/>
-            <label>Date of Birth</label>
+            <label>Дата рождения</label>
 
             <br/>
             <TextField
@@ -95,12 +92,10 @@ const EditUserForm = props => {
                 type="date"
                 defaultValue={dateOfBirth ? dateOfBirth : "2017-05-24"}
                 onChange={e => setDateOfBirth(e.target.value)}/>
-
             <br/>
             <button className="btn-update"
                    onClick={(e)=> {
                         handleSubmit(e)
-
                     }}
             >
                Обновить юзера</button>

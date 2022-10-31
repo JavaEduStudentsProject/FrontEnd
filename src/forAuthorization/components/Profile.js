@@ -14,7 +14,7 @@ import UserOrder from "../../components/Cart/UserOrder";
 import OrderService from "../../services/OrderService";
 
 
-const Profile = (props) => {
+const Profile = () => {
     const [user] = useState(AuthService.getCurrentUser())
     const navigate =useNavigate();
     const allOrdersFromDB = JSON.parse(localStorage.getItem('allOrderFromDB'))
@@ -116,9 +116,10 @@ const Profile = (props) => {
                     <TabPanel>
                         <div>
                             <h1 className="title-cart"> История заказов</h1>
+                            <br/>
                             <div>
                                 {userOrders.map(el => (
-                                    <div><h2>Номер заказа {el.id}</h2>
+                                    <div><h3>Номер заказа {el.id}</h3>
                                         <br/>
                                         <UserOrder key={el.id} order={el.products}
                                         />

@@ -1,6 +1,5 @@
 import {useState} from "react";
 import AuthService from "../../forAuthorization/services/auth.service";
-import {Input} from "@mui/material";
 import {Form} from "react-bootstrap";
 import ReviewService from "./ReviewService";
 import {useRef} from "react";
@@ -9,10 +8,7 @@ import StarRating from "../single product components/StarRating";
 
 const Review = (props) => {
     const form = useRef();
-    const checkBtn = useRef();
     const currentUser = AuthService.getCurrentUser();
-    const [userId, setUserId] = useState("");
-    const [productId, setProductId] = useState("");
     const navigate = useNavigate();
     const [successful, setSuccessful] = useState(false);
     const [rating, setRating] = useState("");
@@ -59,14 +55,14 @@ const Review = (props) => {
                 <Form onSubmit={handleSubmit} ref={form}>
                     <div>
                         <div className="form-group">
-                            <label>Rating</label>
+                            <label>Оцени товар</label>
                             <StarRating
                                 value={rating}
                             />
                         </div>
 
                         <div className="form-group">
-                            <label>Review</label>
+                            <label>Отзыв</label>
                             <textarea
                                 type="text"
                                 name="Review"
@@ -75,7 +71,7 @@ const Review = (props) => {
                             />
                         </div>
                         <div className="form-group">
-                            <button className="product-button">Send review</button>
+                            <button className="product-button">Отправить</button>
                         </div>
                     </div>
                 </Form>

@@ -11,11 +11,11 @@ const AboutUs = (props)=>{
                 <div className="contant_1">
                     <div className="contant_1_left">
                         <h2>
-                            About Us...
-                            <span>October 22, 2022 | (0) Comments</span>
+                            О нас...
+                            <span>Октября 22, 2022 | (0) Комментариев</span>
                         </h2>
                         <img src={img} width="177" height="206" alt=""/>
-                        <h3>Kefir fungi tried.</h3>
+                        <h3>Кефирные грибки старались.</h3>
                         <br className="clear bottomClear"/>
                         <br></br>
                             <p>Кефирный грибок представляет собой сложный симбиоз (совместное существование) нескольких видов микроорганизмов, образовавшихся в

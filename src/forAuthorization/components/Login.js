@@ -116,13 +116,13 @@ const Login = () => {
                             {loading && (
                                 <span className="spinner-border spinner-border-sm"></span>
                             )}
-                            <span>Login</span>
+                            <span>Войти</span>
                         </button>
                     </div>
                     <div className="form-group">
                         <button className="btn btn-primary btn-block">
 
-                            <a href="/register">Registration</a>
+                            <a href="/register">Зарегистрироваться</a>
 
                             {/*<span>Registration</span>*/}
                         </button>

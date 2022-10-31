@@ -27,8 +27,8 @@ function Contacts(){
                 <div id="contant">
                     <div className="contant_1">
                             <h2>
-                                Contacts
-                                <span>October 22, 2022 | (0) Comments</span>
+                                Контакты
+                                <span>Октябрь 22, 2022 | (0) Комментариев</span>
                             </h2>
                             <div className="contant_1_right">
                                 {/*<h3>Как до нас добраться</h3>*/}

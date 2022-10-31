@@ -16,8 +16,8 @@ const Delivery = (props)=>{
                 <div class="contant_1_left">
                     <br></br>
                     <h2>
-                        Delivery
-                        <span>October 22, 2022 | (0) Comments</span>
+                        Доставка
+                        <span>Октябрь 22, 2022 | (0) Комментариев</span>
                     </h2>
                     <img src={img1} width="327" height="266" alt="" />
                     <h3>Доставка курьером</h3>

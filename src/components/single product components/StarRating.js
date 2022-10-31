@@ -1,5 +1,4 @@
 import React from 'react';
-import RatingService from "../../services/RatingService";
 
 export default function StarRating() {
 

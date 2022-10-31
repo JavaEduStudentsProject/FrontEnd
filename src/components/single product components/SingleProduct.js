@@ -17,7 +17,7 @@ export default function SingleProduct(props) {
     useEffect(() => {
         console.log("Вызов useEffect до геттера")
         ProductService.getAllReviews().then((response) => {
-            console.log("fblsfkbjnsfkbjnsfkbjn" + response.data)
+            // console.log("fblsfkbjnsfkbjnsfkbjn" + response.data)
             localStorage.setItem('allReviewsFromDB', JSON.stringify(response.data))
         }).catch(error => {
             console.log(error);
@@ -62,34 +62,25 @@ export default function SingleProduct(props) {
                     <div>
                         <Tabs>
                             <TabList>
-                                <Tab>Description</Tab>
-                                <Tab>Characteristic</Tab>
-                                <Tab>Review</Tab>
+                                <Tab>Описание товара</Tab>
+                                <Tab>Характеристики</Tab>
+                                <Tab>Отзывы</Tab>
                             </TabList>
                             <TabPanel>
-                                <li>
+                               <ul>
+                                    <li>
                                     {product.description}
-
-                                </li>
+                                    </li>
+                               </ul>
                             </TabPanel>
                             <TabPanel>
-                                hello
                                 <ul>
-                                    {/*<li>{product["filter_features"]}</li>*/}
-                                    {/*{characteristics.forEach(ch=>{*/}
-                                    {/*    if (ch != null){*/}
-                                    {/*        <li>{ch}</li>*/}
-                                    {/*    }*/}
-                                    {/*}*/}
-                                    {/*    */}
-                                    {/*)}*/}
+                                    <li>{product["filter_features"].brand}</li>
                                 </ul>
                             </TabPanel>
                             <TabPanel>
-                                <h2>Review</h2>
                                 <OutputReview
-                                    productId={product.id}/>
-
+                                    productId={product.id}/>x
                             </TabPanel>
                         </Tabs>
                     </div>

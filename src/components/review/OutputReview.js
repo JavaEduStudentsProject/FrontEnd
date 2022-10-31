@@ -1,5 +1,5 @@
-import {useEffect, useState} from "react";
-import ProductService from "../../services/ProductService";
+import StarRating from "../single product components/StarRating";
+
 
 const OutputReview = (props)=> {
 
@@ -14,10 +14,24 @@ const OutputReview = (props)=> {
 
     return <div>
         {filteredReviews.map(review=>(
-            <div key={review.id}> {review.review}</div>
+            <div key={review.id}>
+                    <div className="review-div">
+                        <div className="review-div__main">
+                            <div className="review-div__user">
+                                <h3> {review.userId}</h3>
+                             </div>
+                             <br/>
+                            <div className="review-div__review">
+                                <p>{review.review}</p>
+                            </div>
+                            </div>
+                             <div className="review-star">
+                                 <StarRating/>
+                    </div>
+                             </div>
+
+            </div>
         ))}
-
-
     </div>
 
 }

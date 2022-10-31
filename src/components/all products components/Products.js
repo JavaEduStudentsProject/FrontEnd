@@ -138,7 +138,7 @@ const Products = (props) => {
                         {value: '8', name: "8"},
                         {value: '16', name: "16"},
                         {value: '50', name: "50"},
-                        {value: `-1`, name: "Показать все"},
+                        {value: '-1', name: "Показать все"},
                     ]}/>
 
                 {/*<Scroll_Horizontal>*/}

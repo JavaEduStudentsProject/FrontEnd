@@ -10,6 +10,8 @@ import {useNavigate} from "react-router-dom";
 import {Tab, TabList, TabPanel, Tabs} from "react-tabs";
 import 'react-tabs/style/react-tabs.css';
 import UserOrder from "../../components/Cart/UserOrder";
+import OrderService from "../../services/OrderService";
+
 import "./styleAvatar.css"
 import Portal from "./Portal";
 import CreateAvatar from "./CreateAvatar";
@@ -96,6 +98,7 @@ const Profile = (props) => {
                     <TabPanel>
                         <div>
                             <h1 className="title-cart"> История заказов</h1>
+                            <br/>
                             <div>
                                 {userOrders.map(el => (
                                     <div key={el.id}><h2>Номер заказа {el.id}</h2>

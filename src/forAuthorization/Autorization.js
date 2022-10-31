@@ -85,7 +85,7 @@ const Autorization = () => {
                         </li>
                         <li className="nav-item">
                             <a href="/login" className="nav-link" onClick={logOut}>
-                                LogOut
+                                Выйти
                             </a>
                         </li>
                     </div>
@@ -93,7 +93,7 @@ const Autorization = () => {
                     <div className="navbar-nav ml-auto">
                         <li className="nav-item">
                             <Link to={"/login"} className="nav-link">
-                                Login
+                                Зарегистрироваться
                             </Link>
                         </li>
 

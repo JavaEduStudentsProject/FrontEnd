@@ -1,6 +1,5 @@
 import React from "react";
 import MyButton from "../UI/button/MyButton";
-import products from "../all products components/Products";
 
 function ProductPlusMinusButton(props) {
     const productsInBasket=JSON.parse(localStorage.getItem('cartList'))

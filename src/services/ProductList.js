@@ -1,5 +1,3 @@
-import {useContext} from 'react'
-import {FilterArrayContext} from "../../src/services/Context";
 import cloneDeep from 'lodash.clonedeep'
 
 class ProductList {

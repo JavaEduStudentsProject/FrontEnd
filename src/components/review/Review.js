@@ -1,28 +1,20 @@
 import {useState} from "react";
 import AuthService from "../../forAuthorization/services/auth.service";
-import {Input} from "@mui/material";
 import {Form} from "react-bootstrap";
 import ReviewService from "./ReviewService";
 import {useRef} from "react";
 import {useNavigate} from "react-router-dom";
+import StarRating from "../single product components/StarRating";
 
 const Review = (props) => {
     const form = useRef();
-    const checkBtn = useRef();
     const currentUser = AuthService.getCurrentUser();
-    const [userId, setUserId] = useState("");
-    const [productId, setProductId] = useState("");
     const navigate = useNavigate();
     const [successful, setSuccessful] = useState(false);
     const [rating, setRating] = useState("");
     const [review, setReview] = useState("");
     const [message, setMessage] = useState("");
 
-
-    const onChangeRating = (e) => {
-        const rating = e.target.value;
-        setRating(rating);
-    };
     const onChangeReview = (e) => {
         const review = e.target.value;
         setReview(review);
@@ -31,6 +23,9 @@ const Review = (props) => {
     console.log(props.product.id)
     const handleSubmit = (e) => {
         e.preventDefault();
+        const rating = document.querySelector('input[name="star-radio"]:checked').value;
+        console.log("rating: " + rating)
+        setRating(rating);
         setMessage("");
         setSuccessful(false);
         ReviewService.saveReview(props.product.id, rating, currentUser.username, review).then(
@@ -60,17 +55,14 @@ const Review = (props) => {
                 <Form onSubmit={handleSubmit} ref={form}>
                     <div>
                         <div className="form-group">
-                            <label>Rating</label>
-                            <Input
-                                type="text"
-                                name="Rating"
+                            <label>Оцени товар</label>
+                            <StarRating
                                 value={rating}
-                                onChange={onChangeRating}
                             />
                         </div>
 
                         <div className="form-group">
-                            <label>Review</label>
+                            <label>Отзыв</label>
                             <textarea
                                 type="text"
                                 name="Review"
@@ -79,7 +71,7 @@ const Review = (props) => {
                             />
                         </div>
                         <div className="form-group">
-                            <button className="product-button">Send review</button>
+                            <button className="product-button">Отправить</button>
                         </div>
                     </div>
                 </Form>

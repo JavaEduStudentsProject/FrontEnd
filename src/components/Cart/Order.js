@@ -8,6 +8,7 @@ import OrderService from "../../services/OrderService";
 import BasketRecommendations from "./BasketRecommendations";
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import Modal from "../../forAuthorization/components/Modal";
+import Scroll_Horizontal from "../all products components/Scroll_Horizontal";
 
 const Order = (props) => {
     let sumTotalQuantity = 0;
@@ -112,25 +113,21 @@ const Order = (props) => {
                     <p className="sum-order"> Сумма заказа: {(new Intl.NumberFormat().format(summa))}</p>
                     <p className="sum-order"> Сумма заказа со
                         скидкой: {(new Intl.NumberFormat().format(discountedTotalSum))}</p>
-
+                        <BasketRecommendations
+                            basketCategoriesArray={basketCategoriesArray}
+                            incrementProductCount={props.incrementProductCount}
+                            decrementProductCount={props.decrementProductCount}
+                            deleteProductFromCart={props.deleteProductFromCart}
+                            addProductInCart={props.addProductInCart}
+                        />
                     <Button className="order-button" onClick={
-                        () => currentUser ? (createOrder()):
-                            (
-                                setModalActive(true)
-                            )
+                            () => currentUser ? (createOrder()):
+                        (
+                            setModalActive(true)
+                    )
                     }>
                         Заказать
                     </Button>
-
-                    <BasketRecommendations
-                        basketCategoriesArray={basketCategoriesArray}
-                        incrementProductCount={props.incrementProductCount}
-                        decrementProductCount={props.decrementProductCount}
-                        deleteProductFromCart={props.deleteProductFromCart}
-                        addProductInCart={props.addProductInCart}
-                    />
-
-
 
                     <Modal active={modalActive}
                            setActive={setModalActive}>

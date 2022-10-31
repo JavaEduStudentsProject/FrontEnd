@@ -101,7 +101,7 @@ export default function Header(props) {
                         {/*<li className="nav-item">*/}
                             <p className="Logout" >
                             <a href="/" className="nav-link" onClick={logOut}>
-                                Log out
+                                Выйти
                             </a>
                             </p>
                         <Stack className="avatarIcon">
@@ -121,9 +121,9 @@ export default function Header(props) {
             )}
             </nav>
             <nav className="nav-list">
-                <button onClick={()=>{window.location.assign("/aboutUs")}}>About us</button>
-                <button onClick={()=>{window.location.assign("/contacts")}}>Contacts</button>
-                <button onClick={()=>{window.location.assign("/delivery")}}>Delivery</button>
+                <button onClick={()=>{window.location.assign("/aboutUs")}}>О нас</button>
+                <button onClick={()=>{window.location.assign("/contacts")}}>Контакты</button>
+                <button onClick={()=>{window.location.assign("/delivery")}}>Доставка</button>
             </nav>
         </header>
     )

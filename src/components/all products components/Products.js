@@ -1,4 +1,4 @@
-import React, {useContext, useState, useMemo, useEffect} from 'react';
+import React, {useContext, useState, useMemo} from 'react';
 import ProductCard from "./ProductCard";
 import MySelect from "../UI/select/MySelect";
 import Filter from "./Filter";
@@ -11,6 +11,7 @@ import {useParams} from "react-router-dom";
 import Title from "../../components/all products components/Title";
 import Pagination from "react-bootstrap/Pagination";
 import ProductList from "../../services/ProductList";
+import {useEffect} from "react";
 import OrderService from "../../services/OrderService";
 
 const Products = (props) => {
@@ -25,6 +26,7 @@ const Products = (props) => {
     const [sortedProductList, setSortedProductList] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
     const [perPage, setPerPage] = useState(8);
+    const [perPageKey, setPerPageKey] = useState("");
     const [flag, setFlag] = useState(false);
     const {category, subcategory} = useParams();
 
@@ -49,12 +51,11 @@ const Products = (props) => {
         })
         console.log("Вызов useEffect после геттера")
     }, [])
-
     const sortProducts = (field) => {
         setSortingKey(field);
         productArrayForRendering = ProductList.sortProducts(productArrayForRendering, field, directSort);
         setDirectSort(!directSort);
-        setSortingKey('');
+        // setSortingKey('');
         setSortedProductList(productArrayForRendering);
     }
 
@@ -114,6 +115,7 @@ const Products = (props) => {
 
     const paginationProducts = (field) => {
         setPerPage(Number(field))
+        setPerPageKey(field);
     }
 
     return (
@@ -126,26 +128,27 @@ const Products = (props) => {
                     onChange={sortProducts}
                     defaultValue="Сортировка по"
                     options={[
-                        {value: 'id', name: "По id"},
-                        {value: 'category', name: "По категории"},
-                        {value: 'price', name: "По цене"},
+                        {value: 'id', name: "id"},
+                        {value: 'category', name: "категории"},
+                        {value: 'price', name: "цене"},
                     ]}
                 />
                 <MySelect
-                    value={sortingKey}
+                    value={perPageKey}
                     onChange={paginationProducts}
-                    defaultValue="8"
+                    defaultValue="Товаров на странице"
                     options={[
+                        {value: '8', name: "8"},
                         {value: '16', name: "16"},
                         {value: '50', name: "50"},
                         {value: `-1`, name: "Показать все"},
                     ]}/>
 
-                {/*<Scroll>*/}
+                {/*<Scroll_Horizontal>*/}
                 <div className="products">
                     {productListPerOnePage()}
                 </div>
-                {/*</Scroll>*/}
+                {/*</Scroll_Horizontal>*/}
 
                 <Pagination className='justify-content-center'>
                     {/*<Pagination.Prev/>*/}

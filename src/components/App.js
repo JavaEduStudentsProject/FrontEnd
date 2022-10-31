@@ -17,7 +17,6 @@ import AboutUs from "./aditionalPages/AboutUs";
 import Contacts from "./aditionalPages/Contacts";
 import Delivery from "./aditionalPages/Delivery";
 import MainPage from "./main page components/MainPage";
-import ReviewService from "./review/ReviewService";
 
 
 function App() {
@@ -26,7 +25,7 @@ function App() {
     const [filterArray, setFilterArray] = useState(["", ""]);
     const [countProductInBasket, setCountProductInBasket] = useLocalStorage(0, "countProductInBasket");
     const [cartList, setCartList] = useLocalStorage([], "cartList");
-    const [order, setOrder] = useLocalStorage([], "cartList");
+    //const [order, setOrder] = useLocalStorage([], "cartList");
 
 
     useEffect(() => {
@@ -163,22 +162,22 @@ function App() {
         return {productArray}
     }, [searchField])
 
-    const addToOrder = (id) => {
-        let isInArray = false;
-        const newItem = immutableProductList.find((item) => item.id === id);
-        order.forEach(el => {
-            if (el.id === id)
-                isInArray = true;
-        })
-        if (!isInArray)
-
-            setOrder([...order, newItem])
-    };
-
-    const deleteOrder = (id) => {
-        const orderTemp=order.filter(el=>el.id!==id)
-        setOrder(orderTemp)
-    };
+    // const addToOrder = (id) => {
+    //     let isInArray = false;
+    //     const newItem = immutableProductList.find((item) => item.id === id);
+    //     order.forEach(el => {
+    //         if (el.id === id)
+    //             isInArray = true;
+    //     })
+    //     if (!isInArray)
+    //
+    //         setOrder([...order, newItem])
+    // };
+    //
+    // const deleteOrder = (id) => {
+    //     const orderTemp=order.filter(el=>el.id!==id)
+    //     setOrder(orderTemp)
+    // };
 
     return (
         <ImmutableProductListContext.Provider value={{immutableProductList}}>

@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import ProductCard from "../all products components/ProductCard";
+import Scroll_Horizontal from "../all products components/Scroll_Horizontal";
 
 
 const BasketRecommendations = (props) => {
@@ -31,12 +32,14 @@ const BasketRecommendations = (props) => {
 
     return (
         <div>
-            <h3>You can like</h3>
+        <h3>You can like</h3>
+        <Scroll_Horizontal>
             {flag &&
                 <div className="cosine-similarity-recommendation">
                     {recommendedProducts}
                 </div>
             }
+        </Scroll_Horizontal>
         </div>
     );
 };

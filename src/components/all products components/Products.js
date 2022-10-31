@@ -11,6 +11,8 @@ import {useParams} from "react-router-dom";
 import Title from "../../components/all products components/Title";
 import Pagination from "react-bootstrap/Pagination";
 import ProductList from "../../services/ProductList";
+import {useEffect} from "react";
+import OrderService from "../../services/OrderService";
 
 const Products = (props) => {
     let productArrayForRendering = [];
@@ -23,7 +25,7 @@ const Products = (props) => {
     const [directSort, setDirectSort] = useState(true);
     const [sortedProductList, setSortedProductList] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
-    const [perPage, setPerPage] = useState(6);
+    const [perPage, setPerPage] = useState(8);
     const [flag, setFlag] = useState(false);
     const {category, subcategory} = useParams();
 
@@ -37,6 +39,17 @@ const Products = (props) => {
         }
     }
 
+    useEffect(() => {
+        console.log("Вызов useEffect до геттера")
+        OrderService.getAllOrders()
+            .then((response) => {
+                console.log(response.data)
+                localStorage.setItem('allOrderFromDB', JSON.stringify(response.data))
+            }).catch(error => {
+            console.log(error);
+        })
+        console.log("Вызов useEffect после геттера")
+    }, [])
     const sortProducts = (field) => {
         setSortingKey(field);
         productArrayForRendering = ProductList.sortProducts(productArrayForRendering, field, directSort);
@@ -121,9 +134,9 @@ const Products = (props) => {
                 <MySelect
                     value={sortingKey}
                     onChange={paginationProducts}
-                    defaultValue="6"
+                    defaultValue="8"
                     options={[
-                        {value: '12', name: "12"},
+                        {value: '16', name: "16"},
                         {value: '50', name: "50"},
                         {value: `-1`, name: "Показать все"},
                     ]}/>

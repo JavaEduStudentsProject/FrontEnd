@@ -25,7 +25,7 @@ function App() {
     const [filterArray, setFilterArray] = useState(["", ""]);
     const [countProductInBasket, setCountProductInBasket] = useLocalStorage(0, "countProductInBasket");
     const [cartList, setCartList] = useLocalStorage([], "cartList");
-    const [order, setOrder] = useLocalStorage([], "cartList");
+    //const [order, setOrder] = useLocalStorage([], "cartList");
 
 
     useEffect(() => {
@@ -38,9 +38,6 @@ function App() {
         })
         console.log("Вызов useEffect после геттера")
     }, [])
-
-
-
 
     const updateCartList = (cartList, newProduct, index) => {
         // Метод slice()возвращает неглубокую копию части массива в новый объект
@@ -102,13 +99,12 @@ function App() {
 
     function decrementProductCount(productCart) {
         removeProductFromCart(productCart)
-        setCountProductInBasket(prevCountProductInBasket => {
-            return (prevCountProductInBasket > 0 ? prevCountProductInBasket - 1 : 0)
-
-        });
-        if (countProductInBasket <= 1) {
+        if (countProductInBasket  <= 1) {
             deleteProductFromCart(productCart)
         }
+        setCountProductInBasket(prevCountProductInBasket => {
+            return (prevCountProductInBasket > 0 ? prevCountProductInBasket - 1 : 0)
+        });
         console.log("Deleted from card. Product quantity: " + countProductInBasket)
     }
 
@@ -129,7 +125,10 @@ function App() {
         product = immutableProductList.find((item) => item.id === productCart.id);
         productIndex = cartList.findIndex((item) => item.id === productCart.id);
         productInCart = cartList[productIndex];
-        newProduct = updateProduct(product, productInCart, -1);
+        if (productCart.quantity>1){
+            newProduct = updateProduct(product, productInCart, -1);
+        }
+
         newCartList = updateCartList(cartList, newProduct, productIndex);
         return {
             cartList: newCartList
@@ -160,22 +159,22 @@ function App() {
         return {productArray}
     }, [searchField])
 
-    const addToOrder = (id) => {
-        let isInArray = false;
-        const newItem = immutableProductList.find((item) => item.id === id);
-        order.forEach(el => {
-            if (el.id === id)
-                isInArray = true;
-        })
-        if (!isInArray)
-
-            setOrder([...order, newItem])
-    };
-
-    const deleteOrder = (id) => {
-        const orderTemp=order.filter(el=>el.id!==id)
-        setOrder(orderTemp)
-    };
+    // const addToOrder = (id) => {
+    //     let isInArray = false;
+    //     const newItem = immutableProductList.find((item) => item.id === id);
+    //     order.forEach(el => {
+    //         if (el.id === id)
+    //             isInArray = true;
+    //     })
+    //     if (!isInArray)
+    //
+    //         setOrder([...order, newItem])
+    // };
+    //
+    // const deleteOrder = (id) => {
+    //     const orderTemp=order.filter(el=>el.id!==id)
+    //     setOrder(orderTemp)
+    // };
 
     return (
         <ImmutableProductListContext.Provider value={{immutableProductList}}>

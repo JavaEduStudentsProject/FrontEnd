@@ -53,7 +53,6 @@ const Delivery = (props)=>{
                 </div>
                 <div class="sideBar">
                     <div class="sideBarListBox">
-                        <img src={img} alt="" width="240" height="10" />
                         <ul>
                             <li><a href="#" >Доставка мелкогабаритной техники общей стоимостью более 4 990 ₽
                             </a><h4>Бесплатно</h4></li>
@@ -62,7 +61,6 @@ const Delivery = (props)=>{
                             <li><a href="#">Другое общей стоимостью более 4 990 ₽</a><h4>Бесплатно</h4></li>
                             <li><a href="#">Другое общей стоимостью менее 4 990 ₽</a><h4>399р</h4></li>
                         </ul>
-                        <img src={img2} alt="" width="240" height="10" />
                     </div>
                 </div>
                 <br class="clear" />

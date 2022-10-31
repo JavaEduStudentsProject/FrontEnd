@@ -72,7 +72,7 @@ const BestProductsRecommendation = (props) => {
 
 
     return (
-        <div>
+        <div className="recommended-products">
             <h1>Лидеры оценок пользователей</h1>
             <div className="products-on-main">
                 {productsToRender.map((elem, index) => {

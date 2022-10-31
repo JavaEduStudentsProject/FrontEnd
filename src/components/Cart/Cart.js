@@ -32,8 +32,8 @@ const showOrders = (props) => {
                 props.cartList.map(
                     productInCart =>
                         <Card key={productInCart.id} className='cart'>
-                            <Card.Img className='item-img' variant="top" alt={productInCart.title}
-                                      src={productInCart.image}/>
+                            {/*<Card.Img className='item-img' variant="top" alt={productInCart.title}*/}
+                            {/*          src={productInCart.image}/>*/}
                             <Card.Title className="item-name">{productInCart.title}</Card.Title>
                             <Card.Subtitle className="item-price">{productInCart.price} $</Card.Subtitle>
                             <div>

@@ -1,22 +1,23 @@
 import Review from "../review/Review";
 import Modal from "../../forAuthorization/components/Modal";
-import {EditUserForm} from "../../hooks/EditUserForm";
 import React, {useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 
 
 const UserOrderItems = (props) => {
     const [modalActive, setModalActive] = useState(false)
+    const navigate =useNavigate();
 
     return (
         <div>
-            {/*<h1 className="order-history"> История заказов</h1>*/}
             <ul className="cart-list">
                         <li key={props.product.id}>
                             <div className="cart-list-item">
                                 <div className="cart-list-item__header">
                                     <div className="cart-list-item__image">
-                                        <img src={props.product.image}/>
+                                        <img src={props.product.image}  onClick={() => {
+                                            navigate(`/product/${props.product.id}`)}}/>
                                     </div>
                                     <h4 className='cart-list-item__name'>{props.product.title}</h4>
                                 </div>

@@ -14,7 +14,7 @@ function ProductPlusMinusButton(props) {
                 props.decrementProductCount(props.product)}
 
             >Удалить</MyButton>
-            <h3>В корзине: {props.countProductInBasket}</h3>
+
         </div>
     );
 }

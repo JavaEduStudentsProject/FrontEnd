@@ -1,11 +1,11 @@
-import React, {useState, useRef} from "react";
+import React, {useState, useRef, useEffect} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
-
 import AuthService from "../services/auth.service";
 import OrderService from "../../services/OrderService";
+
 
 const required = (value) => {
     if (!value) {
@@ -39,6 +39,7 @@ const Login = () => {
         setPassword(password);
     };
 
+
     const fromPage = location.state?.from?.pathname || '/catalog';
     console.log(location.pathname)
     console.log(location)
@@ -49,13 +50,7 @@ const Login = () => {
         setLoading(true);
 
         form.current.validateAll();
-        OrderService.getAllOrders()
-            .then((response) => {
-                console.log(response.data)
-                localStorage.setItem('allOrderFromDB', JSON.stringify(response.data))
-            }).catch(error => {
-            console.log(error);
-        });
+
         if (checkBtn.current.context._errors.length === 0) {
             AuthService.login(username, password).then(
                 () => {

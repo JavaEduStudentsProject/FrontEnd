@@ -40,11 +40,6 @@ function App() {
         console.log("Вызов useEffect после геттера")
     }, [])
 
-
-
-
-
-
     const updateCartList = (cartList, newProduct, index) => {
         // Метод slice()возвращает неглубокую копию части массива в новый объект
         // массива, выбранный из start до end (end не включенный),

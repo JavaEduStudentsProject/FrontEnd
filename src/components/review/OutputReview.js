@@ -29,7 +29,6 @@ const OutputReview = (props) => {
         }
         return item2
     }
-
     return <div>
         {flag === true ?
             <Scroll_Vertical>
@@ -38,53 +37,34 @@ const OutputReview = (props) => {
                         <div className="review-div">
                             <div className="review-div__main">
                                 <div className="review-div__user">
-                                    <h3> {review.userId}</h3>
+                                    <h3> Пользователь {review.userId}</h3>
                                 </div>
                                 <br/>
                                 <div className="review-div__review">
-                                    <p>{review.review}</p>
+                                    <p>Оставил комментарий:  {review.review}</p>
                                 </div>
                             </div>
                             <div className="review-star">
-                                <StarRating/>
+                                <p>Оценка: {review.rating}</p>
+                                <form id="form" action="#" className="star-form">
+                                    <div className="star-rating">
+                                        <div className="star-items">
+                                            {starRate(review.rating).map(rate => (
+                                                <MiniStarOnProduct key={rate}
+                                                />
+                                            ))}
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 ))}
             </Scroll_Vertical>
-        : <div>
-            <h3>Этот товар еще не оценили</h3>
-        </div>
-        }
-        {filteredReviews.map(review => (
-            <div key={review.id}>
-                <div className="review-div">
-                    <div className="review-div__main">
-                        <div className="review-div__user">
-                            <h3> Пользователь {review.userId}</h3>
-                        </div>
-                        <br/>
-                        <div className="review-div__review">
-                            <p>Оставил комментарий:  {review.review}</p>
-                        </div>
-                    </div>
-                    <div className="review-star">
-                        <p>Оценка: {review.rating}</p>
-                        <form id="form" action="#" className="star-form">
-                            <div className="star-rating">
-                                <div className="star-items">
-                                {starRate(review.rating).map(rate => (
-                                    <MiniStarOnProduct key={rate}
-                                    />
-                                ))}
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
+            : <div>
+                <h3>Этот товар еще не оценили</h3>
             </div>
-        ))}
+        }
     </div>
 }
 

@@ -75,6 +75,16 @@ li {
     border: solid 1px #b4b4bb;
 }
 
+.form-group>textarea{
+    width: 80%;
+    height: 50%;
+    resize: none;
+    margin: 0 0 0 35%;
+    padding: 6px 6px 6px 6px;
+    border-radius: 4px;
+    border: solid 1px #b4b4bb;
+}
+
 .single-product {
     box-sizing: border-box;
     color: #000;
@@ -192,9 +202,6 @@ TabPanel{
     margin: 5px;
     font-size: 18px;
 }
-
-
-
 /*звездный рейтинг*/
 .star-rating {
     position: relative;
@@ -205,6 +212,23 @@ TabPanel{
 .star-rating::before {
     content: "★★★★★";
     display: block;
+}
+
+.star {
+    display: inline;
+    font-size: 40px;
+    /*display: inline-block;*/
+    flex-direction: row-reverse;
+    color: #030303;
+}
+
+.star-rating0::before {
+    content: "★";
+    display: block;
+    color: #575656;
+    width: 32px;
+    height: 32px;
+    flex: 0 0 50px;
 }
 
 .star-items {
@@ -235,6 +259,17 @@ TabPanel{
     color: #c9c9c9;
 }
 
+.star-label_1 {
+    flex: 0 0 20%;
+    height: auto;
+    color: #f3f0e8;
+}
+
+.star-label_1::before {
+    content: "★";
+
+}
+
 .star-label::before {
     content: "★";
     display: block;
@@ -252,17 +287,17 @@ TabPanel{
     color: #ffcf0c;
 }
 
-.star-form-btn {
-    color: black;
-    background-color: #ffcf0c;
-    font-weight: 600;
-    padding: 10px;
-    font-size: 15px;
-    border-radius: 3px;
-    margin: 10px;
-    cursor: pointer;
-    border: none;
-}
+/*.star-form-btn {*/
+/*    color: black;*/
+/*    background-color: #ffcf0c;*/
+/*    font-weight: 600;*/
+/*    padding: 10px;*/
+/*    font-size: 15px;*/
+/*    border-radius: 3px;*/
+/*    margin: 10px;*/
+/*    cursor: pointer;*/
+/*    border: none;*/
+/*}*/
 
 .money-block {
     display: block;

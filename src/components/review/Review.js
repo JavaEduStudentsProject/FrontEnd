@@ -50,22 +50,21 @@ const Review = (props) => {
 
     return (
         <div className="col-md-12">
-            <div className="card card-container">
-
                 <Form onSubmit={handleSubmit} ref={form}>
                     <div>
                         <div className="form-group">
-                            <label>Оцени товар</label>
+                            {/*<label>Оцени товар</label>*/}
                             <StarRating
                                 value={rating}
                             />
                         </div>
 
                         <div className="form-group">
-                            <label>Отзыв</label>
+                            {/*<label>Отзыв</label>*/}
                             <textarea
                                 type="text"
                                 name="Review"
+                                // placeholder="Отзыв"
                                 value={review}
                                 onChange={onChangeReview}
                             />
@@ -75,7 +74,7 @@ const Review = (props) => {
                         </div>
                     </div>
                 </Form>
-            </div>
+            {/*</div>*/}
         </div>
     );
 };

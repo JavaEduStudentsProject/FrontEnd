@@ -97,7 +97,7 @@ class ProductList {
                 const fullFilter = item.title + item.description;
                 return fullFilter.toLowerCase().includes(searchField.toLowerCase());
             })
-        } else if (category !== "") {
+        } else if (category !== "" && category !== 'catalog') {
             productArray = products.filter(product => product.category === category).filter(item => {
                 const fullFilter = item.title + item.description;
                 return fullFilter.toLowerCase().includes(searchField.toLowerCase());

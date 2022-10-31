@@ -5,6 +5,7 @@ import {Form} from "react-bootstrap";
 import ReviewService from "./ReviewService";
 import {useRef} from "react";
 import {useNavigate} from "react-router-dom";
+import StarRating from "../single product components/StarRating";
 
 const Review = (props) => {
     const form = useRef();
@@ -18,11 +19,6 @@ const Review = (props) => {
     const [review, setReview] = useState("");
     const [message, setMessage] = useState("");
 
-
-    const onChangeRating = (e) => {
-        const rating = e.target.value;
-        setRating(rating);
-    };
     const onChangeReview = (e) => {
         const review = e.target.value;
         setReview(review);
@@ -31,6 +27,9 @@ const Review = (props) => {
     console.log(props.product.id)
     const handleSubmit = (e) => {
         e.preventDefault();
+        const rating = document.querySelector('input[name="star-radio"]:checked').value;
+        console.log("rating: " + rating)
+        setRating(rating);
         setMessage("");
         setSuccessful(false);
         ReviewService.saveReview(props.product.id, rating, currentUser.username, review).then(
@@ -61,11 +60,8 @@ const Review = (props) => {
                     <div>
                         <div className="form-group">
                             <label>Rating</label>
-                            <Input
-                                type="text"
-                                name="Rating"
+                            <StarRating
                                 value={rating}
-                                onChange={onChangeRating}
                             />
                         </div>
 

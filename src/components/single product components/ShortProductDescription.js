@@ -21,6 +21,12 @@ const ShortProductDescription = (props) => {
                 <li>Рейтинг: {props.product["non_filter_features"]["rating"]}</li>
             </ul>
             <div className="price">
+
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
                 <h2>Цена: {props.product.price}</h2>
                 <Button className="product-button" onClick={() =>
                     props.incrementProductCount(props.product.id)
@@ -29,6 +35,7 @@ const ShortProductDescription = (props) => {
 
             </div>
         </div>
+
     );
 };
 

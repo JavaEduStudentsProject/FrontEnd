@@ -51,6 +51,7 @@ const EditUserForm = props => {
     return (
         <form >
             <label>Фамилия</label>
+            <br></br>
             <input
                 type="text"
                 name="lastname"
@@ -58,13 +59,16 @@ const EditUserForm = props => {
                 onChange= {(e)=> setLastname(e.target.value.replace(/[^A-Za-z]/g, ''))}
             />
             <br></br>
+            <br></br>
             <label>Имя</label>
+            <br></br>
             <input
                 type="text"
                 name="firstname"
                 value={firstname}
                 onChange= {(e)=> setFirstname(e.target.value.replace(/[^A-Za-z]/g, ''))}
             />
+            <br></br>
             <br></br>
             <label>Номер телефона</label>
             <div>
@@ -83,9 +87,11 @@ const EditUserForm = props => {
                 value={country}
                 handleChange={e => setCountry(e.target.value)}/>
             <br/>
+            <br></br>
             <label>Дата рождения</label>
 
             <br/>
+
             <TextField
                 id="date"
                 type="date"

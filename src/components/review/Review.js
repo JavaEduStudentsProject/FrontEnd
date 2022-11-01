@@ -50,30 +50,30 @@ const Review = (props) => {
 
     return (
         <div className="col-md-12">
-                <Form onSubmit={handleSubmit} ref={form}>
-                    <div>
-                        <div className="form-group">
-                            {/*<label>Оцени товар</label>*/}
-                            <StarRating
-                                value={rating}
-                            />
-                        </div>
-
-                        <div className="form-group">
-                            {/*<label>Отзыв</label>*/}
-                            <textarea
-                                type="text"
-                                name="Review"
-                                // placeholder="Отзыв"
-                                value={review}
-                                onChange={onChangeReview}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <button className="product-button">Отправить</button>
-                        </div>
+            <Form onSubmit={handleSubmit} ref={form}>
+                <div>
+                    <div className="form-group">
+                        <label>Оцени товар</label>
+                        <StarRating
+                            value={rating}
+                        />
                     </div>
-                </Form>
+
+                    <div >
+                        <label>Отзыв</label>
+                        <textarea
+                            type="text"
+                            name="Review"
+                            // placeholder="Отзыв"
+                            value={review}
+                            onChange={onChangeReview}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <button className="product-button">Отправить</button>
+                    </div>
+                </div>
+            </Form>
             {/*</div>*/}
         </div>
     );

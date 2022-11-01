@@ -1,12 +1,11 @@
 import React, {useEffect, useState, useMemo} from 'react';
-import SockJsClient from 'react-stomp';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Header from "./header components/Header";
 import SingleProduct from "../components/single product components/SingleProduct";
 import Footer from "./footer components/Footer";
 import Products from "./all products components/Products";
 import ProductService from '../services/ProductService'
-import {ImmutableProductListContext, FilterArrayContext,ProductListContext} from "../services/Context";
+import {ImmutableProductListContext, FilterArrayContext, ProductListContext} from "../services/Context";
 import ProductList from "../services/ProductList";
 import Login from "../forAuthorization/components/Login";
 import Register from "../forAuthorization/components/Register";
@@ -25,9 +24,9 @@ function App() {
     const [filterArray, setFilterArray] = useState(["", ""]);
     const [countProductInBasket, setCountProductInBasket] = useLocalStorage(0, "countProductInBasket");
     const [cartList, setCartList] = useLocalStorage([], "cartList");
-    //const [order, setOrder] = useLocalStorage([], "cartList");
 
-     useEffect(() => {
+
+    useEffect(() => {
         console.log("Вызов useEffect до геттера")
         ProductService.getAllProducts().then((response) => {
             localStorage.setItem('immutableProductList', JSON.stringify(response.data))
@@ -37,10 +36,6 @@ function App() {
         })
         console.log("Вызов useEffect после геттера")
     }, [])
-
-
-
-
 
 
     const updateCartList = (cartList, newProduct, index) => {
@@ -103,14 +98,12 @@ function App() {
 
     function decrementProductCount(productCart) {
         removeProductFromCart(productCart)
-        setCountProductInBasket(prevCountProductInBasket => {
-            return (prevCountProductInBasket > 0 ? prevCountProductInBasket - 1 : 0)
-
-        });
         if (countProductInBasket <= 1) {
             deleteProductFromCart(productCart)
         }
-        console.log("Deleted from card. Product quantity: " + countProductInBasket)
+        setCountProductInBasket(prevCountProductInBasket => {
+            return (prevCountProductInBasket > 0 ? prevCountProductInBasket - 1 : 0)
+        });
     }
 
 
@@ -130,7 +123,9 @@ function App() {
         product = immutableProductList.find((item) => item.id === productCart.id);
         productIndex = cartList.findIndex((item) => item.id === productCart.id);
         productInCart = cartList[productIndex];
-        newProduct = updateProduct(product, productInCart, -1);
+        if (productCart.quantity > 1) {
+            newProduct = updateProduct(product, productInCart, -1);
+        }
         newCartList = updateCartList(cartList, newProduct, productIndex);
         return {
             cartList: newCartList
@@ -147,10 +142,6 @@ function App() {
     };
 
 
-
-//запустить один раз и закомментировать
-    // localStorage.setItem('immutableProductList', JSON.stringify(immutableProductList))
-
     const handleChange = e => {
         setSearchField(e.target.value);
     };
@@ -163,22 +154,6 @@ function App() {
 
     console.log(productArray)
 
-    // const addToOrder = (id) => {
-    //     let isInArray = false;
-    //     const newItem = immutableProductList.find((item) => item.id === id);
-    //     order.forEach(el => {
-    //         if (el.id === id)
-    //             isInArray = true;
-    //     })
-    //     if (!isInArray)
-    //
-    //         setOrder([...order, newItem])
-    // };
-    //
-    // const deleteOrder = (id) => {
-    //     const orderTemp=order.filter(el=>el.id!==id)
-    //     setOrder(orderTemp)
-    // };
 
     return (
         <ImmutableProductListContext.Provider value={{immutableProductList}}>
@@ -187,7 +162,6 @@ function App() {
                     <div className="container">
 
                         <Router>
-                            {/*productsInCart={productsInCart} setProductsInCart={setProductsInCart}*/}
                             <Header cartList={cartList}
                                     removeProductFromCart={removeProductFromCart}
                                     countProductInBasket={countProductInBasket}
@@ -202,13 +176,13 @@ function App() {
                             <Routes>
                                 <Route path="/"
                                        element={
-                                    <MainPage
-                                        incrementProductCount={incrementProductCount}
-                                        decrementProductCount={decrementProductCount}
-                                        deleteProductFromCart={deleteProductFromCart}
-                                        addProductInCart={addProductInCart}
-                                    />
-                                }
+                                           <MainPage
+                                               incrementProductCount={incrementProductCount}
+                                               decrementProductCount={decrementProductCount}
+                                               deleteProductFromCart={deleteProductFromCart}
+                                               addProductInCart={addProductInCart}
+                                           />
+                                       }
                                 />
                                 <Route path="/product/:id"
                                        element={<SingleProduct incrementProductCount={incrementProductCount}
@@ -231,17 +205,17 @@ function App() {
                                                                             deleteProductFromCart={deleteProductFromCart}
                                                                             addProductInCart={addProductInCart}/>}/>
                                 <Route path="/catalog" element={<Products searchField={searchField}
-                                                                   incrementProductCount={incrementProductCount}
-                                                                   decrementProductCount={decrementProductCount}
-                                                                   removeProductFromCart={removeProductFromCart}
-                                                                   deleteProductFromCart={deleteProductFromCart}
-                                                                   addProductInCart={addProductInCart}/>}/>
+                                                                          incrementProductCount={incrementProductCount}
+                                                                          decrementProductCount={decrementProductCount}
+                                                                          removeProductFromCart={removeProductFromCart}
+                                                                          deleteProductFromCart={deleteProductFromCart}
+                                                                          addProductInCart={addProductInCart}/>}/>
                                 <Route exact path="/login" element={<Login/>}/>
                                 <Route exact path="/register" element={<Register/>}/>
                                 <Route exact path="/aboutUs" element={<AboutUs/>}/>
                                 <Route exact path="/contacts" element={<Contacts/>}/>
                                 <Route exact path="/delivery" element={<Delivery/>}/>
-                                <Route exact path="/profile" element={<Profile />}/>
+                                <Route exact path="/profile" element={<Profile/>}/>
                                 <Route exact path="/order"
                                        element={<Order cartList={cartList} deleteProductFromCart={deleteProductFromCart}
                                                        removeProductFromCart={removeProductFromCart}

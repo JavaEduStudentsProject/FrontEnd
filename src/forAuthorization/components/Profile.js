@@ -2,19 +2,12 @@ import React, {useState, useEffect} from "react";
 import Modal from "./Modal";
 import AuthService from "../services/auth.service";
 import {EditUserForm} from "../../hooks/EditUserForm";
-import Avatar from "@mui/material/Avatar";
-import Stack from "@mui/material/Stack";
-import axios from "axios";
-import {NavLink} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
 import {Tab, TabList, TabPanel, Tabs} from "react-tabs";
 import 'react-tabs/style/react-tabs.css';
 import UserOrder from "../../components/Cart/UserOrder";
-import OrderService from "../../services/OrderService";
 
 import "./styleAvatar.css"
-import Portal from "./Portal";
-import CreateAvatar from "./CreateAvatar";
 import ProfilePhoto from "./ProfilePhoto";
 
 
@@ -58,7 +51,7 @@ const Profile = (props) => {
                         <div>
                             <header className="jumbotron">
                                 <h2>
-                                    Profile <strong>{user.username}</strong>
+                                    Добро пожаловать <strong>{user.username}</strong>!
                                 </h2>
                             </header>
 

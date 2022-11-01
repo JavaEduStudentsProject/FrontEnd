@@ -1,7 +1,5 @@
-import React from "react";
-import MiniStarOnProduct from "../single product components/MiniStarOnProduct";
-import StarRating from "../single product components/StarRating";
 import Scroll_Vertical from "../all products components/Scroll_Vertical";
+import MiniStarOnProduct from "../single product components/MiniStarOnProduct";
 
 const OutputReview = (props) => {
 

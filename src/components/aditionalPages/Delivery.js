@@ -12,8 +12,8 @@ const Delivery = (props)=>{
     <body>
     <div id="wrapper">
         <div id="contant">
-            <div class="contant_1">
-                <div class="contant_1_left">
+            <div className="contant_1">
+                <div className="contant_1_left">
                     <br></br>
                     <h2>
                         Доставка
@@ -51,8 +51,8 @@ const Delivery = (props)=>{
                         </p>
                  </p>
                 </div>
-                <div class="sideBar">
-                    <div class="sideBarListBox">
+                <div className="sideBar">
+                    <div className="sideBarListBox">
                         <ul>
                             <li><a href="#" >Доставка мелкогабаритной техники общей стоимостью более 4 990 ₽
                             </a><h4>Бесплатно</h4></li>
@@ -67,7 +67,7 @@ const Delivery = (props)=>{
             </div>
         </div>
             <span><img src={img3} width="253" height="320" alt="" /></span>
-            <div class="midBox1Top">
+            <div className="midBox1Top">
                 <br className="clear bottomClear"/>
                 <br></br>
                 <h3>Самовывоз</h3>

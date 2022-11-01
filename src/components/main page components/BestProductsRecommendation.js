@@ -74,11 +74,14 @@ const BestProductsRecommendation = (props) => {
     return (
         <div className="recommended-products">
             <h1>Лидеры оценок пользователей</h1>
+
             <div className="products-on-main">
                 {productsToRender.map((elem, index) => {
-                    return (<div className="best-products-recommendation" key={index}>
+                    return (<div  key={index}>
                         <h1>{elem.name}</h1>
+                        <div className="best-products-recommendation">
                         {elem.id.map(product => <ProductCard item={product} key={product.id}/>)}
+                        </div>
                     </div>)
                 })}
             </div>

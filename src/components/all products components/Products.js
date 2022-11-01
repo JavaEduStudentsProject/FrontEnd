@@ -11,12 +11,10 @@ import {useParams} from "react-router-dom";
 import Title from "../../components/all products components/Title";
 import Pagination from "react-bootstrap/Pagination";
 import ProductList from "../../services/ProductList";
-import {useEffect} from "react";
-import OrderService from "../../services/OrderService";
+
 
 const Products = (props) => {
     let productArrayForRendering = [];
-    // const {immutableProductList} = useContext(ImmutableProductListContext);
     const immutableProductList = JSON.parse(localStorage.getItem('immutableProductList'));
     const {filterArray, setFilterArray} = useContext(FilterArrayContext);
     const {priceDelta} = useContext(PriceFilterArrayContext);
@@ -94,6 +92,7 @@ const Products = (props) => {
                     deletePurchasedProduct={props.deletePurchasedProduct}
                     incrementProductCount={props.incrementProductCount}
                     decrementProductCount={props.decrementProductCount}
+                    addProductInWish={props.addProductInWish}
                 />
             })
             :

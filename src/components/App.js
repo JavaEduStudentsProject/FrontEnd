@@ -17,6 +17,7 @@ import Contacts from "./aditionalPages/Contacts";
 import Delivery from "./aditionalPages/Delivery";
 import MainPage from "./main page components/MainPage";
 import OrderService from "../services/OrderService";
+import WishList from "../forAuthorization/components/WishList";
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
     const [filterArray, setFilterArray] = useState(["", ""]);
     const [countProductInBasket, setCountProductInBasket] = useLocalStorage(0, "countProductInBasket");
     const [cartList, setCartList] = useLocalStorage([], "cartList");
+    const [wishList, setWishList] = useLocalStorage([], "wishList");
     const [immutableProductList, setImmutableProductList] = useState([]);
 
     useEffect(() => {
@@ -45,8 +47,6 @@ function App() {
         })
         console.log("Вызов useEffect после геттера")
     }, [])
-
-    // const immutableProductList = JSON.parse(localStorage.getItem('immutableProductList'));
 
 
     const updateCartList = (cartList, newProduct, index) => {
@@ -70,6 +70,7 @@ function App() {
         // Таким образом вычисление, и структура объекта продукта находится в newProduct
         return setCartList([...cartList.slice(0, index), newProduct, ...cartList.slice(index + 1)]);
     };
+
 
     // Функция, занимающаяся проверкой и структурой телефона
     // Принимает три параметра, полученный телефон, телефон в корзине (если тот есть), и количество которое нужно купить
@@ -127,6 +128,33 @@ function App() {
         return {
             cartList: newCartList
         };
+    };
+
+    const updateWishList = (wishList, product, index) => {
+        if (product.count === 0) {
+            return setWishList([...wishList.slice(0, index), ...wishList.slice(index + 1)]);
+        }
+        if (index === -1) {
+            return setWishList([...wishList, product]);
+        }
+        return setWishList([...wishList.slice(0, index), product, ...wishList.slice(index + 1)]);
+    };
+
+    const addProduct = (id) => {
+        const product = immutableProductList.find((item) => item.id === id);
+        console.log(product)
+        const productIndex = wishList.findIndex((item) => item.id === id);
+        console.log(productIndex)
+        const newWishList = updateWishList(wishList, product, productIndex);
+        console.log(newWishList)
+        return {
+            wishList: newWishList
+        };
+    };
+
+    function addProductInWish (id) {
+        addProduct(id)
+        console.log(wishList)
     };
 
     const removeProductFromCart = (productCart) => {
@@ -192,6 +220,7 @@ function App() {
                                                decrementProductCount={decrementProductCount}
                                                deleteProductFromCart={deleteProductFromCart}
                                                addProductInCart={addProductInCart}
+                                               addProductInWish={addProductInWish}
                                            />
                                        }
                                 />
@@ -202,31 +231,42 @@ function App() {
                                                                deleteProductFromCart={deleteProductFromCart}
                                                                removeProductFromCart={removeProductFromCart}
                                                                addProductInCart={addProductInCart}
+                                                               addProductInWish={addProductInWish}
                                                                setCountProductInBasket={setCountProductInBasket}/>}/>
                                 <Route path="/:category/:subcategory" element={<Products searchField={searchField}
                                                                                          incrementProductCount={incrementProductCount}
                                                                                          decrementProductCount={decrementProductCount}
                                                                                          removeProductFromCart={removeProductFromCart}
                                                                                          deleteProductFromCart={deleteProductFromCart}
-                                                                                         addProductInCart={addProductInCart}/>}/>
+                                                                                         addProductInCart={addProductInCart}
+                                                                                         addProductInWish={addProductInWish}
+
+                                />}/>
                                 <Route path="/:category" element={<Products searchField={searchField}
                                                                             incrementProductCount={incrementProductCount}
                                                                             decrementProductCount={decrementProductCount}
                                                                             removeProductFromCart={removeProductFromCart}
                                                                             deleteProductFromCart={deleteProductFromCart}
-                                                                            addProductInCart={addProductInCart}/>}/>
+                                                                            addProductInCart={addProductInCart}
+                                                                            addProductInWish={addProductInWish}
+
+                                />}/>
                                 <Route path="/catalog" element={<Products searchField={searchField}
                                                                           incrementProductCount={incrementProductCount}
                                                                           decrementProductCount={decrementProductCount}
                                                                           removeProductFromCart={removeProductFromCart}
                                                                           deleteProductFromCart={deleteProductFromCart}
-                                                                          addProductInCart={addProductInCart}/>}/>
+                                                                          addProductInCart={addProductInCart}
+                                                                          addProductInWish={addProductInWish}
+
+                                />}/>
                                 <Route exact path="/login" element={<Login/>}/>
                                 <Route exact path="/register" element={<Register/>}/>
                                 <Route exact path="/aboutUs" element={<AboutUs/>}/>
                                 <Route exact path="/contacts" element={<Contacts/>}/>
                                 <Route exact path="/delivery" element={<Delivery/>}/>
                                 <Route exact path="/profile" element={<Profile/>}/>
+                                <Route exact path="/wishList" element={<WishList/>}/>
                                 <Route exact path="/order"
                                        element={<Order cartList={cartList} deleteProductFromCart={deleteProductFromCart}
                                                        removeProductFromCart={removeProductFromCart}

@@ -3,15 +3,15 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import ProductList from "../../services/ProductList";
 import {Link} from 'react-router-dom'
-
+import { AiOutlineHeart } from "react-icons/ai";
+import { AiFillHeart } from "react-icons/ai";
 
 const ProductCard = (props) => {
     const flatProduct = ProductList.flatProduct(props.item);
-
-    //const keys = Object.keys(flatProduct).filter(key => key !== "image" && key !== "description" && key !== "title" && key !== "0"&& key !== "1"&& key !== "2"&& key !== "3"&& key !== "4"&& key !== "id");
-    // const descriptionList = keys.map((key, index) =>
-    //         <li key={flatProduct.id + index}>{keys[index]}: {flatProduct[key]}</li>
-    // );
+    let products = JSON.parse(localStorage.getItem('wishList'))
+    console.log(products)
+    let product = products.filter(product => product.id === flatProduct.id)
+    console.log(product)
 
 
     const keys = Object.keys(flatProduct).filter(key => key === "brand" || key === "description" || key === "category");
@@ -34,6 +34,11 @@ const ProductCard = (props) => {
     return (
         <>
             <Card className='card' border={"success"}>
+                {product.length
+                    ?
+                    <AiFillHeart/>
+                    :
+                    <AiOutlineHeart onClick={() => props.addProductInWish(flatProduct.id)}/>}
                 <Card.Img className='product-img' variant="top" alt={flatProduct.title} src={image}/>
                 <Card.Title className="product-name">{flatProduct.title}</Card.Title>
                 <Card.Body className='product-description'>

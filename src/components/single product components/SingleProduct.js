@@ -1,5 +1,4 @@
 import React from "react";
-import PriceComponent from "./PriceComponent"
 import ShortProductDescription from "./ShortProductDescription";
 import {useParams} from "react-router-dom"
 import ImagesGallery from "./ImageGallery";
@@ -8,6 +7,7 @@ import 'react-tabs/style/react-tabs.css';
 import OutputReview from "../review/OutputReview";
 import {useEffect} from "react";
 import ProductService from "../../services/ProductService";
+import {AiFillHeart, AiOutlineHeart} from "react-icons/ai";
 
 export default function SingleProduct(props) {
 
@@ -27,7 +27,10 @@ export default function SingleProduct(props) {
     localStorage.setItem(`${id}`, JSON.stringify(immutable.find(p => p.id === Number(id))))
 
     let product = JSON.parse(localStorage.getItem(`${id}`))
-
+    let products = JSON.parse(localStorage.getItem('wishList'))
+    console.log(products)
+    const product1 = products.filter(product1 => product1.id === product.id)
+    console.log(product1)
     const {setCountProductInBasket, countProductInBasket} = props;
 
     function getImage() {
@@ -48,12 +51,19 @@ export default function SingleProduct(props) {
 
     return (
         <div className="single-product">
+
             <h1 className="productName">{product.title}</h1>
             <div className="main-block">
                 <div className="product-card">
                     <div className="img-and-shortdescr">
+                        {product1.length
+                            ?
+                            <AiFillHeart/>
+                            :
+                            <AiOutlineHeart onClick={() => props.addProductInWish(product.id)}/>}
                         <ImagesGallery product={product}/>
-                        <ShortProductDescription product={product}/>
+                        <ShortProductDescription product={product} incrementProductCount={props.incrementProductCount} decrementProductCount={props.decrementProductCount}/>
+
                     </div>
                     <div>
                         <Tabs>
@@ -81,15 +91,7 @@ export default function SingleProduct(props) {
                         </Tabs>
                     </div>
                 </div>
-                <div className="money-block">
-                    <PriceComponent countProductInBasket={countProductInBasket}
-                                    incrementProductCount={props.incrementProductCount}
-                                    decrementProductCount={props.decrementProductCount}
-                                    setCountProductInBasket={setCountProductInBasket} product={product}
-                                    deleteProductFromCart={props.deleteProductFromCart}
-                                    removeProductFromCart={props.removeProductFromCart}
-                                    addProductInCart={props.addProductInCart}/>
-                </div>
+
             </div>
         </div>
     )

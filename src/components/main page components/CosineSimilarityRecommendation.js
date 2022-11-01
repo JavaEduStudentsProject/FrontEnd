@@ -20,6 +20,7 @@ const CosineSimilarityRecommendation = (props) => {
             deletePurchasedProduct={props.deletePurchasedProduct}
             incrementProductCount={props.incrementProductCount}
             decrementProductCount={props.decrementProductCount}
+            addProductInWish={props.addProductInWish}
         />
     })
 

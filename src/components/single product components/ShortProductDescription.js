@@ -1,7 +1,5 @@
 import React, {useState} from 'react';
-import MainCharacteristics from "./MainCharacteristics";
-import StarRating from "./StarRating";
-import Row from "../all products components/Row";
+import Button from "react-bootstrap/Button";
 
 const ShortProductDescription = (props) => {
     console.log(props.product)
@@ -22,6 +20,14 @@ const ShortProductDescription = (props) => {
                 {descriptionList}
                 <li>Рейтинг: {props.product["non_filter_features"]["rating"]}</li>
             </ul>
+            <div className="price">
+                <h2>Цена: {props.product.price}</h2>
+                <Button className="product-button" onClick={() =>
+                    props.incrementProductCount(props.product.id)
+                }>
+                    В корзину</Button>
+
+            </div>
         </div>
     );
 };

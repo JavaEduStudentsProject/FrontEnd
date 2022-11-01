@@ -66,6 +66,7 @@ const MainPage = (props) => {
                 decrementProductCount={props.decrementProductCount}
                 deleteProductFromCart={props.deleteProductFromCart}
                 addProductInCart={props.addProductInCart}
+                addProductInWish={props.addProductInWish}
             />}
             <BestProductsRecommendation
                 bestProductArray={bestProductArray}
@@ -73,6 +74,7 @@ const MainPage = (props) => {
                 decrementProductCount={props.decrementProductCount}
                 deleteProductFromCart={props.deleteProductFromCart}
                 addProductInCart={props.addProductInCart}
+                addProductInWish={props.addProductInWish}
             />
             <SockJsClient
                 url={SOCKET_URL}

@@ -14,10 +14,13 @@ import IconButton from '@mui/material/IconButton';
 import { styled } from '@mui/material/styles';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import img1 from "../../images/istockphoto-1214428300-170667a.jpg"
+import ProductCard from "../all products components/ProductCard";
+import {AiFillHeart} from "react-icons/ai";
 
 
 export default function Header(props) {
     let [cartOpen, setCartOpen] = useState(false)
+    let [wishOpen, setWishOpen] = useState(false)
     // const {immutableProductList} = useContext(ImmutableProductListContext);
     const {countProductInBasket} = props;
 
@@ -74,6 +77,7 @@ export default function Header(props) {
                                 />
                             </StyledBadge>
                         </IconButton>
+
                         {cartOpen && (
                             <div className={'shop-cart'}>
 
@@ -91,8 +95,21 @@ export default function Header(props) {
                             </div>
                         )}
 
+
                     </Stack>
                 </div>
+
+                <IconButton
+                    aria-label="cart"
+                    size="large">
+
+                    {/*<StyledBadge badgeContent={countProductInBasket} color= "primary">*/}
+                    <AiFillHeart fontSize="inherit" onClick={() =>  window.location.assign("/wishList")}
+                    />
+                    {/*</StyledBadge>*/}
+                </IconButton>
+
+
                     {currentUser ? (
                     <div className="navbar-nav ml-auto">
 

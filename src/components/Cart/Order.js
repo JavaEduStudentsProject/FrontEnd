@@ -90,13 +90,13 @@ const Order = (props) => {
                                         </div>
                                         <div>
 
-                                            {/*<button className="button-cart"*/}
-                                            {/*        onClick={() => props.decrementProductCount(cartItem)}>-*/}
-                                            {/*</button>*/}
+                                            <button className="button-cart"
+                                                    onClick={() => props.decrementProductCount(cartItem)}>-
+                                            </button>
                                             <span className="cart-list-item__count">{cartItem.quantity}</span>
-                                            {/*<button className="button-cart"*/}
-                                            {/*        onClick={() => props.incrementProductCount(cartItem.id)}>+*/}
-                                            {/*</button>*/}
+                                            <button className="button-cart"
+                                                    onClick={() => props.incrementProductCount(cartItem.id)}>+
+                                            </button>
                                         </div>
                                         <span className="cart-list-item__count">{cartItem.total}</span>
                                         <span className="cart-list-item__count">{cartItem.discountPercentage}</span>

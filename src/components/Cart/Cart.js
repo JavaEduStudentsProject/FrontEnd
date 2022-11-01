@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
-
 import "./styleCart.css"
 import "./styleOrder.css"
 import Card from "react-bootstrap/Card";
@@ -12,7 +11,6 @@ const Cart = (props) => {
     const [orchestratorResponse, setOrchestratorResponse] = useState("");
     const navigate = useNavigate();
     const showOrders = (props) => {
-
 
         let summa = 0;
         props.cartList.forEach(el => summa += Number.parseFloat(el.price) * Number.parseFloat(el.quantity))
@@ -39,7 +37,8 @@ const Cart = (props) => {
                                 <Card.Img className='item-img' variant="top" alt={productInCart.title}
                                           src={productInCart.image}
                                           onClick={() => {
-                                              navigate(`/product/${productInCart.id}`)}}
+                                              navigate(`/product/${productInCart.id}`)
+                                          }}
                                 />
                                 <Card.Title className="item-name">{productInCart.title}</Card.Title>
                                 <Card.Subtitle className="item-price">{productInCart.price} $</Card.Subtitle>
@@ -62,10 +61,6 @@ const Cart = (props) => {
                 }
                 <p className="item-sum"> Итого: {(new Intl.NumberFormat().format(summa))}</p>
 
-                {/*<Button className="order-button" onClick={() => props.setCartOpen(!props.cartOpen)}>*/}
-                {/*    <Link className="link-button" to={`/order/`}>Создать заказ</Link>*/}
-                {/*</Button>*/}
-                {/*<Button className="order-button" onClick={() => props.setCartOpen(!props.cartOpen)}>*/}
                 <Button className="order-button" onClick={onHandle}>
                     <Link className="link-button" to={`/order/`}>Создать заказ</Link>
                 </Button>

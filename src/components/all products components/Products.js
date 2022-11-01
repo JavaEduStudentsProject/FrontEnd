@@ -40,17 +40,7 @@ const Products = (props) => {
         }
     }
 
-    useEffect(() => {
-        console.log("Вызов useEffect до геттера")
-        OrderService.getAllOrders()
-            .then((response) => {
-                console.log(response.data)
-                localStorage.setItem('allOrderFromDB', JSON.stringify(response.data))
-            }).catch(error => {
-            console.log(error);
-        })
-        console.log("Вызов useEffect после геттера")
-    }, [])
+
     const sortProducts = (field) => {
         setSortingKey(field);
         productArrayForRendering = ProductList.sortProducts(productArrayForRendering, field, directSort);

@@ -18,7 +18,7 @@ import img1 from "../../images/istockphoto-1214428300-170667a.jpg"
 
 export default function Header(props) {
     let [cartOpen, setCartOpen] = useState(false)
-    const {immutableProductList} = useContext(ImmutableProductListContext);
+    // const {immutableProductList} = useContext(ImmutableProductListContext);
     const {countProductInBasket} = props;
 
     const [showAdminBoard, setShowAdminBoard] = useState(false);
@@ -100,7 +100,7 @@ export default function Header(props) {
 
                         {/*<li className="nav-item">*/}
                             <p className="Logout" >
-                            <a href="/" className="nav-link" onClick={logOut}>
+                            <a href="/catalog" className="nav-link" onClick={logOut}>
                                 Выйти
                             </a>
                             </p>

@@ -13,8 +13,13 @@ const MainPage = (props) => {
 
 
     useEffect(() => {
+        let username=''
         let user = JSON.parse(localStorage.getItem("user"));
-        let username = user.username;
+         user
+        ?
+             username = user.username
+             :
+             username=null
         console.log(username);
         ProductService.getRecommendedProducts(username);
     }, [])

@@ -16,15 +16,15 @@ import AboutUs from "./aditionalPages/AboutUs";
 import Contacts from "./aditionalPages/Contacts";
 import Delivery from "./aditionalPages/Delivery";
 import MainPage from "./main page components/MainPage";
+import OrderService from "../services/OrderService";
 
 
 function App() {
-    const [immutableProductList, setImmutableProductList] = useState([]);
     const [searchField, setSearchField] = useState("");
     const [filterArray, setFilterArray] = useState(["", ""]);
     const [countProductInBasket, setCountProductInBasket] = useLocalStorage(0, "countProductInBasket");
     const [cartList, setCartList] = useLocalStorage([], "cartList");
-
+    const [immutableProductList, setImmutableProductList] = useState([]);
 
     useEffect(() => {
         console.log("Вызов useEffect до геттера")
@@ -35,7 +35,18 @@ function App() {
             console.log(error);
         })
         console.log("Вызов useEffect после геттера")
+        console.log("Вызов useEffect до геттера")
+        OrderService.getAllOrders()
+            .then((response) => {
+                console.log(response.data)
+                localStorage.setItem('allOrderFromDB', JSON.stringify(response.data))
+            }).catch(error => {
+            console.log(error);
+        })
+        console.log("Вызов useEffect после геттера")
     }, [])
+
+    // const immutableProductList = JSON.parse(localStorage.getItem('immutableProductList'));
 
 
     const updateCartList = (cartList, newProduct, index) => {

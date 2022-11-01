@@ -51,7 +51,7 @@ const Profile = (props) => {
                         <div>
                             <header className="jumbotron">
                                 <h2>
-                                    Profile <strong>{user.username}</strong>
+                                    Добро пожаловать <strong>{user.username}</strong>!
                                 </h2>
                             </header>
 
